@@ -1,0 +1,27 @@
+Item,Description,Input
+p1_title,country-confirmed-total-sort-by-total,Cumulative Confirmed Cases (Top 5 Countries of Cumulative Confirmed Cases)
+p1_1_title,country-confirmed-total-sort-by-total including China,Cumulative Confirmed Cases (Top 5 Countries of Cumulative Confirmed Cases Including China)
+p1_2_title,country-confirmed-total-sort-by-total China,Cumulative Confirmed Cases (Top 5 Countries of Cumulative Confirmed Cases China)
+p1_xlab,Date,Date
+p1_ylab,Number of Cases,Number of Cases
+p2_title,country-confirmed-incremental-sort-by-total,Incremental Confirmed Cases (Top 5 Countries of Cumulative Confirmed Cases)
+p2_xlab,Date,Date
+p2_ylab,Number of Cases,Number of Cases per day
+p3_title,country-incremental-sort-by-incremental,Incremental Confirmed Cases (Top 5 Countries of Incremental Confirmed Cases)
+p3_1_title,country-incremental-sort-by-incremental including China,Incremental Confirmed Cases (Top 5 Countries of Incremental Confirmed Cases Including China)
+p3_2_title,country-incremental-sort-by-incremental China,Incremental Confirmed Cases (Top 5 Countries of Incremental Confirmed Cases China)
+p3_xlab,Date,Date
+p3_ylab,Number of Cases,Number of Cases per day
+p4_title,US-active cases-deaths-recovered,"Active, Recovered and Death cases in U.S."
+p4_xlab,Date,Date
+p4_ylab,Number of Cases,Number of Cases
+p5_title,US-state-confirmed-total-sort-by-total,Cumulative Confirmed Cases (Top 5 Sates of Cumulative Confirmed Cases in U.S.)
+p5_xlab,Date,Date
+p5_ylab,Number of Cases,Number of Cases
+p6_title,US-state-confirmed-incremental-sort-by-total,Incremental Confirmed Cases (Top 5 Sates of Incremental Confirmed Cases in U.S.)
+p6_xlab,Date,Date
+p6_ylab,Number of Cases,Number of Cases per day
+p7_1_title,Crude Incidence Rate Cumulative,Crude Incidence Rate Cumulative (Including China and Hubei alone)
+p7_2_title,Crude Incidence Rate Active,Crude Incidence Rate Active (Including China and Hubei alone)
+p7_xlab,Date,Date
+p7_ylab,"Incidence Rate Per 100,000",Number of Cases
