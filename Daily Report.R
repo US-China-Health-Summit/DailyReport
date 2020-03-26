@@ -224,18 +224,17 @@ create_final_data=function(type = NULL){
 		data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
 		# data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
 	}
-
   return(list(data_all=data_all, case_confirmed_wide= case_confirmed_wide, case_confirmed_incremental_wide = case_confirmed_incremental_wide, case_deaths_wide = case_deaths_wide))  # , case_recovered_wide=case_recovered_wide
-  
 }
 
-# load data
-countries_data = create_final_data(type = "Country")
-Hubei_data = create_final_data(type = "Hubei")
 
 ##############################
 ## WORLDWIDE
 ##############################
+
+# load data
+countries_data = create_final_data(type = "Country")
+Hubei_data = create_final_data(type = "Hubei")
 
 case_confirmed_wide= countries_data$case_confirmed_wide
 case_confirmed_incremental_wide= countries_data$case_confirmed_incremental_wide
@@ -257,6 +256,10 @@ diff_deaths = case_deaths_wide[ncol(case_deaths_wide)]-case_deaths_wide[ncol(cas
 colnames(diff_deaths) = "Difference"
 case_deaths_wide = cbind(case_deaths_wide, diff_deaths)
 
+# reverse column order 
+case_confirmed_wide = case_confirmed_wide[, ncol(case_confirmed_wide):1]
+case_confirmed_incremental_wide = case_confirmed_incremental_wide[, ncol(case_confirmed_incremental_wide):1]
+case_deaths_wide = case_deaths_wide[, ncol(case_deaths_wide):1]
 write.csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
 write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental.csv"))
 write.csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
@@ -576,6 +579,8 @@ US_Deaths = case_deaths_wide[rownames(case_deaths_wide) == "US",]
 # US_tbl = rbind(US_Active, US_Deaths, US_Recoverd)
 US_tbl = rbind(US_Confirmed, US_Deaths)
 rownames(US_tbl) = c("Total Confirmed"， "Deaths")
+# reverse column order 
+US_tbl = US_tbl[, ncol(US_tbl):1]
 write.csv(US_tbl, paste(report_date,"table_active_deaths_recovered_US.csv"))
 	
 # plot 4: US only Active Deaths Recovered
@@ -625,7 +630,7 @@ state_detail_url = 'https://covidtracking.com/api/states/daily'
 r = GET(state_detail_url)
 if (r$status != 200) stop(paste("BAD API RETURN!"))
 data_us_states_orig = fromJSON(paste(rawToChar(r$content), collapse=""))
-
+state_population = read.csv("input_state_population.csv", stringsAsFactors=F)
 
 convert_date_us=function(date_label){
   year =unlist(lapply(as.character(date_label), function(X) substr(X,1,4) ))
@@ -637,11 +642,13 @@ convert_date_us=function(date_label){
 
 data_us_states = data_us_states_orig
 data_us_states$date = convert_date_us(data_us_states$date)
-data_us_states = data_us_states[order(data_us_states$date),]
+# data_us_states = data_us_states[order(data_us_states$date),]
 data_us_states[is.na(data_us_states)] = 0
+data_us_states$population = state_population$Population[match(data_us_states$state, state_population$State)]
+data_us_states$crude_incidence_rate = as.numeric(data_us_states$positive)/as.numeric(data_us_states$population) * 100000
 report_date = as.character( max(data_us_states$date))
 
-## # time series table - reshape from long to wide example
+### time series table - reshape from long to wide example
 data_us_states_confirmed = data_us_states[, c("date", "state", "positive")]
 case_confirmed_wide <- reshape(data=data_us_states_confirmed,idvar="state",
                           v.names = "positive",
@@ -659,6 +666,10 @@ case_confirmed_incremental_wide[is.na(case_confirmed_incremental_wide)] = 0
 write.csv(case_confirmed_wide, paste(report_date,"table_case_confirmed_US.csv"), row.names = F)
 write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental_US.csv" ), row.names = F)
 
+### crude_incidence_rate
+data_latest = data_us_states[data_us_states$date == report_date,c( "date", "state", "positive", "crude_incidence_rate", "death", "hospitalized", "totalTestResults", "deathIncrease", "hospitalizedIncrease", "negativeIncrease")]
+data_latest = data_latest[order(data_latest$positive, decreasing = T),]
+write.csv(data_latest, paste(report_date,"table_latest_cases_and_incidence_rate_US.csv"), row.names = F)
 
 # data for plots
 
@@ -755,27 +766,4 @@ ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10,
 
 
 
-
-### CHANGELOG ### - BY LZHANG
-# 3/15/2020
-# 1. Added a table for crude incidence rate  
-# 2. Plot 1 and Plot 3 added 2 more versions, top5 + China ; China only
-# 3. Added a table output for US Active, deaths and recovered 
-# 4. Fix the start date and end date for X labels  
-
-# 3/16/2020:
-# 1. Adjust legend size
-# 2. Added plots for Incidence Rate
-
-# 3/19/2020
-# Added new table :  table_case_deaths
-
-# 3/21/2020
-# 1. Added data validation : if number of cases is smaller than previous data, assign the number from previous date
-# 2. Added Hubei to crude incidence rate table
-# 3. Added 'death difference' at the end of the case_death table (difference of the latest 2 days)
-# 4. Added table "table_2_incremental_and_latest_2_day_confirmed", "table_5_incremental_and_latest_2_day_confirmed_US"
-
-# 3/22/2020
-# 1. added a extract web data R file to get data from interactive map
-# 2. added variable web_data to generate plots based on time series + web data
+																																																			
