@@ -127,18 +127,15 @@ adjust_y_interval = function(y_max){
 
 read_data = function(label, type, web_data){
   # read time series data
-
-	if (label == "Confirmed")
-		time_series=read.csv("time_series_covid19_confirmed_global.csv", head = F, stringsAsFactors = F)
-	if (label == "Deaths")
-		time_series=read.csv("time_series_covid19_deaths_global.csv", head = F, stringsAsFactors = F)
+	time_series=read.csv(grep(tolower(label), grep("time_series_covid19", list.files() , v = T) , v = T), head = F, stringsAsFactors = F)
 	time_series=time_series[,!apply(time_series[-1, ], 2, function(X) all(X==""))]
 	# extract data label
   date_label = time_series[1, -(1:4)]
+	date_label = convert_date(date_label)
   ds=time_series[-1, ]
 	
 	# if web data used, and if last column is today's date, remove last column and use web data for latest day
-	if (web_data &  (Sys.Date() == convert_date(date_label[length(date_label)]))){
+	if (web_data &  (date_today == max(date_label))){
 		ds = ds[, -ncol(ds)]
 		date_label = date_label[-length(date_label)]
 	}
@@ -154,7 +151,6 @@ read_data = function(label, type, web_data){
 			data_wide[is.na(data_wide)] = 0
 			rownames(data_wide) = data_wide[, "Row.names"]
 			data_wide = data_wide[, -grep("Row.names", names(data_wide))]
-			date_today = paste(strsplit(as.character(Sys.Date()), "-")[[1]][c(2,3,1)], collapse = "/")
 			date_label =  unlist(c(date_label, date_today))
 		}
 	}else if (type == "Hubei"){
@@ -166,7 +162,6 @@ read_data = function(label, type, web_data){
 			wdata = wdata[wdata$Province_State == "Hubei",]
 			temp = wdata[,label, drop=F]
 			data_wide = cbind(data_wide, temp) 
-			date_today = paste(strsplit(as.character(Sys.Date()), "-")[[1]][c(2,3,1)], collapse = "/")
 			date_label =  unlist(c(date_label, date_today))
 		}
 	}
@@ -177,19 +172,24 @@ read_data = function(label, type, web_data){
 		if (any(data_wide[,i] < data_wide[, (i-1)])) data_wide[data_wide[,i] < data_wide[, (i-1)], i] = data_wide[data_wide[,i] < data_wide[, (i-1)], (i-1)]
 	}
 	
+	# build incremental data
   data_incremental=data_wide[,-1, drop = F]-data_wide[,-ncol(data_wide)]
-  data_incremental=cbind(0, data_incremental)
+  data_incremental=cbind(0,data_incremental)
   colnames(data_incremental)=date_label
   
   Counts = unlist(c(data_wide))
   Counts_incremental = unlist(c(data_incremental))
-  Date = unlist(lapply(date_label, function(X) rep(X, nrow(data_wide))))
+  Date = as.Date(unlist(lapply(as.character(date_label), function(X) rep(X, nrow(data_wide)))))
   Region = rep(row.names(data_wide), ncol(data_wide))
   
   data = data.frame(Region = Region, Date = Date, Counts = Counts, Counts_incremental=Counts_incremental,row.names=NULL, stringsAsFactors = F)
   colnames(data)[3:4]=c(label, paste(label,"_incremental", sep=""))
 	colnames(data)[1]=type
   
+	# reverse column order 
+	data_wide = data_wide[, ncol(data_wide):1]
+	data_incremental = data_incremental[length(data_incremental):1]
+	
   return(list(data=data, data_wide=data_wide, data_incremental_wide=data_incremental))
 }
 
@@ -199,76 +199,75 @@ create_final_data=function(type = NULL){
 	
 	data_confirmed = read_data("Confirmed", type, web_data)
 	data_deaths = read_data("Deaths", type, web_data)
-	# data_recovered = read_data("Recovered", type, web_data)
+	data_recovered = read_data("Recovered", type, web_data)
 	
 	case_confirmed = data_confirmed$data
 	case_deaths = data_deaths$data
-	# case_recovered = data_recovered$data
+	case_recovered = data_recovered$data
 	case_confirmed_wide = data_confirmed$data_wide
 	case_confirmed_incremental_wide = data_confirmed$data_incremental_wide
 	case_deaths_wide = data_deaths$data_wide
-	# case_recovered_wide = data_recovered$data_wide
+	case_recovered_wide = data_recovered$data_wide
 
-  data_all = Reduce(function(x, y) merge(x, y, all=TRUE), list(case_confirmed, case_deaths)) # ,  case_recovered))
-	# data_all$Active = data_all$Confirmed - data_all$Deaths - data_all$Recovered
-  data_all$Date = convert_date(data_all$Date)
+  data_all = Reduce(function(x, y) merge(x, y, all=TRUE), list(case_confirmed, case_deaths, case_recovered))
+	data_all$Active = data_all$Confirmed - data_all$Deaths - data_all$Recovered
 	
 	# Crude_Incidence_Rate
 	if (type == "Country"){
 		data_all$Population = input_population$Population[match(data_all$Country, input_population$Country)]
 		data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
-		# data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
+		data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
 	}
 	if (type == "Hubei"){
 		data_all$Population = 59172000
 		data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
-		# data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
+		data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
 	}
-  return(list(data_all=data_all, case_confirmed_wide= case_confirmed_wide, case_confirmed_incremental_wide = case_confirmed_incremental_wide, case_deaths_wide = case_deaths_wide))  # , case_recovered_wide=case_recovered_wide
+
+  return(list(data_all=data_all, case_confirmed_wide= case_confirmed_wide, case_confirmed_incremental_wide = case_confirmed_incremental_wide, case_deaths_wide = case_deaths_wide, case_recovered_wide=case_recovered_wide))  
 }
 
+# load data
+date_today = Sys.Date()
+countries_data = create_final_data(type = "Country")
+Hubei_data = create_final_data(type = "Hubei")
 
 ##############################
 ## WORLDWIDE
 ##############################
 
-# load data
-countries_data = create_final_data(type = "Country")
-Hubei_data = create_final_data(type = "Hubei")
-
 case_confirmed_wide= countries_data$case_confirmed_wide
 case_confirmed_incremental_wide= countries_data$case_confirmed_incremental_wide
 case_deaths_wide = countries_data$case_deaths_wide
-report_date = convert_date(colnames(case_confirmed_wide)[ncol(case_confirmed_wide)])
 
-# table2
-tb2 = cbind(case_confirmed_wide[, (ncol(case_confirmed_wide)-1):ncol(case_confirmed_wide)])
-Incremental = case_confirmed_incremental_wide[, ncol(case_confirmed_incremental_wide)]
-tb2 = cbind(tb2,Incremental)
-tb2 = tb2[order(tb2$Incremental, decreasing = T), ]
-write.csv(tb2, paste(report_date,"table_2_incremental_and_latest_2_day_confirmed.csv"))
+report_date = max(colnames(case_confirmed_wide))
 
 # time series table
-case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[ncol(case_confirmed_wide)], decreasing = T), ]
-case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[ncol(case_confirmed_incremental_wide)], decreasing = T), ]
-case_deaths_wide = case_deaths_wide[order(case_deaths_wide[ncol(case_deaths_wide)], decreasing = T), ]
-diff_deaths = case_deaths_wide[ncol(case_deaths_wide)]-case_deaths_wide[ncol(case_deaths_wide)-1]
-colnames(diff_deaths) = "Difference"
-case_deaths_wide = cbind(case_deaths_wide, diff_deaths)
-
-# reverse column order 
-case_confirmed_wide = case_confirmed_wide[, ncol(case_confirmed_wide):1]
-case_confirmed_incremental_wide = case_confirmed_incremental_wide[, ncol(case_confirmed_incremental_wide):1]
-case_deaths_wide = case_deaths_wide[, ncol(case_deaths_wide):1]
+case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T), ]
+case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T), ]
+case_deaths_wide = case_deaths_wide[order(case_deaths_wide[,report_date], decreasing = T), ]
 write.csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
 write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental.csv"))
 write.csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
 
+# difference 
+tb_confirmed_diff = case_confirmed_wide[, 1:2]
+tb_confirmed_diff$Incremental = tb_confirmed_diff[, 1] - tb_confirmed_diff[, 2]
+tb_confirmed_diff = tb_confirmed_diff[order(tb_confirmed_diff$Incremental, decreasing = T), ]
+write.csv(tb_confirmed_diff, paste(report_date,"table_incremental_difference.csv"))
+
+tb_death_diff = case_deaths_wide[, 1:2]
+tb_death_diff$Incremental = tb_death_diff[, 1] - tb_death_diff[, 2]
+tb_death_diff = tb_death_diff[order(tb_death_diff$Incremental, decreasing = T), ]
+write.csv(tb_death_diff, paste(report_date,"table_incremental_difference.csv"))
+
 # crude incidence rate order by latest confirmed 
-crude_incidence_rate = as.data.frame(cbind(row.names(case_confirmed_wide), case_confirmed_wide[, ncol(case_confirmed_wide)], input_population$Population[match(row.names(case_confirmed_wide), input_population$Country)]), stringsAsFactors = F)
+crude_incidence_rate = as.data.frame(cbind(row.names(case_confirmed_wide), case_confirmed_wide[, report_date], input_population$Population[match(row.names(case_confirmed_wide), input_population$Country)]), stringsAsFactors = F)
 colnames(crude_incidence_rate) = c("Region", "Confirmed_Cases", "Population")
 # add Hubei data to crude_incidence_rate
-crude_incidence_rate=rbind(c("Hubei", Hubei_data$case_confirmed_wide[, ncol(Hubei_data$case_confirmed_wide)], 59172000), crude_incidence_rate)
+case_confirmed_wide_hubei = Hubei_data$case_confirmed_wide
+case_confirmed_wide_hubei = case_confirmed_wide_hubei[, ncol(case_confirmed_wide_hubei):1]
+crude_incidence_rate=rbind(c("Hubei", case_confirmed_wide_hubei[, report_date], 59172000), crude_incidence_rate)
 crude_incidence_rate$Crude_Incidence_Rate = round(as.numeric(crude_incidence_rate$Confirmed_Cases)/as.numeric(crude_incidence_rate$Population) * 100000, 2)
 write.csv(crude_incidence_rate, paste(report_date, "table_crude_incidence_rate.csv"), row.names = F)
 
@@ -284,6 +283,7 @@ if (!is.null(end_date)){
   end_date_converted = as.Date(ISOdate(year = end_date[3], month = end_date[1], day = end_date[2]))
   data_all_countries = data_all_countries[data_all_countries$date < end_date_converted, ]
 }
+
 # x label break for all plots:
 x_min = min(data_all_countries$Date)
 x_max = max(data_all_countries$Date)
@@ -655,15 +655,22 @@ case_confirmed_wide <- reshape(data=data_us_states_confirmed,idvar="state",
                           timevar = "date",
                           direction="wide")
 case_confirmed_wide[is.na(case_confirmed_wide)] = 0
-													
+# fix colname
+colnames(case_confirmed_wide)[2:ncol(case_confirmed_wide)] = unlist(lapply(colnames(case_confirmed_wide)[-1], function(X) strsplit(X, "\\.")[[1]][2])) 
+# reorder by today's data
+case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T), ]
+write.csv(case_confirmed_wide, paste(report_date,"table_case_confirmed_US.csv"), row.names = F)								
+											
 data_us_states_incremental = data_us_states[, c("date", "state", "positiveIncrease")]
 case_confirmed_incremental_wide <- reshape(data=data_us_states_incremental,idvar="state",
                           v.names = "positiveIncrease",
                           timevar = "date",
                           direction="wide")
 case_confirmed_incremental_wide[is.na(case_confirmed_incremental_wide)] = 0
-													
-write.csv(case_confirmed_wide, paste(report_date,"table_case_confirmed_US.csv"), row.names = F)
+# fix colname
+colnames(case_confirmed_incremental_wide)[2:ncol(case_confirmed_incremental_wide)] = unlist(lapply(colnames(case_confirmed_incremental_wide)[-1], function(X) strsplit(X, "\\.")[[1]][2])) 		
+# reorder by today's data	
+case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T), ]	
 write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental_US.csv" ), row.names = F)
 
 ### crude_incidence_rate
@@ -765,5 +772,3 @@ ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10,
 
 
 
-
-																																																			
