@@ -34,7 +34,7 @@
 ##############################
 
 ##### folder path. In this folder, you should have all template input files mentioned above and these three time series files. 
-folder = "YOUR_PATH/csse_covid_19_time_series"
+getwd()
 
 ##### Filter countries
 ## Set template_input to TRUE if filter country using template file provided; 
@@ -57,11 +57,14 @@ web_data = TRUE
 
 ############################################################
 
+list.of.packages <- c("ggplot2", "jsonlite", "httr")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
 library(ggplot2)
 library(jsonlite)
 library(httr)
 
-setwd(folder)
 
 ###############################################################
 ## RUN THROUGH EVERYTHING BELOW TO GENERATE PLOTS AND TABLES ##
@@ -124,6 +127,8 @@ adjust_y_interval = function(y_max){
   }
   y_interval
 }
+
+
 
 read_data = function(label, type, web_data){
   # read time series data
