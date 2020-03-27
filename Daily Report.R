@@ -36,6 +36,7 @@
 ##### folder path. In this folder, you should have all template input files mentioned above and these three time series files. 
 getwd()
 
+
 ##### Filter countries
 ## Set template_input to TRUE if filter country using template file provided; 
 ## Otherwise, auto select countries/State by Top N
@@ -97,6 +98,8 @@ p7_1_title = input_plot_titles$Input[input_plot_titles$Item=="p7_1_title"]
 p7_2_title = input_plot_titles$Input[input_plot_titles$Item=="p7_2_title"]
 p7_xlab = input_plot_titles$Input[input_plot_titles$Item=="p7_xlab"]
 p7_ylab = input_plot_titles$Input[input_plot_titles$Item=="p7_ylab"]
+
+color_list = c("#FF3300","#CC9900","#00CC00","#00CCFF","#FF33FF","#800080","#009933","#00FFFF","#000080"	,"#FF00FF","#808000","000033"	)
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
 
@@ -313,6 +316,9 @@ if (template_input){
   filter_incremental = temp_incremental$Country[1:top_n]
 }
 
+
+color_list_country = unique(c(filter_total, filter_incremental, "China", "Hubei"))
+
 # plot 1. total confirmed cases sort by countries cumulative
 
 # filter by country and cumulative confirmed
@@ -336,7 +342,7 @@ p1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, col
 	theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  #ggtitle(p1_title) + 
+	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p1_ylab)
 
@@ -367,7 +373,7 @@ p1_1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, c
 	theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  #ggtitle(p1_title) +
+	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p1_ylab)
 
@@ -398,7 +404,7 @@ p1_2 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, c
 	theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  #ggtitle(p1_title) +
+	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p1_ylab)
 
@@ -429,7 +435,7 @@ p2 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed_incremental, group=
   theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  # ggtitle(p2_title) +
+	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p2_ylab)
 
@@ -459,7 +465,7 @@ p3 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increment
   theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  # ggtitle(p2_title) +
+	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p3_ylab)
 
@@ -490,7 +496,7 @@ p3_1 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increme
   theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  # ggtitle(p2_title) +
+	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p3_ylab)
 
@@ -522,7 +528,7 @@ p3_2 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increme
   theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  # ggtitle(p2_title) +
+	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p3_ylab)
 
@@ -544,7 +550,8 @@ data_to_plot_IR = rbind(Hubei_data_plot, data_to_plot_IR)
 # reorder factor levels by Crude_Incidence_Rate
 temp = data_to_plot_IR[data_to_plot_IR$Date == max(data_to_plot_IR$Date),]
 temp = temp[order(temp$Crude_Incidence_Rate,decreasing = T),]
-data_to_plot_IR$Region <- factor(data_to_plot_IR$Region, levels = temp$Region)
+region_order=temp$Region
+data_to_plot_IR$Region <- factor(data_to_plot_IR$Region, levels = region_order)
 
 y_max=(round(max(data_to_plot_IR$Crude_Incidence_Rate)/10)+1)*10
 y_interval = adjust_y_interval(y_max)
@@ -561,7 +568,7 @@ p7_1 = ggplot(data_to_plot_IR , aes(x=Date, y=Crude_Incidence_Rate, group=Region
 	theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  #ggtitle(p1_title) +
+	scale_color_manual(values=color_list[match(region_order, color_list_country)]) +
   xlab("") +
   ylab(p7_ylab)
 
@@ -618,7 +625,6 @@ p4 = ggplot(data_to_plot_us , aes(x=Date, y=Cases, group=Status, colour = Status
   theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  # ggtitle(p4_title) +
   xlab("") +
   ylab(p4_ylab)
 
@@ -660,12 +666,14 @@ case_confirmed_wide <- reshape(data=data_us_states_confirmed,idvar="state",
                           timevar = "date",
                           direction="wide")
 case_confirmed_wide[is.na(case_confirmed_wide)] = 0
+
 # fix colname
 colnames(case_confirmed_wide)[2:ncol(case_confirmed_wide)] = unlist(lapply(colnames(case_confirmed_wide)[-1], function(X) strsplit(X, "\\.")[[1]][2])) 
 # reorder by today's data
 case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T), ]
-write.csv(case_confirmed_wide, paste(report_date,"table_case_confirmed_US.csv"), row.names = F)								
-											
+write.csv(case_confirmed_wide, paste(report_date,"table_case_confirmed_US.csv"), row.names = F)
+
+
 data_us_states_incremental = data_us_states[, c("date", "state", "positiveIncrease")]
 case_confirmed_incremental_wide <- reshape(data=data_us_states_incremental,idvar="state",
                           v.names = "positiveIncrease",
@@ -678,10 +686,11 @@ colnames(case_confirmed_incremental_wide)[2:ncol(case_confirmed_incremental_wide
 case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T), ]	
 write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental_US.csv" ), row.names = F)
 
-### crude_incidence_rate
+### crude_incidence_rate table
 data_latest = data_us_states[data_us_states$date == report_date,c( "date", "state", "positive", "crude_incidence_rate", "death", "hospitalized", "totalTestResults", "deathIncrease", "hospitalizedIncrease", "negativeIncrease")]
 data_latest = data_latest[order(data_latest$positive, decreasing = T),]
 write.csv(data_latest, paste(report_date,"table_latest_cases_and_incidence_rate_US.csv"), row.names = F)
+
 
 # data for plots
 
@@ -718,6 +727,8 @@ if (as.numeric(x_max - x_min)%%3 == 2){
 	break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+3+x_min, x_max, by = "3 days"))
 }
 
+color_list_state = unique(c(filter_total, filter_incremental))
+
 # plot 5: total confirmed cases by US States sort by Cumulative 
 data_to_plot = data_us_states[data_us_states$state %in% filter_total, ]
 
@@ -740,7 +751,7 @@ p5 = ggplot(data_to_plot , aes(x=date, y=positive, group=state, colour = state, 
   theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  # ggtitle(p5_title) +
+	scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   xlab("") +
   ylab(p5_ylab)
 
@@ -769,11 +780,10 @@ p6 = ggplot(data_to_plot_incremental , aes(x=date, y=positiveIncrease, group=sta
   theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
   scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
-  # ggtitle(p6_title) +
+	scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   xlab("") +
   ylab(p6_ylab)
 
 ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10, height = 8 )
-
 
 
