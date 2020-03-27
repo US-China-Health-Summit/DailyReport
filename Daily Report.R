@@ -34,8 +34,11 @@
 ##############################
 
 ##### folder path. In this folder, you should have all template input files mentioned above and these three time series files. 
-getwd()
 
+# getwd()
+
+folder = "YOUR_PATH/csse_covid_19_time_series"
+setwd(folder)
 
 ##### Filter countries
 ## Set template_input to TRUE if filter country using template file provided; 
