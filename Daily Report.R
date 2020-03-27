@@ -24,7 +24,9 @@
 #     Required if use customized US State list for plots. (rather than TOP_N); Set "template_input" to TRUE below
 # 'input_plot_titles.csv' : 
 #     Always keep this file in the folder. Modify if you need to update plots title / labels. 
-# 'input_US_State_Abbr.csv' : 
+# 'input_country_population.csv' : 
+#     Always keep this file in the folder. No need to modify. 
+# 'input_state_population.csv' : 
 #     Always keep this file in the folder. No need to modify. 
 
 ############################################################
@@ -133,8 +135,6 @@ adjust_y_interval = function(y_max){
   }
   y_interval
 }
-
-
 
 read_data = function(label, type, web_data){
   # read time series data
@@ -643,7 +643,7 @@ ggsave(filename=paste(report_date,"p4",p4_title, ".pdf"), plot = p4, width = 10,
 state_detail_url = 'https://covidtracking.com/api/states/daily'
 r = GET(state_detail_url)
 if (r$status != 200) stop(paste("BAD API RETURN!"))
-data_us_states_orig = fromJSON(paste(rawToChar(r$content), collapse=""))
+data_us_states_raw = fromJSON(paste(rawToChar(r$content), collapse=""))
 state_population = read.csv("input_state_population.csv", stringsAsFactors=F)
 
 convert_date_us=function(date_label){
@@ -654,46 +654,64 @@ convert_date_us=function(date_label){
   as.Date(ISOdate(year = year, month = month, day = day))
 }
 
-data_us_states = data_us_states_orig
-data_us_states$date = convert_date_us(data_us_states$date)
-# data_us_states = data_us_states[order(data_us_states$date),]
-data_us_states[is.na(data_us_states)] = 0
+# clean data : fix date format; remove NA
+data_us_states_orig = data_us_states_raw
+data_us_states_orig$date = convert_date_us(data_us_states_orig$date)
+data_us_states_orig[is.na(data_us_states_orig)] = 0
+report_date = as.character( max(data_us_states_orig$date))
+write.csv(data_us_states_orig, paste(report_date,"table_original_US_api_data.csv"), row.names = F)
+
+data_us_states = data_us_states_orig[,c("date", "state", "positive","positiveIncrease")]
+
+if (web_data){
+	# remove today's data from data_us_states and bind web-data for latest numbers
+	data_us_states = data_us_states[data_us_states$date != date_today, ]
+	# get web data and use state abbreviation
+	wdata = read.csv("cases_state.csv", stringsAsFactors = F)
+	wdata = wdata[wdata$Country_Region == "US",]
+	wdata$date = date_today
+	wdata = wdata[wdata$Province_State %in%  state_population$State_Full,]
+	wdata$state = state_population$State[match(wdata$Province_State, state_population$State_Full)]
+	# get positiveIncrease for latest day
+	temp_yesterday = data_us_states[data_us_states$date == max(data_us_states$date ), c("date", "state", "positive")]
+	wdata=merge(wdata, temp_yesterday, by = c("state"))
+	wdata$positiveIncrease = wdata$Confirmed - wdata$positive
+	wdata$positiveIncrease[wdata$positiveIncrease<0]=0
+	wdata = wdata[,  c("date.x", "state", "Confirmed", "positiveIncrease")]
+	colnames(wdata)[grep("Confirmed",colnames(wdata))]="positive"
+	colnames(wdata)[grep("date.x",colnames(wdata))]="date"
+	data_us_states = rbind(wdata, data_us_states)
+	report_date = as.character( max(data_us_states$date))
+}
+
+# add crude_incidence_rate
 data_us_states$population = state_population$Population[match(data_us_states$state, state_population$State)]
 data_us_states$crude_incidence_rate = as.numeric(data_us_states$positive)/as.numeric(data_us_states$population) * 100000
-report_date = as.character( max(data_us_states$date))
 
-### time series table - reshape from long to wide example
+data_latest = data_us_states[data_us_states$date == report_date,]
+data_latest = data_latest[order(data_latest$positive, decreasing = T),]
+write.csv(data_latest, paste(report_date,"table_latest_cases_and_incidence_rate_US.csv"), row.names = F)
+
+### time series table confirmed - reshape from long to wide example
 data_us_states_confirmed = data_us_states[, c("date", "state", "positive")]
 case_confirmed_wide <- reshape(data=data_us_states_confirmed,idvar="state",
                           v.names = "positive",
                           timevar = "date",
                           direction="wide")
 case_confirmed_wide[is.na(case_confirmed_wide)] = 0
-
-# fix colname
 colnames(case_confirmed_wide)[2:ncol(case_confirmed_wide)] = unlist(lapply(colnames(case_confirmed_wide)[-1], function(X) strsplit(X, "\\.")[[1]][2])) 
-# reorder by today's data
-case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T), ]
 write.csv(case_confirmed_wide, paste(report_date,"table_case_confirmed_US.csv"), row.names = F)
 
-
+### time series table incremental - reshape from long to wide example
 data_us_states_incremental = data_us_states[, c("date", "state", "positiveIncrease")]
 case_confirmed_incremental_wide <- reshape(data=data_us_states_incremental,idvar="state",
                           v.names = "positiveIncrease",
                           timevar = "date",
                           direction="wide")
 case_confirmed_incremental_wide[is.na(case_confirmed_incremental_wide)] = 0
-# fix colname
+# fix colnames
 colnames(case_confirmed_incremental_wide)[2:ncol(case_confirmed_incremental_wide)] = unlist(lapply(colnames(case_confirmed_incremental_wide)[-1], function(X) strsplit(X, "\\.")[[1]][2])) 		
-# reorder by today's data	
-case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T), ]	
 write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental_US.csv" ), row.names = F)
-
-### crude_incidence_rate table
-data_latest = data_us_states[data_us_states$date == report_date,c( "date", "state", "positive", "crude_incidence_rate", "death", "hospitalized", "totalTestResults", "deathIncrease", "hospitalizedIncrease", "negativeIncrease")]
-data_latest = data_latest[order(data_latest$positive, decreasing = T),]
-write.csv(data_latest, paste(report_date,"table_latest_cases_and_incidence_rate_US.csv"), row.names = F)
-
 
 # data for plots
 
