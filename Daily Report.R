@@ -120,6 +120,18 @@ convert_date=function(date_label){
   as.Date(ISOdate(year = year, month = month, day = day))
 }
 
+filter_by_date = function(ds, date_var, start_date, end_date){
+	if (!is.null(start_date)){
+		start_date_converted = as.Date(ISOdate(year = start_date[3], month = start_date[1], day = start_date[2]))
+		ds = ds[ds[,date_var] >= start_date_converted, ]
+	}
+	if (!is.null(end_date)){
+		end_date_converted = as.Date(ISOdate(year = end_date[3], month = end_date[1], day = end_date[2]))
+		ds = ds[ds[,date_var]  <= end_date_converted, ]
+	}
+	ds
+}
+
 adjust_y_interval = function(y_max){
   temp_interval = y_max / 10
   if (temp_interval<15){
@@ -284,24 +296,19 @@ write.csv(crude_incidence_rate, paste(report_date, "table_crude_incidence_rate.c
 
 # data for plots
 data_all_countries = countries_data$data_all
+data_all_countries = filter_by_date(data_all_countries, "Date", start_date, end_date)
 
-# filter by start date and end date
-if (!is.null(start_date)){
-  start_date_converted = as.Date(ISOdate(year = start_date[3], month = start_date[1], day = start_date[2]))
-  data_all_countries = data_all_countries[data_all_countries$date > start_date_converted, ]
-}
-if (!is.null(end_date)){
-  end_date_converted = as.Date(ISOdate(year = end_date[3], month = end_date[1], day = end_date[2]))
-  data_all_countries = data_all_countries[data_all_countries$date < end_date_converted, ]
-}
-
-# x label break for all plots:
+# x label break for plots:
 x_min = min(data_all_countries$Date)
 x_max = max(data_all_countries$Date)
-if (as.numeric(x_max - x_min)%%3 == 2){
-	break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+x_min, x_max, by = "3 days"))
+if (as.numeric(x_max - x_min) < 15 ){
+	break.vec <- seq( x_min, x_max, by = "day")
 }else{
-	break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+3+x_min, x_max, by = "3 days"))
+	if (as.numeric(x_max - x_min)%%3 == 2){
+		break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+x_min, x_max, by = "3 days"))
+	}else{
+		break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+3+x_min, x_max, by = "3 days"))
+	}
 }
 
 #  specify country_filter
@@ -543,6 +550,7 @@ ggsave(filename=paste(report_date,"p3_2",p3_2_title, ".pdf"), plot = p3_2, width
 # filter by country and cumulative confirmed
 
 Hubei_data_plot = Hubei_data$data_all
+Hubei_data_plot = filter_by_date(Hubei_data_plot, "Date", start_date, end_date)
 names(Hubei_data_plot)[1] = "Region"
 
 data_to_plot_IR = data_all_countries[data_all_countries$Country %in% filter_total_with_china, ]
@@ -716,16 +724,8 @@ write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirm
 # data for plots
 
 # filter by date
-if (!is.null(start_date)){
-  start_date_converted = as.Date(ISOdate(year = start_date[3], month = start_date[1], day = start_date[2]))
-  data_us_states = data_us_states[data_us_states$Date > start_date_converted, ]
-}
-if (!is.null(end_date)){
-  end_date_converted = as.Date(ISOdate(year = end_date[3], month = end_date[1], day = end_date[2]))
-  data_us_states = data_us_states[data_us_states$Date < end_date_converted, ]
-}
+data_us_states = filter_by_date(data_us_states, "date", start_date, end_date)
 
-# filter by date
 if (template_input){
   state_list = read.csv("input_us_state_list.csv", stringsAsFactors = F)
   filter_total <- filter_incremental <- state_list$States
@@ -738,14 +738,17 @@ if (template_input){
   filter_incremental = temp_incremental$state[1:top_n]
 }
 
-
 # x label break for all plots:
 x_min = min(data_us_states$date)
 x_max = max(data_us_states$date)
-if (as.numeric(x_max - x_min)%%3 == 2){
-	break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+x_min, x_max, by = "3 days"))
+if (as.numeric(x_max - x_min) < 15 ){
+	break.vec <- seq( x_min, x_max, by = "day")
 }else{
-	break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+3+x_min, x_max, by = "3 days"))
+	if (as.numeric(x_max - x_min)%%3 == 2){
+		break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+x_min, x_max, by = "3 days"))
+	}else{
+		break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+3+x_min, x_max, by = "3 days"))
+	}
 }
 
 color_list_state = unique(c(filter_total, filter_incremental))
