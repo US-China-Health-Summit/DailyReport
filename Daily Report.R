@@ -2,8 +2,8 @@
 ####        README        ####
 ##############################
 
-### Data source (by country):  https://github.com/CSSEGISandData/COVID-19
-### Data source (by us state):  https://covidtracking.com/api/states/daily
+### Data source:  https://github.com/CSSEGISandData/COVID-19
+### Data source (Not used):  https://covidtracking.com/api/states/daily
 
 ### Currently this program will give 6 plots and 4 tables as below:
 # plot 1. total confirmed cases sort by countries total
@@ -69,8 +69,7 @@ new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"
 if(length(new.packages)) install.packages(new.packages)
 
 library(ggplot2)
-library(jsonlite)
-library(httr)
+library(scales)
 
 ###############################################################
 ## RUN THROUGH EVERYTHING BELOW TO GENERATE PLOTS AND TABLES ##
@@ -104,7 +103,7 @@ p7_2_title = input_plot_titles$Input[input_plot_titles$Item=="p7_2_title"]
 p7_xlab = input_plot_titles$Input[input_plot_titles$Item=="p7_xlab"]
 p7_ylab = input_plot_titles$Input[input_plot_titles$Item=="p7_ylab"]
 
-color_list = c("#FF3300","#CC9900","#00CC00","#00CCFF","#FF33FF","#800080","#009933","#00FFFF","#000080"	,"#FF00FF","#808000","000033"	)
+color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3")
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
 
@@ -342,16 +341,16 @@ data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels 
 y_max=(round(max(data_to_plot_confirmed$Confirmed)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 p1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, colour = Country,  shape = Country)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
-	theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p1_ylab)
@@ -373,16 +372,16 @@ data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels 
 y_max=(round(max(data_to_plot_confirmed$Confirmed)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 p1_1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, colour = Country,  shape = Country)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
-	theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p1_ylab)
@@ -404,16 +403,16 @@ data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels 
 y_max=(round(max(data_to_plot_confirmed$Confirmed)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 p1_2 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, colour = Country,  shape = Country)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-	theme(legend.position = c(0.15, 0.8)) +	
-	theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p1_ylab)
@@ -435,16 +434,16 @@ data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels 
 y_max=(round(max(data_to_plot_confirmed$Confirmed_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 p2 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-  theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p2_ylab)
@@ -465,16 +464,16 @@ data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increm
 y_max=(round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 p3 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-  theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p3_ylab)
@@ -496,16 +495,16 @@ data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increm
 y_max=(round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 p3_1 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-  theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p3_ylab)
@@ -528,16 +527,16 @@ data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increm
 y_max=(round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 p3_2 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-  theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p3_ylab)
@@ -568,22 +567,23 @@ y_max=(round(max(data_to_plot_IR$Crude_Incidence_Rate)/10)+1)*10
 y_interval = adjust_y_interval(y_max)
 
 p7_1 = ggplot(data_to_plot_IR , aes(x=Date, y=Crude_Incidence_Rate, group=Region, colour = Region,  shape = Region)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
 	scale_shape_manual(values=1:nlevels(data_to_plot_IR$Region)) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-	theme(legend.position = c(0.15, 0.75)) +	
-	theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(region_order, color_list_country)]) +
   xlab("") +
   ylab(p7_ylab)
 
 ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".pdf"), plot = p7_1, width = 10, height = 8 )
+
 
 
 
@@ -626,16 +626,16 @@ data_to_plot_us$Status <- factor(data_to_plot_us$Status, levels = status_order)
 y_max=(round(max(data_to_plot_us$Cases)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 p4 = ggplot(data_to_plot_us , aes(x=Date, y=Cases, group=Status, colour = Status,  shape = Status)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-  theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
   xlab("") +
   ylab(p4_ylab)
 
@@ -788,16 +788,16 @@ data_to_plot$state <- factor(data_to_plot$state, levels = state_order)
 y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
 p5 = ggplot(data_to_plot , aes(x=date, y=Confirmed, group=state, colour = state,  shape = state)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-  theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   xlab("") +
   ylab(p5_ylab)
@@ -817,16 +817,16 @@ data_to_plot_incremental$state <- factor(data_to_plot_incremental$state, levels 
 y_max=(round(max(data_to_plot_incremental$Confirmed_Incremental)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
 p6 = ggplot(data_to_plot_incremental , aes(x=date, y=Confirmed_Incremental, group=state, colour = state,  shape = state)) + 
-  geom_point() + 
-  geom_line() +
+  geom_point(size=2) + 
+  geom_line(size=1) +
   theme_bw() + 
   # theme(plot.title = element_text(size = 20)) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-  theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=25), legend.text = element_text(size = 21)) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval)) + 
-  scale_x_date(breaks = break.vec, date_labels = "%Y-%m-%d") +
+	theme(legend.position = c(0.15, 0.8)) + 
+	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   xlab("") +
   ylab(p6_ylab)
