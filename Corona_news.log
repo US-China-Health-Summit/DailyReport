@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.6)  30 MAR 2020 22:05
-=======
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  30 MAR 2020 22:00
->>>>>>> 26e2a34731e5b3eceb77f195a118b9f96716643a
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.6)  31 MAR 2020 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -602,7 +598,7 @@ LaTeX Warning: Command \underbar  has changed.
 LaTeX Warning: Command \underline  has changed.
                Check if current package is valid.
 
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.sty
+) (/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip73
 \enit@outerparindent=\dimen197
@@ -610,13 +606,12 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box57
 \enit@count@id=\count302
 \enitdp@description=\count303
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/preprint/fullpage.sty
+) (/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/preprint/fullpage.sty
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip74
-)
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/blindtext/blindtext.sty
+) (/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/tools/xspace.sty
+(/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 \c@blindtext=\count304
@@ -934,17 +929,10 @@ LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
-<<<<<<< HEAD
-t line 76.
-\AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 76.
-(/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
-=======
 t line 83.
 \AtBeginShipoutBox=\box58
 Package hyperref Info: Link coloring OFF on input line 83.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
->>>>>>> 26e2a34731e5b3eceb77f195a118b9f96716643a
+(/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
@@ -1005,17 +993,10 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 8.0pt on input line 85.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-<<<<<<< HEAD
-(Font)              scaled to size 6.0pt on input line 78.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
-8.
-(/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
-=======
 (Font)              scaled to size 6.0pt on input line 85.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
 5.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
->>>>>>> 26e2a34731e5b3eceb77f195a118b9f96716643a
+(/Users/ziqizhou/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1041,75 +1022,44 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 85.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-<<<<<<< HEAD
-(Font)              scaled to size 12.045pt on input line 78.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 14.61537pt on input line 84.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 11.69229pt on input line 87.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 10.23074pt on input line 89.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/it' will be
-(Font)              scaled to size 10.27707pt on input line 89.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 91.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 107.
-File: logo.png Graphic file (type bmp)
-<logo.png>
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 107.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 107.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 107.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 107.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 107.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 107.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 107.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 107.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 107.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 107.
-=======
 (Font)              scaled to size 12.045pt on input line 85.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
 (Font)              scaled to size 10.23074pt on input line 95.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
+(Font)              scaled to size 11.69229pt on input line 98.
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/it' will be
+(Font)              scaled to size 10.27707pt on input line 100.
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
+(Font)              scaled to size 10.53937pt on input line 102.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 121.
 File: logo.png Graphic file (type bmp)
 <logo.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 100.
+(Font)              scaled to size 10.0pt on input line 121.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 100.
+(Font)              scaled to size 7.0pt on input line 121.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 100.
+(Font)              scaled to size 5.0pt on input line 121.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 100.
+(Font)              scaled to size 10.00092pt on input line 121.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 100.
+(Font)              scaled to size 7.00064pt on input line 121.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 100.
+(Font)              scaled to size 5.00046pt on input line 121.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 100.
+(Font)              scaled to size 9.99893pt on input line 121.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 100.
+(Font)              scaled to size 6.99925pt on input line 121.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 100.
+(Font)              scaled to size 4.99947pt on input line 121.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 100.
+(Font)              scaled to size 10.0pt on input line 121.
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
 Make it at least 60.50578pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
->>>>>>> 26e2a34731e5b3eceb77f195a118b9f96716643a
 
 Package Fancyhdr Warning: \footskip is too small (0.0pt): 
 Make it at least 12.0pt.
@@ -1119,37 +1069,20 @@ This may cause the page layout to be inconsistent, however.
 [1
 
 ]
-<<<<<<< HEAD
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 107.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 121.
 (./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 107.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 107.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 121.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 121.
 Package rerunfilecheck Info: File `Corona_news.out' has not changed.
-(rerunfilecheck)             Checksum: 76CA47841E81EFBF04C980515CEE5202;216.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 107.
+(rerunfilecheck)             Checksum: D5181600433A9E628ED5BEE86A6C98C5;120.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 121.
  ) 
 Here is how much of TeX's memory you used:
- 19935 strings out of 481765
- 386375 string characters out of 5935194
- 781995 words of memory out of 5000000
- 36640 multiletter control sequences out of 15000+600000
- 539048 words of font info for 90 fonts, out of 8000000 for 9000
-=======
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
-(./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 100.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
-Package rerunfilecheck Info: File `Corona_news.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
- ) 
-Here is how much of TeX's memory you used:
- 20396 strings out of 481765
- 392248 string characters out of 5935007
- 789864 words of memory out of 5000000
- 37097 multiletter control sequences out of 15000+600000
- 538984 words of font info for 82 fonts, out of 8000000 for 9000
->>>>>>> 26e2a34731e5b3eceb77f195a118b9f96716643a
+ 20449 strings out of 481765
+ 394972 string characters out of 5935194
+ 794914 words of memory out of 5000000
+ 37143 multiletter control sequences out of 15000+600000
+ 539024 words of font info for 87 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,17n,122p,373b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
 

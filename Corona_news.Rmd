@@ -33,8 +33,7 @@ header-includes:
 
 \resheading{新闻摘要}
 
-\resheading{疫情观察}
-
+## 国际
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -46,9 +45,6 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 
 ```
 
-
-# 新闻摘要
-## 国际
 
 **`r international_news$pub[1]`**: *`r international_news$title[1]`*
 
@@ -63,3 +59,13 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 **`r international_news$pub[1]`**: *`r international_news$title[1]`*
 
 `r international_news$content[1]`
+
+
+
+
+
+\resheading{疫情观察}
+
+
+
+
