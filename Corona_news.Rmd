@@ -22,8 +22,28 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
+  janitor::clean_names() %>% 
+  select(pub,title,content)
+
 ```
 
 
+# 新闻摘要
+## 国际
+
+**`r international_news$pub[1]`**: *`r international_news$title[1]`*
+
+`r international_news$content[1]`
+
+**`r international_news$pub[1]`**: *`r international_news$title[1]`*
+
+`r international_news$content[1]`
 
 
+## 国内
+**`r international_news$pub[1]`**: *`r international_news$title[1]`*
+
+`r international_news$content[1]`
