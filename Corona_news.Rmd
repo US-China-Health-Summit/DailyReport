@@ -13,11 +13,27 @@ header-includes:
     - \usepackage[dvipsnames]{xcolor}
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
+    - \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
+    - \usepackage{enumitem}% http://ctan.org/pkg/enumitem
+    - \usepackage[empty]{fullpage}% http://ctan.org/pkg/fullpage
+    - \usepackage{color}% http://ctan.org/pkg/color
+    - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
+    - \usepackage{geometry}
+    - \usepackage{blindtext}
 ---
+\newcommand{\resheading}[1]{%
+  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
+}
+
+
 \pagestyle{fancyplain}
-\lhead{\includegraphics[height=1.8cm]{logo.png}}
+\lhead{\includegraphics[height=2cm]{logo.png}}
 \rhead{\begin{tabular}[b]{@{}c@{}}中美健康峰会“智援组” 新冠早报组\\ \\ \end{tabular}}
 
+
+\resheading{新闻摘要}
+
+\resheading{疫情观察}
 
 
 ```{r setup, include=FALSE}
