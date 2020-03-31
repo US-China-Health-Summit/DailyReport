@@ -1,0 +1,29 @@
+---
+title: \textcolor{glaucous}{新冠早报}
+author: \textcolor{glaucous}{第六期 3月28日}
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    extra_dependencies: ["xcolor"]
+fontsize: 15
+header-includes:
+    - \usepackage{ctex}
+    - \usepackage{fancyhdr}
+    - \usepackage{color}
+    - \usepackage[dvipsnames]{xcolor}
+    - \usepackage{sectsty}
+    - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
+---
+\pagestyle{fancyplain}
+\lhead{\includegraphics[height=1.8cm]{logo.png}}
+\rhead{\begin{tabular}[b]{@{}c@{}}中美健康峰会“智援组” 新冠早报组\\ \\ \end{tabular}}
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
