@@ -35,6 +35,10 @@ header-includes:
 
 \resheading{疫情观察}
 
+数据源：约翰霍普金斯大学，The COVID Tracking Project
+
+数据截至：北京时间3月27日早7：30
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  30 MAR 2020 22:00
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  31 MAR 2020 11:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1042,29 +1042,31 @@ LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
 (Font)              scaled to size 12.045pt on input line 85.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
 (Font)              scaled to size 10.23074pt on input line 95.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
+(Font)              scaled to size 10.53937pt on input line 100.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 104.
 File: logo.png Graphic file (type bmp)
 <logo.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 100.
+(Font)              scaled to size 10.0pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 100.
+(Font)              scaled to size 7.0pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 100.
+(Font)              scaled to size 5.0pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 100.
+(Font)              scaled to size 10.00092pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 100.
+(Font)              scaled to size 7.00064pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 100.
+(Font)              scaled to size 5.00046pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 100.
+(Font)              scaled to size 9.99893pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 100.
+(Font)              scaled to size 6.99925pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 100.
+(Font)              scaled to size 4.99947pt on input line 104.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 100.
+(Font)              scaled to size 10.0pt on input line 104.
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
 Make it at least 60.50578pt.
@@ -1080,20 +1082,20 @@ This may cause the page layout to be inconsistent, however.
 [1
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 104.
 (./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 100.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 104.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 104.
 Package rerunfilecheck Info: File `Corona_news.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 104.
  ) 
 Here is how much of TeX's memory you used:
- 20396 strings out of 481765
- 392248 string characters out of 5935007
- 789864 words of memory out of 5000000
- 37097 multiletter control sequences out of 15000+600000
- 538984 words of font info for 82 fonts, out of 8000000 for 9000
+ 20421 strings out of 481765
+ 394118 string characters out of 5935007
+ 790864 words of memory out of 5000000
+ 37121 multiletter control sequences out of 15000+600000
+ 538992 words of font info for 83 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,17n,122p,373b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
 
