@@ -4,9 +4,10 @@ author: \textcolor{glaucous}{第六期 3月28日}
 output: 
   pdf_document:
     latex_engine: xelatex
-fontsize: 15
+fontsize: 11
 header-includes:
     - \usepackage{ctex}
+    - \usepackage{xcolor}
     - \usepackage{fancyhdr}
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
@@ -17,8 +18,18 @@ header-includes:
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
     - \usepackage{blindtext}
+<<<<<<< HEAD
+    
+    - \textwidth 6.75in
+    - \textheight 8.5in
+    - \oddsidemargin -.25in
+    - \evensidemargin -.25in
+    - \topmargin -0.5in
+
+=======
     - \usepackage{caption}
     - \usepackage{subfigure}
+>>>>>>> 6fbddbd6404aa790eaa5f0496c6a90534dd98d92
 ---
 \newcommand{\resheading}[1]{%
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
@@ -32,30 +43,28 @@ header-includes:
 
 \resheading{新闻摘要}
 
-## 国际
+## \textcolor{glaucous}{国际}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-
-international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
+international_news = read.csv("./test/test.csv") %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
-
 ```
 
 
-**`r international_news$pub[1]`**: *`r international_news$title[1]`*
+**\textcolor{glaucous}{`r international_news$pub[1]`}**: **`r international_news$title[1]`**
 
 `r international_news$content[1]`
 
-**`r international_news$pub[1]`**: *`r international_news$title[1]`*
+**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
 
 `r international_news$content[1]`
 
 
-## 国内
-**`r international_news$pub[1]`**: *`r international_news$title[1]`*
+## \textcolor{glaucous}{国内}
+**\textcolor{glaucous}{`r international_news$pub[1]`}**: **`r international_news$title[1]`**
 
 `r international_news$content[1]`
 
@@ -124,6 +133,12 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 \end{minipage}
 
 
+<<<<<<< HEAD
+
+\textcolor{glaucous}{表1：累计确诊前十位国家}
+
+=======
+>>>>>>> 6fbddbd6404aa790eaa5f0496c6a90534dd98d92
 
 
 # \textcolor{glaucous}{二、中国与其他疫情严重国家对比}
@@ -131,6 +146,8 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 从累计死亡病例数（表2）来看，全球累计死亡病例数前十国家位次不变。
 
 
+<<<<<<< HEAD
+=======
 \begin{figure}[htbp]
 \centering  %图片全局居中
 \subfigure[累计确诊病例国家趋势图]{
@@ -146,6 +163,7 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 
 # \textcolor{glaucous}{三、美国疫情}
 
+>>>>>>> 6fbddbd6404aa790eaa5f0496c6a90534dd98d92
 
 截至北京时间3⽉28⽇早6:00， 美国共101,567例累计确诊病例，1,581例累计死亡病例。
 
@@ -201,3 +219,4 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 \label{Fig.main}
 \end{figure}
 
+# \textcolor{glaucous}{三、美国疫情}
