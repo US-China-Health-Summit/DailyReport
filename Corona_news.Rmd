@@ -4,13 +4,10 @@ author: \textcolor{glaucous}{第六期 3月28日}
 output: 
   pdf_document:
     latex_engine: xelatex
-    extra_dependencies: ["xcolor"]
 fontsize: 15
 header-includes:
     - \usepackage{ctex}
     - \usepackage{fancyhdr}
-    - \usepackage{color}
-    - \usepackage[dvipsnames]{xcolor}
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
     - \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
@@ -65,6 +62,31 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 
 
 \resheading{疫情观察}
+
+数据源：约翰霍普金斯大学，The COVID Tracking Project    数据截止至：北京时间3月28日 早4:00</span>
+
+# \textcolor{glaucous}{一、世界疫情}
+
+截止北京时间3月28日早6:00，全球累计591,802例确诊病例。
+
+
+
+![世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)]("c:/Users/Leah/Desktop/covid1.png")
+
+
+\textcolor{glaucous}{表1：累计确诊前十位国家}
+
+
+
+# \textcolor{glaucous}{二、中国与其他疫情严重国家对比}
+
+从累计死亡病例数（表2）来看，全球累计死亡病例数前十国家位次不变。
+
+
+![累计确诊病例国家趋势图]("c:/Users/Leah/Desktop/covid2.png"){width=50%}![日新增确诊病例国家趋势图]("c:/Users/Leah/Desktop/covid3.png"){width=50%}
+
+
+# \textcolor{glaucous}{三、美国疫情}
 
 
 
