@@ -17,6 +17,8 @@ header-includes:
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
     - \usepackage{blindtext}
+    - \usepackage{caption}
+    - \usepackage{subfigure}
 ---
 \newcommand{\resheading}[1]{%
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
@@ -69,12 +71,58 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 
 截止北京时间3月28日早6:00，全球累计591,802例确诊病例。
 
+\begin{figure}[htbp] 
+\centering %图片居中
+\includegraphics[]{c:/Users/Leah/Desktop/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
+\label{} %用于文内引用的标签
+\end{figure}
 
 
-![世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)]("c:/Users/Leah/Desktop/covid1.png")
+
+\begin{table}[]
+\caption{累计确诊前十位国家}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\hline
+  & 国家               & 累计确诊病例  & 国家/省份人口     & 粗发病率 \\
+  \hline
+1 & 美国 United States & 101,567 & 331,002,651 & 31   \\
+2 & 意大利 Italy        & 86,498  & 60,461,826  & 143 \\
+\hline
+\end{tabular}%
+}
+\end{table}
 
 
-\textcolor{glaucous}{表1：累计确诊前十位国家}
+\begin{minipage}{\textwidth}
+        \begin{minipage}[t]{0.5\textwidth}
+            \centering
+            \begin{tabular}{llll}
+            \hline
+             & 国家        & 累计死亡病例 & 较昨⽇ \\
+            \hline
+            1 & 意⼤利 Italy & 9,134  & 919 \\
+            2 & 西班⽛ Spain & 4,940  & 575 \\
+            \hline
+            \end{tabular}
+            \makeatletter\def\@captype{table}\makeatother\caption{累计死亡前十位国家}
+        \end{minipage}
+        \begin{minipage}[t]{0.5\textwidth}
+            \centering
+            \begin{tabular}{llll}
+            \hline
+              & 国家         & 当⽇新增病例 & 较昨日  \\
+            \hline
+            1 & 美国 US      & 17,821 & -237 \\
+            2 & 德国 Germany & 6,933  & 318 \\
+            \hline
+        \end{tabular}
+      \makeatletter\def\@captype{table}\makeatother\caption{⽇新增病例前十位国家}
+    \end{minipage}
+\end{minipage}
+
 
 
 
@@ -83,11 +131,73 @@ international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
 从累计死亡病例数（表2）来看，全球累计死亡病例数前十国家位次不变。
 
 
-![累计确诊病例国家趋势图]("c:/Users/Leah/Desktop/covid2.png"){width=50%}![日新增确诊病例国家趋势图]("c:/Users/Leah/Desktop/covid3.png"){width=50%}
+\begin{figure}[htbp]
+\centering  %图片全局居中
+\subfigure[累计确诊病例国家趋势图]{
+\label{Fig.sub.1}
+\includegraphics[width=0.45\textwidth]{c:/Users/Leah/Desktop/covid2.png}}
+\subfigure[日新增确诊病例国家趋势图]{
+\label{Fig.sub.2}
+\includegraphics[width=0.45\textwidth]{c:/Users/Leah/Desktop/covid3.png}}
+\caption{}
+\label{Fig.main}
+\end{figure}
 
 
 # \textcolor{glaucous}{三、美国疫情}
 
 
+截至北京时间3⽉28⽇早6:00， 美国共101,567例累计确诊病例，1,581例累计死亡病例。
 
+
+\begin{figure}[htbp] 
+\centering %图片居中
+\includegraphics[]{c:/Users/Leah/Desktop/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
+\label{} %用于文内引用的标签
+\end{figure}
+
+
+\begin{minipage}{\textwidth}
+        \begin{minipage}[t]{0.5\textwidth}
+            \centering
+            \begin{tabular}{llll}
+            \hline
+               & 国家/州名   & 累计确诊病例  & 粗发病率 \\
+            \hline
+           & 美国 US   & 101,567 & 31   \\
+         1 & 纽约州 NY  & 44,876  & 231  \\
+         2 & 新泽西州 NJ & 8,825   & 99\\
+            \hline
+            \end{tabular}
+            \makeatletter\def\@captype{table}\makeatother\caption{美国累计确诊前十位州}
+        \end{minipage}
+        \begin{minipage}[t]{0.5\textwidth}
+            \centering
+            \begin{tabular}{llll}
+            \hline
+            & 国家/州名   & 当日新增病例 & 全美比率 \\
+            \hline
+            & 美国 US   & 17821  & 100  \\
+          1 & 纽约州 NY  & 7,618  & 43   \\
+          2 & 新泽西州 NJ & 1,949  & 11 \\
+            \hline
+        \end{tabular}
+      \makeatletter\def\@captype{table}\makeatother\caption{美国新增确诊前十位州}
+    \end{minipage}
+\end{minipage}
+
+
+
+\begin{figure}[htbp]
+\centering  %图片全局居中
+\subfigure[美国本土疫情分布图]{
+\label{Fig.sub.1}
+\includegraphics[width=0.45\textwidth]{c:/Users/Leah/Desktop/covid5.png}}
+\subfigure[美国累计确诊前五位州趋势图]{
+\label{Fig.sub.2}
+\includegraphics[width=0.45\textwidth]{c:/Users/Leah/Desktop/covid6.png}}
+\caption{}
+\label{Fig.main}
+\end{figure}
 
