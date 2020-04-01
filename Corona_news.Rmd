@@ -18,19 +18,17 @@ header-includes:
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
     - \usepackage{blindtext}
-<<<<<<< HEAD
     
     - \textwidth 6.75in
     - \textheight 8.5in
     - \oddsidemargin -.25in
     - \evensidemargin -.25in
     - \topmargin -0.5in
+    
 
-=======
-    - \usepackage{caption}
-    - \usepackage{subfigure}
->>>>>>> 6fbddbd6404aa790eaa5f0496c6a90534dd98d92
 ---
+
+
 \newcommand{\resheading}[1]{%
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
 }
@@ -48,7 +46,9 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-international_news = read.csv("./test/test.csv") %>%
+library(readxl)
+
+international_news = read_excel("./test/news_test.xlsx") %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 ```
@@ -146,8 +146,8 @@ international_news = read.csv("./test/test.csv") %>%
 从累计死亡病例数（表2）来看，全球累计死亡病例数前十国家位次不变。
 
 
-<<<<<<< HEAD
-=======
+
+
 \begin{figure}[htbp]
 \centering  %图片全局居中
 \subfigure[累计确诊病例国家趋势图]{
@@ -163,7 +163,7 @@ international_news = read.csv("./test/test.csv") %>%
 
 # \textcolor{glaucous}{三、美国疫情}
 
->>>>>>> 6fbddbd6404aa790eaa5f0496c6a90534dd98d92
+
 
 截至北京时间3⽉28⽇早6:00， 美国共101,567例累计确诊病例，1,581例累计死亡病例。
 
