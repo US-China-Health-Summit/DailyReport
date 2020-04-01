@@ -82,7 +82,7 @@ international_news = read.csv("./test/test.csv") %>%
 
 \begin{figure}[htbp] 
 \centering %图片居中
-\includegraphics[]{c:/Users/Leah/Desktop/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\includegraphics[]{./test/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
 \label{} %用于文内引用的标签
 \end{figure}
@@ -152,10 +152,10 @@ international_news = read.csv("./test/test.csv") %>%
 \centering  %图片全局居中
 \subfigure[累计确诊病例国家趋势图]{
 \label{Fig.sub.1}
-\includegraphics[width=0.45\textwidth]{c:/Users/Leah/Desktop/covid2.png}}
+\includegraphics[width=0.45\textwidth]{./test/covid2.png}}
 \subfigure[日新增确诊病例国家趋势图]{
 \label{Fig.sub.2}
-\includegraphics[width=0.45\textwidth]{c:/Users/Leah/Desktop/covid3.png}}
+\includegraphics[width=0.45\textwidth]{./test/covid3.png}}
 \caption{}
 \label{Fig.main}
 \end{figure}
@@ -170,7 +170,7 @@ international_news = read.csv("./test/test.csv") %>%
 
 \begin{figure}[htbp] 
 \centering %图片居中
-\includegraphics[]{c:/Users/Leah/Desktop/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\includegraphics[]{./test/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
 \label{} %用于文内引用的标签
 \end{figure}
@@ -211,12 +211,11 @@ international_news = read.csv("./test/test.csv") %>%
 \centering  %图片全局居中
 \subfigure[美国本土疫情分布图]{
 \label{Fig.sub.1}
-\includegraphics[width=0.45\textwidth]{c:/Users/Leah/Desktop/covid5.png}}
+\includegraphics[width=0.45\textwidth]{./test/covid5.png}}
 \subfigure[美国累计确诊前五位州趋势图]{
 \label{Fig.sub.2}
-\includegraphics[width=0.45\textwidth]{c:/Users/Leah/Desktop/covid6.png}}
+\includegraphics[width=0.45\textwidth]{./test/covid6.png}}
 \caption{}
 \label{Fig.main}
 \end{figure}
 
-# \textcolor{glaucous}{三、美国疫情}
