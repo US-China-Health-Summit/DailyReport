@@ -76,7 +76,7 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 \resheading{疫情观察}
 
-数据源：约翰霍普金斯大学，The COVID Tracking Project    数据截止至：北京时间3月28日 早4:00</span>
+数据源：约翰霍普金斯大学，The COVID Tracking Project    数据截止至：北京时间3月28日 早4:00
 
 # \textcolor{glaucous}{一、世界疫情}
 
@@ -92,18 +92,18 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 
 \begin{table}[H]\tiny
-\centering
-\resizebox{.7\textwidth}{!}{%
-\begin{tabular}{lllll}
-\hline
-  & 国家               & 累计确诊病例  & 国家/省份人口     & 粗发病率 \\
-  \hline
-1 & 美国 United States & 101,567 & 331,002,651 & 31   \\
-2 & 意大利 Italy        & 86,498  & 60,461,826  & 143 \\
-\hline
-\end{tabular}%
-}
-\caption{累计确诊前十位国家}
+   \centering
+   \resizebox{.7\textwidth}{!}{%
+      \begin{tabular}{lllll}
+      \hline
+        & 国家               & 累计确诊病例  & 国家/省份人口     & 粗发病率 \\
+        \hline
+      1 & 美国 United States & 101,567 & 331,002,651 & 31   \\
+      2 & 意大利 Italy        & 86,498  & 60,461,826  & 143 \\
+      \hline
+      \end{tabular}%
+      }
+   \caption{累计确诊前十位国家}
 \end{table}
 
 
@@ -112,7 +112,7 @@ international_news = read_excel("./test/news_test.xlsx") %>%
         \centering
             \begin{tabular}{llll}
             \hline
-             & 国家        & 累计死亡病例 & 较昨⽇ \\
+              & 国家        & 累计死亡病例 & 较昨⽇ \\
             \hline
             1 & 意⼤利 Italy & 9,134  & 919 \\
             2 & 西班⽛ Spain & 4,940  & 575 \\
@@ -133,11 +133,6 @@ international_news = read_excel("./test/news_test.xlsx") %>%
       \makeatletter\def\@captype{table}\makeatother\caption{⽇新增病例前十位国家}
     \end{minipage}
 \end{minipage}
-
-
-
-
-\textcolor{glaucous}{表1：累计确诊前十位国家}
 
 
 
@@ -184,9 +179,9 @@ international_news = read_excel("./test/news_test.xlsx") %>%
             \hline
                & 国家/州名   & 累计确诊病例  & 粗发病率 \\
             \hline
-           & 美国 US   & 101,567 & 31   \\
-         1 & 纽约州 NY  & 44,876  & 231  \\
-         2 & 新泽西州 NJ & 8,825   & 99\\
+               & 美国 US   & 101,567 & 31   \\
+             1 & 纽约州 NY  & 44,876  & 231  \\
+             2 & 新泽西州 NJ & 8,825   & 99\\
             \hline
             \end{tabular}
             \makeatletter\def\@captype{table}\makeatother\caption{美国累计确诊前十位州}
@@ -195,11 +190,11 @@ international_news = read_excel("./test/news_test.xlsx") %>%
         \centering
             \begin{tabular}{llll}
             \hline
-            & 国家/州名   & 当日新增病例 & 全美比率 \\
+              & 国家/州名   & 当日新增病例 & 全美比率 \\
             \hline
-            & 美国 US   & 17821  & 100  \\
-          1 & 纽约州 NY  & 7,618  & 43   \\
-          2 & 新泽西州 NJ & 1,949  & 11 \\
+              & 美国 US   & 17821  & 100  \\
+            1 & 纽约州 NY  & 7,618  & 43   \\
+            2 & 新泽西州 NJ & 1,949  & 11 \\
             \hline
         \end{tabular}
       \makeatletter\def\@captype{table}\makeatother\caption{美国新增确诊前十位州}
