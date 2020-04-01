@@ -48,7 +48,7 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-international_news = read.csv("/Users/ziqizhou/Desktop/test.csv") %>%
+international_news = read.csv("./test/test.csv") %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 ```
