@@ -37,10 +37,10 @@ header-includes:
 
 
 \pagestyle{fancyplain}
-\lhead{\includegraphics[height=2cm]{logo.png}}
+\lhead{\includegraphics[height=2cm]{./test/logo.png}}
 \rhead{
 \begin{tabular}{ccc}
-中美健康峰会“智援组” 新冠早报组\\
+\textcolor{gray}{中美健康峰会“智援组” 新冠早报组}\\
 \\ \\ \\ \\ \\
 \end{tabular}}
 
