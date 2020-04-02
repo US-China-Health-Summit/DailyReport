@@ -37,7 +37,7 @@ header-includes:
 
 
 \pagestyle{fancyplain}
-\lhead{\includegraphics[height=2cm]{./test/logo.png}}
+\lhead{\includegraphics[height=2cm]{./input/logo.png}}
 \rhead{
 \begin{tabular}{ccc}
 \textcolor{gray}{中美健康峰会“智援组” 新冠早报组}\\
@@ -58,7 +58,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
 
-international_news = read_excel("./test/news_test.xlsx") %>%
+international_news = read_excel("./input/news_test.xlsx") %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 ```
@@ -94,7 +94,7 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 \begin{figure}[H] 
 \centering
-\includegraphics[]{./test/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
 \label{} %用于文内引用的标签
 \end{figure}
@@ -157,13 +157,13 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
-\includegraphics[]{./test/covid2.png}
+\includegraphics[]{./input/covid2.png}
 \caption{累计确诊病例国家趋势图}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\includegraphics[]{./test/covid3.png}
+\includegraphics[]{./input/covid3.png}
 \caption{日新增确诊病例国家趋势图}
 \label{}
 \end{minipage}
@@ -179,7 +179,7 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 \begin{figure}[H] 
 \centering
-\includegraphics[]{./test/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
 \label{} %用于文内引用的标签
 \end{figure}
@@ -219,13 +219,13 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
-\includegraphics[]{./test/covid5.png}
+\includegraphics[]{./input/covid5.png}
 \caption{美国本土疫情分布图}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\includegraphics[]{./test/covid6.png}
+\includegraphics[]{./input/covid6.png}
 \caption{美国累计确诊前五位州趋势图}
 \label{}
 \end{minipage}
