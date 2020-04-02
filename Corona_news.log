@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  1 APR 2020 21:06
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  1 APR 2020 21:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -695,19 +695,16 @@ LaTeX Warning: Unused global option(s):
 LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `Fig.sub.1' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `sub@Fig.sub.1' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `Fig.sub.2' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
-
-
-LaTeX Warning: Label `Fig.main' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 )
 \openout1 = `Corona_news.aux'.
@@ -1062,8 +1059,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 26.09749pt on input line 91.
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
+(Font)              scaled to size 25.3333pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 12.045pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -1105,8 +1102,8 @@ LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
 (Font)              scaled to size 10.23074pt on input line 113.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
 (Font)              scaled to size 10.53937pt on input line 116.
-File: ./test/logo.png Graphic file (type bmp)
-<./test/logo.png>
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 10.0pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -1142,8 +1139,8 @@ This may cause the page layout to be inconsistent, however.
 [1
 
 ]
-File: ./test/covid1.png Graphic file (type bmp)
-<./test/covid1.png>
+File: ./input/covid1.png Graphic file (type bmp)
+<./input/covid1.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 5.52061pt on input line 166.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1183,59 +1180,57 @@ Overfull \hbox (2.33974pt too wide) in paragraph at lines 171--195
 []$[]$ $[]$ 
  []
 
-File: ./test/covid2.png Graphic file (type bmp)
-<./test/covid2.png>
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 7.52812pt on input line 206.
-File: ./test/covid3.png Graphic file (type bmp)
-<./test/covid3.png>
-File: ./test/logo.png Graphic file (type bmp)
-<./test/logo.png>
+File: ./input/covid2.png Graphic file (type bmp)
+<./input/covid2.png>
+File: ./input/covid3.png Graphic file (type bmp)
+<./input/covid3.png>
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
 [2]
-File: ./test/covid4.png Graphic file (type bmp)
-<./test/covid4.png>
+File: ./input/covid4.png Graphic file (type bmp)
+<./input/covid4.png>
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 239.
+(caption)                particular \caption on input line 242.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 252.
+(caption)                particular \caption on input line 255.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (2.33974pt too wide) in paragraph at lines 228--254
+Overfull \hbox (2.33974pt too wide) in paragraph at lines 231--257
 []$[]$ $[]$ 
  []
 
-File: ./test/covid5.png Graphic file (type bmp)
-<./test/covid5.png>
-File: ./test/covid6.png Graphic file (type bmp)
-<./test/covid6.png>
-File: ./test/logo.png Graphic file (type bmp)
-<./test/logo.png>
+File: ./input/covid5.png Graphic file (type bmp)
+<./input/covid5.png>
+File: ./input/covid6.png Graphic file (type bmp)
+<./input/covid6.png>
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
 [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 268.
-File: ./test/logo.png Graphic file (type bmp)
-<./test/logo.png>
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 274.
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
 [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 268.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 274.
 (./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 268.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 268.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 274.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 274.
 Package rerunfilecheck Info: File `Corona_news.out' has not changed.
 (rerunfilecheck)             Checksum: 304F456040E3FCD0DCC68CE9B0EBBC83;180.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 268.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 274.
  ) 
 Here is how much of TeX's memory you used:
- 21773 strings out of 481765
- 422511 string characters out of 5935007
- 816397 words of memory out of 5000000
- 38436 multiletter control sequences out of 15000+600000
+ 21767 strings out of 481765
+ 422403 string characters out of 5935007
+ 816133 words of memory out of 5000000
+ 38430 multiletter control sequences out of 15000+600000
  542861 words of font info for 114 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,17n,122p,373b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
