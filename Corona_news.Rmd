@@ -1,6 +1,6 @@
 ---
-title: \textcolor{glaucous}{新冠早报}
-author: \textcolor{glaucous}{第六期 3月28日}
+title: \textcolor{glaucous}{\Huge 新冠早报}
+author: \textcolor{glaucous}{\Large 第六期 3月28日}
 output: 
   pdf_document:
     latex_engine: xelatex
@@ -18,7 +18,9 @@ header-includes:
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
     - \usepackage{blindtext}
-    
+    - \usepackage{caption}
+    - \usepackage{subfigure}
+    - \usepackage{float}
     - \textwidth 6.75in
     - \textheight 8.5in
     - \oddsidemargin -.25in
@@ -36,21 +38,20 @@ header-includes:
 
 \pagestyle{fancyplain}
 \lhead{\includegraphics[height=2cm]{logo.png}}
-\rhead{\begin{tabular}[b]{@{}c@{}}中美健康峰会“智援组” 新冠早报组\\ \\ \end{tabular}}
+\rhead{
+\begin{tabular}{ccc}
+中美健康峰会“智援组” 新冠早报组\\
+\\ \\ \\ \\ \\
+\end{tabular}}
+
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{50pt} 
+
+\resheading{\Large 新闻摘要}
 
 
-\resheading{新闻摘要}
+## \textcolor{glaucous}{\Large 国际}
 
-<<<<<<< HEAD
-\resheading{疫情观察}
-
-数据源：约翰霍普金斯大学，The COVID Tracking Project
-
-数据截至：北京时间3月27日早7：30
-
-=======
-## \textcolor{glaucous}{国际}
->>>>>>> e50667356eea97ad6dc72145894bc27d85d83e33
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -72,25 +73,27 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 `r international_news$content[1]`
 
 
-## \textcolor{glaucous}{国内}
+## \textcolor{glaucous}{\Large 国内}
 **\textcolor{glaucous}{`r international_news$pub[1]`}**: **`r international_news$title[1]`**
 
 `r international_news$content[1]`
 
 
 
+\newpage
 
+\resheading{\Large 疫情观察}
 
-\resheading{疫情观察}
+数据源：约翰霍普金斯大学，The COVID Tracking Project    
 
-数据源：约翰霍普金斯大学，The COVID Tracking Project    数据截止至：北京时间3月28日 早4:00</span>
+数据截止至：北京时间3月28日 早4:00
 
 # \textcolor{glaucous}{一、世界疫情}
 
 截止北京时间3月28日早6:00，全球累计591,802例确诊病例。
 
-\begin{figure}[htbp] 
-\centering %图片居中
+\begin{figure}[H] 
+\centering
 \includegraphics[]{./test/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
 \label{} %用于文内引用的标签
@@ -98,28 +101,28 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 
 
-\begin{table}[]
-\caption{累计确诊前十位国家}
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lllll}
-\hline
-  & 国家               & 累计确诊病例  & 国家/省份人口     & 粗发病率 \\
-  \hline
-1 & 美国 United States & 101,567 & 331,002,651 & 31   \\
-2 & 意大利 Italy        & 86,498  & 60,461,826  & 143 \\
-\hline
-\end{tabular}%
-}
+\begin{table}[H]\tiny
+   \centering
+   \resizebox{.7\textwidth}{!}{%
+      \begin{tabular}{lllll}
+      \hline
+        & 国家               & 累计确诊病例  & 国家/省份人口     & 粗发病率 \\
+        \hline
+      1 & 美国 United States & 101,567 & 331,002,651 & 31   \\
+      2 & 意大利 Italy        & 86,498  & 60,461,826  & 143 \\
+      \hline
+      \end{tabular}%
+      }
+   \caption{累计确诊前十位国家}
 \end{table}
 
 
 \begin{minipage}{\textwidth}
-        \begin{minipage}[t]{0.5\textwidth}
-            \centering
+        \begin{minipage}[H]{0.5\textwidth}
+        \centering
             \begin{tabular}{llll}
             \hline
-             & 国家        & 累计死亡病例 & 较昨⽇ \\
+              & 国家        & 累计死亡病例 & 较昨⽇ \\
             \hline
             1 & 意⼤利 Italy & 9,134  & 919 \\
             2 & 西班⽛ Spain & 4,940  & 575 \\
@@ -127,8 +130,8 @@ international_news = read_excel("./test/news_test.xlsx") %>%
             \end{tabular}
             \makeatletter\def\@captype{table}\makeatother\caption{累计死亡前十位国家}
         \end{minipage}
-        \begin{minipage}[t]{0.5\textwidth}
-            \centering
+        \begin{minipage}[H]{0.5\textwidth}
+        \centering
             \begin{tabular}{llll}
             \hline
               & 国家         & 当⽇新增病例 & 较昨日  \\
@@ -142,12 +145,6 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 \end{minipage}
 
 
-<<<<<<< HEAD
-
-\textcolor{glaucous}{表1：累计确诊前十位国家}
-
-=======
->>>>>>> 6fbddbd6404aa790eaa5f0496c6a90534dd98d92
 
 
 # \textcolor{glaucous}{二、中国与其他疫情严重国家对比}
@@ -157,8 +154,8 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 
 
-\begin{figure}[htbp]
-\centering  %图片全局居中
+\begin{figure}[H]
+\centering
 \subfigure[累计确诊病例国家趋势图]{
 \label{Fig.sub.1}
 \includegraphics[width=0.45\textwidth]{./test/covid2.png}}
@@ -177,8 +174,8 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 截至北京时间3⽉28⽇早6:00， 美国共101,567例累计确诊病例，1,581例累计死亡病例。
 
 
-\begin{figure}[htbp] 
-\centering %图片居中
+\begin{figure}[H] 
+\centering
 \includegraphics[]{./test/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
 \label{} %用于文内引用的标签
@@ -186,28 +183,28 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 
 \begin{minipage}{\textwidth}
-        \begin{minipage}[t]{0.5\textwidth}
-            \centering
+        \begin{minipage}[H]{0.5\textwidth}
+        \centering
             \begin{tabular}{llll}
             \hline
                & 国家/州名   & 累计确诊病例  & 粗发病率 \\
             \hline
-           & 美国 US   & 101,567 & 31   \\
-         1 & 纽约州 NY  & 44,876  & 231  \\
-         2 & 新泽西州 NJ & 8,825   & 99\\
+               & 美国 US   & 101,567 & 31   \\
+             1 & 纽约州 NY  & 44,876  & 231  \\
+             2 & 新泽西州 NJ & 8,825   & 99\\
             \hline
             \end{tabular}
             \makeatletter\def\@captype{table}\makeatother\caption{美国累计确诊前十位州}
         \end{minipage}
-        \begin{minipage}[t]{0.5\textwidth}
-            \centering
+        \begin{minipage}[H]{0.5\textwidth}
+        \centering
             \begin{tabular}{llll}
             \hline
-            & 国家/州名   & 当日新增病例 & 全美比率 \\
+              & 国家/州名   & 当日新增病例 & 全美比率 \\
             \hline
-            & 美国 US   & 17821  & 100  \\
-          1 & 纽约州 NY  & 7,618  & 43   \\
-          2 & 新泽西州 NJ & 1,949  & 11 \\
+              & 美国 US   & 17821  & 100  \\
+            1 & 纽约州 NY  & 7,618  & 43   \\
+            2 & 新泽西州 NJ & 1,949  & 11 \\
             \hline
         \end{tabular}
       \makeatletter\def\@captype{table}\makeatother\caption{美国新增确诊前十位州}
@@ -216,8 +213,8 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 
 
-\begin{figure}[htbp]
-\centering  %图片全局居中
+\begin{figure}[H]
+\centering
 \subfigure[美国本土疫情分布图]{
 \label{Fig.sub.1}
 \includegraphics[width=0.45\textwidth]{./test/covid5.png}}

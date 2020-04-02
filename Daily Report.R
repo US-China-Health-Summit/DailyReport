@@ -344,7 +344,9 @@ p1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, col
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+	theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -353,7 +355,7 @@ p1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, col
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
-  ylab(p1_ylab)
+  ylab(p1_ylab) 
 
 ggsave(filename=paste(report_date,"p1",p1_title, ".pdf"), plot = p1, width = 10, height = 8 )
 
@@ -375,7 +377,9 @@ p1_1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, c
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+	theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -406,7 +410,9 @@ p1_2 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, c
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -437,7 +443,9 @@ p2 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed_incremental, group=
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -467,7 +475,9 @@ p3 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increment
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -498,7 +508,9 @@ p3_1 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increme
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -530,7 +542,9 @@ p3_2 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increme
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -571,7 +585,9 @@ p7_1 = ggplot(data_to_plot_IR , aes(x=Date, y=Crude_Incidence_Rate, group=Region
   geom_line(size=1) +
 	scale_shape_manual(values=1:nlevels(data_to_plot_IR$Region)) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -629,7 +645,9 @@ p4 = ggplot(data_to_plot_us , aes(x=Date, y=Cases, group=Status, colour = Status
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -791,7 +809,9 @@ p5 = ggplot(data_to_plot , aes(x=date, y=Confirmed, group=state, colour = state,
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
@@ -820,7 +840,9 @@ p6 = ggplot(data_to_plot_incremental , aes(x=date, y=Confirmed_Incremental, grou
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
-  # theme(plot.title = element_text(size = 20)) + 
+  theme(panel.border = element_blank()) +
+	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+	theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  1 APR 2020 14:53
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  1 APR 2020 20:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -640,48 +640,112 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@randommax=\count319
 \c@blind@pangramcount=\count320
 \c@blind@pangrammax=\count321
+) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen198
+\captionmargin@=\dimen199
+\captionwidth=\dimen256
+\caption@tempdima=\dimen257
+\caption@indent=\dimen258
+\caption@parindent=\dimen259
+\caption@hangindent=\dimen260
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count322
+\c@continuedfloat=\count323
+Package caption Info: hyperref package is loaded.
+)
+(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip75
+\subfigcapskip=\skip76
+\subfigcaptopadj=\dimen261
+\subfigbottomskip=\skip77
+\subfigcapmargin=\dimen262
+\subfiglabelskip=\skip78
+\c@subfigure=\count324
+\c@lofdepth=\count325
+\c@subtable=\count326
+\c@lotdepth=\count327
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+
+(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/subfigure/subfigure.cfg
+)
+\subfig@top=\skip79
+\subfig@bottom=\skip80
+) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count328
+\float@exts=\toks25
+\float@box=\box58
+\@float@everytoks=\toks26
+\@floatcapt=\box59
 )
 
 LaTeX Warning: Unused global option(s):
     [11].
 
-No file Corona_news.aux.
+(./Corona_news.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `Fig.sub.1' multiply defined.
+
+
+LaTeX Warning: Label `sub@Fig.sub.1' multiply defined.
+
+
+LaTeX Warning: Label `Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `Fig.main' multiply defined.
+
+)
 \openout1 = `Corona_news.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 86.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 89.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 86.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 89.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 86.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 89.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 86.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 89.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 86.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 89.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 86.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 89.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 86.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 89.
 
 Package fontspec Info: latinmodern-math scale = 0.9999966408685371.
 
@@ -710,7 +774,7 @@ pt=math;language=dflt;mapping=tex-text;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 86.
+(Font)              scaled to size 10.53937pt on input line 89.
 
 Package fontspec Info: latinmodern-math scale = 0.9999966408685371.
 
@@ -751,17 +815,17 @@ pt=math;language=dflt;mapping=tex-text;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 86.
+(Font)              scaled to size 10.53937pt on input line 89.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 86.
+(Font)              `operators' in the math version `normal' on input line 89.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
- line 86.
+ line 89.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 86.
+(Font)              `operators' in the math version `bold' on input line 89.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
-t line 86.
+t line 89.
 
 Package fontspec Info: latinmodern-math scale = 0.9999966408685371.
 
@@ -849,15 +913,15 @@ t=math;language=dflt;mapping=tex-text;"
 (fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 86.
+(Font)              `symbols' in the math version `normal' on input line 89.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
-t line 86.
+t line 89.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 86.
+(Font)              `symbols' in the math version `bold' on input line 89.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
-t line 86.
+t line 89.
 
 Package fontspec Info: latinmodern-math scale = 0.9999966408685371.
 
@@ -928,18 +992,18 @@ pt=math;language=dflt;mapping=tex-text;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 (Font)              `largesymbols' in the math version `normal' on input line 8
-6.
+9.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
-t line 86.
+t line 89.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 86.
+(Font)              `largesymbols' in the math version `bold' on input line 89.
 
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
-t line 86.
-\AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring OFF on input line 86.
+t line 89.
+\AtBeginShipoutBox=\box60
+Package hyperref Info: Link coloring OFF on input line 89.
 (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -949,16 +1013,14 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count322
+\c@section@level=\count329
 )
-LaTeX Info: Redefining \ref on input line 86.
-LaTeX Info: Redefining \pageref on input line 86.
-LaTeX Info: Redefining \nameref on input line 86.
+LaTeX Info: Redefining \ref on input line 89.
+LaTeX Info: Redefining \pageref on input line 89.
+LaTeX Info: Redefining \nameref on input line 89.
+(./Corona_news.out) (./Corona_news.out)
 \@outlinefile=\write3
 \openout3 = `Corona_news.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -995,104 +1057,79 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 86.
+LaTeX Info: Redefining \selectfont on input line 89.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: subfigure package is loaded.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 18.06749pt on input line 88.
+(Font)              scaled to size 26.09749pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.045pt on input line 88.
+(Font)              scaled to size 12.045pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 88.
+(Font)              scaled to size 8.0pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 88.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
-8.
+(Font)              scaled to size 6.0pt on input line 91.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
+1.
 (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.0461pt on input line 88.
+(Font)              scaled to size 12.0461pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.00073pt on input line 88.
+(Font)              scaled to size 8.00073pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 88.
+(Font)              scaled to size 6.00055pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.0437pt on input line 88.
+(Font)              scaled to size 12.0437pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.99915pt on input line 88.
+(Font)              scaled to size 7.99915pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 88.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 88.
+(Font)              scaled to size 5.99936pt on input line 91.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 91.
 
 (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 88.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 91.
 
 (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 12.045pt on input line 88.
+(Font)              scaled to size 15.05624pt on input line 91.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 10.23074pt on input line 98.
+(Font)              scaled to size 14.61537pt on input line 108.
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
+(Font)              scaled to size 10.23074pt on input line 113.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 103.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 11.69229pt on input line 124.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 14.61537pt on input line 139.
-File: ./test/covid1.png Graphic file (type bmp)
-<./test/covid1.png>
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 150.
-
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.37756pt on input line 162.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.26968pt on input line 162.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.54033pt on input line 162.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.37823pt on input line 162.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.27016pt on input line 162.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.53824pt on input line 162.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.37677pt on input line 162.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.26912pt on input line 162.
-
-Overfull \hbox (2.33974pt too wide) in paragraph at lines 166--190
-[][] [] 
- []
-
+(Font)              scaled to size 10.53937pt on input line 116.
 File: logo.png Graphic file (type bmp)
 <logo.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 192.
+(Font)              scaled to size 10.0pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 192.
+(Font)              scaled to size 7.0pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 192.
+(Font)              scaled to size 5.0pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 192.
+(Font)              scaled to size 10.00092pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 192.
+(Font)              scaled to size 7.00064pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 192.
+(Font)              scaled to size 5.00046pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 192.
+(Font)              scaled to size 9.99893pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 192.
+(Font)              scaled to size 6.99925pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 192.
+(Font)              scaled to size 4.99947pt on input line 134.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 192.
+(Font)              scaled to size 10.0pt on input line 134.
 
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
-Make it at least 60.50578pt.
+Package Fancyhdr Warning: \headheight is too small (50.0pt): 
+Make it at least 90.40552pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
@@ -1105,19 +1142,102 @@ This may cause the page layout to be inconsistent, however.
 [1
 
 ]
+File: ./test/covid1.png Graphic file (type bmp)
+<./test/covid1.png>
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.52061pt on input line 166.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.52112pt on input line 166.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.52002pt on input line 166.
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
+(Font)              scaled to size 5.52061pt on input line 166.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.37756pt on input line 173.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.26968pt on input line 173.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.54033pt on input line 173.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.37823pt on input line 173.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.27016pt on input line 173.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.53824pt on input line 173.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.37677pt on input line 173.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.26912pt on input line 173.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 181.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 193.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (2.33974pt too wide) in paragraph at lines 171--195
+[]$[]$ $[]$ 
+ []
+
+File: ./test/covid2.png Graphic file (type bmp)
+<./test/covid2.png>
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
+(Font)              scaled to size 7.52812pt on input line 206.
+File: ./test/covid3.png Graphic file (type bmp)
+<./test/covid3.png>
 File: logo.png Graphic file (type bmp)
 <logo.png>
 [2]
-! Undefined control sequence.
-l.208 \subfigure
-                [累计确诊病例国家趋势图]{ 
-Here is how much of TeX's memory you used:
- 20429 strings out of 481765
- 398366 string characters out of 5935007
- 796586 words of memory out of 5000000
- 37128 multiletter control sequences out of 15000+600000
- 541869 words of font info for 105 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 62i,18n,122p,373b,429s stack positions out of 5000i,500n,10000p,200000b,80000s
+File: ./test/covid4.png Graphic file (type bmp)
+<./test/covid4.png>
 
-Output written on Corona_news.pdf (2 pages).
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 239.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 252.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (2.33974pt too wide) in paragraph at lines 228--254
+[]$[]$ $[]$ 
+ []
+
+File: ./test/covid5.png Graphic file (type bmp)
+<./test/covid5.png>
+File: ./test/covid6.png Graphic file (type bmp)
+<./test/covid6.png>
+File: logo.png Graphic file (type bmp)
+<logo.png>
+[3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 268.
+File: logo.png Graphic file (type bmp)
+<logo.png>
+[4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 268.
+(./Corona_news.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 268.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 268.
+Package rerunfilecheck Info: File `Corona_news.out' has not changed.
+(rerunfilecheck)             Checksum: 304F456040E3FCD0DCC68CE9B0EBBC83;180.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 268.
+ ) 
+Here is how much of TeX's memory you used:
+ 21773 strings out of 481765
+ 422476 string characters out of 5935007
+ 816397 words of memory out of 5000000
+ 38436 multiletter control sequences out of 15000+600000
+ 542861 words of font info for 114 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 62i,17n,122p,373b,422s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Corona_news.pdf (4 pages).
