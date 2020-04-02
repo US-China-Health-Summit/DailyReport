@@ -103,7 +103,7 @@ p7_2_title = input_plot_titles$Input[input_plot_titles$Item=="p7_2_title"]
 p7_xlab = input_plot_titles$Input[input_plot_titles$Item=="p7_xlab"]
 p7_ylab = input_plot_titles$Input[input_plot_titles$Item=="p7_ylab"]
 
-color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3")
+color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33", "#A65628", "#F781BF")
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
 
