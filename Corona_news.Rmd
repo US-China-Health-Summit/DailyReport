@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: \textcolor{glaucous}{\Huge \textbf{新冠早报}}
+=======
+title: \textcolor{glaucous}{\Huge \textbf {新冠早报}}
+>>>>>>> a264b79a9ac2fbbaca3d4f2e537a0b7c7c6b1da9
 author: \textcolor{glaucous}{\Large 第六期 3月28日}
 output: 
   pdf_document:
@@ -21,6 +25,7 @@ header-includes:
     - \usepackage{caption}
     - \usepackage{subfigure}
     - \usepackage{float}
+
     - \textwidth 6.75in
     - \textheight 8.5in
     - \oddsidemargin -.25in
@@ -58,7 +63,11 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
 
-international_news = read_excel("./input/news_test.xlsx") %>%
+international_news = read_excel("./input/international_news.xlsx") %>%
+  janitor::clean_names() %>% 
+  select(pub,title,content)
+
+native_news = read_excel("./input/native_news.xlsx") %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 ```
@@ -73,8 +82,10 @@ international_news = read_excel("./input/news_test.xlsx") %>%
 `r international_news$content[1]`
 
 
-## \textcolor{glaucous}{\Large 国内}
-**\textcolor{glaucous}{`r international_news$pub[1]`}**: **`r international_news$title[1]`**
+
+## \textcolor{glaucous}{国内}
+**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
+
 
 `r international_news$content[1]`
 
@@ -231,4 +242,13 @@ international_news = read_excel("./input/news_test.xlsx") %>%
 \end{minipage}
 \end{figure}
 
+
+
+
+
+
+                        主编：马晶                  副主编:薛成海 仁晖 何鸿恺
+                        执行责任编辑:史珂玮 王冠    新闻组:张宁 张心其
+                        可视化组:霍舒同 张立达      数据分析:杜兆慧
+                        感谢所有为日报作出贡献的志愿者:李忠锦 慕帼眉 李祎杰
 
