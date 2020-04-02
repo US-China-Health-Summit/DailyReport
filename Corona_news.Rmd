@@ -17,6 +17,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
+    - \geometry{a4paper,scale=0.8}
     - \usepackage{blindtext}
     - \usepackage{caption}
     - \usepackage{subfigure}
@@ -27,6 +28,8 @@ header-includes:
     - \oddsidemargin -.25in
     - \evensidemargin -.25in
     - \topmargin -0.5in
+    - \linespread{1.0}
+    - \setlength{\parskip}{0.8em}
     
 
 ---
@@ -41,7 +44,7 @@ header-includes:
 \lhead{\includegraphics[height=2cm]{./input/logo.png}}
 \rhead{
 \begin{tabular}{ccc}
-\textcolor{gray}{中美健康峰会“智援组” 新冠早报组}\\
+\textcolor{gray}{中美健康峰会「智援组」新冠早报组}\\
 \\ \\ \\ \\ \\
 \end{tabular}}
 
@@ -79,7 +82,7 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 
 
 
-## \textcolor{glaucous}{国内}
+## \textcolor{glaucous}{\Large 国内}
 **\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
 
 
@@ -91,9 +94,7 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 
 \resheading{\Large 疫情观察}
 
-数据源：约翰霍普金斯大学，The COVID Tracking Project    
-
-数据截止至：北京时间3月28日 早4:00
+数据源：约翰霍普金斯大学，The COVID Tracking Project     数据截止至：北京时间3月28日 早4:00
 
 # \textcolor{glaucous}{一、世界疫情}
 ```{r include=FALSE}
