@@ -156,14 +156,17 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 \begin{figure}[H]
 \centering
-\subfigure[累计确诊病例国家趋势图]{
-\label{Fig.sub.1}
-\includegraphics[width=0.45\textwidth]{./test/covid2.png}}
-\subfigure[日新增确诊病例国家趋势图]{
-\label{Fig.sub.2}
-\includegraphics[width=0.45\textwidth]{./test/covid3.png}}
-\caption{}
-\label{Fig.main}
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[]{./test/covid2.png}
+\caption{累计确诊病例国家趋势图}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[]{./test/covid3.png}
+\caption{日新增确诊病例国家趋势图}
+\label{}
+\end{minipage}
 \end{figure}
 
 
@@ -215,13 +218,17 @@ international_news = read_excel("./test/news_test.xlsx") %>%
 
 \begin{figure}[H]
 \centering
-\subfigure[美国本土疫情分布图]{
-\label{Fig.sub.1}
-\includegraphics[width=0.45\textwidth]{./test/covid5.png}}
-\subfigure[美国累计确诊前五位州趋势图]{
-\label{Fig.sub.2}
-\includegraphics[width=0.45\textwidth]{./test/covid6.png}}
-\caption{}
-\label{Fig.main}
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[]{./test/covid5.png}
+\caption{美国本土疫情分布图}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[]{./test/covid6.png}
+\caption{美国累计确诊前五位州趋势图}
+\label{}
+\end{minipage}
 \end{figure}
+
 
