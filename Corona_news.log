@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.1)  1 APR 2020 21:45
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.1)  1 APR 2020 21:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -675,19 +675,16 @@ LaTeX Warning: Unused global option(s):
 LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `Fig.sub.1' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `sub@Fig.sub.1' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `Fig.sub.2' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
-
-
-LaTeX Warning: Label `Fig.main' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 )
 \openout1 = `Corona_news.aux'.
@@ -1043,7 +1040,7 @@ Package caption Info: float package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 18.06749pt on input line 91.
+(Font)              scaled to size 26.09749pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 12.045pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -1078,42 +1075,40 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 91.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 12.045pt on input line 91.
+(Font)              scaled to size 15.05624pt on input line 91.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 10.23074pt on input line 101.
+(Font)              scaled to size 14.61537pt on input line 108.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 11.69229pt on input line 104.
+(Font)              scaled to size 10.23074pt on input line 113.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 109.
+(Font)              scaled to size 10.53937pt on input line 116.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 14.61537pt on input line 134.
-File: ./input/covid1.png Graphic file (type bmp)
-<./input/covid1.png>
-File: logo.png Graphic file (type bmp)
-<logo.png>
+(Font)              scaled to size 11.69229pt on input line 126.
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 144.
+(Font)              scaled to size 10.0pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 144.
+(Font)              scaled to size 7.0pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 144.
+(Font)              scaled to size 5.0pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 144.
+(Font)              scaled to size 10.00092pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 144.
+(Font)              scaled to size 7.00064pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 144.
+(Font)              scaled to size 5.00046pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 144.
+(Font)              scaled to size 9.99893pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 144.
+(Font)              scaled to size 6.99925pt on input line 134.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 144.
+(Font)              scaled to size 4.99947pt on input line 134.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 144.
+(Font)              scaled to size 10.0pt on input line 134.
 
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
-Make it at least 60.50578pt.
+Package Fancyhdr Warning: \headheight is too small (50.0pt): 
+Make it at least 90.40552pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
@@ -1126,68 +1121,68 @@ This may cause the page layout to be inconsistent, however.
 [1
 
 ]
+File: ./input/covid1.png Graphic file (type bmp)
+<./input/covid1.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.52061pt on input line 156.
+(Font)              scaled to size 5.52061pt on input line 166.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.52112pt on input line 156.
+(Font)              scaled to size 5.52112pt on input line 166.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.52002pt on input line 156.
+(Font)              scaled to size 5.52002pt on input line 166.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 5.52061pt on input line 156.
+(Font)              scaled to size 5.52061pt on input line 166.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.37756pt on input line 163.
+(Font)              scaled to size 7.37756pt on input line 173.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.26968pt on input line 163.
+(Font)              scaled to size 5.26968pt on input line 173.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.54033pt on input line 163.
+(Font)              scaled to size 10.54033pt on input line 173.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.37823pt on input line 163.
+(Font)              scaled to size 7.37823pt on input line 173.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.27016pt on input line 163.
+(Font)              scaled to size 5.27016pt on input line 173.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.53824pt on input line 163.
+(Font)              scaled to size 10.53824pt on input line 173.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.37677pt on input line 163.
+(Font)              scaled to size 7.37677pt on input line 173.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.26912pt on input line 163.
+(Font)              scaled to size 5.26912pt on input line 173.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 171.
+(caption)                particular \caption on input line 181.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 183.
+(caption)                particular \caption on input line 193.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (2.33974pt too wide) in paragraph at lines 161--185
+Overfull \hbox (2.33974pt too wide) in paragraph at lines 171--195
 []$[]$ $[]$ 
  []
 
 File: ./input/covid2.png Graphic file (type bmp)
 <./input/covid2.png>
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 7.52812pt on input line 196.
 File: ./input/covid3.png Graphic file (type bmp)
 <./input/covid3.png>
-File: logo.png Graphic file (type bmp)
-<logo.png>
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
 [2]
 File: ./input/covid4.png Graphic file (type bmp)
 <./input/covid4.png>
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 229.
-See the caption package documentation for explanation.
-
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 242.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (2.33974pt too wide) in paragraph at lines 218--244
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 255.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (2.33974pt too wide) in paragraph at lines 231--257
 []$[]$ $[]$ 
  []
 
@@ -1195,8 +1190,8 @@ File: ./input/covid5.png Graphic file (type bmp)
 <./input/covid5.png>
 File: ./input/covid6.png Graphic file (type bmp)
 <./input/covid6.png>
-File: logo.png Graphic file (type bmp)
-<logo.png>
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
 [3]
 
 Package fontspec Warning: Font "FandolFang-Regular" does not contain requested
@@ -1223,29 +1218,29 @@ nguage=dflt;mapping=tex-text;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/FandolFang-Regular(0)/m/n' will be
-(Font)              scaled to size 9.91795pt on input line 258.
+(Font)              scaled to size 9.91795pt on input line 274.
 Missing character: There is no 祎 in font [FandolFang-Regular.otf]/OT:language=d
 flt;mapping=tex-text;!
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 265.
-File: logo.png Graphic file (type bmp)
-<logo.png>
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 281.
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
 [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 265.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 281.
 (./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 265.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 265.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 281.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 281.
 Package rerunfilecheck Info: File `Corona_news.out' has not changed.
 (rerunfilecheck)             Checksum: 304F456040E3FCD0DCC68CE9B0EBBC83;180.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 265.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 281.
  ) 
 Here is how much of TeX's memory you used:
- 21790 strings out of 481765
- 422636 string characters out of 5935194
- 815393 words of memory out of 5000000
- 38446 multiletter control sequences out of 15000+600000
+ 21784 strings out of 481765
+ 422540 string characters out of 5935194
+ 816129 words of memory out of 5000000
+ 38440 multiletter control sequences out of 15000+600000
  542901 words of font info for 119 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,17n,122p,373b,458s stack positions out of 5000i,500n,10000p,200000b,80000s

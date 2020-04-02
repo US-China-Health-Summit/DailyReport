@@ -1,6 +1,6 @@
 ---
-title: \textcolor{glaucous}{新冠早报}
-author: \textcolor{glaucous}{第六期 3月28日}
+title: \textcolor{glaucous}{\Huge 新冠早报}
+author: \textcolor{glaucous}{\Large 第六期 3月28日}
 output: 
   pdf_document:
     latex_engine: xelatex
@@ -38,13 +38,21 @@ header-includes:
 
 
 \pagestyle{fancyplain}
-\lhead{\includegraphics[height=2cm]{logo.png}}
-\rhead{\begin{tabular}[b]{@{}c@{}}中美健康峰会“智援组” 新冠早报组\\ \\ \end{tabular}}
+\lhead{\includegraphics[height=2cm]{./input/logo.png}}
+\rhead{
+\begin{tabular}{ccc}
+\textcolor{gray}{中美健康峰会“智援组” 新冠早报组}\\
+\\ \\ \\ \\ \\
+\end{tabular}}
+
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{50pt} 
+
+\resheading{\Large 新闻摘要}
 
 
-\resheading{新闻摘要}
+## \textcolor{glaucous}{\Large 国际}
 
-## \textcolor{glaucous}{国际}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -70,18 +78,22 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 `r international_news$content[1]`
 
 
+
 ## \textcolor{glaucous}{国内}
-**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
+
 
 `r international_news$content[1]`
 
 
 
+\newpage
 
+\resheading{\Large 疫情观察}
 
-\resheading{疫情观察}
+数据源：约翰霍普金斯大学，The COVID Tracking Project    
 
-数据源：约翰霍普金斯大学，The COVID Tracking Project    数据截止至：北京时间3月28日 早4:00
+数据截止至：北京时间3月28日 早4:00
 
 # \textcolor{glaucous}{一、世界疫情}
 
@@ -151,14 +163,17 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 
 \begin{figure}[H]
 \centering
-\subfigure[累计确诊病例国家趋势图]{
-\label{Fig.sub.1}
-\includegraphics[width=0.45\textwidth]{./input/covid2.png}}
-\subfigure[日新增确诊病例国家趋势图]{
-\label{Fig.sub.2}
-\includegraphics[width=0.45\textwidth]{./input/covid3.png}}
-\caption{}
-\label{Fig.main}
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[]{./input/covid2.png}
+\caption{累计确诊病例国家趋势图}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[]{./input/covid3.png}
+\caption{日新增确诊病例国家趋势图}
+\label{}
+\end{minipage}
 \end{figure}
 
 
@@ -210,21 +225,26 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 
 \begin{figure}[H]
 \centering
-\subfigure[美国本土疫情分布图]{
-\label{Fig.sub.1}
-\includegraphics[width=0.45\textwidth]{./input/covid5.png}}
-\subfigure[美国累计确诊前五位州趋势图]{
-\label{Fig.sub.2}
-\includegraphics[width=0.45\textwidth]{./input/covid6.png}}
-\caption{}
-\label{Fig.main}
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[]{./input/covid5.png}
+\caption{美国本土疫情分布图}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\includegraphics[]{./input/covid6.png}
+\caption{美国累计确诊前五位州趋势图}
+\label{}
+\end{minipage}
 \end{figure}
 
 
 
 
-                       主编：马晶                  副主编:薛成海 仁晖 何鸿恺
-                       执行责任编辑:史珂玮 王冠    新闻组:张宁 张心其
-                       可视化组:霍舒同 张立达      数据分析:杜兆慧
-                       感谢所有为日报作出贡献的志愿者:李忠锦 慕帼眉 李祎杰
+
+
+                        主编：马晶                  副主编:薛成海 仁晖 何鸿恺
+                        执行责任编辑:史珂玮 王冠    新闻组:张宁 张心其
+                        可视化组:霍舒同 张立达      数据分析:杜兆慧
+                        感谢所有为日报作出贡献的志愿者:李忠锦 慕帼眉 李祎杰
 
