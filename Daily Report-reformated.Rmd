@@ -1,0 +1,397 @@
+---
+title: "Daily report-reformated"
+author: "Hao Sun"
+date: "3/28/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+list.of.packages <- c("ggplot2", "jsonlite", "httr","tidyverse")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
+library(ggplot2)
+library(tidyverse)
+library(jsonlite)
+library(httr)
+
+```
+
+####        README        ####
+##############################
+
+### Data source (by country):  https://github.com/CSSEGISandData/COVID-19
+### Data source (by us state):  https://covidtracking.com/api/states/daily
+
+### Currently this program will give 6 plots and 4 tables as below:
+* plot 1. total confirmed cases sort by countries total
+* plot 2. new confirmed cases daily sort by countries total
+* plot 3. new confirmed cases daily sort by countries incremental
+* plot 4: US only Active / deaths / recovered
+* plot 5: total confirmed cases by selected US States
+* plot 6: new confirmed cases daily by selected US States
+* Table 1: Total confirmed cases sort by the last day worldwide
+* Table 2: Confirmed cases Incrementally daily sort by the last day worldwide
+* Table 3: Total confirmed cases sort by the last day US
+* Table 4: Confirmed cases Incrementally daily sort by the last day U
+
+### Required input templates: (Please save these in the same folder with csse_covid_19_time_series input)
+* 'input_country_list.csv' : 
+     Required if use customized country list for plots. (rather than TOP_N); Set "template_input" to TRUE below
+* 'input_us_state_list.csv' :
+     Required if use customized US State list for plots. (rather than TOP_N); Set "template_input" to TRUE below
+* 'input_plot_titles.csv' : 
+     Always keep this file in the folder. Modify if you need to update plots title / labels. 
+* 'input_country_population.csv' : 
+     Always keep this file in the folder. No need to modify. 
+* 'input_state_population.csv' : 
+     Always keep this file in the folder. No need to modify. 
+
+############################################################
+
+
+## INPUTS
+
+THis code block is where the user can specify the option they need for plot generation.
+
+```{r INPUTS}
+##############################
+####        INPUTS        ####
+##############################
+
+##### folder path. In this folder, you should have all template input files mentioned above and these three time series files. 
+
+# getwd()
+
+folder = "YOUR_PATH/csse_covid_19_time_series"
+
+#setwd(folder)
+
+##### Filter countries
+## Set template_input to TRUE if filter country using template file provided; 
+## Otherwise, auto select countries/State by Top N
+template_input = FALSE
+top_n = 5
+
+##### filter data by start date and end date
+# start_date = c(mm, dd, yyyy) ; set as NULL if not used
+# end_date = c(mm, dd, yyyy) ; set as NULL if not used
+start_date = NULL
+end_date = NULL
+
+#####  sort without China: TRUE, FALSE ; default is TRUE (sort without China)
+remove_mainland_china = TRUE
+china_label = "China"   
+
+##### web data (TRUE if use additional data file from web data branch; otherwise set to FALSE)
+web_data = TRUE
+
+
+
+####HS Added:State name, fill in if want to conduct state analysis
+State_name = "Zhejiang"
+
+
+```
+
+## Label and parameter control
+
+The following code set the dictionary of the variouse input needed.
+
+```{r pressure, echo=FALSE}
+###############################################################
+## RUN THROUGH EVERYTHING BELOW TO GENERATE PLOTS AND TABLES ##
+###############################################################
+
+input_plot_titles = read.csv("input_plot_titles.csv", stringsAsFactors = F)
+p1_title = input_plot_titles$Input[input_plot_titles$Item=="p1_title"]
+p1_1_title = input_plot_titles$Input[input_plot_titles$Item=="p1_1_title"]
+p1_2_title = input_plot_titles$Input[input_plot_titles$Item=="p1_2_title"]
+p1_xlab = input_plot_titles$Input[input_plot_titles$Item=="p1_xlab"]
+p1_ylab = input_plot_titles$Input[input_plot_titles$Item=="p1_ylab"]
+p2_title = input_plot_titles$Input[input_plot_titles$Item=="p2_title"]
+p2_xlab = input_plot_titles$Input[input_plot_titles$Item=="p2_xlab"]
+p2_ylab = input_plot_titles$Input[input_plot_titles$Item=="p2_ylab"]
+p3_title = input_plot_titles$Input[input_plot_titles$Item=="p3_title"]
+p3_1_title = input_plot_titles$Input[input_plot_titles$Item=="p3_1_title"]
+p3_2_title = input_plot_titles$Input[input_plot_titles$Item=="p3_2_title"]
+p3_xlab = input_plot_titles$Input[input_plot_titles$Item=="p3_xlab"]
+p3_ylab = input_plot_titles$Input[input_plot_titles$Item=="p3_ylab"]
+p4_title = input_plot_titles$Input[input_plot_titles$Item=="p4_title"]
+p4_xlab = input_plot_titles$Input[input_plot_titles$Item=="p4_xlab"]
+p4_ylab = input_plot_titles$Input[input_plot_titles$Item=="p4_ylab"]
+p5_title = input_plot_titles$Input[input_plot_titles$Item=="p5_title"]
+p5_xlab = input_plot_titles$Input[input_plot_titles$Item=="p5_xlab"]
+p5_ylab = input_plot_titles$Input[input_plot_titles$Item=="p5_ylab"]
+p6_title = input_plot_titles$Input[input_plot_titles$Item=="p6_title"]
+p6_xlab = input_plot_titles$Input[input_plot_titles$Item=="p6_xlab"]
+p6_ylab = input_plot_titles$Input[input_plot_titles$Item=="p6_ylab"]
+p7_1_title = input_plot_titles$Input[input_plot_titles$Item=="p7_1_title"]
+p7_2_title = input_plot_titles$Input[input_plot_titles$Item=="p7_2_title"]
+p7_xlab = input_plot_titles$Input[input_plot_titles$Item=="p7_xlab"]
+p7_ylab = input_plot_titles$Input[input_plot_titles$Item=="p7_ylab"]
+
+color_list = c("#FF3300","#CC9900","#00CC00","#00CCFF","#FF33FF","#800080","#009933","#00FFFF","#000080"	,"#FF00FF","#808000","000033"	)
+
+input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
+
+
+```
+
+## Function Definition
+The following code defines various function that needed to be used in the following pipeline
+```{r}
+convert_date=function(date_label){
+  temp =unlist(lapply(as.character(date_label), function(X) {
+    a = strsplit(X, "/")[[1]]
+		if (nchar(a[3]) == 2) a[3] = 2000+as.numeric(a[3])
+    a  }))
+  month = temp[1:length(date_label)*3-2]
+  day = temp[1:length(date_label)*3-1]
+  year = temp[1:length(date_label)*3]
+  
+  as.Date(ISOdate(year = year, month = month, day = day))
+}
+
+filter_by_date = function(ds, date_var, start_date, end_date){
+	if (!is.null(start_date)){
+		start_date_converted = as.Date(ISOdate(year = start_date[3], month = start_date[1], day = start_date[2]))
+		ds = ds%>%filter(date_var>= start_date_converted)
+	}
+	if (!is.null(end_date)){
+		end_date_converted = as.Date(ISOdate(year = end_date[3], month = end_date[1], day = end_date[2]))
+		ds = ds%>%filter(date_var>= end_date_converted)
+	}
+	ds
+}
+
+adjust_y_interval = function(y_max){
+  temp_interval = y_max / 10
+  if (temp_interval<15){
+    y_interval = ceiling((temp_interval/20))*20
+  }else if (temp_interval<30){
+    y_interval = ceiling((temp_interval/25))*25
+  }else if (temp_interval<50){
+    y_interval = ceiling((temp_interval/50))*50
+  }else if (temp_interval<500){
+    y_interval = ceiling((temp_interval/100))*100
+  }else{
+    y_interval = ceiling((temp_interval/1000))*1000
+  }
+  y_interval
+}
+
+read_data = function(label, type, web_data){
+  # read time series data
+	time_series=read.csv(grep(tolower(label), grep("time_series_covid19", list.files() , v = T) , v = T), head = F, stringsAsFactors = F)
+	time_series=time_series[,!apply(time_series[-1, ], 2, function(X) all(X==""))]
+	# extract date and make them into desirable form
+  date_label = time_series[1, -(1:4)]
+	date_label = convert_date(date_label)
+  # get the original content
+  ds=time_series[-1, ]
+	
+	# if web data used, and if last column is today's date, remove last column and use web data for latest day
+	if (web_data &  (date_today == max(date_label))){
+		ds = ds[, -ncol(ds)]
+		date_label = date_label[-length(date_label)]
+	}
+
+	# clean data
+	if (type == "Country"){
+		data_wide=as.data.frame(apply(ds[,5:ncol(ds)], 2, function(x) tapply(x, ds$V2, function(X) sum(as.numeric(X)))))
+		if (web_data){
+			wdata = read.csv("cases_country.csv", stringsAsFactors = F)
+			temp = wdata[,label, drop=F]
+			rownames(temp ) = wdata[, 1]
+			data_wide = merge(data_wide, temp, by=0, all.x = TRUE, all.y = FALSE) 
+			data_wide[is.na(data_wide)] = 0
+			rownames(data_wide) = data_wide[, "Row.names"]
+			data_wide = data_wide[, -grep("Row.names", names(data_wide))]
+			date_label =  unlist(c(date_label, date_today))
+		}
+	}else if (type == "Hubei"){
+		data_wide=ds[ds$V1 == "Hubei", -(1:4)]
+		data_wide = as.data.frame(t(apply(data_wide, 1, as.numeric)))
+		rownames(data_wide) = "Hubei"
+		if (web_data){
+			wdata = read.csv("cases_state.csv", stringsAsFactors = F)
+			wdata = wdata[wdata$Province_State == "Hubei",]
+			temp = wdata[,label, drop=F]
+			data_wide = cbind(data_wide, temp) 
+			date_label =  unlist(c(date_label, date_today))
+		}
+	}
+  colnames(data_wide)=date_label
+	
+	# Data validation : if N is smaller than previous data, assign the number from previous date
+	for (i in 2:ncol(data_wide)){
+		if (any(data_wide[,i] < data_wide[, (i-1)])) data_wide[data_wide[,i] < data_wide[, (i-1)], i] = data_wide[data_wide[,i] < data_wide[, (i-1)], (i-1)]
+	}
+	
+	# build incremental data
+  data_incremental=data_wide[,-1, drop = F]-data_wide[,-ncol(data_wide)]
+  data_incremental=cbind(0,data_incremental)
+  colnames(data_incremental)=date_label
+  
+  Counts = unlist(c(data_wide))
+  Counts_incremental = unlist(c(data_incremental))
+  Date = as.Date(unlist(lapply(as.character(date_label), function(X) rep(X, nrow(data_wide)))))
+  Region = rep(row.names(data_wide), ncol(data_wide))
+  
+  data = data.frame(Region = Region, Date = Date, Counts = Counts, Counts_incremental=Counts_incremental,row.names=NULL, stringsAsFactors = F)
+  colnames(data)[3:4]=c(label, paste(label,"_incremental", sep=""))
+	colnames(data)[1]=type
+  
+	# reverse column order 
+	data_wide = data_wide[, ncol(data_wide):1]
+	data_incremental = data_incremental[length(data_incremental):1]
+	
+  return(list(data=data, data_wide=data_wide, data_incremental_wide=data_incremental))
+}
+
+create_final_data=function(type = NULL){ 
+  # type: "Country" if by country; "State" if by US states
+  if (!type %in% c("Country", "Hubei")) stop("Please specify type as country or state.")
+	data_confirmed = read_data("Confirmed", type , web_data)
+	data_deaths = read_data("Deaths", type, web_data)
+	data_recovered = read_data("Recovered", type, web_data)
+	
+	case_confirmed = data_confirmed$data
+	case_deaths = data_deaths$data
+	case_recovered = data_recovered$data
+	case_confirmed_wide = data_confirmed$data_wide
+	case_confirmed_incremental_wide = data_confirmed$data_incremental_wide
+	case_deaths_wide = data_deaths$data_wide
+	case_recovered_wide = data_recovered$data_wide
+
+ data_all = Reduce(function(x, y) merge(x, y, all=TRUE), list(case_confirmed, case_deaths, case_recovered))
+	data_all$Active = data_all$Confirmed - data_all$Deaths - data_all$Recovered
+	# Crude_Incidence_Rate
+	if (type == "Country"){
+		data_all$Population = input_population$Population[match(data_all$Country, input_population$Country)]
+		data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
+		data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
+	}
+	if (type == "Hubei"){
+		data_all$Population = 59172000
+		data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
+		data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
+	}
+
+  return(list(case_confirmed_wide= case_confirmed_wide, case_confirmed_incremental_wide = case_confirmed_incremental_wide, case_deaths_wide = case_deaths_wide, case_recovered_wide=case_recovered_wide))  
+}
+
+```
+
+
+## Hao Sun modified function
+
+This section hold the function that were rewrote by Hao Sun
+
+```{r}
+convert_date=function(date_label){
+  ##C by HS: get the date label-> turn into character-> turn into date-> format the date
+      date_label%>%as.character()%>%as.Date("%m/%d/%y")%>% format("%Y-%m-%d")
+  }
+read_data = function(label, type,State_name = NULL, web_data = FALSE){ 
+#HS: Rewrote function using tiddyverse to make more readable
+   # read time series data
+  time_series= grep("time_series_covid19", list.files() , v = T)%>%grep(tolower(label),. , v = T)%>%read_csv()
+  # Remove the empty column
+  time_series=time_series[,!apply(time_series, 2, function(X) all(X==""))]
+ #fix date format in colnames
+    # get date label by removing everything else
+  date_label=time_series%>%dplyr::select(-c("Province/State", "Country/Region" ,"Lat","Long"))%>%colnames()
+  date_label_fixed = convert_date(date_label)%>%as.character()
+  #  make date into desirable form and rename the variable names
+  time_series = time_series%>%rename_at(vars(date_label), ~ date_label_fixed)
+    # if web data used, and if last column is today's date, remove last column and use web data for latest day
+	if (web_data &  (date_today%>%as.character() == max(date_label_fixed))){
+		time_series = time_series%>%select(-last_col())
+	}
+##Clear data
+ if (type == "Country"){
+    # Remove all the unused column, and sum based on country
+        data_wide = time_series%>%select(-"Province/State",-Lat,-Long)%>%group_by(`Country/Region`)%>%summarise_all(sum)
+    if (web_data){
+            wdata = read_csv("cases_country.csv")%>%select("Country/Region" = Country_Region ,label)
+           data_wide = left_join(x = data_wide,y= wdata, by = "Country/Region")%>%rename_at(vars(label),~date_today )
+           data_wide[is.na(data_wide)] = 0
+    }
+ }  else if (type == "State"){
+       # Remove all the unused column, and sum based on country, Select the needed state, get its sum
+        data_wide = time_series%>%select(-"Country/Region",-Lat,-Long)%>%filter(`Province/State` == State_name)%>%
+          group_by(`Province/State`)%>%summarise_all(sum)
+        if (web_data){
+      wdata = read_csv("cases_state.csv")%>%select("Province/State" = Province_State ,label)%>%filter(`Province/State` == State_name)
+      data_wide = left_join(x = data_wide,y= wdata, by = "Province/State")%>%rename_at(vars(label),~date_today )
+      data_wide[is.na(data_wide)] = 0
+    }
+        
+  }
+    # Data validation : if N is smaller than previous data, assign the number from previous date (Unchanged from original function)
+  for (i in 3:ncol(data_wide)){
+    #The first oen is country name,so start with 3-2
+    if (any(data_wide[,i] < data_wide[, (i-1)])) data_wide[data_wide[,i] < data_wide[, (i-1)], i] = data_wide[data_wide[,i] < data_wide[, (i-1)], (i-1)]
+  }
+  # build incremental data
+  temp = data_wide[,-1]
+  # Change of each day
+  data_incremental=(temp[,-1, drop = F]-temp[,-ncol(temp)])%>%cbind(data_wide[,1:2],.)
+  # First day has no change
+  data_incremental[,2] =0
+  #Reformat the data to produce a summary
+  a = data_wide%>%pivot_longer(names_to = "Date", values_to = "Counts", cols = contains("-"))
+  b = data_incremental%>%pivot_longer(names_to = "Date", values_to = "Counts_incremental", cols = contains("-"))
+  data = left_join(x =a, y = b)%>%mutate(Date = as.Date(Date))%>%arrange(Date)
+  colnames(data)[3:4]=c(label, paste(label,"_incremental", sep=""))
+    
+  	# reverse column order of everything but the first
+    data_wide = data_wide[, ncol(data_wide):1]%>%select(last_col(),everything())
+    data_incremental = data_incremental[, ncol(data_incremental):1]%>%select(last_col(),everything())
+
+  
+  return(list(data=data, data_wide=data_wide, data_incremental_wide=data_incremental))
+}
+```
+
+
+
+## Data import
+
+The following code laod the data and reformat it
+
+```{r}
+# load data
+date_today = "2020-03-28"
+countries_data = create_final_data(type = "Country") 
+
+countries_data
+
+Hubei_data = create_final_data(type = "Hubei")
+
+countries_data
+
+read_data("Confirmed","Hubei",web_data)
+
+test = read_data("Confirmed","Country",web_data)
+
+
+test1 = read_data_hs("Confirmed","Country",web_data = TRUE) 
+
+test2 = read_data_hs("Confirmed","State",State_name,web_data = TRUE) 
+
+test3 = create_final_data(type = "Country") 
+
+test3
+
+countries_data
+
+
+```
+
+
+
