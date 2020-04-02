@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.1)  1 APR 2020 21:51
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.1)  1 APR 2020 21:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1039,8 +1039,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 26.09749pt on input line 91.
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
+(Font)              scaled to size 25.3333pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 12.045pt on input line 91.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -1237,11 +1237,11 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 281.
  ) 
 Here is how much of TeX's memory you used:
- 21784 strings out of 481765
- 422540 string characters out of 5935194
- 816129 words of memory out of 5000000
- 38440 multiletter control sequences out of 15000+600000
- 542901 words of font info for 119 fonts, out of 8000000 for 9000
+ 21786 strings out of 481765
+ 422592 string characters out of 5935194
+ 816132 words of memory out of 5000000
+ 38441 multiletter control sequences out of 15000+600000
+ 542909 words of font info for 120 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,17n,122p,373b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
 
