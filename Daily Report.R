@@ -856,3 +856,29 @@ p6 = ggplot(data_to_plot_incremental , aes(x=date, y=Confirmed_Incremental, grou
 ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10, height = 8 )
 
 
+##################
+# US Hospitalize and Test Results Detail View
+##################
+
+library(httr)
+library(jsonlite)
+
+state_detail_url = 'https://covidtracking.com/api/states/daily'
+r = GET(state_detail_url)
+if (r$status != 200) stop(paste("BAD API RETURN!"))
+data_us_states = fromJSON(paste(rawToChar(r$content), collapse=""))
+
+data_us_states$date = as.Date(as.character(data_us_states$date), format = "%Y%m%d")
+data_us_states$hospitalized_pct=data_us_states$hospitalized/data_us_states$positive
+data_us_states$positive_rate=data_us_states$positive/data_us_states$totalTestResults
+data_us_states$positive_rate_day=data_us_states$positiveIncrease/data_us_states$totalTestResultsIncrease
+report_date = as.character( max(data_us_states$date))
+write.csv(data_us_states, paste(report_date,"table_US_details_data_all.csv"), row.names = F)
+
+data_us_positive_rate_avg = data_us_states[data_us_states$date == report_date, c("state", "positive", "totalTestResults", "positive_rate")]
+data_us_positive_rate_avg = data_us_positive_rate_avg[order(data_us_positive_rate_avg$positive_rate, decreasing = T), ]
+write.csv(data_us_positive_rate_avg, paste(report_date,"table_US_positive_test_rate.csv"), row.names = F)
+
+
+
+
