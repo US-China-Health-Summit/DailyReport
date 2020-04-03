@@ -272,30 +272,36 @@ write.csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
 write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental.csv"))
 write.csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
 
-# difference 
-tb_confirmed_diff = case_confirmed_wide[, 1:2]
-tb_confirmed_diff$Incremental = tb_confirmed_diff[, 1] - tb_confirmed_diff[, 2]
-tb_confirmed_diff = tb_confirmed_diff[order(tb_confirmed_diff$Incremental, decreasing = T), ]
-write.csv(tb_confirmed_diff, paste(report_date,"table_incremental_difference.csv"))
-
-tb_death_diff = case_deaths_wide[, 1:2]
-tb_death_diff$Incremental = tb_death_diff[, 1] - tb_death_diff[, 2]
-tb_death_diff = tb_death_diff[order(tb_death_diff$Incremental, decreasing = T), ]
-write.csv(tb_death_diff, paste(report_date,"table_incremental_difference.csv"))
-
-# crude incidence rate order by latest confirmed 
+# table 1
 crude_incidence_rate = as.data.frame(cbind(row.names(case_confirmed_wide), case_confirmed_wide[, report_date], input_population$Population[match(row.names(case_confirmed_wide), input_population$Country)]), stringsAsFactors = F)
 colnames(crude_incidence_rate) = c("Region", "Confirmed_Cases", "Population")
 # add Hubei data to crude_incidence_rate
 case_confirmed_wide_hubei = Hubei_data$case_confirmed_wide
 case_confirmed_wide_hubei = case_confirmed_wide_hubei[, ncol(case_confirmed_wide_hubei):1]
 crude_incidence_rate=rbind(c("Hubei", case_confirmed_wide_hubei[, report_date], 59172000), crude_incidence_rate)
-crude_incidence_rate$Crude_Incidence_Rate = round(as.numeric(crude_incidence_rate$Confirmed_Cases)/as.numeric(crude_incidence_rate$Population) * 100000, 2)
-write.csv(crude_incidence_rate, paste(report_date, "table_crude_incidence_rate.csv"), row.names = F)
+crude_incidence_rate$Crude_Incidence_Rate = round(as.numeric(crude_incidence_rate$Confirmed_Cases)/as.numeric(crude_incidence_rate$Population) * 100000, 0)
+write.csv(crude_incidence_rate, paste(report_date, "table_1_crude_incidence_rate.csv"), row.names = F)
 
 # data for plots
 data_all_countries = countries_data$data_all
 data_all_countries = filter_by_date(data_all_countries, "Date", start_date, end_date)
+
+data_global_latest = data_all_countries[data_all_countries$Date == report_date, ]
+data_global_latest$Fatality_rate = round(data_global_latest$Deaths/data_global_latest$Confirmed*100, 1)
+
+# table 2
+data_global_latest_confirmed = data_global_latest[,c("Country", "Confirmed")]
+data_global_latest_confirmed = data_global_latest_confirmed[order(data_global_latest_confirmed$Confirmed, decreasing = T), ]
+rownames(data_global_latest_confirmed) = 1:nrow(data_global_latest_confirmed)
+write.csv(data_global_latest_confirmed, paste(report_date, "table_2_case_confirmed_latest_date.csv"))
+
+# table 3
+
+data_global_latest_death = data_global_latest[,c("Country", "Deaths", "Deaths_incremental", "Fatality_rate")]
+data_global_latest_death = data_global_latest_death[order(data_global_latest_death$Deaths, decreasing = T), ]
+rownames(data_global_latest_death) = 1:nrow(data_global_latest_death)
+write.csv(data_global_latest_death, paste(report_date, "table_3_case_death_latest_date.csv"))
+
 
 # x label break for plots:
 x_min = min(data_all_countries$Date)
@@ -393,39 +399,6 @@ p1_1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, c
 ggsave(filename=paste(report_date,"p1-1",p1_1_title, ".pdf"), plot = p1_1, width = 10, height = 8 )
 
 
-# plot 1-2. total confirmed cases sort by countries cumulative (China Only)
-filter_total_china = china_label
-
-# filter by country and cumulative confirmed
-data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total_china, ]
-# reorder factor levels by country filter order
-temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date),]
-temp = temp[order(temp$Confirmed,decreasing = T),]
-country_order = temp$Country
-data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
-
-y_max=(round(max(data_to_plot_confirmed$Confirmed)/1000)+1)*1000
-y_interval = adjust_y_interval(y_max)
-p1_2 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, colour = Country,  shape = Country)) + 
-  geom_point(size=2) + 
-  geom_line(size=1) +
-  theme_bw() + 
-  theme(panel.border = element_blank()) +
-	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
-	theme(axis.line = element_line(colour = "black")) + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
-  theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-	theme(legend.position = c(0.15, 0.8)) + 
-	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
-	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
-  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
-  xlab("") +
-  ylab(p1_ylab)
-
-ggsave(filename=paste(report_date,"p1-2",p1_2_title, ".pdf"), plot = p1_2, width = 10, height = 8 )
-
-
 # plot 2. incremental cases for top N total confirmed
 
 # filter by country and cumulative confirmed
@@ -439,7 +412,7 @@ data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels 
 
 y_max=(round(max(data_to_plot_confirmed$Confirmed_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
-p2 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
+p2 = ggplot(data_to_plot_confirmed, aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
@@ -522,41 +495,6 @@ p3_1 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increme
   ylab(p3_ylab)
 
 ggsave(filename=paste(report_date,"p3_1",p3_1_title, ".pdf"), plot = p3_1, width = 10, height = 8 )
-
-
-
-
-# plot 3-2. new confirmed cases daily sort by countries incremental (China Only)
-filter_incremental_china = china_label
-# filter by country total and date
-data_to_plot_confirmed_increment = data_all_countries[data_all_countries$Country %in% filter_incremental_china,]
-# reorder factor levels by country filter order
-temp = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date == max(data_to_plot_confirmed_increment$Date),]
-temp = temp[order(temp$Confirmed_incremental,decreasing = T),]
-country_order = temp$Country
-data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
-
-y_max=(round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000)+1)*1000
-y_interval = adjust_y_interval(y_max)
-p3_2 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
-  geom_point(size=2) + 
-  geom_line(size=1) +
-  theme_bw() + 
-  theme(panel.border = element_blank()) +
-	theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
-	theme(axis.line = element_line(colour = "black")) + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
-  theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-	theme(legend.position = c(0.15, 0.8)) + 
-	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
-	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
-  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
-  xlab("") +
-  ylab(p3_ylab)
-
-ggsave(filename=paste(report_date,"p3_2",p3_2_title, ".pdf"), plot = p3_2, width = 10, height = 8 )
-
 
 
 # plot 7-1 crude incidence rate VS Hubei
@@ -750,17 +688,39 @@ confirmed_long = wide_to_long(Confirmed, "Confirmed")
 confirmed_incremental_long = wide_to_long(Confirmed_Incremental, "Confirmed_Incremental")
 deaths_long = wide_to_long(Deaths, "Deaths")
 deaths_incremental_long = wide_to_long(Deaths_Incremental, "Deaths_Incremental")
+
 data_us_states = Reduce(function(x, y) merge(x, y, all=TRUE), list(confirmed_long, confirmed_incremental_long, deaths_long, deaths_incremental_long))
 data_us_states$date = as.Date(data_us_states$date)
 data_us_states[, 3:6] = apply(data_us_states[, 3:6], 2, as.numeric)
 
 # add crude_incidence_rate
 data_us_states$population = state_population$Population[match(data_us_states$state, state_population$State_Full)]
-data_us_states$crude_incidence_rate = as.numeric(data_us_states$Confirmed)/as.numeric(data_us_states$population) * 100000
+data_us_states$crude_incidence_rate = round(as.numeric(data_us_states$Confirmed)/as.numeric(data_us_states$population) * 100000, 0)
+# Fatality_rate
+data_us_states$Fatality_rate = round(data_us_states$Deaths/data_us_states$Confirmed*100, 1)
+data_us_states[is.na(data_us_states)] = 0
 
-data_latest = data_us_states[data_us_states$date == report_date,]
-data_latest = data_latest[order(data_latest$Confirmed, decreasing = T),]
-write.csv(data_latest, paste(report_date,"table_latest_cases_and_incidence_rate_US.csv"), row.names = F)
+# filter by latest date
+data_us_latest = data_us_states[data_us_states$date == max(data_us_states$date),]
+# table 4 
+data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "crude_incidence_rate")]
+data_us_latest_confirm = data_us_latest_confirm[order(data_us_latest_confirm$Confirmed, decreasing = T),]
+rownames(data_us_latest_confirm) = 1:nrow(data_us_latest_confirm)
+write.csv(data_us_latest_confirm, paste(report_date,"table_4_confirmed_cases_and_incidence_rate_US.csv"))
+
+# table 5
+data_us_latest_incremental = data_us_latest[, c("state", "Confirmed_Incremental")]
+data_us_latest_incremental = data_us_latest_incremental[order(data_us_latest_incremental$Confirmed_Incremental, decreasing = T),]
+data_us_latest_incremental$Percentage = round(data_us_latest_incremental$Confirmed_Incremental/sum(data_us_latest_incremental$Confirmed_Incremental)*100,0)
+rownames(data_us_latest_incremental) = 1:nrow(data_us_latest_incremental)
+write.csv(data_us_latest_incremental, paste(report_date,"table_5_confirmed_incremental_US.csv"))
+
+# table 7
+data_us_latest_fatality = data_us_latest[, c("state", "Deaths", "Fatality_rate")]
+data_us_latest_fatality = data_us_latest_fatality[order(data_us_latest_fatality$Deaths, decreasing = T),]
+rownames(data_us_latest_fatality) = 1:nrow(data_us_latest_fatality)
+write.csv(data_us_latest_fatality, paste(report_date,"table_7_fatality_US.csv"))
+
 
 # data for plots
 
@@ -854,5 +814,33 @@ p6 = ggplot(data_to_plot_incremental , aes(x=date, y=Confirmed_Incremental, grou
   ylab(p6_ylab)
 
 ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10, height = 8 )
+
+
+##################
+# US Hospitalize and Test Results Detail View
+##################
+
+library(httr)
+library(jsonlite)
+
+state_detail_url = 'https://covidtracking.com/api/states/daily'
+r = GET(state_detail_url)
+if (r$status != 200) stop(paste("BAD API RETURN!"))
+data_us_states_detailed = fromJSON(paste(rawToChar(r$content), collapse=""))
+
+data_us_states_detailed$date = as.Date(as.character(data_us_states_detailed$date), format = "%Y%m%d")
+data_us_states_detailed$hospitalized_pct=data_us_states_detailed$hospitalized/data_us_states_detailed$positive
+data_us_states_detailed$positive_rate=round(data_us_states_detailed$positive/data_us_states_detailed$totalTestResults,2)
+data_us_states_detailed$positive_rate_day=data_us_states_detailed$positiveIncrease/data_us_states_detailed$totalTestResultsIncrease
+report_date = as.character( max(data_us_states_detailed$date))
+write.csv(data_us_states_detailed, paste(report_date,"table_US_details_data_all.csv"), row.names = F)
+
+# table 6
+data_us_positive_rate_avg = data_us_states_detailed[data_us_states_detailed$date == report_date, c("state", "positive", "totalTestResults", "positive_rate")]
+data_us_positive_rate_avg = data_us_positive_rate_avg[order(data_us_positive_rate_avg$positive_rate, decreasing = T), ]
+rownames(data_us_positive_rate_avg) = 1:nrow(data_us_positive_rate_avg)
+write.csv(data_us_positive_rate_avg, paste(report_date,"table_6_US_positive_test_rate.csv"))
+
+
 
 
