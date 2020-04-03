@@ -166,7 +166,9 @@ adjust_y_interval = function(y_max){
 
 read_data = function(label, type, web_data){
   # read time series data
-  time_series=read.csv(grep(tolower(label), grep("time_series_covid19", list.files() , v = T) , v = T), head = F, stringsAsFactors = F)
+  filename = paste("time_series_covid19_", tolower(label), "_global.csv", sep = "")
+	if (! filename %in% list.files()) stop(paste("File", filename, "not found in folder."))
+	time_series=read.csv(filename, head = F, stringsAsFactors = F)																						
   time_series=time_series[,!apply(time_series[-1, ], 2, function(X) all(X==""))]
   # extract data label
   date_label = time_series[1, -(1:4)]
@@ -568,7 +570,7 @@ filter_total_with_china = c(china_label, filter_death)
 data_to_plot_death_total = data_all_countries[data_all_countries$Country %in% filter_total_with_china, ]
 # reorder factor levels by country filter order
 temp = data_to_plot_death_total[data_to_plot_death_total$Date == max(data_to_plot_death_total$Date),]
-temp = temp[order(temp$Country,decreasing = T),]
+temp = temp[order(temp$Deaths,decreasing = T),]
 country_order = temp$Country
 data_to_plot_death_total$Country <- factor(data_to_plot_death_total$Country, levels = country_order)
 
@@ -671,18 +673,24 @@ state_population = read.csv("input_state_population.csv", stringsAsFactors=F)
 date_list=as.character(seq(as.Date("2020-03-23"), Sys.Date()-1, by = 'day'))
 for (d in date_list){
 	f=as.character(format(as.Date(d), format="%m-%d-%Y"))
-	if (! paste(f,".csv", sep = "") %in% list.files()) stop(paste("File", paste(f,".csv", sep = ""), "not found."))
-	temp = read.csv(paste(f,".csv", sep = ""), stringsAsFactor = F)
-	temp = temp[temp$Country_Region == "US", ]
-	temp_confirmed = as.data.frame(tapply(temp$Confirmed, temp$Province_State, function(X) sum(as.numeric(X))))
-	names(temp_confirmed) = d
-	temp_confirmed$state = rownames(temp_confirmed)
-	Confirmed = merge(Confirmed, temp_confirmed, by = "state")
-
-	temp_deaths = as.data.frame(tapply(temp$Deaths, temp$Province_State, function(X) sum(as.numeric(X))))
-	names(temp_deaths) = d
-	temp_deaths$state = rownames(temp_deaths)
-	Deaths = merge(Deaths, temp_deaths, by = "state")
+	filename = paste(f,".csv", sep = "")
+	if (! filename %in% list.files()) stop(paste("File", filename, "not found in folder."))
+ 
+	temp = read.csv(filename, stringsAsFactor = F)
+	temp = temp[temp$Country_Region == "US" & temp$Province_State != "Recovered", ] 
+	if (nrow(temp) > 0){
+		temp_confirmed = as.data.frame(tapply(temp$Confirmed, temp$Province_State, function(X) sum(as.numeric(X))))
+		names(temp_confirmed) = d
+		temp_confirmed$state = rownames(temp_confirmed)
+		Confirmed = merge(Confirmed, temp_confirmed, by = "state")
+		
+		temp_deaths = as.data.frame(tapply(temp$Deaths, temp$Province_State, function(X) sum(as.numeric(X))))
+		names(temp_deaths) = d 
+		temp_deaths$state = rownames(temp_deaths)
+		Deaths = merge(Deaths, temp_deaths, by = "state")
+	}else{
+		warning(paste(filename, "has no US data. Removed."))
+	}
 }
 
 
@@ -877,7 +885,7 @@ ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10,
 # plot9: total death cases by US States sorted by cumulative
 data_to_plot_death = data_us_states[data_us_states$state %in% filter_death,]
 temp = data_to_plot_death[data_to_plot_death$date == max(data_to_plot_death$date),]
-temp = temp[order(temp$Deaths,decreasing = T)]
+temp = temp[order(temp$Deaths,decreasing = T),]
 state_order = temp$state
 data_to_plot_death$state <- factor(data_to_plot_death$state, levels = state_order)
 
