@@ -1,0 +1,56 @@
+---
+title: "For Chinese-Eng translation"
+author: "wwqi4realGitHub"
+date: "4/2/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+first read the csv files that needs to be updated with Chinese translation
+```{r}
+# input_country_population.csv
+input_ctry_pop = read_csv("input_country_population.csv", locale = locale(encoding = "UTF-8"))
+input_state_pop = read_csv("input_state_population.csv", locale = locale(encoding = "UTF-8"))
+```
+
+import new data of corresponding Chinese name
+```{r}
+cn_name = read_csv("./cn/world.csv")
+en_name = read_csv("./en/world.csv")
+
+# combine the two name dataframes
+# trans_name = cbind(cn_name, en_name)
+trans_name = full_join(cn_name, en_name, by = "id") %>% 
+  janitor::clean_names() %>% 
+  select(id, name_y, name_x) %>% 
+  rename(Country_cn = name_x, 
+         Country = name_y) %>% 
+  unite("Country_bi", Country:Country_cn, sep = " - ", remove = F)
+```
+
+# combine the trans_name with the original data
+
+# note that I save the country id in the dataframe in case we need it in the future
+# but feel free to remove it
+```{r}
+new_ctry_pop = left_join(input_ctry_pop, trans_name, by = "Country")
+```
+
+# write the dataframe into csv file
+```{r}
+write_csv(new_ctry_pop, path = "input_country_population_translated")
+```
+
+
+
+wrangling state dataframe
+
+```{r}
+
+```
+
+
