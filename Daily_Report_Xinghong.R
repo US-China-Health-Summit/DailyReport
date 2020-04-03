@@ -35,7 +35,7 @@
 
 # getwd()
 
-folder = "~/R/covid-19/upload"
+folder = "YOUR_PATH/csse_covid_19_time_series"
 
 setwd(folder)
 
