@@ -1,14 +1,9 @@
 ---
-<<<<<<< HEAD
-title: \textcolor{glaucous}{\Huge \textbf{新冠早报}}
-=======
 title: \textcolor{glaucous}{\Huge \textbf {新冠早报}}
->>>>>>> a264b79a9ac2fbbaca3d4f2e537a0b7c7c6b1da9
 author: \textcolor{glaucous}{\Large 第六期 3月28日}
 output: 
   pdf_document:
     latex_engine: xelatex
-fontsize: 11
 header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
@@ -37,6 +32,8 @@ header-includes:
     
 
 ---
+\fontsize{13}{13}
+\selectfont
 
 
 \newcommand{\resheading}[1]{%
@@ -55,7 +52,7 @@ header-includes:
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{50pt} 
 
-\resheading{\Large 新闻摘要}
+\resheading{\Large 每日新闻}
 
 
 ## \textcolor{glaucous}{\Large 国际}
@@ -98,7 +95,7 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 
 \resheading{\Large 疫情观察}
 
-数据源：约翰霍普金斯大学，The COVID Tracking Project     数据截止至：北京时间3月28日 早4:00
+\fontsize{10}{10}\selectfont{数据源：约翰霍普金斯大学，The COVID Tracking Project \space\space\space\space\space\space\space\space\space\space\space  数据截止至：北京时间3月28日 早4:00}
 
 # \textcolor{glaucous}{一、世界疫情}
 ```{r include=FALSE}
