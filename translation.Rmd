@@ -17,10 +17,14 @@ input_ctry_pop = read_csv("input_country_population.csv", locale = locale(encodi
 input_state_pop = read_csv("input_state_population.csv", locale = locale(encoding = "UTF-8"))
 ```
 
+
+# wrangling country name data
+
 import new data of corresponding Chinese name
+data are downloaded from http://stefangabos.github.io/world_countries/
 ```{r}
-cn_name = read_csv("./cn/world.csv")
-en_name = read_csv("./en/world.csv")
+cn_name = read_csv("./translation/cn/world.csv")
+en_name = read_csv("./translation/en/world.csv")
 
 # combine the two name dataframes
 # trans_name = cbind(cn_name, en_name)
@@ -32,25 +36,43 @@ trans_name = full_join(cn_name, en_name, by = "id") %>%
   unite("Country_bi", Country:Country_cn, sep = " - ", remove = F)
 ```
 
-# combine the trans_name with the original data
+combine the trans_name with the original data
 
-# note that I save the country id in the dataframe in case we need it in the future
-# but feel free to remove it
+note that I save the country id in the dataframe in case we need it in the future
+but feel free to remove it
 ```{r}
 new_ctry_pop = left_join(input_ctry_pop, trans_name, by = "Country")
 ```
 
-# write the dataframe into csv file
+write the dataframe into csv file
 ```{r}
-write_csv(new_ctry_pop, path = "input_country_population_translated")
+write_csv(new_ctry_pop, path = "input_country_population_translated.csv")
 ```
 
 
 
-wrangling state dataframe
+# wrangling state dataframe
+
+modified from https://blogs.transparent.com/chinese/us-states-in-chinese/
+```{r}
+state_cn = read_csv("./translation/state_translate.txt")
+```
+
+join state_cn with input_state_population dataframe
+```{r}
+input_state_pop_translated = left_join(input_state_pop, state_cn, 
+                                       by = "State_Full") %>% 
+  select(State, State_Full, State_cn, Population) %>% 
+  unite("State_bi", State_Full:State_cn, sep = " - ", remove = F)
+```
+
+wirte the translated state population dataframe into csv file
 
 ```{r}
-
+write_csv(input_state_pop_translated, 
+          path = "input_state_population_translated.csv")
 ```
+
+* note: it seems that R tidyverse package has default encoding = "UTF-8"
 
 
