@@ -25,3 +25,9 @@ p7_1_title,Crude Incidence Rate Cumulative,Crude Incidence Rate Cumulative (Incl
 p7_2_title,Crude Incidence Rate Active,Crude Incidence Rate Active (Including China and Hubei alone)
 p7_xlab,Date,Date
 p7_ylab,"Incidence Rate Per 100,000",Number of Cases
+p8_1_title,country-death-total-sort-by-death including China,Cumulative Death Cases (Top 5 Countries of Cumulative Death Cases Including China)
+p8_xlab,Date,Date
+p8_ylab,Number of Cases,Number of Cases
+p9_title,US-state-death-total-sort-by-total,Cumulative Death Cases (Top 5 Sates of Cumulative Death Cases in U.S.)
+p9_xlab,Date,Date
+p9_ylab,Number of Cases,Number of Cases
