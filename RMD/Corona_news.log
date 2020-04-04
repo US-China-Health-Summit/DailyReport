@@ -1,14 +1,14 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  2 APR 2020 21:23
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.30)  3 APR 2020 22:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Corona_news.tex
 (./Corona_news.tex
 LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-02-25> (/Users/zhangqimin/Library/TinyTeX/texmf-dist
-/tex/latex/base/article.cls
+L3 programming layer <2020-02-25> (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-
+dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
 \c@part=\count163
@@ -22,7 +22,7 @@ File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -56,9 +56,13 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.st
+y
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.s
+ty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks15
 \symAMSa=\mathgroup4
@@ -66,20 +70,24 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+))
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/01/20 v2.17e AMS math features
 \@mathmargin=\skip49
 For additional information on amsmath, use the `?' option.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
 \ex@=\dimen135
-)) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.s
+ty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen136
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.st
+y
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count171
@@ -119,29 +127,23 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
-Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2019/11/07 v1.0c TeX engine tests
-)) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
-Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/base/fixltx2e.sty
-Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
-Applying: [2015/01/01] Old fixltx2e package on input line 46.
-
-Package fixltx2e Warning: fixltx2e is not required with releases after 2015
-(fixltx2e)                All fixes are now in the LaTeX kernel.
-(fixltx2e)                See the latexrelease package for details.
-
-Already applied: [0000/00/00] Old fixltx2e package on input line 53.
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-ma
-th.sty (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.s
-ty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
+))
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.st
+y
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicod
+e-math.sty (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel
+/expl3.sty
 Package: expl3 2020-02-25 L3 programming layer (loader) 
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xdv
-ipdfmx.def
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend
+-xdvipdfmx.def
 File: l3backend-xdvipdfmx.def 2020-02-23 L3 backend support: xdvipdfmx
 \g__graphics_track_int=\count183
 \l__pdf_internal_box=\box47
@@ -150,27 +152,29 @@ File: l3backend-xdvipdfmx.def 2020-02-23 L3 backend support: xdvipdfmx
 ))
 Package: unicode-math 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-ma
-th-xetex.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicod
+e-math-xetex.sty
 Package: unicode-math-xetex 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLa
 TeX
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xpars
-e.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/x
+parse.sty
 Package: xparse 2020-02-25 L3 Experimental document command parser
 \l__xparse_current_arg_int=\count186
 \g__xparse_grabber_int=\count187
 \l__xparse_m_args_int=\count188
 \l__xparse_v_nesting_int=\count189
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3k
-eys2e.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e
+/l3keys2e.sty
 Package: l3keys2e 2020-02-25 LaTeX2e option processing using LaTeX3 keys
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.s
+ty
 Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex
-.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-x
+etex.sty
 Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
 X
 \l__fontspec_script_int=\count190
@@ -187,12 +191,14 @@ X
 \l__fontspec_tmpa_dim=\dimen144
 \l__fontspec_tmpb_dim=\dimen145
 \l__fontspec_tmpc_dim=\dimen146
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg
-))) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.c
+fg))) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fix-cm.s
+ty
 Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 ))
@@ -201,72 +207,105 @@ LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 \l__um_primecount_int=\count269
 \g__um_primekern_muskip=\muskip17
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-ma
-th-table.tex))) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/upquote
-/upquote.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicod
+e-math-table.tex)))
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-)) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.st
+)) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.st
 y
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.
+cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.
+def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.s
+ty
 Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.s
+ty
 Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.s
-ty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdftexcmds/pdftexcm
+ds.sty
 Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.s
-ty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/infwarerr/infware
+rr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode not found.
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks21
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.s
-ty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetke
+ys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefine
-keys.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvde
+finekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.s
-ty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfesca
+pe.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro
-.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxm
+acro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions
+.sty
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen147
 \Hy@linkcounter=\count270
 \Hy@pagecounter=\count271
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.s
+ty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds
+.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count272
 Package hyperref Info: Option `unicode' set `true' on input line 4421.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2020/01/14 v7.00d Hyperref: PDF Unicode definition (HO)
 )
 Package hyperref Info: Hyper figures OFF on input line 4547.
@@ -277,17 +316,18 @@ Package hyperref Info: Backreferencing OFF on input line 4567.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4800.
 \c@Hy@tempcnt=\count273
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5159.
 \XeTeXLinkMargin=\dimen148
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc
-.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigint
+calc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
@@ -304,7 +344,8 @@ Package hyperref Info: PDF/A mode OFF on input line 6460.
 LaTeX Info: Redefining \ref on input line 6500.
 LaTeX Info: Redefining \pageref on input line 6504.
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegshi
+.sty
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
 \Hy@abspage=\count275
@@ -312,11 +353,12 @@ Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 \c@Hfootnote=\count277
 )
 Package hyperref Info: Driver (autodetected): hxetex.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
 File: hxetex.def 2020/01/14 v7.00d Hyperref driver for XeTeX
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.s
-ty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/stringe
+nc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
@@ -326,16 +368,17 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 \Fld@listcount=\count280
 \c@bookmark@seq@number=\count281
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfil
-echeck.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/reru
+nfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/atveryend/atveryend.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/atveryend/atveryend
+.sty
 Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquec
-ounter.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/uni
+quecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -343,10 +386,10 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip52
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 33.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/geometry/geometry.s
+ty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
 \Gm@cnth=\count282
@@ -361,35 +404,33 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layouthoffset=\dimen157
 \Gm@layoutvoffset=\dimen158
 \Gm@dimlist=\toks22
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.s
+ty
 Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.s
+ty
 Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.c
-fg
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphi
+cs.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 105.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.def
-File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
-))
+)
 \Gin@req@height=\dimen159
 \Gin@req@width=\dimen160
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/grffile/grffile.sty
-Package: grffile 2019/11/11 v2.1 Extended file name support for graphics (legac
-y)
-Package grffile Info: This package is an empty stub for compatibility on input 
-line 40.
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/ctex.sty
+) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/ctex.sty
 Package: ctex 2019/05/29 v2.4.16 Chinese adapter in LaTeX (CTEX)
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/ctexhook.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/ctexhook.sty
 Package: ctexhook 2019/05/29 v2.4.16 Document and package hooks (CTEX)
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/ctexpatch.sty
+) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/ctexpatch.st
+y
 Package: ctexpatch 2019/05/29 v2.4.16 Patching commands (CTEX)
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ms/everysel.sty
+) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ms/everysel.sty
 Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 )
 \l__ctex_tmp_int=\count285
@@ -398,18 +439,18 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 \g__ctex_section_depth_int=\count286
 \g__ctex_font_size_int=\count287
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/config/ctexopts.cf
-g
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/config/ctexopt
+s.cfg
 File: ctexopts.cfg 2019/05/29 v2.4.16 Option configuration file (CTEX)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/engine/ctex-engine
--xetex.def
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/engine/ctex-en
+gine-xetex.def
 File: ctex-engine-xetex.def 2019/05/29 v2.4.16 XeLaTeX adapter (CTEX)
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/xelatex/xecjk/xeCJK.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/xelatex/xecjk/xeCJK.sty
 Package: xeCJK 2020/02/18 v3.8.2 Typesetting CJK scripts with XeLaTeX
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xtemplate/xt
-emplate.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xtemplat
+e/xtemplate.sty
 Package: xtemplate 2020-02-25 L3 Experimental prototype document functions
 \l__xtemplate_tmp_dim=\dimen162
 \l__xtemplate_tmp_int=\count288
@@ -474,12 +515,13 @@ Package xtemplate Info: Declaring object type 'xeCJK/punctuation' taking 0
 \g__xeCJK_fam_allocation_int=\count298
 \l__xeCJK_verb_case_int=\count299
 \l__xeCJK_verb_exspace_skip=\skip59
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg
 File: xeCJK.cfg 2020/02/18 v3.8.2 Configuration file for xeCJK package
-)) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/xelatex/xecjk/xeCJKfntef.s
-ty
+))
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/xelatex/xecjk/xeCJKfntef.
+sty
 Package: xeCJKfntef 2020/02/18 v3.8.2 xeCJK font effect
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box51
 \UL@hyphenbox=\box52
 \UL@skip=\skip60
@@ -502,87 +544,95 @@ Package: ulem 2019/11/18
 \l__ctex_ccglue_skip=\skip63
 )
 \l__ctex_ziju_dim=\dimen196
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/zhnumber/zhnumber.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/zhnumber/zhnumber.s
+ty
 Package: zhnumber 2019/04/07 v2.7 Typesetting numbers with Chinese glyphs
 \l__zhnum_scale_int=\count301
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/zhnumber/zhnumber-utf8.
-cfg
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/zhnumber/zhnumber-u
+tf8.cfg
 File: zhnumber-utf8.cfg 2019/04/07 v2.7 Chinese numerals with UTF8 encoding
 ))
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/scheme/ctex-scheme
--chinese.def
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/scheme/ctex-sc
+heme-chinese.def
 File: ctex-scheme-chinese.def 2019/05/29 v2.4.16 Chinese scheme for generic (CT
 EX)
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/config/ctex-name-u
-tf8.cfg
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/config/ctex-na
+me-utf8.cfg
 File: ctex-name-utf8.cfg 2019/05/29 v2.4.16 Caption with encoding UTF8 (CTEX)
-)) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/tools/indentfirst.st
-y
+))
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/indentfirst.s
+ty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/ctex-c5size.clo
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/ctex-c5size.cl
+o
 File: ctex-c5size.clo 2019/05/29 v2.4.16 c5size option (CTEX)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/fontset/ctex-fonts
-et-fandol.def
-File: ctex-fontset-fandol.def 2019/05/29 v2.4.16 Fandol fonts definition (CTEX)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/fontset/ctex-f
+ontset-windows.def
+File: ctex-fontset-windows.def 2019/05/29 v2.4.16 Windows fonts definition (CTE
+X)
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/fontset/ctex-f
+ontset-windowsnew.def
+File: ctex-fontset-windowsnew.def 2019/05/29 v2.4.16 Windows fonts definition f
+or Vista or later version (CTEX)
+
+Package fontspec Info: SimSun scale = 0.9511690917572482.
 
 
-Package fontspec Warning: Font "FandolSong-Regular" does not contain requested
-(fontspec)                Script "CJK".
+Package fontspec Info: Could not resolve font "KaiTi/B" (it probably doesn't
+(fontspec)             exist).
 
 
-Package fontspec Info: FandolSong-Regular scale = 0.9999966408685371.
+Package fontspec Info: Could not resolve font "SimHei/I" (it probably doesn't
+(fontspec)             exist).
 
 
-Package fontspec Info: FandolSong-Regular scale = 0.9999966408685371.
+Package fontspec Info: Could not resolve font "SimSun/BI" (it probably doesn't
+(fontspec)             exist).
 
 
-Package fontspec Info: FandolSong-Bold scale = 0.9707181870057879.
+Package fontspec Info: SimSun scale = 0.9511690917572482.
 
 
-Package fontspec Info: FandolKai-Regular scale = 0.975109238963098.
+Package fontspec Info: SimHei scale = 0.9430396989318163.
 
 
-Package fontspec Info: Font family 'FandolSong-Regular(0)' created for font
-(fontspec)             'FandolSong-Regular' with options
-(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,Script={CJK},Extensi
-on={.otf},BoldFont={FandolSong-Bold},ItalicFont={FandolKai-Regular}].
+Package fontspec Info: KaiTi scale = 0.9350480880976463.
+
+
+Package fontspec Info: Font family 'SimSun(0)' created for font 'SimSun' with
+(fontspec)             options
+(fontspec)             [Scale=MatchLowercase,Script={CJK},BoldFont={SimHei},Ita
+licFont={KaiTi}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[0.9999966408685371]"[FandolSong-Regular.otf]/OT:la
-nguage=dflt;mapping=tex-text;"
+(fontspec)             <->s*[0.9511690917572482]"SimSun/OT:script=hani;language
+=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[0.9707181870057879]"[FandolSong-Bold.otf]/OT:langu
-age=dflt;mapping=tex-text;"
+(fontspec)             <->s*[0.9430396989318163]"SimHei/OT:script=hani;language
+=dflt;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 (fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[0.975109238963098]"[FandolKai-Regular.otf]/OT:lang
-uage=dflt;mapping=tex-text;"
+(fontspec)             <->s*[0.9350480880976463]"KaiTi/OT:script=hani;language=
+dflt;"
 (fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
 
-)) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/ctex/config/ctex.cfg
+)))
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/config/ctex.cf
+g
 File: ctex.cfg 2019/05/29 v2.4.16 Configuration file (CTEX)
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: xetex.def on input line 225.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
-Package xcolor Info: Model `RGB' extended on input line 1364.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.s
+ty
 Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
 s
 \f@nch@headwidth=\skip64
@@ -594,7 +644,8 @@ s
 \f@nch@O@erf=\skip70
 \f@nch@O@olf=\skip71
 \f@nch@O@orf=\skip72
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/sectsty/sectsty.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/sectsty/sectsty.sty
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
 les
 
@@ -605,7 +656,9 @@ LaTeX Warning: Command \underbar  has changed.
 LaTeX Warning: Command \underline  has changed.
                Check if current package is valid.
 
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.s
+ty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip73
 \enit@outerparindent=\dimen197
@@ -613,7 +666,9 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box57
 \enit@count@id=\count302
 \enitdp@description=\count303
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/preprint/fullpage.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/preprint/fullpage.s
+ty
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip74
 )
@@ -626,9 +681,10 @@ Package geometry Warning: Over-specification in `v'-direction.
     `height' (676.04005pt) is ignored.
 
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/blindtext/blindtext.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/blindtext/blindtext
+.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/tools/xspace.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 \c@blindtext=\count304
@@ -649,9 +705,12 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@randommax=\count319
 \c@blind@pangramcount=\count320
 \c@blind@pangrammax=\count321
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/01/03 v3.4h Customizing captions (AR)
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption3.st
+y
 Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 61.
 \captionmargin=\dimen198
@@ -667,7 +726,8 @@ Package caption Info: Standard document class detected.
 \c@continuedfloat=\count323
 Package caption Info: hyperref package is loaded.
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/subfigure/subfigure.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/subfigure/subfigure
+.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigtopskip=\skip75
 \subfigcapskip=\skip76
@@ -683,17 +743,43 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 * Local config file subfigure.cfg used *
 ****************************************
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/subfigure/subfigure.cfg
-)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/subfigure/subfigure
+.cfg)
 \subfig@top=\skip79
 \subfig@bottom=\skip80
-) (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
+) (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count328
 \float@exts=\toks25
 \float@box=\box58
 \@float@everytoks=\toks26
 \@floatcapt=\box59
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.s
+ty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen263
+\lightrulewidth=\dimen264
+\cmidrulewidth=\dimen265
+\belowrulesep=\dimen266
+\belowbottomsep=\dimen267
+\aboverulesep=\dimen268
+\abovetopsep=\dimen269
+\cmidrulesep=\dimen270
+\cmidrulekern=\dimen271
+\defaultaddspace=\dimen272
+\@cmidla=\count329
+\@cmidlb=\count330
+\@aboverulesep=\dimen273
+\@belowrulesep=\dimen274
+\@thisruleclass=\count331
+\@lastruleclass=\count332
+\@thisrulewidth=\dimen275
+)
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/threeparttable/thre
+eparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box60
 ) (./Corona_news.aux
 
 LaTeX Warning: Label `' multiply defined.
@@ -759,19 +845,19 @@ Package fontspec Info: latinmodern-math scale = 0.9999966408685371.
 
 Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
 (fontspec)             'latinmodern-math.otf' with options
-(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,BoldItalicFont={},It
-alicFont={},SmallCapsFont={},Script=Math,BoldFont={latinmodern-math.otf}].
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
+allCapsFont={},Script=Math,BoldFont={latinmodern-math.otf}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->s*[0.9999966408685371]"[latinmodern-math.otf]/OT:scri
-pt=math;language=dflt;mapping=tex-text;"
+pt=math;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
 (fontspec)             <->s*[0.9999966408685371]"[latinmodern-math.otf]/OT:scri
-pt=math;language=dflt;mapping=tex-text;"
+pt=math;language=dflt;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
@@ -794,25 +880,23 @@ Package fontspec Info: latinmodern-math scale = 0.9999966408685371.
 
 Package fontspec Info: Font family 'latinmodern-math.otf(1)' created for font
 (fontspec)             'latinmodern-math.otf' with options
-(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,BoldItalicFont={},It
-alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.9584645-},{Size=
-6.323622-8.9584645,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.323622,
-Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.o
-tf}].
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
+allCapsFont={},Script=Math,SizeFeatures={{Size=8.9584645-},{Size=6.323622-8.958
+4645,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.323622,Font=latinmode
+rn-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <8.9584645->s*[0.9999966408685371]"[latinmodern-math.otf
-]/OT:script=math;language=dflt;mapping=tex-text;"<6.323622-8.9584645>s*[0.99999
-66408685371]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;mappin
-g=tex-text;"<-6.323622>s*[0.9999966408685371]"[latinmodern-math.otf]/OT:script=
-math;language=dflt;+ssty=1;mapping=tex-text;"
+]/OT:script=math;language=dflt;"<6.323622-8.9584645>s*[0.9999966408685371]"[lat
+inmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6.323622>s*[0.999996
+6408685371]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
 (fontspec)             <->s*[0.9999966408685371]"[latinmodern-math.otf]/OT:scri
-pt=math;language=dflt;mapping=tex-text;"
+pt=math;language=dflt;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -860,11 +944,11 @@ Package fontspec Info: latinmodern-math scale = 1.000096640532624.
 
 Package fontspec Info: Font family 'latinmodern-math.otf(2)' created for font
 (fontspec)             'latinmodern-math.otf' with options
-(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,BoldItalicFont={},It
-alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.9584645-},{Size=
-6.323622-8.9584645,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.323622,
-Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.o
-tf},ScaleAgain=1.0001,FontAdjustment={\fontdimen
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
+allCapsFont={},Script=Math,SizeFeatures={{Size=8.9584645-},{Size=6.323622-8.958
+4645,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.323622,Font=latinmode
+rn-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain
+=1.0001,FontAdjustment={\fontdimen
 (fontspec)             8\font =7.13515pt\relax \fontdimen 9\font
 (fontspec)             =4.15251pt\relax \fontdimen 10\font =4.67947pt\relax
 (fontspec)             \fontdimen 11\font =7.23001pt\relax \fontdimen 12\font
@@ -881,10 +965,9 @@ tf},ScaleAgain=1.0001,FontAdjustment={\fontdimen
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <8.9584645->s*[1.000096640532624]"[latinmodern-math.otf]
-/OT:script=math;language=dflt;mapping=tex-text;"<6.323622-8.9584645>s*[1.000096
-640532624]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;mapping=
-tex-text;"<-6.323622>s*[1.000096640532624]"[latinmodern-math.otf]/OT:script=mat
-h;language=dflt;+ssty=1;mapping=tex-text;"
+/OT:script=math;language=dflt;"<6.323622-8.9584645>s*[1.000096640532624]"[latin
+modern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6.323622>s*[1.00009664
+0532624]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 (fontspec)             and font adjustment code:
 (fontspec)             \fontdimen 8\font =7.13515pt\relax \fontdimen 9\font
@@ -899,7 +982,7 @@ h;language=dflt;+ssty=1;mapping=tex-text;"
 (fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax 
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
 (fontspec)             <->s*[1.000096640532624]"[latinmodern-math.otf]/OT:scrip
-t=math;language=dflt;mapping=tex-text;"
+t=math;language=dflt;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 (fontspec)             and font adjustment code:
 (fontspec)             \fontdimen 8\font =7.13515pt\relax \fontdimen 9\font
@@ -956,11 +1039,11 @@ Package fontspec Info: latinmodern-math scale = 0.9998966412044502.
 
 Package fontspec Info: Font family 'latinmodern-math.otf(3)' created for font
 (fontspec)             'latinmodern-math.otf' with options
-(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,BoldItalicFont={},It
-alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.9584645-},{Size=
-6.323622-8.9584645,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.323622,
-Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.o
-tf},ScaleAgain=0.9999,FontAdjustment={\fontdimen
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
+allCapsFont={},Script=Math,SizeFeatures={{Size=8.9584645-},{Size=6.323622-8.958
+4645,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.323622,Font=latinmode
+rn-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain
+=0.9999,FontAdjustment={\fontdimen
 (fontspec)             8\font =0.42157pt\relax \fontdimen 9\font
 (fontspec)             =2.10788pt\relax \fontdimen 10\font =1.76007pt\relax
 (fontspec)             \fontdimen 11\font =1.16988pt\relax \fontdimen 12\font
@@ -971,10 +1054,9 @@ tf},ScaleAgain=0.9999,FontAdjustment={\fontdimen
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <8.9584645->s*[0.9998966412044502]"[latinmodern-math.otf
-]/OT:script=math;language=dflt;mapping=tex-text;"<6.323622-8.9584645>s*[0.99989
-66412044502]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;mappin
-g=tex-text;"<-6.323622>s*[0.9998966412044502]"[latinmodern-math.otf]/OT:script=
-math;language=dflt;+ssty=1;mapping=tex-text;"
+]/OT:script=math;language=dflt;"<6.323622-8.9584645>s*[0.9998966412044502]"[lat
+inmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6.323622>s*[0.999896
+6412044502]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 (fontspec)             and font adjustment code:
 (fontspec)             \fontdimen 8\font =0.42157pt\relax \fontdimen 9\font
@@ -983,7 +1065,7 @@ math;language=dflt;+ssty=1;mapping=tex-text;"
 (fontspec)             =6.32362pt\relax \fontdimen 13\font =0pt\relax 
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
 (fontspec)             <->s*[0.9998966412044502]"[latinmodern-math.otf]/OT:scri
-pt=math;language=dflt;mapping=tex-text;"
+pt=math;language=dflt;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 (fontspec)             and font adjustment code:
 (fontspec)             \fontdimen 8\font =0.42157pt\relax \fontdimen 9\font
@@ -1003,18 +1085,22 @@ LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
 t line 92.
-\AtBeginShipoutBox=\box60
+\AtBeginShipoutBox=\box61
 Package hyperref Info: Link coloring OFF on input line 92.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.st
+y
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.s
+ty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettit
-lestring.sty
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/ge
+ttitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count329
+\c@section@level=\count333
 )
 LaTeX Info: Redefining \ref on input line 92.
 LaTeX Info: Redefining \pageref on input line 92.
@@ -1062,9 +1148,10 @@ LaTeX Info: Redefining \selectfont on input line 92.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: subfigure package is loaded.
+Package caption Info: threeparttable package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 25.3333pt on input line 94.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/b/n' will be
+(Font)              scaled to size 24.61095pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 12.045pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -1073,7 +1160,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 6.0pt on input line 94.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
 4.
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1090,22 +1177,22 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 94.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 94.
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 94.
 
-(/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 15.05624pt on input line 94.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 14.61537pt on input line 114.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/b/n' will be
-(Font)              scaled to size 12.61934pt on input line 119.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 13.0pt on input line 122.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 14.32108pt on input line 94.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/b/n' will be
+(Font)              scaled to size 14.19862pt on input line 114.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/b/n' will be
+(Font)              scaled to size 12.2595pt on input line 119.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 12.36523pt on input line 122.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -1126,8 +1213,8 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 6.99925pt on input line 140.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 140.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 140.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 9.51172pt on input line 140.
 
 Package Fancyhdr Warning: \headheight is too small (50.0pt): 
 Make it at least 90.40552pt.
@@ -1143,114 +1230,184 @@ This may cause the page layout to be inconsistent, however.
 [1
 
 ]
-File: ./input/covid1.png Graphic file (type bmp)
-<./input/covid1.png>
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 155.
+File: ./input/table_plot/covid1.png Graphic file (type bmp)
+<./input/table_plot/covid1.png>
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 10.02475pt on input line 157.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.52061pt on input line 170.
+(Font)              scaled to size 7.37756pt on input line 165.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.26968pt on input line 165.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.52112pt on input line 170.
+(Font)              scaled to size 10.54033pt on input line 165.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.37823pt on input line 165.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.27016pt on input line 165.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.52002pt on input line 170.
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 5.52061pt on input line 170.
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 185.
-See the caption package documentation for explanation.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 197.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (2.21999pt too wide) in paragraph at lines 175--199
-[]$[]$ $[]$ 
- []
-
-File: ./input/covid2.png Graphic file (type bmp)
-<./input/covid2.png>
-File: ./input/covid3.png Graphic file (type bmp)
-<./input/covid3.png>
+(Font)              scaled to size 10.53824pt on input line 165.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.37677pt on input line 165.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.26912pt on input line 165.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.52812pt on input line 181.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.52881pt on input line 181.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.52731pt on input line 181.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 7.16054pt on input line 181.
+Missing character: There is no ⼈ in font SimSun/OT:script=hani;language=dflt;!
+File: ./input/table_plot/covid2.pdf Graphic file (type pdf)
+<use ./input/table_plot/covid2.pdf>
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [2]
-File: ./input/covid4.png Graphic file (type bmp)
-<./input/covid4.png>
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.03374pt on input line 198.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.03456pt on input line 198.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.03276pt on input line 198.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 8.59264pt on input line 200.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 245.
+(caption)                particular \caption on input line 212.
 See the caption package documentation for explanation.
 
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 258.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (2.21999pt too wide) in paragraph at lines 234--260
-[]$[]$ $[]$ 
+Overfull \hbox (6.33768pt too wide) in paragraph at lines 198--212
+ [][] 
  []
 
-File: ./input/covid5.png Graphic file (type bmp)
-<./input/covid5.png>
-File: ./input/covid6.png Graphic file (type bmp)
-<./input/covid6.png>
+Missing character: There is no ⽇ in font SimSun/OT:script=hani;language=dflt;!
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 230.
+See the caption package documentation for explanation.
+
+LaTeX Font Info:    Calculating math sizes for size <13> on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 13.0pt on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.09996pt on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.5pt on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 13.00119pt on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.10078pt on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.5006pt on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 12.99861pt on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.09898pt on input line 232.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.4993pt on input line 232.
+File: ./input/table_plot/covid3.pdf Graphic file (type pdf)
+<use ./input/table_plot/covid3.pdf>
+File: ./input/table_plot/covid4.pdf Graphic file (type pdf)
+<use ./input/table_plot/covid4.pdf>
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [3]
+File: ./input/table_plot/covid5.png Graphic file (type bmp)
+<./input/table_plot/covid5.png>
 
-Package fontspec Warning: Font "FandolFang-Regular" does not contain requested
-(fontspec)                Script "CJK".
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 278.
+See the caption package documentation for explanation.
+
+Missing character: There is no ⽇ in font SimSun/OT:script=hani;language=dflt;!
+Missing character: There is no ⽐ in font SimSun/OT:script=hani;language=dflt;!
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 296.
+See the caption package documentation for explanation.
 
 
-Package fontspec Info: FandolFang-Regular scale = 0.941043990458295.
+Overfull \hbox (2.82533pt too wide) in paragraph at lines 262--298
+[]$[]$ $[]$ 
+ []
+
+File: ./input/table_plot/covid6.pdf Graphic file (type pdf)
+<use ./input/table_plot/covid6.pdf>
+File: ./input/table_plot/covid7.pdf Graphic file (type pdf)
+<use ./input/table_plot/covid7.pdf>
+Missing character: There is no ⽇ in font SimSun/OT:script=hani;language=dflt;!
+Missing character: There is no ⽇ in font SimSun/OT:script=hani;language=dflt;!
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
+[4]
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
+[5]
+Missing character: There is no ⼈ in font SimSun/OT:script=hani;language=dflt;!
+File: ./input/table_plot/covid8.pdf Graphic file (type pdf)
+<use ./input/table_plot/covid8.pdf>
+
+Package fontspec Info: FangSong scale = 0.9764216292396262.
 
 
-Package fontspec Info: FandolFang-Regular scale = 0.941043990458295.
+Package fontspec Info: Could not resolve font "FangSong/BI" (it probably
+(fontspec)             doesn't exist).
 
 
-Package fontspec Info: Font family 'FandolFang-Regular(0)' created for font
-(fontspec)             'FandolFang-Regular' with options
-(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,Script={CJK},Extensi
-on={.otf}].
+Package fontspec Info: Could not resolve font "FangSong/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Could not resolve font "FangSong/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: FangSong scale = 0.9764216292396262.
+
+
+Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
+(fontspec)             with options [Scale=MatchLowercase,Script={CJK}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[0.941043990458295]"[FandolFang-Regular.otf]/OT:lan
-guage=dflt;mapping=tex-text;"
+(fontspec)             <->s*[0.9764216292396262]"FangSong/OT:script=hani;langua
+ge=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-LaTeX Font Info:    Font shape `TU/FandolFang-Regular(0)/m/n' will be
-(Font)              scaled to size 9.4104pt on input line 277.
-Missing character: There is no 祎 in font [FandolFang-Regular.otf]/OT:language=d
-flt;mapping=tex-text;!
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 284.
+LaTeX Font Info:    Font shape `TU/FangSong(0)/m/n' will be
+(Font)              scaled to size 12.69353pt on input line 369.
+
+Overfull \hbox (0.91296pt too wide) in paragraph at lines 374--374
+[]                     \TU/FangSong(0)/m/n/13 主 编 ： 马 晶                    副 主 
+编 \TU/lmtt/m/n/13 : \TU/FangSong(0)/m/n/13 薛 成 海   仁 晖   何 鸿 恺 [] 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 376.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 284.
+[6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 376.
 (./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 284.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 284.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 376.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 376.
 Package rerunfilecheck Info: File `Corona_news.out' has not changed.
-(rerunfilecheck)             Checksum: 304F456040E3FCD0DCC68CE9B0EBBC83;180.
+(rerunfilecheck)             Checksum: F46D3D26D3AA5D0267C2C6A139025445;144.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 284.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 376.
  ) 
 Here is how much of TeX's memory you used:
- 21786 strings out of 481765
- 423276 string characters out of 5935007
- 816188 words of memory out of 5000000
- 38447 multiletter control sequences out of 15000+600000
- 540088 words of font info for 105 fonts, out of 8000000 for 9000
+ 22019 strings out of 481765
+ 428084 string characters out of 5934635
+ 826569 words of memory out of 5000000
+ 38637 multiletter control sequences out of 15000+600000
+ 546840 words of font info for 153 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 62i,17n,122p,373b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,17n,123p,370b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Corona_news.pdf (4 pages).
+Output written on Corona_news.pdf (6 pages).

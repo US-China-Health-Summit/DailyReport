@@ -21,6 +21,10 @@ header-includes:
     - \usepackage{caption}
     - \usepackage{subfigure}
     - \usepackage{float}
+    - \usepackage{graphicx}
+    - \usepackage{booktabs}
+    - \usepackage[justification=centering]{caption}
+    - \usepackage{threeparttable}
 
     - \textwidth 6.75in
     - \textheight 8.5in
@@ -95,7 +99,9 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 
 \resheading{\Large 疫情观察}
 
-\fontsize{10}{10}\selectfont{数据源：约翰霍普金斯大学，The COVID Tracking Project \space\space\space\space\space\space\space\space\space\space\space  数据截止至：北京时间3月28日 早4:00}
+数据源：约翰霍普金斯大学，The COVID Tracking Project    
+
+数据截止至：北京时间3月28日 早4:00
 
 # \textcolor{glaucous}{一、世界疫情}
 ```{r include=FALSE}
@@ -108,143 +114,218 @@ insight = read_excel("./input/insight.xlsx") %>%
 
 \begin{figure}[H] 
 \centering
-\includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\includegraphics[]{./input/table_plot/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
 \label{} %用于文内引用的标签
 \end{figure}
 
 
-
-\begin{table}[H]\tiny
-   \centering
-   \resizebox{.7\textwidth}{!}{%
-      \begin{tabular}{lllll}
-      \hline
-        & 国家               & 累计确诊病例  & 国家/省份人口     & 粗发病率 \\
-        \hline
-      1 & 美国 United States & 101,567 & 331,002,651 & 31   \\
-      2 & 意大利 Italy        & 86,498  & 60,461,826  & 143 \\
-      \hline
-      \end{tabular}%
-      }
-   \caption{累计确诊前十位国家}
-\end{table}
-
-
-\begin{minipage}{\textwidth}
-        \begin{minipage}[H]{0.5\textwidth}
-        \centering
-            \begin{tabular}{llll}
-            \hline
-              & 国家        & 累计死亡病例 & 较昨⽇ \\
-            \hline
-            1 & 意⼤利 Italy & 9,134  & 919 \\
-            2 & 西班⽛ Spain & 4,940  & 575 \\
-            \hline
-            \end{tabular}
-            \makeatletter\def\@captype{table}\makeatother\caption{累计死亡前十位国家}
-        \end{minipage}
-        \begin{minipage}[H]{0.5\textwidth}
-        \centering
-            \begin{tabular}{llll}
-            \hline
-              & 国家         & 当⽇新增病例 & 较昨日  \\
-            \hline
-            1 & 美国 US      & 17,821 & -237 \\
-            2 & 德国 Germany & 6,933  & 318 \\
-            \hline
+\begin{figure}[H]
+    \begin{minipage}[H]{0.5\linewidth}
+    \centering
+    \begin{threeparttable}
+        \begin{tabular}{@{}llll@{}}
+        \toprule
+           & 国家（地区）         & 累计确诊病例 & 粗发病率 \\ \midrule
+        1  & Hubei          & 67802  & 115  \\
+        2  & US             & 213372 & 64   \\
+        3  & Italy          & 110574 & 183  \\
+        4  & Spain          & 104118 & 223  \\
+        5  & China          & 82361  & 6    \\
+        6  & Germany        & 77872  & 93   \\
+        7  & France         & 57749  & 88   \\
+        8  & Iran           & 47593  & 57   \\
+        9  & United Kingdom & 29865  & 44   \\
+        10 & Switzerland    & 17768  & 205  \\ \bottomrule
         \end{tabular}
-      \makeatletter\def\@captype{table}\makeatother\caption{⽇新增病例前十位国家}
+        \begin{tablenotes}
+        \footnotesize
+        \item[*] 粗发病率定义：累计确诊病例/10万人。计算方式：累计确诊病例/⼈×10万  %此处加入注释信息
+      \end{tablenotes}
+    \end{threeparttable}
+        \makeatletter\def\@captype{table}\makeatother\caption{确诊前十位国家\\ \ }
+    \end{minipage}%
+    \begin{minipage}[H]{0.5\linewidth}
+    \centering
+    \includegraphics[]{./input/table_plot/covid2.pdf}
+    \caption{累计确诊病例国家趋势图\\（中国及其他前五位国家）}
     \end{minipage}
-\end{minipage}
-
-
-
-
-# \textcolor{glaucous}{二、中国与其他疫情严重国家对比}
+\end{figure}
 
 `r insight$content[2]`
 
-
-
+\begin{minipage}{\textwidth}\small
+        \begin{minipage}[H]{0.3\textwidth}
+        \centering
+           \begin{tabular}{@{}lll@{}}
+            \toprule
+               & 国家             & 当日新增病例 \\ \midrule
+            1  & US             & 213372 \\
+            2  & Italy          & 110574 \\
+            3  & Spain          & 104118 \\
+            4  & China          & 82361  \\
+            5  & Germany        & 77872  \\
+            6  & France         & 57749  \\
+            7  & Iran           & 47593  \\
+            8  & United Kingdom & 29865  \\
+            9  & Switzerland    & 17768  \\
+            10 & Turkey         & 15679  \\ \bottomrule
+            \end{tabular}
+            \makeatletter\def\@captype{table}\makeatother\caption{日新增病例前十位国家}
+        \end{minipage}
+        \begin{minipage}[H]{0.65\textwidth}
+        \centering
+           \begin{tabular}{@{}lllll@{}}
+          \toprule
+             & 国家             & 累计死亡病例 & 较昨⽇ & 病死率\% \\           \midrule
+          1  & Italy          & 13155  & 727 & 11.9  \\
+          2  & Spain          & 9387   & 923 & 9     \\
+          3  & US             & 4757   & 884 & 2.2   \\
+          4  & France         & 4043   & 511 & 7     \\
+          5  & China          & 3316   & 7   & 4     \\
+          6  & Iran           & 3036   & 138 & 6.4   \\
+          7  & United Kingdom & 2357   & 564 & 7.9   \\
+          8  & Netherlands    & 1175   & 135 & 8.6   \\
+          9  & Germany        & 920    & 145 & 1.2   \\
+          10 & Belgium        & 828    & 123 & 5.9   \\ \bottomrule
+          \end{tabular}
+      \makeatletter\def\@captype{table}\makeatother\caption{累计死亡前十位国家}
+    \end{minipage}
+\end{minipage}
 
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
-\includegraphics[]{./input/covid2.png}
-\caption{累计确诊病例国家趋势图}
+\includegraphics[]{./input/table_plot/covid3.pdf}
+\caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\includegraphics[]{./input/covid3.png}
-\caption{日新增确诊病例国家趋势图}
+\includegraphics[]{./input/table_plot/covid4.pdf}
+\caption{累计死亡病例国家趋势图\\（中国及其他前五位国家） }
 \label{}
 \end{minipage}
 \end{figure}
 
-
-# \textcolor{glaucous}{三、美国疫情}
-
-
+# \textcolor{glaucous}{二、美国疫情}
 
 `r insight$content[3]`
 
-
 \begin{figure}[H] 
 \centering
-\includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\includegraphics[]{./input/table_plot/covid5.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
 \label{} %用于文内引用的标签
 \end{figure}
 
-
 \begin{minipage}{\textwidth}
         \begin{minipage}[H]{0.5\textwidth}
         \centering
-            \begin{tabular}{llll}
-            \hline
-               & 国家/州名   & 累计确诊病例  & 粗发病率 \\
-            \hline
-               & 美国 US   & 101,567 & 31   \\
-             1 & 纽约州 NY  & 44,876  & 231  \\
-             2 & 新泽西州 NJ & 8,825   & 99\\
-            \hline
-            \end{tabular}
+           \begin{tabular}{@{}llll@{}}
+           \toprule
+              & 国家/州名         & 累计确诊  & 粗发病率 \\ \midrule
+           1  & New York      & 83948 & 432  \\
+           2  & New Jersey    & 22255 & 251  \\
+           3  & California    & 9399  & 24   \\
+           4  & Michigan      & 9315  & 93   \\
+           5  & Massachusetts & 7738  & 111  \\
+           6  & Illinois      & 6980  & 55   \\
+           7  & Florida       & 6956  & 32   \\
+           8  & Louisiana     & 6424  & 138  \\
+           9  & Pennsylvania  & 6009  & 47   \\
+           10 & Washington    & 5608  & 74   \\ \bottomrule
+           \end{tabular}
             \makeatletter\def\@captype{table}\makeatother\caption{美国累计确诊前十位州}
         \end{minipage}
         \begin{minipage}[H]{0.5\textwidth}
         \centering
-            \begin{tabular}{llll}
-            \hline
-              & 国家/州名   & 当日新增病例 & 全美比率 \\
-            \hline
-              & 美国 US   & 17821  & 100  \\
-            1 & 纽约州 NY  & 7,618  & 43   \\
-            2 & 新泽西州 NJ & 1,949  & 11 \\
-            \hline
-        \end{tabular}
+           \begin{tabular}{@{}llll@{}}
+          \toprule
+             & 国家/州名         & 当⽇新增 & 全美⽐率\% \\ \midrule
+          1  & New York      & 8115 & 32     \\
+          2  & New Jersey    & 3559 & 14     \\
+          3  & Michigan      & 1700 & 7      \\
+          4  & California    & 1189 & 5      \\
+          5  & Louisiana     & 1187 & 5      \\
+          6  & Massachusetts & 1118 & 4      \\
+          7  & Pennsylvania  & 1046 & 4      \\
+          8  & Illinois      & 986  & 4      \\
+          9  & Georgia       & 709  & 3      \\
+          10 & Texas         & 546  & 2      \\ \bottomrule
+          \end{tabular}
       \makeatletter\def\@captype{table}\makeatother\caption{美国新增确诊前十位州}
     \end{minipage}
 \end{minipage}
 
-
-
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
-\includegraphics[]{./input/covid5.png}
-\caption{美国本土疫情分布图}
+\includegraphics[]{./input/table_plot/covid6.pdf}
+\caption{美国累计确诊前五位州趋势图}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\includegraphics[]{./input/covid6.png}
-\caption{美国累计确诊前五位州趋势图}
+\includegraphics[]{./input/table_plot/covid7.pdf}
+\caption{美国⽇新增确诊前五位州趋势图}
 \label{}
 \end{minipage}
 \end{figure}
 
+`r insight$content[4]`
+
+\begin{table}[H]
+   \centering
+   \begin{threeparttable}[b]
+   \resizebox{0.9\textwidth}{!}{%
+      \begin{tabular}{p{.5cm}p{3.5cm}p{2.5cm}p{2.5cm}p{2cm}}
+\toprule
+   & 国家/州名         & 累计阳性病例 & 累计检测人数 & 阳性率\% \\ \midrule
+1  & New York      & 1941   & 2.3    &       \\
+2  & New Jersey    & 355    & 1.6    &       \\
+3  & Michigan      & 335    & 3.6    &       \\
+4  & Louisiana     & 273    & 4.2    &       \\
+5  & Washington    & 234    & 4.2    &       \\
+6  & California    & 199    & 2.1    &       \\
+7  & Illinois      & 141    & 2      &       \\
+8  & Georgia       & 139    & 3      &       \\
+9  & Massachusetts & 122    & 1.6    &       \\
+10 & Florida       & 87     & 1.3    &       \\ \bottomrule
+\end{tabular}%
+      }
+      \begin{tablenotes}
+     \item[*]北马利安纳群岛(MP)尚未大范围检测
+   \end{tablenotes}
+  \end{threeparttable}
+   \caption{美国累计阳性率前十位州}
+\end{table}
+
+\begin{figure}
+    \begin{minipage}[H]{0.5\linewidth}
+    \centering
+        \begin{tabular}{@{}lllll@{}}
+        \toprule
+           & 国家/州名 & 累计死亡⼈数 & 病死率\%  &      \\ \midrule
+        1  & MI    & 10791  & 22684  & 0.48 \\
+        2  & NJ    & 25590  & 59110  & 0.43 \\
+        3  & OK    & 879    & 2144   & 0.41 \\
+        4  & NY    & 92381  & 238965 & 0.39 \\
+        5  & MP    & 8      & 21     & 0.38 \\
+        6  & CA    & 9191   & 33000  & 0.28 \\
+        7  & GA    & 5348   & 22957  & 0.23 \\
+        8  & SC    & 1554   & 6995   & 0.22 \\
+        9  & CT    & 3824   & 18300  & 0.21 \\
+        10 & MS    & 1177   & 5930   & 0.2  \\ \bottomrule
+        \end{tabular}
+        \makeatletter\def\@captype{table}\makeatother\caption{美国累计死亡前十位州}
+    \end{minipage}%
+    \begin{minipage}[H]{0.5\linewidth}
+    \centering
+    \includegraphics[]{./input/table_plot/covid8.pdf}
+    \caption{美国累计死亡前五位州趋势图}
+    \end{minipage}
+\end{figure}
 
 
 
