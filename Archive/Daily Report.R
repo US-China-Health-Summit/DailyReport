@@ -1,7 +1,7 @@
 ##############################
 ####        README        ####
 ##############################
-
+														
 ### Data source:  https://github.com/CSSEGISandData/COVID-19
 ### Data source (Not used):  https://covidtracking.com/api/states/daily
 
@@ -59,30 +59,21 @@ end_date = NULL
 start_date_US = c(03, 01, 2020)
 end_date_US = NULL
 
-
 #####  sort without China: TRUE, FALSE ; default is TRUE (sort without China)
 remove_mainland_china = TRUE
 china_label = "China"   
-#### If want to review different province,  specify below
-#####Currentlt can only calc Hubei Crude incident.
-Province_name = "Hubei"
 
 ##### web data (TRUE if use additional data file from web data branch; otherwise set to FALSE)
 web_data = TRUE
 
 ############################################################
 
-list.of.packages <- c("ggplot2", "jsonlite", "httr","tidyverse")
+list.of.packages <- c("ggplot2", "jsonlite", "httr")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) {install.packages(new.packages)}
-if(packageVersion("tidyverse")!="1.3.0") {install.packages("tidyverse")}
-
-
+if(length(new.packages)) install.packages(new.packages)
 
 library(ggplot2)
-library(tidyverse)
 library(scales)
-library(RCurl)
 
 ###############################################################
 ## RUN THROUGH EVERYTHING BELOW TO GENERATE PLOTS AND TABLES ##
@@ -127,20 +118,23 @@ p9_ylab = input_plot_titles$Input[input_plot_titles$Item=="p9_ylab"]
 # p11_title = input_plot_titles$Input[input_plot_titles$Item=="p11_title"]
 # p11_xlab = input_plot_titles$Input[input_plot_titles$Item=="p11_xlab"]
 # p11_ylab = input_plot_titles$Input[input_plot_titles$Item=="p11_ylab"]
-
-time_series_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/"
-web_data_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/"
-
+# 
 
 color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33", "#A65628", "#F781BF")
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
 
 convert_date=function(date_label){
-  ##C by HS: get the date label-> turn into character-> turn into date-> format the date
-  date_label%>%as.character()%>%as.Date("%m/%d/%y")%>% format("%Y-%m-%d")
+  temp =unlist(lapply(as.character(date_label), function(X) {
+    a = strsplit(X, "/")[[1]]
+    if (nchar(a[3]) == 2) a[3] = 2000+as.numeric(a[3])
+    a  }))
+  month = temp[1:length(date_label)*3-2]
+  day = temp[1:length(date_label)*3-1]
+  year = temp[1:length(date_label)*3]
+  
+  as.Date(ISOdate(year = year, month = month, day = day))
 }
-
 
 filter_by_date = function(ds, date_var, start_date, end_date){
   if (!is.null(start_date)){
@@ -170,81 +164,83 @@ adjust_y_interval = function(y_max){
   y_interval
 }
 
-read_data = function(label, type,web_data,Province_name = NULL ){ 
-
-
-  #HS: Rewrote function using tiddyverse to make more readable
+read_data = function(label, type, web_data){
   # read time series data
-	filename = paste("time_series_covid19_", tolower(label), "_global.csv", sep = "")
-	fileurl = paste(time_series_url, filename, sep = "")
-	time_series = getURL(fileurl)%>%read_csv()
-	
-  # Remove the empty column
-  time_series=time_series[,!apply(time_series, 2, function(X) all(X==""))]
-  #fix date format in colnames
-  # get date label by removing everything else
-  date_label=time_series%>%dplyr::select(-c("Province/State", "Country/Region" ,"Lat","Long"))%>%colnames()
-  date_label_fixed = convert_date(date_label)%>%as.character()
-  #  make date into desirable form and rename the variable names
-  time_series = time_series%>%rename_at(vars(date_label), ~ date_label_fixed)
+  filename = paste("time_series_covid19_", tolower(label), "_global.csv", sep = "")
+	if (! filename %in% list.files()) stop(paste("File", filename, "not found in folder."))
+	time_series=read.csv(filename, head = F, stringsAsFactors = F)																						
+  time_series=time_series[,!apply(time_series[-1, ], 2, function(X) all(X==""))]
+  # extract data label
+  date_label = time_series[1, -(1:4)]
+  date_label = convert_date(date_label)
+  ds=time_series[-1, ]
+  
   # if web data used, and if last column is today's date, remove last column and use web data for latest day
-  if (web_data &  (date_today%>%as.character() == max(date_label_fixed))){
-    time_series = time_series%>%select(-last_col())
+  if (web_data &  (date_today == max(date_label))){
+    ds = ds[, -ncol(ds)]
+    date_label = date_label[-length(date_label)]
   }
-  ##Clear data
+  
+  # clean data
   if (type == "Country"){
-    # Remove all the unused column, and sum based on country
-    data_wide = time_series%>%select(-"Province/State",-Lat,-Long)%>%group_by(`Country/Region`)%>%summarise_all(sum)
+    data_wide=as.data.frame(apply(ds[,5:ncol(ds)], 2, function(x) tapply(x, ds$V2, function(X) sum(as.numeric(X)))))
     if (web_data){
-			fileurl = paste(web_data_url, "cases_country.csv", sep = "")
-			wdata = getURL(fileurl)%>%read_csv()%>%select("Country/Region" = Country_Region ,label)
-      data_wide = left_join(x = data_wide,y= wdata, by = "Country/Region")%>%rename_at(vars(label),~date_today%>%as.character() )
+      wdata = read.csv("cases_country.csv", stringsAsFactors = F)
+      temp = wdata[,label, drop=F]
+      rownames(temp ) = wdata[, 1]
+      data_wide = merge(data_wide, temp, by=0, all.x = TRUE, all.y = FALSE) 
       data_wide[is.na(data_wide)] = 0
+      rownames(data_wide) = data_wide[, "Row.names"]
+      data_wide = data_wide[, -grep("Row.names", names(data_wide))]
+      date_label =  unlist(c(date_label, date_today))
     }
-  }  else if (type == "State"){
-    # Remove all the unused column, and sum based on country, Select the needed state, get its sum
-    data_wide = time_series%>%select(-"Country/Region",-Lat,-Long)%>%filter(`Province/State` == Province_name)%>%
-      group_by(`Province/State`)%>%summarise_all(sum)
+  }else if (type == "Hubei"){
+    data_wide=ds[ds$V1 == "Hubei", -(1:4)]
+    data_wide = as.data.frame(t(apply(data_wide, 1, as.numeric)))
+    rownames(data_wide) = "Hubei"
     if (web_data){
-			fileurl = paste(web_data_url, "cases_state.csv", sep = "")
-      wdata = getURL(fileurl)%>%read_csv()%>%select("Province/State" = Province_State ,label)%>%filter(`Province/State` == Province_name)
-      data_wide = left_join(x = data_wide,y= wdata, by = "Province/State")%>%rename_at(vars(label),~date_today%>%as.character() )
-      data_wide[is.na(data_wide)] = 0
-    }
-    
-  }
-  # Data validation : if N is smaller than previous data, assign the number from previous date (Unchanged from original function)
-  for (i in 3:ncol(data_wide)){
-    #The first oen is country name,so start with 3-2
-    if (any(data_wide[,i] < data_wide[, (i-1)])) {
-      data_wide[data_wide[,i] < data_wide[, (i-1)], i] = data_wide[data_wide[,i] < data_wide[, (i-1)], (i-1)]
+      wdata = read.csv("cases_state.csv", stringsAsFactors = F)
+      wdata = wdata[wdata$Province_State == "Hubei",]
+      temp = wdata[,label, drop=F]
+      data_wide = cbind(data_wide, temp) 
+      date_label =  unlist(c(date_label, date_today))
     }
   }
+  colnames(data_wide)=date_label
+  
+  # Data validation : if N is smaller than previous data, assign the number from previous date
+  for (i in 2:ncol(data_wide)){
+    if (any(data_wide[,i] < data_wide[, (i-1)])) data_wide[data_wide[,i] < data_wide[, (i-1)], i] = data_wide[data_wide[,i] < data_wide[, (i-1)], (i-1)]
+  }
+  
   # build incremental data
-  temp = data_wide[,-1]
-  # Change of each day
-  data_incremental=(temp[,-1, drop = F]-temp[,-ncol(temp)])%>%cbind(data_wide[,1:2],.)
-  # First day has no change
-  data_incremental[,2] =0
-  #Reformat the data to produce a summary
-  a = data_wide%>%pivot_longer(names_to = "Date", values_to = "Counts", cols = contains("-"))
-  b = data_incremental%>%pivot_longer(names_to = "Date", values_to = "Counts_incremental", cols = contains("-"))
-  data = left_join(x =a, y = b)%>%mutate(Date = as.Date(Date))%>%arrange(Date)
+  data_incremental=data_wide[,-1, drop = F]-data_wide[,-ncol(data_wide)]
+  data_incremental=cbind(0,data_incremental)
+  colnames(data_incremental)=date_label
+  
+  Counts = unlist(c(data_wide))
+  Counts_incremental = unlist(c(data_incremental))
+  Date = as.Date(unlist(lapply(as.character(date_label), function(X) rep(X, nrow(data_wide)))))
+  Region = rep(row.names(data_wide), ncol(data_wide))
+  
+  data = data.frame(Region = Region, Date = Date, Counts = Counts, Counts_incremental=Counts_incremental,row.names=NULL, stringsAsFactors = F)
   colnames(data)[3:4]=c(label, paste(label,"_incremental", sep=""))
+  colnames(data)[1]=type
   
-  # reverse column order of everything but the first
-  data_wide = data_wide[, ncol(data_wide):1]%>%select(last_col(),everything())
-  data_incremental = data_incremental[, ncol(data_incremental):1]%>%select(last_col(),everything())
-  
+  # reverse column order 
+  data_wide = data_wide[, ncol(data_wide):1]
+  data_incremental = data_incremental[length(data_incremental):1]
   
   return(list(data=data, data_wide=data_wide, data_incremental_wide=data_incremental))
 }
-create_final_data=function(type = NULL,Province_name = NULL,web_data ){ 
+
+create_final_data=function(type = NULL){ 
   # type: "Country" if by country; "State" if by US states
-  if (!type %in% c("Country", "State")) stop("Please specify type as country or state.")
-  data_confirmed = read_data("Confirmed", type , web_data,Province_name)
-  data_deaths = read_data("Deaths", type, web_data,Province_name)
-  data_recovered = read_data("Recovered", type, web_data,Province_name)
+  if (!type %in% c("Country", "Hubei")) stop("Please specify type as country or state.")
+  
+  data_confirmed = read_data("Confirmed", type, web_data)
+  data_deaths = read_data("Deaths", type, web_data)
+  data_recovered = read_data("Recovered", type, web_data)
   
   case_confirmed = data_confirmed$data
   case_deaths = data_deaths$data
@@ -256,33 +252,26 @@ create_final_data=function(type = NULL,Province_name = NULL,web_data ){
   
   data_all = Reduce(function(x, y) merge(x, y, all=TRUE), list(case_confirmed, case_deaths, case_recovered))
   data_all$Active = data_all$Confirmed - data_all$Deaths - data_all$Recovered
+  
   # Crude_Incidence_Rate
   if (type == "Country"){
     data_all$Population = input_population$Population[match(data_all$Country, input_population$Country)]
     data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
     data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
   }
-  if (type == "State"){ if(Province_name == "Hubei"){
+  if (type == "Hubei"){
     data_all$Population = 59172000
     data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
     data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
-  }}
+  }
   
-  output = list(data_all=data_all,
-                case_confirmed_wide= case_confirmed_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame(), 
-                case_confirmed_incremental_wide = case_confirmed_incremental_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame(),
-                case_deaths_wide = case_deaths_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame(), 
-                case_recovered_wide=case_recovered_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame()
-  )
-  return(output)  
+  return(list(data_all=data_all, case_confirmed_wide= case_confirmed_wide, case_confirmed_incremental_wide = case_confirmed_incremental_wide, case_deaths_wide = case_deaths_wide, case_recovered_wide=case_recovered_wide))  
 }
-
 
 # load data
 date_today = Sys.Date()
-countries_data = create_final_data(type = "Country",web_data = web_data )
-Hubei_data = create_final_data(type = "State",Province_name = "Hubei",web_data = web_data  )
-
+countries_data = create_final_data(type = "Country")
+Hubei_data = create_final_data(type = "Hubei")
 
 ##############################
 ## WORLDWIDE
@@ -320,14 +309,14 @@ data_global_latest = data_all_countries[data_all_countries$Date == report_date, 
 data_global_latest$Fatality_rate = round(data_global_latest$Deaths/data_global_latest$Confirmed*100, 1)
 
 # table 2
-data_global_latest_confirmed = data_global_latest[,c("Country/Region", "Confirmed")]
+data_global_latest_confirmed = data_global_latest[,c("Country", "Confirmed")]
 data_global_latest_confirmed = data_global_latest_confirmed[order(data_global_latest_confirmed$Confirmed, decreasing = T), ]
 rownames(data_global_latest_confirmed) = 1:nrow(data_global_latest_confirmed)
 write.csv(data_global_latest_confirmed, paste(report_date, "table_2_case_confirmed_latest_date.csv"))
 
 # table 3
 
-data_global_latest_death = data_global_latest[,c("Country/Region", "Deaths", "Deaths_incremental", "Fatality_rate")]
+data_global_latest_death = data_global_latest[,c("Country", "Deaths", "Deaths_incremental", "Fatality_rate")]
 data_global_latest_death = data_global_latest_death[order(data_global_latest_death$Deaths, decreasing = T), ]
 rownames(data_global_latest_death) = 1:nrow(data_global_latest_death)
 write.csv(data_global_latest_death, paste(report_date, "table_3_case_death_latest_date.csv"))
@@ -359,7 +348,7 @@ if (template_input){
   filter_total = temp_total$Country[1:top_n]
   temp_incremental=temp[order(temp$Confirmed_incremental, decreasing = T), ]
   filter_incremental = temp_incremental$Country[1:top_n]
-	
+  
   # filter by death
   temp_death = temp[order(temp$Deaths,decreasing = T),]
   filter_death = temp_death$Country[1:top_n]
@@ -371,8 +360,8 @@ if (template_input){
 
 color_list_country = unique(c(filter_total, filter_incremental,filter_death, "China", "Hubei"))
 
-# plot 1. total confirmed cases sort by countries cumulative
 
+# plot 1. total confirmed cases sort by countries cumulative
 # filter by country and cumulative confirmed
 data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total , ]
 # reorder factor levels by country filter order
@@ -408,7 +397,6 @@ filter_total_with_china = c(china_label, filter_total)
 
 # filter by country and cumulative confirmed
 data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total_with_china, ]
-
 # reorder factor levels by country filter order
 temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date),]
 temp = temp[order(temp$Confirmed,decreasing = T),]
@@ -435,7 +423,6 @@ p1_1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, c
   ylab(p1_ylab)
 
 ggsave(filename=paste(report_date,"p1-1",p1_1_title, ".pdf"), plot = p1_1, width = 10, height = 8 )
-
 
 # plot 2. incremental cases for top N total confirmed
 
@@ -609,7 +596,6 @@ p8_1 = ggplot(data_to_plot_death_total , aes(x=Date, y= Deaths, group=Country, c
 ggsave(filename=paste(report_date,"p8-1",p8_1_title, ".pdf"), plot = p8_1, width = 10, height = 8 )
 
 
-
 ##############################
 ## US Active Deaths Recovered
 ##############################
@@ -624,15 +610,16 @@ US_Deaths = case_deaths_wide[rownames(case_deaths_wide) == "US",]
 # US_Active = US_Confirmed - US_Deaths - US_Recoverd
 # US_tbl = rbind(US_Active, US_Deaths, US_Recoverd)
 US_tbl = rbind(US_Confirmed, US_Deaths)
-rownames(US_tbl) = c("Total Confirmed","Deaths")
+rownames(US_tbl) = c("Total Confirmed", "Deaths")
+
 # reverse column order 
 US_tbl = US_tbl[, ncol(US_tbl):1]
 write.csv(US_tbl, paste(report_date,"table_active_deaths_recovered_US.csv"))
 
 # plot 4: US only Active Deaths Recovered
-temp = data_all_countries[data_all_countries$Country =='US' , c("Country/Region", "Date", "Confirmed", "Deaths")]
+temp = data_all_countries[data_all_countries$Country =='US' , c("Country", "Date", "Confirmed", "Deaths")]
 data_to_plot_us = reshape(data=temp, 
-                          idvar=c("Country/Region", "Date"),
+                          idvar=c("Country", "Date"),
                           varying = names(temp)[-(1:2)],
                           v.name=c("Cases"),
                           times=names(temp)[-(1:2)],
@@ -672,79 +659,102 @@ ggsave(filename=paste(report_date,"p4",p4_title, ".pdf"), plot = p4, width = 10,
 ## US by states
 ##############################
 
+# build US data from 'daily reports' folder
+
+Confirmed = read.csv("input_us_data_0322_Confirmed.csv", stringsAsFactor = F, header = F)
+colnames(Confirmed) = Confirmed[1, ]
+Confirmed = Confirmed[-1, ]
+Deaths = read.csv("input_us_data_0322_Deaths.csv", stringsAsFactor = F, header = F)
+colnames(Deaths) = Deaths[1, ]
+Deaths = Deaths[-1, ]
+
 state_population = read.csv("input_state_population.csv", stringsAsFactors=F)
 
-read_data_us = function(label){
-	# read us time series data
-	filename = paste("time_series_covid19_", tolower(label), "_US.csv", sep = "")
-	fileurl = paste(time_series_url, filename, sep = "")
-	data_wide = getURL(fileurl)%>%read_csv()%>%dplyr::select(-c("UID", "iso2",  "iso3",  "code3",  "FIPS", "Admin2" ,"Lat","Long_","Combined_Key"))%>%filter(`Country_Region` == "US")
-	if ("Population" %in% colnames(data_wide)) data_wide=data_wide%>%select(-"Population")
-	data_wide = data_wide%>%select(-"Country_Region")%>%group_by(`Province_State`)%>%summarise_all(sum)
-
-	date_label=data_wide%>%dplyr::select(-c("Province_State"))%>%colnames()
-  date_label_fixed = convert_date(date_label)%>%as.character()
-  #  make date into desirable form and rename the variable names
-  data_wide = data_wide%>%rename_at(vars(date_label), ~ date_label_fixed)
-	# if web data used, and if last column is today's date, remove last column and use web data for latest day
-  if (web_data & (date_today%>%as.character() == max(date_label_fixed))){
-    data_wide = data_wide%>%select(-last_col())
-  }
-	
-	# get web data and append latest cases
-	if (web_data){
-		fileurl = paste(web_data_url, "cases_state.csv", sep = "")
-		wdata = getURL(fileurl)%>%read_csv()%>%filter(`Country_Region` == "US")%>%select("Province/State" = Province_State ,label)%>%rename(`Province_State`=`Province/State`)
-		data_wide = left_join(x = data_wide,y= wdata, by = "Province_State")%>%rename_at(vars(label),~date_today%>%as.character() )
-		data_wide[is.na(data_wide)] = 0
+date_list=as.character(seq(as.Date("2020-03-23"), Sys.Date()-1, by = 'day'))
+for (d in date_list){
+	f=as.character(format(as.Date(d), format="%m-%d-%Y"))
+	filename = paste(f,".csv", sep = "")
+	if (! filename %in% list.files()) stop(paste("File", filename, "not found in folder."))
+ 
+	temp = read.csv(filename, stringsAsFactor = F)
+	temp = temp[temp$Country_Region == "US" & temp$Province_State != "Recovered", ] 
+	if (nrow(temp) > 0){
+		temp_confirmed = as.data.frame(tapply(temp$Confirmed, temp$Province_State, function(X) sum(as.numeric(X))))
+		names(temp_confirmed) = d
+		temp_confirmed$state = rownames(temp_confirmed)
+		Confirmed = merge(Confirmed, temp_confirmed, by = "state")
+		
+		temp_deaths = as.data.frame(tapply(temp$Deaths, temp$Province_State, function(X) sum(as.numeric(X))))
+		names(temp_deaths) = d 
+		temp_deaths$state = rownames(temp_deaths)
+		Deaths = merge(Deaths, temp_deaths, by = "state")
+	}else{
+		warning(paste(filename, "has no US data. Removed."))
 	}
-	
-	# build incremental data
-  temp = data_wide[,-1]
-  # Change of each day
-  data_incremental=(temp[,-1, drop = F]-temp[,-ncol(temp)])%>%cbind(data_wide[,1:2],.)
-  # First day has no change
-  data_incremental[,2] =0
-  #Reformat the data to produce a summary
-  a = data_wide%>%pivot_longer(names_to = "Date", values_to = "Counts", cols = contains("-"))
-  b = data_incremental%>%pivot_longer(names_to = "Date", values_to = "Counts_incremental", cols = contains("-"))
-  data = left_join(x =a, y = b)%>%mutate(Date = as.Date(Date))%>%arrange(Date)
-  colnames(data)[3:4]=c(label, paste(label,"_Incremental", sep=""))
-  
-  # reverse column order of everything but the first
-  data_wide = data_wide[, ncol(data_wide):1]%>%select(last_col(),everything())
-  data_incremental = data_incremental[, ncol(data_incremental):1]%>%select(last_col(),everything())
-  
-  return(list(data=data, 
-				data_wide=data_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame(), 
-				data_incremental_wide=data_incremental%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame()))
-	
 }
 
-data_confirmed=read_data_us('Confirmed')
-data_deaths=read_data_us('Deaths')
 
-case_confirmed = data_confirmed$data
-case_deaths = data_deaths$data
+# get web data and append latest cases
+if (web_data){
+  wdata = read.csv("cases_state.csv", stringsAsFactors = F)
+  wdata = wdata[wdata$Country_Region == "US",]
+  
+  wdata_confirmed = wdata[, c("Province_State", "Confirmed")]
+  colnames(wdata_confirmed) = c("state", as.character(Sys.Date()))
+  Confirmed = merge(Confirmed, wdata_confirmed)
+  
+  wdata_deaths = wdata[, c("Province_State", "Deaths")]
+  colnames(wdata_deaths) = c("state", as.character(Sys.Date()))
+  Deaths = merge(Deaths, wdata_deaths)
+}
 
-case_confirmed_wide = data_confirmed$data_wide
-case_confirmed_incremental_wide = data_confirmed$data_incremental_wide
-case_deaths_wide = data_deaths$data_wide
-case_deaths_incremental_wide = data_deaths$data_incremental_wide
+Confirmed = Confirmed[, c(1, ncol(Confirmed):2)]
+Deaths = Deaths[, c(1, ncol(Deaths):2)]
 
-data_us_states = Reduce(function(x, y) merge(x, y, all=TRUE), list(case_confirmed, case_deaths))
-colnames(data_us_states)[grep("Province_State", colnames(data_us_states))] = "state"
+# get incremental
+temp_confirmed = Confirmed[,-1]
+Confirmed_Incremental=data.matrix(temp_confirmed[,-ncol(temp_confirmed)])-data.matrix(temp_confirmed[,-1])
+Confirmed_Incremental=as.data.frame(cbind(Confirmed$state, Confirmed_Incremental, 0), stringsAsFactors = F)
+Confirmed_Incremental[Confirmed_Incremental<0] = 0
+colnames(Confirmed_Incremental)=colnames(Confirmed)
 
-# write to table
+temp_deaths = Deaths[,-1]
+Deaths_Incremental=data.matrix(temp_deaths[,-ncol(temp_deaths)])-data.matrix(temp_deaths[,-1])
+Deaths_Incremental=as.data.frame(cbind(Deaths$state, Deaths_Incremental, 0), stringsAsFactors = F)
+Deaths_Incremental[Deaths_Incremental<0] = 0
+colnames(Deaths_Incremental)=colnames(Deaths)
+
 # sort by latest day
-Confirmed = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T),]
-Confirmed_Incremental = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T),]
-Deaths = case_deaths_wide[order(case_deaths_wide[,report_date], decreasing = T),]
-Deaths_Incremental = case_deaths_incremental_wide[order(case_deaths_incremental_wide[,report_date], decreasing = T),]
-write.csv(Confirmed, paste(report_date,"table_case_confirmed_US.csv" ))
-write.csv(Confirmed_Incremental, paste(report_date,"table_case_confirmed_incremental_US.csv" ))
-write.csv(Deaths, paste(report_date,"table_case_deaths_US.csv" ))
-write.csv(Deaths_Incremental, paste(report_date,"table_case_deaths_incremental_US.csv" ))
+Confirmed = Confirmed[order(Confirmed[,2], decreasing = T),]
+Confirmed_Incremental = Confirmed_Incremental[order(Confirmed_Incremental[,2], decreasing = T),]
+Deaths = Deaths[order(Deaths[,2], decreasing = T),]
+Deaths_Incremental = Deaths_Incremental[order(Deaths_Incremental[,2], decreasing = T),]
+write.csv(Confirmed, paste(report_date,"table_case_confirmed_US.csv" ), row.names = F)
+write.csv(Confirmed_Incremental, paste(report_date,"table_case_confirmed_incremental_US.csv" ), row.names = F)
+write.csv(Deaths, paste(report_date,"table_case_deaths_US.csv" ), row.names = F)
+write.csv(Deaths_Incremental, paste(report_date,"table_case_deaths_incremental_US.csv" ), row.names = F)
+
+
+wide_to_long = function(data_wide, type){
+  output = reshape(data=data_wide, 
+                   idvar="state",
+                   varying = colnames(data_wide)[-1],
+                   v.name=type,
+                   times=colnames(data_wide)[-1],
+                   new.row.names = 1:(nrow(data_wide)*(ncol(data_wide)-1)),
+                   direction="long")
+  colnames(output)[grep("time", colnames(output))] = "date"
+  output
+}
+
+confirmed_long = wide_to_long(Confirmed, "Confirmed")
+confirmed_incremental_long = wide_to_long(Confirmed_Incremental, "Confirmed_Incremental")
+deaths_long = wide_to_long(Deaths, "Deaths")
+deaths_incremental_long = wide_to_long(Deaths_Incremental, "Deaths_Incremental")
+
+data_us_states = Reduce(function(x, y) merge(x, y, all=TRUE), list(confirmed_long, confirmed_incremental_long, deaths_long, deaths_incremental_long))
+data_us_states$date = as.Date(data_us_states$date)
+data_us_states[, 3:6] = apply(data_us_states[, 3:6], 2, as.numeric)
 
 # add crude_incidence_rate
 data_us_states$population = state_population$Population[match(data_us_states$state, state_population$State_Full)]
@@ -754,7 +764,7 @@ data_us_states$Fatality_rate = round(data_us_states$Deaths/data_us_states$Confir
 data_us_states[is.na(data_us_states)] = 0
 
 # filter by latest date
-data_us_latest = data_us_states[data_us_states$Date == max(data_us_states$Date),]
+data_us_latest = data_us_states[data_us_states$date == max(data_us_states$date),]
 # table 4 
 data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "crude_incidence_rate")]
 data_us_latest_confirm = data_us_latest_confirm[order(data_us_latest_confirm$Confirmed, decreasing = T),]
@@ -778,25 +788,25 @@ write.csv(data_us_latest_fatality, paste(report_date,"table_7_fatality_US.csv"))
 # data for plots
 
 # filter by date
-data_us_states = filter_by_date(data_us_states, "Date", start_date_US, end_date_US)
+data_us_states = filter_by_date(data_us_states, "date", start_date_US, end_date_US)
 
 if (template_input){
   state_list = read.csv("input_us_state_list.csv", stringsAsFactors = F)
   filter_total <- filter_incremental <- state_list$States
 }else{
   temp = data_us_states
-  temp=temp[temp$Date==max(data_us_states$Date),] 
+  temp=temp[temp$date==max(data_us_states$date),] 
   temp_total=temp[order(temp$Confirmed, decreasing = T), ]
   filter_total = temp_total$state[1:top_n]
   temp_incremental=temp[order(temp$Confirmed_Incremental, decreasing = T), ]
   filter_incremental = temp_incremental$state[1:top_n]
-	temp_death = temp[order(temp$Deaths, decreasing = T),]
-  filter_death =temp_death$state[1:top_n]				
+  temp_death = temp[order(temp$Deaths, decreasing = T),]
+  filter_death =temp_death$state[1:top_n]
 }
 
 # x label break for all plots:
-x_min = min(data_us_states$Date)
-x_max = max(data_us_states$Date)
+x_min = min(data_us_states$date)
+x_max = max(data_us_states$date)
 if (as.numeric(x_max - x_min) < 15 ){
   break.vec <- seq( x_min, x_max, by = "day")
 }else{
@@ -809,18 +819,19 @@ if (as.numeric(x_max - x_min) < 15 ){
 
 color_list_state = unique(c(filter_total, filter_incremental, filter_death))
 
+
 # plot 5: total confirmed cases by US States sort by Cumulative 
 data_to_plot = data_us_states[data_us_states$state %in% filter_total, ]
 
 # reorder factor levels by country filter order
-temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
+temp = data_to_plot[data_to_plot$date == max(data_to_plot$date),]
 temp = temp[order(temp$Confirmed,decreasing = T),]
 state_order = temp$state
 data_to_plot$state <- factor(data_to_plot$state, levels = state_order)
 
 y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
-p5 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
+p5 = ggplot(data_to_plot , aes(x=date, y=Confirmed, group=state, colour = state,  shape = state)) + 
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
@@ -837,7 +848,6 @@ p5 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,
   xlab("") +
   ylab(p5_ylab)
 
-
 ggsave(filename=paste(report_date,"p5",p5_title, ".pdf"), plot = p5, width = 10, height = 8 )
 
 
@@ -845,14 +855,14 @@ ggsave(filename=paste(report_date,"p5",p5_title, ".pdf"), plot = p5, width = 10,
 data_to_plot_incremental = data_us_states[data_us_states$state %in% filter_incremental , ]
 
 # reorder factor levels by country filter order
-temp = data_to_plot_incremental[data_to_plot_incremental$Date == max(data_to_plot_incremental$Date),]
+temp = data_to_plot_incremental[data_to_plot_incremental$date == max(data_to_plot_incremental$date),]
 temp = temp[order(temp$Confirmed_Incremental,decreasing = T),]
 state_order = temp$state
 data_to_plot_incremental$state <- factor(data_to_plot_incremental$state, levels = state_order)
 
 y_max=(round(max(data_to_plot_incremental$Confirmed_Incremental)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
-p6 = ggplot(data_to_plot_incremental , aes(x=Date, y=Confirmed_Incremental, group=state, colour = state,  shape = state)) + 
+p6 = ggplot(data_to_plot_incremental , aes(x=date, y=Confirmed_Incremental, group=state, colour = state,  shape = state)) + 
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
@@ -874,14 +884,14 @@ ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10,
 
 # plot9: total death cases by US States sorted by cumulative
 data_to_plot_death = data_us_states[data_us_states$state %in% filter_death,]
-temp = data_to_plot_death[data_to_plot_death$Date == max(data_to_plot_death$Date),]
+temp = data_to_plot_death[data_to_plot_death$date == max(data_to_plot_death$date),]
 temp = temp[order(temp$Deaths,decreasing = T),]
 state_order = temp$state
 data_to_plot_death$state <- factor(data_to_plot_death$state, levels = state_order)
 
 y_max=(round(max(data_to_plot_death$Deaths)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
-p9 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = state,  shape = state)) + 
+p9 = ggplot(data_to_plot_death , aes(x=date, y=Deaths, group=state, colour = state,  shape = state)) + 
   geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
@@ -899,10 +909,6 @@ p9 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = sta
   ylab(p9_ylab)
 
 ggsave(filename=paste(report_date,"p9",p9_title, ".pdf"), plot = p9, width = 10, height = 8 )
-
-
-
-
 
 
 ##################
@@ -929,8 +935,3 @@ data_us_positive_rate_avg = data_us_states_detailed[data_us_states_detailed$date
 data_us_positive_rate_avg = data_us_positive_rate_avg[order(data_us_positive_rate_avg$positive_rate, decreasing = T), ]
 rownames(data_us_positive_rate_avg) = 1:nrow(data_us_positive_rate_avg)
 write.csv(data_us_positive_rate_avg, paste(report_date,"table_6_US_positive_test_rate.csv"))
-
-
-
-
-
