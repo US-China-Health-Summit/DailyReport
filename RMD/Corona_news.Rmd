@@ -30,7 +30,7 @@ header-includes:
     - \textheight 8.5in
     - \oddsidemargin -.25in
     - \evensidemargin -.25in
-    - \topmargin -0.5in
+    - \topmargin -1in
     - \linespread{1.0}
     - \setlength{\parskip}{0.8em}
     
@@ -99,9 +99,9 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 
 \resheading{\Large 疫情观察}
 
-数据源：约翰霍普金斯大学，The COVID Tracking Project    
-
-数据截止至：北京时间3月28日 早4:00
+\begin{small}
+{数据源：约翰霍普金斯大学，The COVID Tracking Project \; \; \; \; \;  \; \; \; \; 数据截止至：北京时间3月28日 早4:00}
+\end{small}
 
 # \textcolor{glaucous}{一、世界疫情}
 ```{r include=FALSE}
