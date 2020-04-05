@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  5 APR 2020 18:13
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  5 APR 2020 18:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1329,8 +1329,8 @@ Overfull \hbox (14.78288pt too wide) in paragraph at lines 385--401
  []
 
 
-Overfull \hbox (100.55846pt too wide) in paragraph at lines 408--424
- [][] 
+Overfull \hbox (50.58435pt too wide) in paragraph at lines 379--425
+[]$[]$$[]$ 
  []
 
 

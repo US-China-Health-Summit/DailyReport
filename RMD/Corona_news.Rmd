@@ -276,7 +276,7 @@ cat(c("\\begin{table}
     \\captionsetup{justification=centering}",
         t5,
     "\\end{minipage}%
-    \\begin{minipage}{.4\\linewidth}
+    \\begin{minipage}{.7\\linewidth}
      \\caption{累计死亡前十位国家}
      \\vspace{-0.5\\baselineskip}
       \\centering
