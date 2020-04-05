@@ -191,14 +191,18 @@ cat(c("\\begin{table}[H]
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}
     \\begin{minipage}{.4\\linewidth}
-    \\caption{日新增确诊病例国家趋势图（中国及其他前五位国家）}
+    \\centering
+    \\captionsetup{justification=centering}
+    \\caption{日新增确诊病例国家趋势图 \\newline（中国及其他前五位国家）}
     \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
         t2,
     "\\end{minipage}%
     \\begin{minipage}{.4\\linewidth}
-     \\caption{累计死亡病例国家趋势图（中国及其他前五位国家）}
+    \\centering
+    \\captionsetup{justification=centering}
+     \\caption{累计死亡病例国家趋势图 \\newline（中国及其他前五位国家）}
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
