@@ -1,0 +1,70 @@
+---
+title: "test for translation"
+author: "wwqi4realGitHub"
+date: "4/4/2020"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+```
+
+```{r}
+add_country_translation = function(ut_data) {
+  
+  # wwqi4realGitHub Apr 4
+  # ut_data: untranslated data frame, which is used for plots
+  # for the table part, Hubei translation is now supported
+  # csv file is modified to support different country names (mainly for table 1 input)
+  
+  # support data input of 
+  # plot: 2, 3
+  # table: 1
+  
+  
+  
+  # read in the CN-EN data
+  cn_name = read_csv("./translation/world_cn.csv")
+  en_name = read_csv("./translation/world_en.csv")
+  
+  # combine the two name dataframes
+  # trans_name = cbind(cn_name, en_name)
+  trans_name = full_join(cn_name, en_name, by = "id") %>% 
+    janitor::clean_names() %>% 
+    select(name_y, name_x) %>% 
+    rename(Country_cn = name_x, 
+           Country = name_y) %>% 
+    unite("Country_bi", Country:Country_cn, sep = " - ", remove = F)
+  
+  t_data = left_join(ut_data, trans_name, by = "Country") %>% 
+    # in this step coercing warning will show up but dont worry
+    mutate(Country =  as.factor(Country), 
+           Country_cn = as.factor(Country_cn), 
+           Country_bi = as.factor(Country_bi))
+  
+  print("[Just if] Ignore the [coercing] warning, already taken care of")
+  return(t_data)
+}
+```
+
+# test
+
+the data below is from Daily Report.R. To test, pls first run the R script to make sure the data is in Environment
+```{r}
+# Apr 4: pass for plot 2 and 3 data
+pt2 = data_to_plot_confirmed %>% add_country_translation()
+
+pt3 = data_to_plot_confirmed_increment %>% add_country_translation()
+```
+
+```{r}
+# Apr 4: pass for table 1
+tt1 = crude_incidence_rate %>% 
+  rename(Country = Region) %>% 
+  add_country_translation()
+```
+
+
+

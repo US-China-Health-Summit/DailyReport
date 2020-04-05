@@ -74,8 +74,8 @@ web_data = TRUE
 
 list.of.packages <- c("ggplot2", "jsonlite", "httr","tidyverse")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) {install.packages(new.packages)}
-if(packageVersion("tidyverse")!="1.3.0") {install.packages("tidyverse")}
+if (length(new.packages)) {install.packages(new.packages)}
+if (packageVersion("tidyverse") != "1.3.0") {install.packages("tidyverse")}
 
 
 
@@ -89,38 +89,38 @@ library(RCurl)
 ###############################################################
 
 input_plot_titles = read.csv("input_plot_titles.csv", stringsAsFactors = F)
-p1_title = input_plot_titles$Input[input_plot_titles$Item=="p1_title"]
-p1_1_title = input_plot_titles$Input[input_plot_titles$Item=="p1_1_title"]
-p1_2_title = input_plot_titles$Input[input_plot_titles$Item=="p1_2_title"]
-p1_xlab = input_plot_titles$Input[input_plot_titles$Item=="p1_xlab"]
-p1_ylab = input_plot_titles$Input[input_plot_titles$Item=="p1_ylab"]
-p2_title = input_plot_titles$Input[input_plot_titles$Item=="p2_title"]
-p2_xlab = input_plot_titles$Input[input_plot_titles$Item=="p2_xlab"]
-p2_ylab = input_plot_titles$Input[input_plot_titles$Item=="p2_ylab"]
-p3_title = input_plot_titles$Input[input_plot_titles$Item=="p3_title"]
-p3_1_title = input_plot_titles$Input[input_plot_titles$Item=="p3_1_title"]
-p3_2_title = input_plot_titles$Input[input_plot_titles$Item=="p3_2_title"]
-p3_xlab = input_plot_titles$Input[input_plot_titles$Item=="p3_xlab"]
-p3_ylab = input_plot_titles$Input[input_plot_titles$Item=="p3_ylab"]
-p4_title = input_plot_titles$Input[input_plot_titles$Item=="p4_title"]
-p4_xlab = input_plot_titles$Input[input_plot_titles$Item=="p4_xlab"]
-p4_ylab = input_plot_titles$Input[input_plot_titles$Item=="p4_ylab"]
-p5_title = input_plot_titles$Input[input_plot_titles$Item=="p5_title"]
-p5_xlab = input_plot_titles$Input[input_plot_titles$Item=="p5_xlab"]
-p5_ylab = input_plot_titles$Input[input_plot_titles$Item=="p5_ylab"]
-p6_title = input_plot_titles$Input[input_plot_titles$Item=="p6_title"]
-p6_xlab = input_plot_titles$Input[input_plot_titles$Item=="p6_xlab"]
-p6_ylab = input_plot_titles$Input[input_plot_titles$Item=="p6_ylab"]
-p7_1_title = input_plot_titles$Input[input_plot_titles$Item=="p7_1_title"]
-p7_2_title = input_plot_titles$Input[input_plot_titles$Item=="p7_2_title"]
-p7_xlab = input_plot_titles$Input[input_plot_titles$Item=="p7_xlab"]
-p7_ylab = input_plot_titles$Input[input_plot_titles$Item=="p7_ylab"]
-p8_1_title = input_plot_titles$Input[input_plot_titles$Item=="p8_1_title"]
-p8_xlab = input_plot_titles$Input[input_plot_titles$Item=="p8_xlab"]
-p8_ylab = input_plot_titles$Input[input_plot_titles$Item=="p8_ylab"]
-p9_title = input_plot_titles$Input[input_plot_titles$Item=="p9_title"]
-p9_xlab = input_plot_titles$Input[input_plot_titles$Item=="p9_xlab"]
-p9_ylab = input_plot_titles$Input[input_plot_titles$Item=="p9_ylab"]
+p1_title = input_plot_titles$Input[input_plot_titles$Item == "p1_title"]
+p1_1_title = input_plot_titles$Input[input_plot_titles$Item == "p1_1_title"]
+p1_2_title = input_plot_titles$Input[input_plot_titles$Item == "p1_2_title"]
+p1_xlab = input_plot_titles$Input[input_plot_titles$Item == "p1_xlab"]
+p1_ylab = input_plot_titles$Input[input_plot_titles$Item == "p1_ylab"]
+p2_title = input_plot_titles$Input[input_plot_titles$Item == "p2_title"]
+p2_xlab = input_plot_titles$Input[input_plot_titles$Item == "p2_xlab"]
+p2_ylab = input_plot_titles$Input[input_plot_titles$Item == "p2_ylab"]
+p3_title = input_plot_titles$Input[input_plot_titles$Item == "p3_title"]
+p3_1_title = input_plot_titles$Input[input_plot_titles$Item == "p3_1_title"]
+p3_2_title = input_plot_titles$Input[input_plot_titles$Item == "p3_2_title"]
+p3_xlab = input_plot_titles$Input[input_plot_titles$Item == "p3_xlab"]
+p3_ylab = input_plot_titles$Input[input_plot_titles$Item == "p3_ylab"]
+p4_title = input_plot_titles$Input[input_plot_titles$Item == "p4_title"]
+p4_xlab = input_plot_titles$Input[input_plot_titles$Item == "p4_xlab"]
+p4_ylab = input_plot_titles$Input[input_plot_titles$Item == "p4_ylab"]
+p5_title = input_plot_titles$Input[input_plot_titles$Item == "p5_title"]
+p5_xlab = input_plot_titles$Input[input_plot_titles$Item == "p5_xlab"]
+p5_ylab = input_plot_titles$Input[input_plot_titles$Item == "p5_ylab"]
+p6_title = input_plot_titles$Input[input_plot_titles$Item == "p6_title"]
+p6_xlab = input_plot_titles$Input[input_plot_titles$Item == "p6_xlab"]
+p6_ylab = input_plot_titles$Input[input_plot_titles$Item == "p6_ylab"]
+p7_1_title = input_plot_titles$Input[input_plot_titles$Item == "p7_1_title"]
+p7_2_title = input_plot_titles$Input[input_plot_titles$Item == "p7_2_title"]
+p7_xlab = input_plot_titles$Input[input_plot_titles$Item == "p7_xlab"]
+p7_ylab = input_plot_titles$Input[input_plot_titles$Item == "p7_ylab"]
+p8_1_title = input_plot_titles$Input[input_plot_titles$Item == "p8_1_title"]
+p8_xlab = input_plot_titles$Input[input_plot_titles$Item == "p8_xlab"]
+p8_ylab = input_plot_titles$Input[input_plot_titles$Item == "p8_ylab"]
+p9_title = input_plot_titles$Input[input_plot_titles$Item == "p9_title"]
+p9_xlab = input_plot_titles$Input[input_plot_titles$Item == "p9_xlab"]
+p9_ylab = input_plot_titles$Input[input_plot_titles$Item == "p9_ylab"]
 # p10_1_title = input_plot_titles$Input[input_plot_titles$Item=="p_1_title"]
 # p10_xlab = input_plot_titles$Input[input_plot_titles$Item=="p10_xlab"]
 # p10_ylab = input_plot_titles$Input[input_plot_titles$Item=="p10_ylab"]
@@ -136,11 +136,46 @@ color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F",
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
 
-convert_date=function(date_label){
-  ##C by HS: get the date label-> turn into character-> turn into date-> format the date
-  date_label%>%as.character()%>%as.Date("%m/%d/%y")%>% format("%Y-%m-%d")
+add_country_translation = function(ut_data) {
+  
+  # wwqi4realGitHub Apr 4
+  # ut_data: untranslated data frame, which is used for plots
+  # for the table part, Hubei translation is now supported
+  # csv file is modified to support different country names (mainly for table 1 input)
+  
+  # support data input of 
+  # plot: 2, 3
+  # table: 1
+  
+  
+  
+  # read in the CN-EN data
+  cn_name = read_csv("./translation/world_cn.csv")
+  en_name = read_csv("./translation/world_en.csv")
+  
+  # combine the two name dataframes
+  # trans_name = cbind(cn_name, en_name)
+  trans_name = full_join(cn_name, en_name, by = "id") %>% 
+    janitor::clean_names() %>% 
+    select(name_y, name_x) %>% 
+    rename(Country_cn = name_x, 
+           Country = name_y) %>% 
+    unite("Country_bi", Country:Country_cn, sep = " - ", remove = F)
+  
+  t_data = left_join(ut_data, trans_name, by = "Country") %>% 
+    # in this step coercing warning will show up but dont worry
+    mutate(Country =  as.factor(Country), 
+           Country_cn = as.factor(Country_cn), 
+           Country_bi = as.factor(Country_bi))
+  
+  print("[Just if] Ignore the [coercing] warning, already taken care of")
+  return(t_data)
 }
 
+convert_date = function(date_label){
+  ##C by HS: get the date label-> turn into character-> turn into date-> format the date
+  date_label %>% as.character() %>% as.Date("%m/%d/%y") %>% format("%Y-%m-%d")
+}
 
 filter_by_date = function(ds, date_var, start_date, end_date){
   if (!is.null(start_date)){
@@ -156,90 +191,93 @@ filter_by_date = function(ds, date_var, start_date, end_date){
 
 adjust_y_interval = function(y_max){
   temp_interval = y_max / 10
-  if (temp_interval<15){
+  if (temp_interval<15) {
     y_interval = ceiling((temp_interval/20))*20
-  }else if (temp_interval<30){
+  } else if (temp_interval<30){
     y_interval = ceiling((temp_interval/25))*25
-  }else if (temp_interval<50){
+  } else if (temp_interval<50){
     y_interval = ceiling((temp_interval/50))*50
-  }else if (temp_interval<500){
+  } else if (temp_interval<500){
     y_interval = ceiling((temp_interval/100))*100
-  }else{
+  } else {
     y_interval = ceiling((temp_interval/1000))*1000
   }
   y_interval
 }
 
-read_data = function(label, type,web_data,Province_name = NULL ){ 
+read_data = function(label, type, web_data, Province_name = NULL ){ 
 
 
   #HS: Rewrote function using tiddyverse to make more readable
   # read time series data
 	filename = paste("time_series_covid19_", tolower(label), "_global.csv", sep = "")
 	fileurl = paste(time_series_url, filename, sep = "")
-	time_series = getURL(fileurl)%>%read_csv()
+	time_series = getURL(fileurl) %>% read_csv()
 	
   # Remove the empty column
-  time_series=time_series[,!apply(time_series, 2, function(X) all(X==""))]
+  time_series = time_series[,!apply(time_series, 2, function(X) all(X == ""))]
   #fix date format in colnames
   # get date label by removing everything else
-  date_label=time_series%>%dplyr::select(-c("Province/State", "Country/Region" ,"Lat","Long"))%>%colnames()
-  date_label_fixed = convert_date(date_label)%>%as.character()
+  date_label = time_series %>% 
+    dplyr::select(-c("Province/State", "Country/Region" ,"Lat","Long")) %>% 
+    colnames()
+  date_label_fixed = convert_date(date_label) %>% as.character()
   #  make date into desirable form and rename the variable names
-  time_series = time_series%>%rename_at(vars(date_label), ~ date_label_fixed)
+  time_series = time_series %>% rename_at(vars(date_label), ~ date_label_fixed)
   # if web data used, and if last column is today's date, remove last column and use web data for latest day
-  if (web_data &  (date_today%>%as.character() == max(date_label_fixed))){
-    time_series = time_series%>%select(-last_col())
+  if (web_data &  (date_today %>% as.character() == max(date_label_fixed))) {
+    time_series = time_series %>% select(-last_col())
   }
   ##Clear data
-  if (type == "Country"){
+  if (type == "Country") {
     # Remove all the unused column, and sum based on country
-    data_wide = time_series%>%select(-"Province/State",-Lat,-Long)%>%group_by(`Country/Region`)%>%summarise_all(sum)
-    if (web_data){
+    data_wide = time_series %>% select(-"Province/State",-Lat,-Long) %>% group_by(`Country/Region`) %>% summarise_all(sum)
+    if (web_data) {
 			fileurl = paste(web_data_url, "cases_country.csv", sep = "")
-			wdata = getURL(fileurl)%>%read_csv()%>%select("Country/Region" = Country_Region ,label)
-      data_wide = left_join(x = data_wide,y= wdata, by = "Country/Region")%>%rename_at(vars(label),~date_today%>%as.character() )
+			wdata = getURL(fileurl) %>% read_csv() %>% select("Country/Region" = Country_Region ,label)
+      data_wide = left_join(x = data_wide,y = wdata, by = "Country/Region") %>% rename_at(vars(label),~date_today %>% as.character() )
       data_wide[is.na(data_wide)] = 0
     }
-  }  else if (type == "State"){
+  } else if (type == "State") {
     # Remove all the unused column, and sum based on country, Select the needed state, get its sum
-    data_wide = time_series%>%select(-"Country/Region",-Lat,-Long)%>%filter(`Province/State` == Province_name)%>%
-      group_by(`Province/State`)%>%summarise_all(sum)
-    if (web_data){
+    data_wide = time_series %>% select(-"Country/Region",-Lat,-Long) %>% filter(`Province/State` == Province_name) %>%
+      group_by(`Province/State`) %>% summarise_all(sum)
+    if (web_data) {
 			fileurl = paste(web_data_url, "cases_state.csv", sep = "")
-      wdata = getURL(fileurl)%>%read_csv()%>%select("Province/State" = Province_State ,label)%>%filter(`Province/State` == Province_name)
-      data_wide = left_join(x = data_wide,y= wdata, by = "Province/State")%>%rename_at(vars(label),~date_today%>%as.character() )
+      wdata = getURL(fileurl) %>% read_csv() %>% select("Province/State" = Province_State ,label) %>% filter(`Province/State` == Province_name)
+      data_wide = left_join(x = data_wide,y = wdata, by = "Province/State") %>% rename_at(vars(label),~date_today %>% as.character() )
       data_wide[is.na(data_wide)] = 0
     }
     
   }
   # Data validation : if N is smaller than previous data, assign the number from previous date (Unchanged from original function)
-  for (i in 3:ncol(data_wide)){
+  for (i in 3:ncol(data_wide)) {
     #The first oen is country name,so start with 3-2
-    if (any(data_wide[,i] < data_wide[, (i-1)])) {
-      data_wide[data_wide[,i] < data_wide[, (i-1)], i] = data_wide[data_wide[,i] < data_wide[, (i-1)], (i-1)]
+    if (any(data_wide[,i] < data_wide[, (i - 1)])) {
+      data_wide[data_wide[,i] < data_wide[, (i - 1)], i] = data_wide[data_wide[,i] < data_wide[, (i - 1)], (i - 1)]
     }
   }
   # build incremental data
   temp = data_wide[,-1]
   # Change of each day
-  data_incremental=(temp[,-1, drop = F]-temp[,-ncol(temp)])%>%cbind(data_wide[,1:2],.)
+  data_incremental = (temp[,-1, drop = F] - temp[,-ncol(temp)]) %>% cbind(data_wide[,1:2],.)
   # First day has no change
-  data_incremental[,2] =0
+  data_incremental[,2] = 0
   #Reformat the data to produce a summary
-  a = data_wide%>%pivot_longer(names_to = "Date", values_to = "Counts", cols = contains("-"))
-  b = data_incremental%>%pivot_longer(names_to = "Date", values_to = "Counts_incremental", cols = contains("-"))
-  data = left_join(x =a, y = b)%>%mutate(Date = as.Date(Date))%>%arrange(Date)
-  colnames(data)[3:4]=c(label, paste(label,"_incremental", sep=""))
+  a = data_wide %>% pivot_longer(names_to = "Date", values_to = "Counts", cols = contains("-"))
+  b = data_incremental %>% pivot_longer(names_to = "Date", values_to = "Counts_incremental", cols = contains("-"))
+  data = left_join(x = a, y = b) %>% mutate(Date = as.Date(Date)) %>% arrange(Date)
+  colnames(data)[3:4] = c(label, paste(label,"_incremental", sep = ""))
   
   # reverse column order of everything but the first
-  data_wide = data_wide[, ncol(data_wide):1]%>%select(last_col(),everything())
-  data_incremental = data_incremental[, ncol(data_incremental):1]%>%select(last_col(),everything())
+  data_wide = data_wide[, ncol(data_wide):1] %>% select(last_col(),everything())
+  data_incremental = data_incremental[, ncol(data_incremental):1] %>% select(last_col(),everything())
   
   
-  return(list(data=data, data_wide=data_wide, data_incremental_wide=data_incremental))
+  return(list(data = data, data_wide = data_wide, data_incremental_wide = data_incremental))
 }
-create_final_data=function(type = NULL,Province_name = NULL,web_data ){ 
+
+create_final_data = function(type = NULL, Province_name = NULL, web_data){ 
   # type: "Country" if by country; "State" if by US states
   if (!type %in% c("Country", "State")) stop("Please specify type as country or state.")
   data_confirmed = read_data("Confirmed", type , web_data,Province_name)
@@ -254,25 +292,33 @@ create_final_data=function(type = NULL,Province_name = NULL,web_data ){
   case_deaths_wide = data_deaths$data_wide
   case_recovered_wide = data_recovered$data_wide
   
-  data_all = Reduce(function(x, y) merge(x, y, all=TRUE), list(case_confirmed, case_deaths, case_recovered))
+  data_all = Reduce(function(x, y) merge(x, y, all = TRUE), list(case_confirmed, case_deaths, case_recovered))
   data_all$Active = data_all$Confirmed - data_all$Deaths - data_all$Recovered
   # Crude_Incidence_Rate
-  if (type == "Country"){
+  if (type == "Country") {
     data_all$Population = input_population$Population[match(data_all$Country, input_population$Country)]
-    data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
-    data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
+    data_all$Crude_Incidence_Rate = as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
+    data_all$Active_Crude_Incidence_Rate = as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
   }
-  if (type == "State"){ if(Province_name == "Hubei"){
+  if (type == "State") { if (Province_name == "Hubei") {
     data_all$Population = 59172000
-    data_all$Crude_Incidence_Rate=as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
-    data_all$Active_Crude_Incidence_Rate=as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
+    data_all$Crude_Incidence_Rate = as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
+    data_all$Active_Crude_Incidence_Rate = as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
   }}
   
-  output = list(data_all=data_all,
-                case_confirmed_wide= case_confirmed_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame(), 
-                case_confirmed_incremental_wide = case_confirmed_incremental_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame(),
-                case_deaths_wide = case_deaths_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame(), 
-                case_recovered_wide=case_recovered_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame()
+  output = list(data_all = data_all,
+                case_confirmed_wide = case_confirmed_wide %>% 
+                  column_to_rownames(var = colnames(.)[1]) %>% 
+                  as.data.frame(), 
+                case_confirmed_incremental_wide = case_confirmed_incremental_wide %>% 
+                  column_to_rownames(var = colnames(.)[1]) %>% 
+                  as.data.frame(),
+                case_deaths_wide = case_deaths_wide %>% 
+                  column_to_rownames(var = colnames(.)[1]) %>% 
+                  as.data.frame(), 
+                case_recovered_wide = case_recovered_wide %>% 
+                  column_to_rownames(var = colnames(.)[1]) %>% 
+                  as.data.frame()
   )
   return(output)  
 }
@@ -280,7 +326,7 @@ create_final_data=function(type = NULL,Province_name = NULL,web_data ){
 
 # load data
 date_today = Sys.Date()
-countries_data = create_final_data(type = "Country",web_data = web_data )
+countries_data = create_final_data(type = "Country", web_data = web_data )
 Hubei_data = create_final_data(type = "State",Province_name = "Hubei",web_data = web_data  )
 
 
@@ -288,8 +334,8 @@ Hubei_data = create_final_data(type = "State",Province_name = "Hubei",web_data =
 ## WORLDWIDE
 ##############################
 
-case_confirmed_wide= countries_data$case_confirmed_wide
-case_confirmed_incremental_wide= countries_data$case_confirmed_incremental_wide
+case_confirmed_wide = countries_data$case_confirmed_wide
+case_confirmed_incremental_wide = countries_data$case_confirmed_incremental_wide
 case_deaths_wide = countries_data$case_deaths_wide
 
 report_date = max(colnames(case_confirmed_wide))
@@ -308,7 +354,7 @@ colnames(crude_incidence_rate) = c("Region", "Confirmed_Cases", "Population")
 # add Hubei data to crude_incidence_rate
 case_confirmed_wide_hubei = Hubei_data$case_confirmed_wide
 case_confirmed_wide_hubei = case_confirmed_wide_hubei[, ncol(case_confirmed_wide_hubei):1]
-crude_incidence_rate=rbind(c("Hubei", case_confirmed_wide_hubei[, report_date], 59172000), crude_incidence_rate)
+crude_incidence_rate = rbind(c("Hubei", case_confirmed_wide_hubei[, report_date], 59172000), crude_incidence_rate)
 crude_incidence_rate$Crude_Incidence_Rate = round(as.numeric(crude_incidence_rate$Confirmed_Cases)/as.numeric(crude_incidence_rate$Population) * 100000, 0)
 write.csv(crude_incidence_rate, paste(report_date, "table_1_crude_incidence_rate.csv"), row.names = F)
 
@@ -336,30 +382,31 @@ write.csv(data_global_latest_death, paste(report_date, "table_3_case_death_lates
 # x label break for plots:
 x_min = min(data_all_countries$Date)
 x_max = max(data_all_countries$Date)
-if (as.numeric(x_max - x_min) < 15 ){
+if (as.numeric(x_max - x_min) < 15 ) {
   break.vec <- seq( x_min, x_max, by = "day")
-}else{
-  if (as.numeric(x_max - x_min)%%3 == 2){
-    break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+x_min, x_max, by = "3 days"))
-  }else{
-    break.vec <- c(x_min, seq( as.numeric(x_max - x_min)%%3+3+x_min, x_max, by = "3 days"))
+} else {
+  if (as.numeric(x_max - x_min) %% 3 == 2) {
+    break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + x_min, x_max, by = "3 days"))
+  } else {
+    break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + 3 + x_min, x_max, by = "3 days"))
   }
 }
 
 #  specify country_filter
-if (template_input){
+if (template_input) {
   country_list = read.csv("input_country_list.csv", stringsAsFactors = F)
   filter_total <- filter_incremental <- country_list$Countries
-}else{
+} else {
   temp = data_all_countries
   if (remove_mainland_china) temp = temp[!temp$Country %in% china_label, ]
-  temp=temp[temp$Date==max(data_all_countries$Date),] 
+  temp = temp[temp$Date == max(data_all_countries$Date),] 
+  
   # filter by total confirmed
-  temp_total=temp[order(temp$Confirmed, decreasing = T), ]
+  temp_total = temp[order(temp$Confirmed, decreasing = T), ]
   filter_total = temp_total$Country[1:top_n]
-  temp_incremental=temp[order(temp$Confirmed_incremental, decreasing = T), ]
+  temp_incremental = temp[order(temp$Confirmed_incremental, decreasing = T), ]
   filter_incremental = temp_incremental$Country[1:top_n]
-	
+  
   # filter by death
   temp_death = temp[order(temp$Deaths,decreasing = T),]
   filter_death = temp_death$Country[1:top_n]
@@ -374,18 +421,18 @@ color_list_country = unique(c(filter_total, filter_incremental,filter_death, "Ch
 # plot 1. total confirmed cases sort by countries cumulative
 
 # filter by country and cumulative confirmed
-data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total , ]
+data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total, ]
 # reorder factor levels by country filter order
-temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date),]
-temp = temp[order(temp$Confirmed,decreasing = T),]
+temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date), ]
+temp = temp[order(temp$Confirmed, decreasing = T),]
 country_order = temp$Country
 data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
 
-y_max=(round(max(data_to_plot_confirmed$Confirmed)/1000)+1)*1000
+y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
-p1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, colour = Country,  shape = Country)) + 
-  geom_point(size=2) + 
-  geom_line(size=1) +
+p1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Country, colour = Country,  shape = Country)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) +
   theme_bw() + 
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -393,14 +440,14 @@ p1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, col
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
   theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
+  scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-  scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+  scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p1_ylab) 
 
-ggsave(filename=paste(report_date,"p1",p1_title, ".pdf"), plot = p1, width = 10, height = 8 )
+ggsave(filename = paste(report_date,"p1",p1_title, ".pdf"), plot = p1, width = 10, height = 8 )
 
 
 # plot 1-1. total confirmed cases sort by countries cumulative (including China)
@@ -415,11 +462,11 @@ temp = temp[order(temp$Confirmed,decreasing = T),]
 country_order = temp$Country
 data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
 
-y_max=(round(max(data_to_plot_confirmed$Confirmed)/1000)+1)*1000
+y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1) * 1000
 y_interval = adjust_y_interval(y_max)
-p1_1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, colour = Country,  shape = Country)) + 
-  geom_point(size=2) + 
-  geom_line(size=1) +
+p1_1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Country, colour = Country,  shape = Country)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) +
   theme_bw() + 
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -427,14 +474,14 @@ p1_1 = ggplot(data_to_plot_confirmed , aes(x=Date, y=Confirmed, group=Country, c
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
   theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
+  scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-  scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+  scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab(p1_ylab)
 
-ggsave(filename=paste(report_date,"p1-1",p1_1_title, ".pdf"), plot = p1_1, width = 10, height = 8 )
+ggsave(filename = paste(report_date, "p1-1", p1_1_title, ".pdf"), plot = p1_1, width = 10, height = 8 )
 
 
 # plot 2. incremental cases for top N total confirmed
@@ -448,11 +495,18 @@ temp = temp[order(temp$Confirmed_incremental,decreasing = T),]
 country_order = temp$Country
 data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
 
-y_max=(round(max(data_to_plot_confirmed$Confirmed_incremental)/1000)+1)*1000
+y_max = (round(max(data_to_plot_confirmed$Confirmed_incremental)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
-p2 = ggplot(data_to_plot_confirmed, aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
-  geom_point(size=2) + 
-  geom_line(size=1) +
+
+# plot 2
+
+
+p2 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed_incremental, 
+                                        group = Country, 
+                                        colour = Country, 
+                                        shape = Country)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) +
   theme_bw() + 
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -460,14 +514,15 @@ p2 = ggplot(data_to_plot_confirmed, aes(x=Date, y=Confirmed_incremental, group=C
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
   theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
+  scale_y_continuous(breaks = seq(0,y_max, y_interval), label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-  scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+  scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+  # ggtitle("日新增确诊病例国家趋势图", subtitle = "中国及其他前五位国家") + 
   xlab("") +
   ylab(p2_ylab)
 
-ggsave(filename=paste(report_date,"p2",p2_title, ".pdf"), plot = p2, width = 10, height = 8 )
+ggsave(filename = paste(report_date,"p2",p2_title, ".pdf"), plot = p2, width = 10, height = 8 )
 
 
 
@@ -480,11 +535,14 @@ temp = temp[order(temp$Confirmed_incremental,decreasing = T),]
 country_order = temp$Country
 data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
 
-y_max=(round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000)+1)*1000
+y_max = (round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
-p3 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
-  geom_point(size=2) + 
-  geom_line(size=1) +
+p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_incremental, 
+                                                  group = Country, 
+                                                  colour = Country,
+                                                  shape = Country)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) +
   theme_bw() + 
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -492,14 +550,15 @@ p3 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increment
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
   theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
+  scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-  scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+  scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+  # ggtitle("累计确诊病例国家趋势图", subtitle = "中国及其他前五位国家") + 
   xlab("") +
   ylab(p3_ylab)
 
-ggsave(filename=paste(report_date,"p3",p3_title, ".pdf"), plot = p3, width = 10, height = 8 )
+ggsave(filename = paste(report_date,"p3",p3_title, ".pdf"), plot = p3, width = 10, height = 8 )
 
 
 
@@ -525,7 +584,7 @@ p3_1 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increme
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
   theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
   theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+  theme(legend.title = element_text(size=19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
@@ -852,20 +911,26 @@ data_to_plot_incremental$state <- factor(data_to_plot_incremental$state, levels 
 
 y_max=(round(max(data_to_plot_incremental$Confirmed_Incremental)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
-p6 = ggplot(data_to_plot_incremental , aes(x=Date, y=Confirmed_Incremental, group=state, colour = state,  shape = state)) + 
-  geom_point(size=2) + 
-  geom_line(size=1) +
+p6 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_Incremental, 
+                                          group = state, 
+                                          colour = state, 
+                                          shape = state)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) +
   theme_bw() + 
   theme(panel.border = element_blank()) +
-  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+  theme(panel.grid.major.x = element_blank(), 
+        panel.grid.minor = element_blank()) +
   theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
-  theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
+  theme(axis.text.y = element_text(size = 18), 
+        axis.title.y = element_text(size = 18)) + 
   theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  theme(legend.title = element_text(size = 19,face = "bold.italic"), 
+        legend.text = element_text(size = 18,face = "italic")) +
+  scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-  scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
+  scale_color_manual(values = color_list[match(state_order, color_list_state)]) +
   xlab("") +
   ylab(p6_ylab)
 

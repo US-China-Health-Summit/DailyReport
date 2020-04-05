@@ -33,7 +33,10 @@ trans_name = full_join(cn_name, en_name, by = "id") %>%
   select(id, name_y, name_x) %>% 
   rename(Country_cn = name_x, 
          Country = name_y) %>% 
-  unite("Country_bi", Country:Country_cn, sep = " - ", remove = F)
+  unite("Country_bi", Country:Country_cn, sep = " - ", remove = F) %>% 
+  mutate(Country = as.factor(Country), 
+         Country_cn = as.factor(Country_cn), 
+         Country_bi = as.factor(Country_bi))
 ```
 
 combine the trans_name with the original data
