@@ -846,7 +846,27 @@ case_deaths_incremental_wide = data_deaths$data_incremental_wide
 data_us_states = Reduce(function(x, y) merge(x, y, all = TRUE), list(case_confirmed, case_deaths))
 colnames(data_us_states)[grep("Province_State", colnames(data_us_states))] = "state"
 
+
+##################
+# US Hospitalize and Test Results Detail View
+##################
+
+library(httr)
+library(jsonlite)
+
+state_detail_url = 'https://covidtracking.com/api/states/daily'
+r = GET(state_detail_url)
+if (r$status != 200) stop(paste("BAD API RETURN!"))
+data_us_states_detailed = fromJSON(paste(rawToChar(r$content), collapse = ""))
+data_us_states_detailed$date = as.Date(as.character(data_us_states_detailed$date), format = "%Y%m%d")
+data_us_states_detailed$state = state_population$State_Full[match(data_us_states_detailed$state, state_population$State)]
+data_us_states_detailed$hospitalized_pct = data_us_states_detailed$hospitalized/data_us_states_detailed$positive
+
 # write to table
+# data_us_states_detailed
+report_date_us = as.character(max(data_us_states_detailed$date))
+write.csv(data_us_states_detailed, paste(report_date_us,"table_US_details_data_all.csv"), row.names = F)
+
 # sort by latest day
 Confirmed = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T),]
 Confirmed_Incremental = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T),]
@@ -866,8 +886,20 @@ data_us_states[is.na(data_us_states)] = 0
 
 # filter by latest date
 data_us_latest = data_us_states[data_us_states$Date == max(data_us_states$Date),]
+
+if (data_us_latest$Date[1] == max(data_us_states_detailed$date)) {
+  data_us_states_detailed_latest = data_us_states_detailed[data_us_states_detailed$date == max(data_us_states_detailed$date),]
+  data_us_states_detailed_latest_keep = data_us_states_detailed_latest[, c("state", "totalTestResults", "totalTestResultsIncrease")]
+  data_us_latest = merge(data_us_latest, data_us_states_detailed_latest_keep, by = "state")
+  data_us_latest$positive_rate = round(data_us_latest$Confirmed/data_us_latest$totalTestResults, 2)
+  data_us_latest$pct_test = round(data_us_latest$totalTestResults/data_us_latest$population * 100000, 0)
+  data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "crude_incidence_rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test")]
+} else {  
+  print("US test data hasn't been updated yet. Try later.")
+  data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "crude_incidence_rate")]
+}
 # table 4 
-data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "crude_incidence_rate")]
+
 data_us_latest_confirm = data_us_latest_confirm[order(data_us_latest_confirm$Confirmed, decreasing = T),]
 rownames(data_us_latest_confirm) = 1:nrow(data_us_latest_confirm)
 write.csv(data_us_latest_confirm %>% translate_state(), paste(report_date,"table_4_confirmed_cases_and_incidence_rate_US.csv"))
@@ -879,11 +911,11 @@ data_us_latest_incremental$Percentage = round(data_us_latest_incremental$Confirm
 rownames(data_us_latest_incremental) = 1:nrow(data_us_latest_incremental)
 write.csv(data_us_latest_incremental %>% translate_state(), paste(report_date,"table_5_confirmed_incremental_US.csv"))
 
-# table 7
+# table 6
 data_us_latest_fatality = data_us_latest[, c("state", "Deaths", "Fatality_rate")]
 data_us_latest_fatality = data_us_latest_fatality[order(data_us_latest_fatality$Deaths, decreasing = T),]
 rownames(data_us_latest_fatality) = 1:nrow(data_us_latest_fatality)
-write.csv(data_us_latest_fatality %>% translate_state(), paste(report_date,"table_7_fatality_US.csv"))
+write.csv(data_us_latest_fatality %>% translate_state(), paste(report_date,"table_6_fatality_US.csv"))
 
 
 # data for plots
@@ -1016,36 +1048,6 @@ p9 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = sta
   ylab(p9_ylab)
 
 ggsave(filename=paste(report_date,"p9",p9_title, ".pdf"), plot = p9, width = 10, height = 8 )
-
-
-
-
-
-
-##################
-# US Hospitalize and Test Results Detail View
-##################
-
-library(httr)
-library(jsonlite)
-
-state_detail_url = 'https://covidtracking.com/api/states/daily'
-r = GET(state_detail_url)
-if (r$status != 200) stop(paste("BAD API RETURN!"))
-data_us_states_detailed = fromJSON(paste(rawToChar(r$content), collapse = ""))
-
-data_us_states_detailed$date = as.Date(as.character(data_us_states_detailed$date), format = "%Y%m%d")
-data_us_states_detailed$hospitalized_pct = data_us_states_detailed$hospitalized/data_us_states_detailed$positive
-data_us_states_detailed$positive_rate = round(data_us_states_detailed$positive/data_us_states_detailed$totalTestResults,2)
-data_us_states_detailed$positive_rate_day = data_us_states_detailed$positiveIncrease/data_us_states_detailed$totalTestResultsIncrease
-report_date = as.character(max(data_us_states_detailed$date))
-write.csv(data_us_states_detailed, paste(report_date,"table_US_details_data_all.csv"), row.names = F)
-
-# table 6
-data_us_positive_rate_avg = data_us_states_detailed[data_us_states_detailed$date == report_date, c("state", "positive", "totalTestResults", "positive_rate")]
-data_us_positive_rate_avg = data_us_positive_rate_avg[order(data_us_positive_rate_avg$positive_rate, decreasing = T), ]
-rownames(data_us_positive_rate_avg) = 1:nrow(data_us_positive_rate_avg)
-write.csv(data_us_positive_rate_avg %>% translate_table6(), paste(report_date,"table_6_US_positive_test_rate.csv"))
 
 
 
