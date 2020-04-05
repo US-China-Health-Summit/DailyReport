@@ -1,113 +1,117 @@
-State_Full, State_cn
+State_Full, State_cn, State_abb
 
-Alabama,阿拉巴马
+Alabama,阿拉巴马, AL
 
-Alaska,阿拉斯加
+Alaska,阿拉斯加, AK
 
-Arizona,亚利桑那
+Arizona,亚利桑那, AZ
 
-Arkansas,阿肯色
+Arkansas,阿肯色, AR
 
-California, 加利福尼亚
+California, 加利福尼亚, CA
 
-Colorado, 科罗拉多
+Colorado, 科罗拉多, CO
 
-Connecticut, 康涅狄格
+Connecticut, 康涅狄格, CT
 
-Delaware, 特拉华
+Delaware, 特拉华 ,DE
 
-District of Columbia, 哥伦比亚特区
+District of Columbia, 哥伦比亚特区, DC
 
-Florida, 佛罗里达
+Florida, 佛罗里达, FL
 
-Georgia, 乔治亚
+Georgia, 乔治亚, GA
 
-Hawaii, 夏威夷
+Hawaii, 夏威夷, HI
 
-Idaho, 爱达荷
+Idaho, 爱达荷, ID
 
-Illinois, 伊利诺伊
+Illinois, 伊利诺伊, IL
 
-Indiana, 印第安纳
+Indiana, 印第安纳, IN
 
-Iowa, 爱荷华
+Iowa, 爱荷华, IA
 
-Kansas, 堪萨斯
+Kansas, 堪萨斯, KS
 
-Kentucky, 肯塔基
+Kentucky, 肯塔基, KY
 
-Lousiana, 路易斯安那
+Louisiana, 路易斯安那, LA
 
-Maine, 缅因
+Maine, 缅因, ME
 
-Maryland, 马里兰
+Maryland, 马里兰, MD
 
-Massachusetts, 马萨诸塞
+Massachusetts, 马萨诸塞, MA
 
-Michigan, 密歇根
+Michigan, 密歇根, MI
 
-Minnesota, 明尼苏达
+Minnesota, 明尼苏达, MN
 
-Mississippi, 密西西比
+Mississippi, 密西西比, MS
 
-Missouri, 密苏里
+Missouri, 密苏里, MO
 
-Montana, 蒙大拿
+Montana, 蒙大拿, MT
 
-Nebraska, 内布拉斯加
+Nebraska, 内布拉斯加, NE
 
-Nevada, 内华达
+Nevada, 内华达, NV
 
-New Hampshire, 新罕布什尔
+New Hampshire, 新罕布什尔, NH
 
-New Jersey, 新泽西
+New Jersey, 新泽西, NJ
 
-New Mexico, 新墨西哥
+New Mexico, 新墨西哥, NM
 
-New York, 纽约
+New York, 纽约, NY
 
-North Carolina, 北卡罗莱纳
+North Carolina, 北卡罗莱纳, NC
 
-North Dakota, 北达科他
+North Dakota, 北达科他, ND
 
-Ohio, 俄亥俄
+Ohio, 俄亥俄, OH
 
-Oklahoma, 俄克拉何马
+Oklahoma, 俄克拉何马, OK
 
-Oregon, 俄勒冈
+Oregon, 俄勒冈, OR
 
-Pennsylvania, 宾夕法尼亚
+Pennsylvania, 宾夕法尼亚, PA
 
-Rhode Island, 罗得岛
+Rhode Island, 罗得岛, RI
 
-South Carolina, 南卡罗来纳
+South Carolina, 南卡罗来纳, SC
 
-South Dakota, 南达科他
+South Dakota, 南达科他, SD
 
-Tennessee, 田纳西
+Tennessee, 田纳西, TN
 
-Texas, 得克萨斯
+Texas, 得克萨斯, TX
 
-Utah, 犹他
+Utah, 犹他, UT
 
-Vermont, 佛蒙特
+Vermont, 佛蒙特, VT
 
-Virginia, 弗吉尼亚
+Virginia, 弗吉尼亚, VA
 
-Washington, 华盛顿州
+Washington, 华盛顿州, WA
 
-West Virginia, 西弗吉尼亚
+West Virginia, 西弗吉尼亚, WV
 
-Wisconsin, 威斯康星
+Wisconsin, 威斯康星, WI
 
-Wyoming, 怀俄明
+Wyoming, 怀俄明, WY
 
-Guam, 关岛
+Guam, 关岛, GU
 
-U.S. Virgin Islands, 美属维京群岛
+Virgin Islands, 美属维京群岛, VI
 
-American Samoa, 美属萨摩亚
+American Samoa, 美属萨摩亚, AS
 
-Northern Mariana Islands, 北马里亚纳群岛
+Northern Mariana Islands, 北马里亚纳群岛, MP
 
-Puerto Rico, 波多黎各
+Puerto Rico, 波多黎各, PR
+
+Grand Princess, 大公主号游轮, GP
+
+Diamond Princess, 钻石公主号游轮, DP

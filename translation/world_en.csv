@@ -182,7 +182,7 @@ id,name,alpha2,alpha3
 634,Qatar,qa,qat
 638,Réunion,re,reu
 642,Romania,ro,rou
-643,"Russian",ru,rus
+643,"Russia",ru,rus
 646,Rwanda,rw,rwa
 652,"Saint Barthélemy",bl,blm
 654,"Saint Helena, Ascension and Tristan da Cunha",sh,shn
@@ -252,4 +252,5 @@ id,name,alpha2,alpha3
 8888,"Diamond Princess",dp,diap
 7777,"West Bank and Gaza",wbg,wbgz
 6666,Kosovo,xk,xkx
+5555,"MS Zaandam",mz,mzd
 
