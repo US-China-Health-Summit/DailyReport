@@ -427,16 +427,12 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
   
   output = list(data_all = data_all,
                 case_confirmed_wide = case_confirmed_wide %>% 
-                  column_to_rownames(var = colnames(.)[1]) %>% 
                   as.data.frame(), 
                 case_confirmed_incremental_wide = case_confirmed_incremental_wide %>% 
-                  column_to_rownames(var = colnames(.)[1]) %>% 
                   as.data.frame(),
                 case_deaths_wide = case_deaths_wide %>% 
-                  column_to_rownames(var = colnames(.)[1]) %>% 
                   as.data.frame(), 
                 case_recovered_wide = case_recovered_wide %>% 
-                  column_to_rownames(var = colnames(.)[1]) %>% 
                   as.data.frame()
   )
   return(output)  
@@ -457,7 +453,7 @@ case_confirmed_wide = countries_data$case_confirmed_wide
 case_confirmed_incremental_wide = countries_data$case_confirmed_incremental_wide
 case_deaths_wide = countries_data$case_deaths_wide
 
-report_date = max(colnames(case_confirmed_wide))
+report_date = max(colnames(case_confirmed_wide)[-1])
 
 # time series table
 case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T), ]
@@ -833,64 +829,6 @@ ggsave(filename=paste(report_date,"p10_1",p10_1_title, ".pdf"), plot = p10_1, wi
 
 
 ##############################
-## US Active Deaths Recovered
-##############################
-
-### US Active Deaths Recovered Table
-case_confirmed_wide = countries_data$case_confirmed_wide
-case_deaths_wide = countries_data$case_deaths_wide
-
-US_Confirmed = case_confirmed_wide[rownames(case_confirmed_wide) == "US",]
-US_Deaths = case_deaths_wide[rownames(case_deaths_wide) == "US",]
-# US_Recoverd = case_recovered_wide[rownames(case_recovered_wide) == "US",]
-# US_Active = US_Confirmed - US_Deaths - US_Recoverd
-# US_tbl = rbind(US_Active, US_Deaths, US_Recoverd)
-US_tbl = rbind(US_Confirmed, US_Deaths)
-rownames(US_tbl) = c("Total Confirmed","Deaths")
-# reverse column order 
-US_tbl = US_tbl[, ncol(US_tbl):1]
-write_csv(US_tbl, paste(report_date,"table_active_deaths_recovered_US.csv"))
-
-# plot 4: US only Active Deaths Recovered
-temp = data_all_countries[data_all_countries$Country =='US' , c("Country/Region", "Date", "Confirmed", "Deaths")]
-data_to_plot_us = reshape(data=temp, 
-                          idvar=c("Country/Region", "Date"),
-                          varying = names(temp)[-(1:2)],
-                          v.name=c("Cases"),
-                          times=names(temp)[-(1:2)],
-                          new.row.names = 1:(nrow(temp)*(ncol(temp)-2)),
-                          direction="long")
-colnames(data_to_plot_us)[grep("time", names(data_to_plot_us))] = "Status"
-
-# reorder label 
-temp = data_to_plot_us[data_to_plot_us$Date == max(data_to_plot_us$Date),]
-temp = temp[order(temp$Cases,decreasing = T),]
-status_order = temp$Status
-data_to_plot_us$Status <- factor(data_to_plot_us$Status, levels = status_order)
-
-y_max=(round(max(data_to_plot_us$Cases)/1000)+1)*1000
-y_interval = adjust_y_interval(y_max)
-p4 = ggplot(data_to_plot_us , aes(x=Date, y=Cases, group=Status, colour = Status,  shape = Status)) + 
-  geom_point(size=2) + 
-  geom_line(size=1) +
-  theme_bw() + 
-  theme(panel.border = element_blank()) +
-  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
-  theme(axis.line = element_line(colour = "black")) + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
-  theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
-  theme(legend.position = c(0.15, 0.8)) + 
-  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
-  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
-  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-  xlab("") +
-  ylab(p4_ylab)
-
-ggsave(filename=paste(report_date,"p4",p4_title, ".pdf"), plot = p4, width = 10, height = 8 )
-
-
-
-##############################
 ## US by states
 ##############################
 
@@ -942,8 +880,8 @@ read_data_us = function(label){
   data_incremental = data_incremental[, ncol(data_incremental):1]%>%select(last_col(),everything())
   
   return(list(data=data, 
-				data_wide=data_wide%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame(), 
-				data_incremental_wide=data_incremental%>%column_to_rownames(var=colnames(.)[1])%>%as.data.frame()))
+				data_wide=data_wide %>% as.data.frame(), 
+				data_incremental_wide=data_incremental %>% as.data.frame()))
 	
 }
 
