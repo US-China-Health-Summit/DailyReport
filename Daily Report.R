@@ -368,7 +368,7 @@ if (template_input){
 }
 
 
-color_list_country = unique(c(filter_total, filter_incremental,filter_death, "China", "Hubei"))
+color_list_country = unique(c(filter_total, filter_incremental,filter_death, filter_death_incremental, "China", "Hubei"))
 
 # plot 1. total confirmed cases sort by countries cumulative
 
@@ -840,7 +840,7 @@ if (as.numeric(x_max - x_min) < 15 ){
   }
 }
 
-color_list_state = unique(c(filter_total, filter_incremental, filter_death.filter_death_incremental))
+color_list_state = unique(c(filter_total, filter_incremental, filter_death, filter_death_incremental))
 
 # plot 5: total confirmed cases by US States sort by Cumulative 
 data_to_plot = data_us_states[data_us_states$state %in% filter_total, ]
