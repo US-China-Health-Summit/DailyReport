@@ -115,3 +115,5 @@ Puerto Rico, 波多黎各, PR
 Grand Princess, 大公主号游轮, GP
 
 Diamond Princess, 钻石公主号游轮, DP
+
+United States, 美国, US
