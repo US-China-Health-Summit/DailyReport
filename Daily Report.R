@@ -121,12 +121,12 @@ p8_ylab = input_plot_titles$Input[input_plot_titles$Item=="p8_ylab"]
 p9_title = input_plot_titles$Input[input_plot_titles$Item=="p9_title"]
 p9_xlab = input_plot_titles$Input[input_plot_titles$Item=="p9_xlab"]
 p9_ylab = input_plot_titles$Input[input_plot_titles$Item=="p9_ylab"]
-# p10_1_title = input_plot_titles$Input[input_plot_titles$Item=="p_1_title"]
-# p10_xlab = input_plot_titles$Input[input_plot_titles$Item=="p10_xlab"]
-# p10_ylab = input_plot_titles$Input[input_plot_titles$Item=="p10_ylab"]
-# p11_title = input_plot_titles$Input[input_plot_titles$Item=="p11_title"]
-# p11_xlab = input_plot_titles$Input[input_plot_titles$Item=="p11_xlab"]
-# p11_ylab = input_plot_titles$Input[input_plot_titles$Item=="p11_ylab"]
+p10_1_title = input_plot_titles$Input[input_plot_titles$Item=="p10_1_title"]
+p10_xlab = input_plot_titles$Input[input_plot_titles$Item=="p10_xlab"]
+p10_ylab = input_plot_titles$Input[input_plot_titles$Item=="p10_ylab"]
+p11_title = input_plot_titles$Input[input_plot_titles$Item=="p11_title"]
+p11_xlab = input_plot_titles$Input[input_plot_titles$Item=="p11_xlab"]
+p11_ylab = input_plot_titles$Input[input_plot_titles$Item=="p11_ylab"]
 
 time_series_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/"
 web_data_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/"
@@ -363,9 +363,8 @@ if (template_input){
   # filter by death
   temp_death = temp[order(temp$Deaths,decreasing = T),]
   filter_death = temp_death$Country[1:top_n]
-  # temp_death_incremental = temp[order(temp$Death_incremental, decreasing = T),]
-  # filter_death_incremental = temp_death_incremental$Country[1:top_n]
-  # 
+  temp_death_incremental = temp[order(temp$Deaths_incremental, decreasing = T),]
+  filter_death_incremental = temp_death_incremental$Country[1:top_n]
 }
 
 
@@ -608,6 +607,38 @@ p8_1 = ggplot(data_to_plot_death_total , aes(x=Date, y= Deaths, group=Country, c
 
 ggsave(filename=paste(report_date,"p8-1",p8_1_title, ".pdf"), plot = p8_1, width = 10, height = 8 )
 
+# plot 10-1. incremental cases for top N deaths 
+
+# filter by country and death incremental
+data_to_plot_death_incremental = data_all_countries[data_all_countries$Country %in% filter_death_incremental, ]
+
+# reorder factor levels by country filter order
+temp = data_to_plot_death_incremental[data_to_plot_death_incremental$Date == max(data_to_plot_death_incremental$Date),]
+temp = temp[order(temp$Deaths_incremental,decreasing = T),]
+country_order = temp$Country
+data_to_plot_death_incremental$Country <- factor(data_to_plot_death_incremental$Country, levels = country_order)
+
+y_max=(round(max(data_to_plot_death_incremental$Deaths_incremental)/1000)+1)*1000
+y_interval = adjust_y_interval(y_max)
+p10_1 = ggplot(data_to_plot_death_incremental, aes(x=Date, y=Deaths_incremental, group=Country, colour = Country,  shape = Country)) + 
+  geom_point(size=2) + 
+  geom_line(size=1) +
+  theme_bw() + 
+  theme(panel.border = element_blank()) +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+  theme(axis.line = element_line(colour = "black")) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
+  theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
+  theme(legend.position = c(0.15, 0.8)) + 
+  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+  scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+  xlab("") +
+  ylab(p10_ylab)
+
+ggsave(filename=paste(report_date,"p10_1",p10_1_title, ".pdf"), plot = p10_1, width = 10, height = 8 )
+
 
 
 ##############################
@@ -790,8 +821,10 @@ if (template_input){
   filter_total = temp_total$state[1:top_n]
   temp_incremental=temp[order(temp$Confirmed_Incremental, decreasing = T), ]
   filter_incremental = temp_incremental$state[1:top_n]
-	temp_death = temp[order(temp$Deaths, decreasing = T),]
-  filter_death =temp_death$state[1:top_n]				
+  temp_death = temp[order(temp$Deaths, decreasing = T),]
+  filter_death =temp_death$state[1:top_n]
+  temp_death_incremental = temp[order(temp$Deaths_Incremental, decreasing = T),]
+  filter_death_incremental =  temp_death_incremental$state[1:top_n]
 }
 
 # x label break for all plots:
@@ -807,7 +840,7 @@ if (as.numeric(x_max - x_min) < 15 ){
   }
 }
 
-color_list_state = unique(c(filter_total, filter_incremental, filter_death))
+color_list_state = unique(c(filter_total, filter_incremental, filter_death.filter_death_incremental))
 
 # plot 5: total confirmed cases by US States sort by Cumulative 
 data_to_plot = data_us_states[data_us_states$state %in% filter_total, ]
@@ -899,6 +932,36 @@ p9 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = sta
   ylab(p9_ylab)
 
 ggsave(filename=paste(report_date,"p9",p9_title, ".pdf"), plot = p9, width = 10, height = 8 )
+
+# plot 11: new death cases daily by US States sort by incremental
+data_to_plot_death_incremental = data_us_states[data_us_states$state %in% filter_death_incremental , ]
+
+# reorder factor levels by country filter order
+temp = data_to_plot_death_incremental[data_to_plot_death_incremental$Date == max(data_to_plot_death_incremental$Date),]
+temp = temp[order(temp$Deaths_Incremental,decreasing = T),]
+state_order = temp$state
+data_to_plot_death_incremental$state <- factor(data_to_plot_death_incremental$state, levels = state_order)
+
+y_max=(round(max(data_to_plot_death_incremental$Deaths_Incremental)/100)+1)*100
+y_interval = adjust_y_interval(y_max)
+p11 = ggplot(data_to_plot_death_incremental , aes(x=Date, y=Deaths_Incremental, group=state, colour = state,  shape = state)) + 
+  geom_point(size=2) + 
+  geom_line(size=1) +
+  theme_bw() + 
+  theme(panel.border = element_blank()) +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+  theme(axis.line = element_line(colour = "black")) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
+  theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
+  theme(legend.position = c(0.15, 0.8)) + 
+  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
+  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+  scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
+  xlab("") +
+  ylab(p11_ylab)
+
+ggsave(filename=paste(report_date,"p11",p11_title, ".pdf"), plot = p11, width = 10, height = 8 )
 
 
 
