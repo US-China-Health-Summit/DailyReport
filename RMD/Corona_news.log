@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.1)  6 APR 2020 15:54
+=======
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  5 APR 2020 18:40
+>>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1281,7 +1285,11 @@ LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [2]
+<<<<<<< HEAD
 Overfull \hbox (80.44934pt too wide) in paragraph at lines 293--309
+=======
+Overfull \hbox (80.44934pt too wide) in paragraph at lines 292--308
+>>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
  [][] 
  []
 
@@ -1302,12 +1310,20 @@ File: ./input/covid5.pdf Graphic file (type pdf)
 File: ./input/covid5.pdf Graphic file (type pdf)
 <use ./input/covid5.pdf>
 
+<<<<<<< HEAD
 Overfull \hbox (14.78288pt too wide) in paragraph at lines 390--406
+=======
+Overfull \hbox (14.78288pt too wide) in paragraph at lines 389--405
+>>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
  [][] 
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (50.58435pt too wide) in paragraph at lines 384--430
+=======
+Overfull \hbox (50.58435pt too wide) in paragraph at lines 383--429
+>>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
 []$[]$$[]$ 
  []
 
@@ -1336,6 +1352,7 @@ nguage=dflt;mapping=tex-text;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/FandolFang-Regular(0)/m/n' will be
+<<<<<<< HEAD
 (Font)              scaled to size 11.29248pt on input line 434.
 Missing character: There is no 祎 in font [FandolFang-Regular.otf]/OT:language=d
 flt;mapping=tex-text;!
@@ -1347,12 +1364,29 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 441.
 (./Corona_news.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 441.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 441.
+=======
+(Font)              scaled to size 12.23352pt on input line 433.
+Missing character: There is no 祎 in font [FandolFang-Regular.otf]/OT:language=d
+flt;mapping=tex-text;!
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 440.
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
+[5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 440.
+(./Corona_news.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 440.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 440.
+>>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
 Package rerunfilecheck Info: File `Corona_news.out' has not changed.
 (rerunfilecheck)             Checksum: 96EA43799EBE7B189B7CDB2DFC24AB53;145.
 
 LaTeX Warning: There were multiply-defined labels.
 
+<<<<<<< HEAD
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 441.
+=======
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 440.
+>>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
  ) 
 Here is how much of TeX's memory you used:
  23539 strings out of 481765

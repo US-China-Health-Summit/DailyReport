@@ -14,7 +14,6 @@ first read the csv files that needs to be updated with Chinese translation
 ```{r}
 # input_country_population.csv
 input_ctry_pop = read_csv("input_country_population.csv", locale = locale(encoding = "UTF-8"))
-input_state_pop = read_csv("input_state_population.csv", locale = locale(encoding = "UTF-8"))
 ```
 
 
@@ -23,8 +22,8 @@ input_state_pop = read_csv("input_state_population.csv", locale = locale(encodin
 import new data of corresponding Chinese name
 data are downloaded from http://stefangabos.github.io/world_countries/
 ```{r}
-cn_name = read_csv("./translation/cn/world.csv")
-en_name = read_csv("./translation/en/world.csv")
+cn_name = read_csv("./translation/world_cn.csv")
+en_name = read_csv("./translation/world_en.csv")
 
 # combine the two name dataframes
 # trans_name = cbind(cn_name, en_name)
@@ -33,7 +32,11 @@ trans_name = full_join(cn_name, en_name, by = "id") %>%
   select(id, name_y, name_x) %>% 
   rename(Country_cn = name_x, 
          Country = name_y) %>% 
-  unite("Country_bi", Country:Country_cn, sep = " - ", remove = F)
+  select(id, Country_cn, Country) %>% 
+  unite("Country_bi", Country_cn:Country, sep = " ", remove = F) %>% 
+  mutate(Country = as.factor(Country), 
+         Country_cn = as.factor(Country_cn), 
+         Country_bi = as.factor(Country_bi))
 ```
 
 combine the trans_name with the original data
@@ -41,7 +44,7 @@ combine the trans_name with the original data
 note that I save the country id in the dataframe in case we need it in the future
 but feel free to remove it
 ```{r}
-new_ctry_pop = left_join(input_ctry_pop, trans_name, by = "Country")
+input_ctry_pop_trans = left_join(input_ctry_pop, trans_name, by = "Country")
 ```
 
 write the dataframe into csv file
@@ -56,14 +59,16 @@ write_csv(new_ctry_pop, path = "input_country_population_translated.csv")
 modified from https://blogs.transparent.com/chinese/us-states-in-chinese/
 ```{r}
 state_cn = read_csv("./translation/state_translate.txt")
+input_state_pop = read_csv("input_state_population.csv", locale = locale(encoding = "UTF-8"))
+
 ```
 
 join state_cn with input_state_population dataframe
 ```{r}
 input_state_pop_translated = left_join(input_state_pop, state_cn, 
                                        by = "State_Full") %>% 
-  select(State, State_Full, State_cn, Population) %>% 
-  unite("State_bi", State_Full:State_cn, sep = " - ", remove = F)
+  select(State_Full, State_cn, State, Population) %>% 
+  unite("State_bi", State_cn:State, sep = " ", remove = F)
 ```
 
 wirte the translated state population dataframe into csv file

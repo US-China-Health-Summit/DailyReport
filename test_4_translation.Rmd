@@ -1,0 +1,267 @@
+---
+title: "test for translation"
+author: "wwqi4realGitHub"
+date: "4/4/2020"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+# function module
+
+*before you run test on the code below, make sure you have all the files in correct paths*
+
+*if edit, make sure you update the changes to Daily Report.R*
+
+```{r}
+translate_country = function(ut_data) {
+  
+  # wwqi4realGitHub Apr 4
+  # ut_data: untranslated data frame, which is used for plots/tables
+  # for the table part, Hubei translation is now supported
+  # csv file is modified to support different country names (mainly for table 1 input)
+  
+  # support data input of 
+  # plot: 2,3 (tho ggplot doesnt support Chinses char well)
+  # table: 1,2,3
+  
+  
+  
+  # read in the CN-EN data
+  cn_name = read_csv("./translation/world_cn.csv")
+  en_name = read_csv("./translation/world_en.csv")
+  
+  # combine the two name dataframes
+  # trans_name = cbind(cn_name, en_name)
+  
+  trans_name = full_join(cn_name, en_name, by = "id") %>% 
+  janitor::clean_names() %>% 
+  select(name_x, name_y) %>% 
+  rename(Country_cn = name_x, 
+         Country = name_y) %>% 
+  unite("Country_bi", Country_cn:Country, sep = " ", remove = F)
+  
+  t_data = left_join(ut_data, trans_name, by = "Country") %>% 
+    # in this step coercing warning will show up but dont worry
+    mutate(Country =  as.factor(as.character(Country)), 
+           Country_cn = as.factor(as.character(Country_cn)), 
+           Country_bi = as.factor(as.character(Country_bi)))
+  
+  print("[Just if] Ignore the [coercing] warning, already taken care of")
+  return(t_data)
+}
+
+translate_state = function(ut_data) {
+  
+  # wwqi4realGitHub Apr 5
+  # ut_data: untranslated data frame, which is used for plots/tables
+  
+  # support data input of 
+  # plot: 
+  # table: 4,5,7
+  
+  state_cn = read_csv("./translation/state_translate.txt") %>% 
+    rename(state = State_Full) %>% 
+    janitor::clean_names()
+  
+  t_data = left_join(ut_data, state_cn, by = "state") %>% 
+    select(state_cn, state, everything()) %>% 
+    unite("state_bi", state_cn, state_abb, sep = " ", remove = F)
+  
+  return(t_data)
+  
+}
+
+translate_country_colname = function(ut_data, x) {
+  
+  # wwqi4realGutHub
+  # translate column names in table 1, 2, 3
+  # x = number of the table
+  
+  if (x == 1) {
+    
+    t_data = ut_data %>% 
+      select(Country_bi, Confirmed_Cases, Population, Crude_Incidence_Rate) %>% 
+      rename("国家" = Country_bi, 
+             "累计确诊病例" = Confirmed_Cases, 
+             "国家/省份人口" = Population, 
+             "粗发病率" = Crude_Incidence_Rate)
+    
+    return(t_data)
+    
+  } else if (x == 2) {
+    t_data = ut_data %>% 
+      select(Country_bi, Confirmed) %>% 
+      rename("国家" = Country_bi, 
+             "当日新增病例" = Confirmed)
+    
+    return(t_data)
+  } else if (x == 3) {
+    
+    t_data = ut_data %>% 
+      select(Country_bi, Deaths, Deaths_incremental, Fatality_rate) %>% 
+      rename("国家" = Country_bi, 
+             "累计死亡病例" = Deaths, 
+             "较昨日" = Deaths_incremental, 
+             "病死率" = Fatality_rate)
+    
+    return(t_data)
+  } else {
+    warning("x can only be 1, 2, 3; column name is NOT translated")
+    return(ut_data)
+  }
+}
+
+translate_state_colname = function(ut_data, x) {
+  
+  # wwqi4realGutHub
+  # translate column names in table 4, 5, 6
+  # x = number of the table
+  
+  if (x == 4) {
+    
+    t_data = ut_data %>% 
+      select(state_bi, Confirmed, crude_incidence_rate, positive_rate, totalTestResults, totalTestResultsIncrease, pct_test) %>% 
+      rename("州名" = state_bi, 
+             "累计确诊" = Confirmed, 
+             "粗发病率" = crude_incidence_rate, 
+             "阳性率%" = positive_rate, 
+             "累计检测" = totalTestResults, 
+             "较昨日" = totalTestResultsIncrease, 
+             "检测率" = pct_test)
+    
+    return(t_data)
+    
+  } else if (x == 5) {
+    t_data = ut_data %>% 
+      select(state_bi, Confirmed_Incremental, Percentage)
+      rename("州名" = state_bi, 
+             "当日新增" = Confirmed_Incremental, 
+             "全美比率" = Percentage)
+    
+    return(t_data)
+  } else if (x == 6) {
+    
+    t_data = ut_data %>% 
+      select(state_bi, Deaths, Fatality_rate)
+      rename("州名" = state_bi, 
+             "累计死亡人数" = Deaths, 
+             "病死率" = Fatality_rate)
+    
+    return(t_data)
+  } else {
+    
+    warning("x can only be 4, 5, 6; column name is NOT translated")
+    return(ut_data)
+  }
+}
+```
+
+```{r no longer in use}
+# not longer in use
+# table 6 is deleted
+
+# translate_table6 = function(ut_data) {
+#   
+#   # wwqi4realGitHub Apr 5
+#   # ut_data: untranslated data frame, which is used for plots/tables
+#   
+#   # support data input of 
+#   # plot: 
+#   # table: 6
+#   
+#   state_cn = read_csv("./translation/state_translate.txt") %>% 
+#     janitor::clean_names() %>% 
+#     rename(state = state_abb)
+#   
+#   t_data = left_join(ut_data, state_cn, by = "state") %>% 
+#   select(state_cn, state, everything()) %>% 
+#   unite("state_bi", state_cn, state, sep = " ", remove = F)
+#   
+# }
+```
+
+# test module
+
+### global countries and regions
+
+the data below is from Daily Report.R 
+
+To test, pls first run the R script to make sure the data is in Environment
+
+```{r}
+# Apr 4: pass for plot 2 and 3 data
+pt2 = data_to_plot_confirmed %>% translate_country()
+
+pt3 = data_to_plot_confirmed_increment %>% translate_country()
+```
+
+note0404: that table 1 use region as the 'country' name; considering use a different function
+update0405: change the name in table 1 code, ignore note0403
+
+```{r}
+# 0404: pass for table 1
+# 0405: no NA now, all check
+  # tidy the form to template
+# 
+tt1 = crude_incidence_rate %>% 
+  translate_country() %>% 
+  translate_country_colname(1)
+```
+
+```{r}
+# 0405 pass for table 2
+  # tidy the form to template
+tt2 = data_global_latest_confirmed %>% 
+  rename("Country" = "Country/Region") %>% 
+  translate_country() %>% 
+  translate_country_colname(2)
+```
+
+```{r}
+# 0405 pass for table 3
+tt3 = data_global_latest_death %>% 
+  rename("Country" = "Country/Region") %>% 
+  translate_country() %>% 
+  translate_country_colname(3)
+```
+
+### US states 
+
+```{r}
+# 0405 pass for table 4
+tt4 = data_us_latest_confirm %>% 
+  translate_state() %>% 
+  translate_state_colname(4)
+```
+
+```{r}
+# 0405 pass for table 5
+tt5 = data_us_latest_incremental %>% 
+  translate_state() %>% 
+  translate_state_colname(5)
+```
+
+```{r}
+# 0405 pass for table 7
+# tt7 = data_us_latest_fatality %>% translate_state()
+# 0405 update: removed table 6, now table 7 is called table 6 
+tt6 = data_us_latest_fatality %>% 
+  translate_state() %>% 
+  translate_state_colname(6)
+```
+
+```{r}
+# table 6 use different input, therefore use a separate function
+# 0405 pass for table 6
+# 0405 update table 6 is removed
+# tt6 = data_us_positive_rate_avg %>% translate_table6()
+```
+
+
+---
+
