@@ -72,7 +72,7 @@ web_data = TRUE
 
 ############################################################
 
-list.of.packages <- c("ggplot2", "jsonlite", "httr","tidyverse")
+list.of.packages <- c("ggplot2", "RCurl", "tidyverse")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if (length(new.packages)) {install.packages(new.packages)}
 if (packageVersion("tidyverse") != "1.3.0") {install.packages("tidyverse")}
