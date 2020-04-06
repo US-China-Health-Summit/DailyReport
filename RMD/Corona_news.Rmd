@@ -8,7 +8,9 @@ header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
     - \usepackage{fancyhdr}
-    - \cfoot{\thepage} 
+    - \pagestyle{fancy}
+    - \cfoot{\thepage}
+    
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
     - \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
@@ -26,7 +28,6 @@ header-includes:
     - \usepackage{booktabs}
     - \usepackage[justification=centering]{caption}
     - \usepackage{threeparttable}
-    - \usepackage{booktabs}
     - \usepackage{longtable}
     - \usepackage{array}
     - \usepackage{multirow}
@@ -40,7 +41,6 @@ header-includes:
     - \usepackage[normalem]{ulem}
     - \usepackage{makecell}
     - \usepackage{xcolor}
-    - \usepackage{booktabs}
 
     - \linespread{1.15}
     - \setlength{\parskip}{0.3em}
@@ -52,7 +52,7 @@ header-includes:
     - \topmargin -1in
     
 ---
-\fontsize{13}{13}
+\fontsize{12}{12}
 \selectfont
 
 
@@ -71,6 +71,7 @@ header-includes:
 
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{30pt} 
+
 
 \resheading{\Large 每日新闻}
 
@@ -116,6 +117,10 @@ native_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 `r international_news$content[5]`
 
+**\textcolor{glaucous}{`r international_news$pub[6]`}** : **`r international_news$title[6]`**
+
+`r international_news$content[5]`
+
 ## \textcolor{glaucous}{\Large 国内}
 **\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
 
@@ -124,7 +129,6 @@ native_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 **\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[2]`**
 
 `r international_news$content[2]`
-
 
 
 
