@@ -8,6 +8,7 @@ header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
     - \usepackage{fancyhdr}
+    - \cfoot{\thepage} 
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
     - \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
@@ -16,7 +17,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{a4paper,scale=0.8}
+    - \geometry{a4paper,scale=1}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage{subfigure}
@@ -41,14 +42,15 @@ header-includes:
     - \usepackage{xcolor}
     - \usepackage{booktabs}
 
-    - \linespread{1.0}
-    - \setlength{\parskip}{0.5em}
+    - \linespread{1.15}
+    - \setlength{\parskip}{0.3em}
 
     - \textwidth 7in
     - \textheight 9.95in
     - \oddsidemargin -.25in
     - \evensidemargin -.25in
     - \topmargin -1in
+    
 ---
 \fontsize{13}{13}
 \selectfont
@@ -84,11 +86,11 @@ library(knitr)
 library(xtable)
 library(kableExtra)
 
-international_news = read_excel("./input/international_news.xlsx") %>%
+international_news = read_excel("./input/news.xlsx",sheet = 1) %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 
-native_news = read_excel("./input/native_news.xlsx") %>%
+native_news = read_excel("./input/news.xlsx", sheet = 2) %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 ```
@@ -98,32 +100,38 @@ native_news = read_excel("./input/native_news.xlsx") %>%
 
 `r international_news$content[1]`
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r international_news$pub[2]`}** : **`r international_news$title[2]`**
 
-`r international_news$content[1]`
+`r international_news$content[2]`
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r international_news$pub[3]`}** : **`r international_news$title[3]`**
 
-`r international_news$content[1]`
+`r international_news$content[3]`
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r international_news$pub[4]`}** : **`r international_news$title[4]`**
 
-`r international_news$content[1]`
+`r international_news$content[4]`
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r international_news$pub[5]`}** : **`r international_news$title[5]`**
 
-`r international_news$content[1]`
+`r international_news$content[5]`
 
 ## \textcolor{glaucous}{\Large 国内}
 **\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
 
 `r international_news$content[1]`
 
-**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
+**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[2]`**
 
-`r international_news$content[1]`
+`r international_news$content[2]`
+
+
+
 
 \newpage
+
+
+
 
 \resheading{\Large 疫情观察}
 
