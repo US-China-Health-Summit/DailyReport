@@ -245,15 +245,23 @@ translate_state_colname = function(ut_data, x) {
   
   if (x == 4) {
     
-    t_data = ut_data %>% 
-      select(state_bi, Confirmed, crude_incidence_rate, positive_rate, totalTestResults, totalTestResultsIncrease, pct_test) %>% 
-      rename("州名" = state_bi, 
-             "累计确诊" = Confirmed, 
-             "粗发病率" = crude_incidence_rate, 
-             "阳性率%" = positive_rate, 
-             "累计检测" = totalTestResults, 
-             "较昨日" = totalTestResultsIncrease, 
-             "检测率" = pct_test)
+    if ("positive_rate" %in% colnames(ut_data)) {
+      t_data = ut_data %>% 
+        select(state_bi, Confirmed, crude_incidence_rate, positive_rate, totalTestResults, totalTestResultsIncrease, pct_test) %>% 
+        rename("州名" = state_bi, 
+               "累计确诊" = Confirmed, 
+               "粗发病率" = crude_incidence_rate, 
+               "阳性率%" = positive_rate, 
+               "累计检测" = totalTestResults, 
+               "较昨日" = totalTestResultsIncrease, 
+               "检测率" = pct_test)
+    } else {
+      t_data = ut_data %>% 
+        select(state_bi, Confirmed, crude_incidence_rate) %>% 
+        rename("州名" = state_bi, 
+               "累计确诊" = Confirmed, 
+               "粗发病率" = crude_incidence_rate)
+    }
     
     return(t_data)
     
