@@ -258,7 +258,7 @@ translate_state_colname = function(ut_data, x) {
     
   } else if (x == 5) {
     t_data = ut_data %>% 
-      select(state_bi, Confirmed_Incremental, Percentage)
+      select(state_bi, Confirmed_Incremental, Percentage) %>%
     rename("州名" = state_bi, 
            "当日新增" = Confirmed_Incremental, 
            "全美比率" = Percentage)
@@ -267,7 +267,7 @@ translate_state_colname = function(ut_data, x) {
   } else if (x == 6) {
     
     t_data = ut_data %>% 
-      select(state_bi, Deaths, Fatality_rate)
+      select(state_bi, Deaths, Fatality_rate) %>%
     rename("州名" = state_bi, 
            "累计死亡人数" = Deaths, 
            "病死率" = Fatality_rate)
@@ -454,9 +454,9 @@ report_date = max(colnames(case_confirmed_wide))
 case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T), ]
 case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T), ]
 case_deaths_wide = case_deaths_wide[order(case_deaths_wide[,report_date], decreasing = T), ]
-write.csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
-write.csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental.csv"))
-write.csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
+write_csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
+write_csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental.csv"))
+write_csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
 
 # table 1
 crude_incidence_rate = as.data.frame(cbind(row.names(case_confirmed_wide), case_confirmed_wide[, report_date], input_population$Population[match(row.names(case_confirmed_wide), input_population$Country)]), stringsAsFactors = F)
@@ -466,10 +466,12 @@ case_confirmed_wide_hubei = Hubei_data$case_confirmed_wide
 case_confirmed_wide_hubei = case_confirmed_wide_hubei[, ncol(case_confirmed_wide_hubei):1]
 crude_incidence_rate = rbind(c("Hubei", case_confirmed_wide_hubei[, report_date], 59172000), crude_incidence_rate)
 crude_incidence_rate$Crude_Incidence_Rate = round(as.numeric(crude_incidence_rate$Confirmed_Cases)/as.numeric(crude_incidence_rate$Population) * 100000, 0)
-write.csv(crude_incidence_rate %>% 
+write_csv(crude_incidence_rate, paste(report_date, "table_1_crude_incidence_rate.csv"))
+write_csv(crude_incidence_rate %>% 
             translate_country() %>% 
-            translate_country_colname(1), paste(report_date, "table_1_crude_incidence_rate.csv"), row.names = F)
+            translate_country_colname(1), paste(report_date, "table_1_crude_incidence_rate_ch.csv"))
 
+						
 # data for plots
 data_all_countries = countries_data$data_all
 data_all_countries = filter_by_date(data_all_countries, "Date", start_date, end_date)
@@ -481,23 +483,24 @@ data_global_latest$Fatality_rate = round(data_global_latest$Deaths/data_global_l
 data_global_latest_confirmed = data_global_latest[,c("Country/Region", "Confirmed")]
 data_global_latest_confirmed = data_global_latest_confirmed[order(data_global_latest_confirmed$Confirmed, decreasing = T), ]
 rownames(data_global_latest_confirmed) = 1:nrow(data_global_latest_confirmed)
-write.csv(data_global_latest_confirmed %>% 
+write_csv(data_global_latest_confirmed, paste(report_date, "table_2_case_confirmed_latest_date.csv"))
+write_csv(data_global_latest_confirmed %>% 
             rename("Country" = "Country/Region") %>% 
             translate_country() %>% 
             translate_country_colname(2), 
-          paste(report_date, "table_2_case_confirmed_latest_date.csv"))
+          paste(report_date, "table_2_case_confirmed_latest_date_ch.csv"))
 
 # table 3
 
 data_global_latest_death = data_global_latest[,c("Country/Region", "Deaths", "Deaths_incremental", "Fatality_rate")]
 data_global_latest_death = data_global_latest_death[order(data_global_latest_death$Deaths, decreasing = T), ]
 rownames(data_global_latest_death) = 1:nrow(data_global_latest_death)
-write.csv(data_global_latest_death %>% 
+write_csv(data_global_latest_death, paste(report_date, "table_3_case_death_latest_date.csv"))
+write_csv(data_global_latest_death %>% 
             rename("Country" = "Country/Region") %>% 
             translate_country() %>% 
             translate_country_colname(3), 
-          paste(report_date, "table_3_case_death_latest_date.csv"))
-
+          paste(report_date, "table_3_case_death_latest_date_ch.csv"))
 
 # x label break for plots:
 x_min = min(data_all_countries$Date)
@@ -806,7 +809,7 @@ US_tbl = rbind(US_Confirmed, US_Deaths)
 rownames(US_tbl) = c("Total Confirmed","Deaths")
 # reverse column order 
 US_tbl = US_tbl[, ncol(US_tbl):1]
-write.csv(US_tbl, paste(report_date,"table_active_deaths_recovered_US.csv"))
+write_csv(US_tbl, paste(report_date,"table_active_deaths_recovered_US.csv"))
 
 # plot 4: US only Active Deaths Recovered
 temp = data_all_countries[data_all_countries$Country =='US' , c("Country/Region", "Date", "Confirmed", "Deaths")]
@@ -937,17 +940,17 @@ data_us_states_detailed$hospitalized_pct = data_us_states_detailed$hospitalized/
 # write to table
 # data_us_states_detailed
 report_date_us = as.character(max(data_us_states_detailed$date))
-write.csv(data_us_states_detailed, paste(report_date_us,"table_US_details_data_all.csv"), row.names = F)
+write_csv(data_us_states_detailed, paste(report_date_us,"table_US_details_data_all.csv"))
 
 # sort by latest day
 Confirmed = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T),]
 Confirmed_Incremental = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T),]
 Deaths = case_deaths_wide[order(case_deaths_wide[,report_date], decreasing = T),]
 Deaths_Incremental = case_deaths_incremental_wide[order(case_deaths_incremental_wide[,report_date], decreasing = T),]
-write.csv(Confirmed, paste(report_date,"table_case_confirmed_US.csv" ))
-write.csv(Confirmed_Incremental, paste(report_date,"table_case_confirmed_incremental_US.csv" ))
-write.csv(Deaths, paste(report_date,"table_case_deaths_US.csv" ))
-write.csv(Deaths_Incremental, paste(report_date,"table_case_deaths_incremental_US.csv" ))
+write_csv(Confirmed, paste(report_date,"table_case_confirmed_US.csv" ))
+write_csv(Confirmed_Incremental, paste(report_date,"table_case_confirmed_incremental_US.csv" ))
+write_csv(Deaths, paste(report_date,"table_case_deaths_US.csv" ))
+write_csv(Deaths_Incremental, paste(report_date,"table_case_deaths_incremental_US.csv" ))
 
 # add crude_incidence_rate
 data_us_states$population = state_population$Population[match(data_us_states$state, state_population$State_Full)]
@@ -974,26 +977,29 @@ if (data_us_latest$Date[1] == max(data_us_states_detailed$date)) {
 
 data_us_latest_confirm = data_us_latest_confirm[order(data_us_latest_confirm$Confirmed, decreasing = T),]
 rownames(data_us_latest_confirm) = 1:nrow(data_us_latest_confirm)
-write.csv(data_us_latest_confirm %>% 
+write_csv(data_us_latest_confirm, paste(report_date,"table_4_confirmed_cases_and_incidence_rate_US.csv"))
+write_csv(data_us_latest_confirm %>% 
             translate_state() %>% 
-            translate_state_colname(4), paste(report_date,"table_4_confirmed_cases_and_incidence_rate_US.csv"))
+            translate_state_colname(4), paste(report_date,"table_4_confirmed_cases_and_incidence_rate_US_ch.csv"))
 
 # table 5
 data_us_latest_incremental = data_us_latest[, c("state", "Confirmed_Incremental")]
 data_us_latest_incremental = data_us_latest_incremental[order(data_us_latest_incremental$Confirmed_Incremental, decreasing = T),]
 data_us_latest_incremental$Percentage = round(data_us_latest_incremental$Confirmed_Incremental/sum(data_us_latest_incremental$Confirmed_Incremental)*100,0)
 rownames(data_us_latest_incremental) = 1:nrow(data_us_latest_incremental)
-write.csv(data_us_latest_incremental %>% 
+write_csv(data_us_latest_incremental, paste(report_date,"table_5_confirmed_incremental_US.csv"))
+write_csv(data_us_latest_incremental %>% 
             translate_state() %>% 
-            translate_state_colname(5), paste(report_date,"table_5_confirmed_incremental_US.csv"))
-
+            translate_state_colname(5), paste(report_date,"table_5_confirmed_incremental_US_ch.csv"))
+						
 # table 6
 data_us_latest_fatality = data_us_latest[, c("state", "Deaths", "Fatality_rate")]
 data_us_latest_fatality = data_us_latest_fatality[order(data_us_latest_fatality$Deaths, decreasing = T),]
 rownames(data_us_latest_fatality) = 1:nrow(data_us_latest_fatality)
-write.csv(data_us_latest_fatality %>% 
+write_csv(data_us_latest_fatality, paste(report_date,"table_6_fatality_US.csv"))
+write_csv(data_us_latest_fatality %>% 
             translate_state() %>% 
-            translate_state_colname(6), paste(report_date,"table_6_fatality_US.csv"))
+            translate_state_colname(6), paste(report_date,"table_6_fatality_US_ch.csv"))
 
 
 # data for plots
