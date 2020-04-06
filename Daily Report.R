@@ -136,7 +136,7 @@ color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F",
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
 
-# three functions for translate plots and tables; pls run it
+# four functions for translate plots and tables; pls run it
 
 translate_country = function(ut_data) {
   
@@ -175,49 +175,6 @@ translate_country = function(ut_data) {
   return(t_data)
 }
 
-translate_country_colname = function(ut_data, x) {
-  
-  # wwqi4realGutHub
-  # translate column names in table 4, 5, 6
-  # x = number of the table
-  
-  if (x == 1) {
-    
-    t_data = ut_data %>% 
-      rename("国家(英文)" = Country, 
-             "国家" = Country_bi, 
-             "国家中文名" = Country_cn,
-             "累计确诊病例" = Confirmed_Cases, 
-             "国家/省份人口" = Population, 
-             "粗发病率" = Crude_Incidence_Rate)
-    
-    return(t_data)
-    
-  } else if (x == 2) {
-    t_data = ut_data %>% 
-      rename("国家(英文)" = Country, 
-             "国家" = Country_bi, 
-             "国家中文名" = Country_cn,
-             "当日新增病例" = Confirmed)
-    
-    return(t_data)
-  } else if (x == 3) {
-    
-    t_data = ut_data %>% 
-      rename("国家(英文)" = Country, 
-             "国家" = Country_bi, 
-             "国家中文名" = Country_cn,
-             "累计死亡病例" = Deaths, 
-             "较昨日" = Deaths_incremental, 
-             "病死率" = Fatality_rate, )
-    
-    return(t_data)
-  } else {
-    warning("x can only be 1, 2, 3; column name is NOT translated")
-    return(ut_data)
-  }
-}
-
 translate_state = function(ut_data) {
   
   # wwqi4realGitHub Apr 5
@@ -235,6 +192,48 @@ translate_state = function(ut_data) {
     select(state_cn, state, everything()) %>% 
     unite("state_bi", state_cn, state_abb, sep = " ", remove = F)
   
+  return(t_data)
+  
+}
+
+translate_country_colname = function(ut_data, x) {
+  
+  # wwqi4realGutHub
+  # translate column names in table 1, 2, 3
+  # x = number of the table
+  
+  if (x == 1) {
+    
+    t_data = ut_data %>% 
+      select(Country_bi, Confirmed_Cases, Population, Crude_Incidence_Rate) %>% 
+      rename("国家" = Country_bi, 
+             "累计确诊病例" = Confirmed_Cases, 
+             "国家/省份人口" = Population, 
+             "粗发病率" = Crude_Incidence_Rate)
+    
+    return(t_data)
+    
+  } else if (x == 2) {
+    t_data = ut_data %>% 
+      select(Country_bi, Confirmed) %>% 
+      rename("国家" = Country_bi, 
+             "当日新增病例" = Confirmed)
+    
+    return(t_data)
+  } else if (x == 3) {
+    
+    t_data = ut_data %>% 
+      select(Country_bi, Deaths, Deaths_incremental, Fatality_rate) %>% 
+      rename("国家" = Country_bi, 
+             "累计死亡病例" = Deaths, 
+             "较昨日" = Deaths_incremental, 
+             "病死率" = Fatality_rate)
+    
+    return(t_data)
+  } else {
+    warning("x can only be 1, 2, 3; column name is NOT translated")
+    return(ut_data)
+  }
 }
 
 translate_state_colname = function(ut_data, x) {
@@ -246,39 +245,32 @@ translate_state_colname = function(ut_data, x) {
   if (x == 4) {
     
     t_data = ut_data %>% 
+      select(state_bi, Confirmed, crude_incidence_rate, positive_rate, totalTestResults, totalTestResultsIncrease, pct_test) %>% 
       rename("州名" = state_bi, 
-             "州英文名" = state, 
-             "州缩写" = state_abb, 
-             "州中文名" = state_cn,
              "累计确诊" = Confirmed, 
              "粗发病率" = crude_incidence_rate, 
              "阳性率%" = positive_rate, 
              "累计检测" = totalTestResults, 
              "较昨日" = totalTestResultsIncrease, 
-             "检测率" = pct_test, 
-      )
+             "检测率" = pct_test)
     
     return(t_data)
     
   } else if (x == 5) {
     t_data = ut_data %>% 
-      rename("州名" = state_bi, 
-             "州英文名" = state, 
-             "州缩写" = state_abb, 
-             "州中文名" = state_cn, 
-             "当日新增" = Confirmed_Incremental, 
-             "全美比率" = Percentage)
+      select(state_bi, Confirmed_Incremental, Percentage)
+    rename("州名" = state_bi, 
+           "当日新增" = Confirmed_Incremental, 
+           "全美比率" = Percentage)
     
     return(t_data)
   } else if (x == 6) {
     
     t_data = ut_data %>% 
-      rename("州名" = state_bi, 
-             "州英文名" = state, 
-             "州缩写" = state_abb, 
-             "州中文名" = state_cn, 
-             "累计死亡人数" = Deaths, 
-             "病死率" = Fatality_rate, )
+      select(state_bi, Deaths, Fatality_rate)
+    rename("州名" = state_bi, 
+           "累计死亡人数" = Deaths, 
+           "病死率" = Fatality_rate)
     
     return(t_data)
   } else {
@@ -449,7 +441,7 @@ Hubei_data = create_final_data(type = "State",Province_name = "Hubei",web_data =
 
 
 ##############################
-## WORLDWIDE
+##        WORLDWIDE         ##
 ##############################
 
 case_confirmed_wide = countries_data$case_confirmed_wide
@@ -971,7 +963,7 @@ if (data_us_latest$Date[1] == max(data_us_states_detailed$date)) {
   data_us_states_detailed_latest = data_us_states_detailed[data_us_states_detailed$date == max(data_us_states_detailed$date),]
   data_us_states_detailed_latest_keep = data_us_states_detailed_latest[, c("state", "totalTestResults", "totalTestResultsIncrease")]
   data_us_latest = merge(data_us_latest, data_us_states_detailed_latest_keep, by = "state")
-  data_us_latest$positive_rate = round(data_us_latest$Confirmed/data_us_latest$totalTestResults, 2)
+  data_us_latest$positive_rate = round(data_us_latest$Confirmed/data_us_latest$totalTestResults, 2) * 100
   data_us_latest$pct_test = round(data_us_latest$totalTestResults/data_us_latest$population * 100000, 0)
   data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "crude_incidence_rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test")]
 } else {  
