@@ -160,22 +160,22 @@ insight = read_excel("./input/insight.xlsx") %>%
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-t1 = read_csv('input/table1.csv') %>% rename(' ' = X1) %>% 
+t1 = read_csv('input/table1.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t2 = read_csv('input/table2.csv') %>% rename(' ' = X1) %>% 
+t2 = read_csv('input/table2.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t3 = read_csv('input/table3.csv') %>% rename(' ' = X1) %>% 
+t3 = read_csv('input/table3.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t4 = read_csv('input/table4.csv') %>% rename(' ' = X1) %>% 
+t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t5= read_csv('input/table5.csv') %>% rename(' ' = X1) %>% 
+t5= read_csv('input/table5.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t6 = read_csv('input/table6.csv') %>% rename(' ' = X1) %>% 
+t6 = read_csv('input/table6.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
 ```
