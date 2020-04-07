@@ -43,6 +43,7 @@ header-includes:
 
     - \linespread{1.0}
     - \setlength{\parskip}{0.5em}
+    - \setlength{\footskip}{20pt}
 
     - \textwidth 7in
     - \textheight 9.95in
