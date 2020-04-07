@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.1)  6 APR 2020 15:54
-=======
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  5 APR 2020 18:40
->>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.1)  7 APR 2020 12:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1261,35 +1257,31 @@ This may cause the page layout to be inconsistent, however.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
 (Font)              scaled to size 9.03374pt on input line 216.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 225.
+(Font)              scaled to size 10.53937pt on input line 227.
 File: ./input/covid1.png Graphic file (type bmp)
 <./input/covid1.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.37756pt on input line 236.
+(Font)              scaled to size 7.37756pt on input line 238.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.26968pt on input line 236.
+(Font)              scaled to size 5.26968pt on input line 238.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.54033pt on input line 236.
+(Font)              scaled to size 10.54033pt on input line 238.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.37823pt on input line 236.
+(Font)              scaled to size 7.37823pt on input line 238.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.27016pt on input line 236.
+(Font)              scaled to size 5.27016pt on input line 238.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.53824pt on input line 236.
+(Font)              scaled to size 10.53824pt on input line 238.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.37677pt on input line 236.
+(Font)              scaled to size 7.37677pt on input line 238.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.26912pt on input line 236.
+(Font)              scaled to size 5.26912pt on input line 238.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
-(Font)              scaled to size 7.52812pt on input line 254.
+(Font)              scaled to size 7.52812pt on input line 256.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [2]
-<<<<<<< HEAD
-Overfull \hbox (80.44934pt too wide) in paragraph at lines 293--309
-=======
-Overfull \hbox (80.44934pt too wide) in paragraph at lines 292--308
->>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
+Overfull \hbox (80.44934pt too wide) in paragraph at lines 300--316
  [][] 
  []
 
@@ -1310,90 +1302,44 @@ File: ./input/covid5.pdf Graphic file (type pdf)
 File: ./input/covid5.pdf Graphic file (type pdf)
 <use ./input/covid5.pdf>
 
-<<<<<<< HEAD
-Overfull \hbox (14.78288pt too wide) in paragraph at lines 390--406
-=======
-Overfull \hbox (14.78288pt too wide) in paragraph at lines 389--405
->>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
+Overfull \hbox (14.78288pt too wide) in paragraph at lines 398--414
  [][] 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (50.58435pt too wide) in paragraph at lines 384--430
-=======
-Overfull \hbox (50.58435pt too wide) in paragraph at lines 383--429
->>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
+Overfull \hbox (50.58435pt too wide) in paragraph at lines 392--438
 []$[]$$[]$ 
  []
 
-
-Package fontspec Warning: Font "FandolFang-Regular" does not contain requested
-(fontspec)                Script "CJK".
-
-
-Package fontspec Info: FandolFang-Regular scale = 0.9410445129890861.
-
-
-Package fontspec Info: FandolFang-Regular scale = 0.9410445129890861.
-
-
-Package fontspec Info: Font family 'FandolFang-Regular(0)' created for font
-(fontspec)             'FandolFang-Regular' with options
-(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,Script={CJK},Extensi
-on={.otf}].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[0.9410445129890861]"[FandolFang-Regular.otf]/OT:la
-nguage=dflt;mapping=tex-text;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-
-LaTeX Font Info:    Font shape `TU/FandolFang-Regular(0)/m/n' will be
-<<<<<<< HEAD
-(Font)              scaled to size 11.29248pt on input line 434.
-Missing character: There is no 祎 in font [FandolFang-Regular.otf]/OT:language=d
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.03374pt on input line 446.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.03456pt on input line 446.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.03276pt on input line 446.
+Missing character: There is no 祎 in font [FandolSong-Regular.otf]/OT:language=d
 flt;mapping=tex-text;!
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 441.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 456.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 441.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 456.
 (./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 441.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 441.
-=======
-(Font)              scaled to size 12.23352pt on input line 433.
-Missing character: There is no 祎 in font [FandolFang-Regular.otf]/OT:language=d
-flt;mapping=tex-text;!
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 440.
-File: ./input/logo.png Graphic file (type bmp)
-<./input/logo.png>
-[5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 440.
-(./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 440.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 440.
->>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 456.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 456.
 Package rerunfilecheck Info: File `Corona_news.out' has not changed.
 (rerunfilecheck)             Checksum: 96EA43799EBE7B189B7CDB2DFC24AB53;145.
 
 LaTeX Warning: There were multiply-defined labels.
 
-<<<<<<< HEAD
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 441.
-=======
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 440.
->>>>>>> 45306bc5622811132e5db46c31aa77a55f0784ef
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 456.
  ) 
 Here is how much of TeX's memory you used:
- 23539 strings out of 481765
- 451958 string characters out of 5935194
- 857457 words of memory out of 5000000
- 40133 multiletter control sequences out of 15000+600000
- 541965 words of font info for 117 fonts, out of 8000000 for 9000
+ 23530 strings out of 481765
+ 451731 string characters out of 5935194
+ 856457 words of memory out of 5000000
+ 40129 multiletter control sequences out of 15000+600000
+ 542878 words of font info for 117 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,18n,122p,905b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
 
