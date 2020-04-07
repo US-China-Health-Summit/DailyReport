@@ -52,9 +52,9 @@ header-includes:
     - \topmargin -1in
     
 ---
-\fontsize{12}{12}
+\fontsize{14}{14}
 \selectfont
-
+\vspace{-10truemm}
 
 \newcommand{\resheading}[1]{%
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
@@ -70,8 +70,7 @@ header-includes:
 \end{tabular}}
 
 \renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{30pt} 
-
+\setlength{\headheight}{25pt} 
 
 \resheading{\Large 每日新闻}
 
@@ -87,48 +86,48 @@ library(knitr)
 library(xtable)
 library(kableExtra)
 
-international_news = read_excel("./input/news.xlsx",sheet = 1) %>%
+global_news = read_excel("./input/news.xlsx",sheet = 1) %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 
-native_news = read_excel("./input/news.xlsx", sheet = 2) %>%
+china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 ```
 
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}**: **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r global_news$pub[1]`}**: **`r global_news$title[1]`**
 
-`r international_news$content[1]`
+`r global_news$content[1]`
 
-**\textcolor{glaucous}{`r international_news$pub[2]`}** : **`r international_news$title[2]`**
+**\textcolor{glaucous}{`r global_news$pub[2]`}** : **`r global_news$title[2]`**
 
-`r international_news$content[2]`
+`r global_news$content[2]`
 
-**\textcolor{glaucous}{`r international_news$pub[3]`}** : **`r international_news$title[3]`**
+**\textcolor{glaucous}{`r global_news$pub[3]`}** : **`r global_news$title[3]`**
 
-`r international_news$content[3]`
+`r global_news$content[3]`
 
-**\textcolor{glaucous}{`r international_news$pub[4]`}** : **`r international_news$title[4]`**
+**\textcolor{glaucous}{`r global_news$pub[4]`}** : **`r global_news$title[4]`**
 
-`r international_news$content[4]`
+`r global_news$content[4]`
 
-**\textcolor{glaucous}{`r international_news$pub[5]`}** : **`r international_news$title[5]`**
+**\textcolor{glaucous}{`r global_news$pub[5]`}** : **`r global_news$title[5]`**
 
-`r international_news$content[5]`
+`r global_news$content[5]`
 
-**\textcolor{glaucous}{`r international_news$pub[6]`}** : **`r international_news$title[6]`**
+**\textcolor{glaucous}{`r global_news$pub[6]`}** : **`r global_news$title[6]`**
 
-`r international_news$content[5]`
+`r global_news$content[6]`
 
 ## \textcolor{glaucous}{\Large 国内}
-**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
+**\textcolor{glaucous}{`r china_news$pub[1]`}**: **`r china_news$title[1]`**
 
-`r international_news$content[1]`
+`r china_news$content[1]`
 
-**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[2]`**
+**\textcolor{glaucous}{`r china_news$pub[2]`}**: **`r china_news$title[2]`**
 
-`r international_news$content[2]`
+`r china_news$content[2]`
 
 
 
@@ -161,22 +160,22 @@ insight = read_excel("./input/insight.xlsx") %>%
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-t1 = read_csv('input/table1.csv') %>% rename(' ' = X1) %>% 
+t1 = read_csv('input/table1.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t2 = read_csv('input/table2.csv') %>% rename(' ' = X1) %>% 
+t2 = read_csv('input/table2.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t3 = read_csv('input/table3.csv') %>% rename(' ' = X1) %>% 
+t3 = read_csv('input/table3.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t4 = read_csv('input/table4.csv') %>% rename(' ' = X1) %>% 
+t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t5= read_csv('input/table5.csv') %>% rename(' ' = X1) %>% 
+t5= read_csv('input/table5.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t6 = read_csv('input/table6.csv') %>% rename(' ' = X1) %>% 
+t6 = read_csv('input/table6.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
 ```
