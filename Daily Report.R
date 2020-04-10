@@ -409,6 +409,7 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
   case_confirmed_wide = data_confirmed$data_wide
   case_confirmed_incremental_wide = data_confirmed$data_incremental_wide
   case_deaths_wide = data_deaths$data_wide
+	case_deaths_incremental_wide = data_deaths$data_incremental_wide
   case_recovered_wide = data_recovered$data_wide
   
   data_all = Reduce(function(x, y) merge(x, y, all = TRUE), list(case_confirmed, case_deaths, case_recovered))
@@ -432,6 +433,8 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
                   as.data.frame(),
                 case_deaths_wide = case_deaths_wide %>% 
                   as.data.frame(), 
+								case_deaths_incremental_wide = case_deaths_incremental_wide %>% 
+                  as.data.frame(),
                 case_recovered_wide = case_recovered_wide %>% 
                   as.data.frame()
   )
@@ -452,6 +455,7 @@ Hubei_data = create_final_data(type = "State",Province_name = "Hubei",web_data =
 case_confirmed_wide = countries_data$case_confirmed_wide
 case_confirmed_incremental_wide = countries_data$case_confirmed_incremental_wide
 case_deaths_wide = countries_data$case_deaths_wide
+case_deaths_incremental_wide = countries_data$case_deaths_incremental_wide
 
 report_date = max(colnames(case_confirmed_wide)[-1])
 
@@ -459,9 +463,11 @@ report_date = max(colnames(case_confirmed_wide)[-1])
 case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T), ]
 case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T), ]
 case_deaths_wide = case_deaths_wide[order(case_deaths_wide[,report_date], decreasing = T), ]
+case_deaths_incremental_wide = case_deaths_incremental_wide[order(case_deaths_incremental_wide[,report_date], decreasing = T), ]
 write_excel_csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
 write_excel_csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental.csv"))
 write_excel_csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
+write_excel_csv(case_deaths_incremental_wide, paste(report_date,"table_case_deaths_incremental.csv"))
 
 # table 1
 crude_incidence_rate = as.data.frame(cbind(case_confirmed_wide$Country, case_confirmed_wide[, report_date], input_population$Population[match(case_confirmed_wide$Country, input_population$Country)]), stringsAsFactors = F)
@@ -881,6 +887,8 @@ read_data_us = function(label){
   data_incremental=(temp[,-1, drop = F]-temp[,-ncol(temp)])%>%cbind(data_wide[,1:2],.)
   # First day has no change
   data_incremental[,2] =0
+	# Force negative to be 0
+	data_incremental[data_incremental<0]=0
   #Reformat the data to produce a summary
   a = data_wide%>%pivot_longer(names_to = "Date", values_to = "Counts", cols = contains("-"))
   b = data_incremental%>%pivot_longer(names_to = "Date", values_to = "Counts_incremental", cols = contains("-"))
@@ -949,25 +957,33 @@ data_us_states$Crude_Incidence_Rate = round(as.numeric(data_us_states$Confirmed)
 data_us_states$Fatality_rate = round(data_us_states$Deaths/data_us_states$Confirmed*100, 1)
 data_us_states[is.na(data_us_states)] = 0
 
+data_us_states_detailed_keep = data_us_states_detailed[, c("state", "date","totalTestResults", "totalTestResultsIncrease")]
+colnames(data_us_states_detailed_keep)[2]="Date"
+data_us_states = merge(data_us_states, data_us_states_detailed_keep, by = c("state","Date"), all.x=TRUE)
+data_us_states$positive_rate = round(data_us_states$Confirmed/data_us_states$totalTestResults, 2) * 100
+data_us_states$pct_test = round(data_us_states$totalTestResults/data_us_states$Population * 100000, 0)
+
+# write to table
+us_positive_rate_wide = spread(data_us_states[,c('state', 'Date', 'positive_rate')], key = Date, value = positive_rate)
+us_positive_rate_wide = us_positive_rate_wide[, c(1,ncol(us_positive_rate_wide):2)]
+us_positive_rate_wide = us_positive_rate_wide[order(us_positive_rate_wide[,report_date], decreasing = T),]
+us_pct_test_wide = spread(data_us_states[,c('state', 'Date', 'pct_test')], key = Date, value = pct_test)
+us_pct_test_wide = us_pct_test_wide[, c(1,ncol(us_pct_test_wide):2)]
+us_pct_test_wide = us_pct_test_wide[order(us_pct_test_wide[,report_date], decreasing = T),]
+write_excel_csv(us_positive_rate_wide, paste(report_date,"table_us_positive_rate.csv" ))
+write_excel_csv(us_pct_test_wide, paste(report_date,"table_us_pct_test.csv" ))
+
+
 # filter by latest date
 data_us_latest = data_us_states[data_us_states$Date == max(data_us_states$Date),]
+data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "Crude_Incidence_Rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test")]
+if (data_us_latest$Date[1] != max(data_us_states_detailed$date)) warning("US test data hasn't been updated yet. Try later.")
 
-if (data_us_latest$Date[1] == max(data_us_states_detailed$date)) {
-  data_us_states_detailed_latest = data_us_states_detailed[data_us_states_detailed$date == max(data_us_states_detailed$date),]
-  data_us_states_detailed_latest_keep = data_us_states_detailed_latest[, c("state", "totalTestResults", "totalTestResultsIncrease")]
-  data_us_latest = merge(data_us_latest, data_us_states_detailed_latest_keep, by = "state")
-  data_us_latest$positive_rate = round(data_us_latest$Confirmed/data_us_latest$totalTestResults, 2) * 100
-  data_us_latest$pct_test = round(data_us_latest$totalTestResults/data_us_latest$Population * 100000, 0)
-  data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "Crude_Incidence_Rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test")]
-	# US TOTAL
-	data_us_states_detailed_total = as.data.frame(t(colSums(data_us_states_detailed_latest[, c("totalTestResults", "totalTestResultsIncrease") ], na.rm = T)))
-	US_total = cbind(US_total, data_us_states_detailed_total)
-  US_total$positive_rate = round(US_total$Confirmed/US_total$totalTestResults, 2) * 100
-  US_total$pct_test = round(US_total$totalTestResults/US_total$Population * 100000, 0)
-} else {  
-  print("US test data hasn't been updated yet. Try later.")
-  data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "Crude_Incidence_Rate")]
-}
+# US TOTAL
+data_us_latest_total = as.data.frame(t(colSums(data_us_latest[, c("totalTestResults", "totalTestResultsIncrease") ], na.rm = T)))
+US_total = cbind(US_total, data_us_latest_total)
+US_total$positive_rate = round(US_total$Confirmed/US_total$totalTestResults, 2) * 100
+US_total$pct_test = round(US_total$totalTestResults/US_total$Population * 100000, 0)
 
 # table 4 
 
