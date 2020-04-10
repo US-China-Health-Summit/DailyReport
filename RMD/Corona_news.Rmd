@@ -8,6 +8,9 @@ header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
     - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \cfoot{\thepage}
+    
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
     - \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
@@ -16,7 +19,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{a4paper,scale=0.8}
+    - \geometry{a4paper,scale=1}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage{subfigure}
@@ -25,7 +28,6 @@ header-includes:
     - \usepackage{booktabs}
     - \usepackage[justification=centering]{caption}
     - \usepackage{threeparttable}
-    - \usepackage{booktabs}
     - \usepackage{longtable}
     - \usepackage{array}
     - \usepackage{multirow}
@@ -39,20 +41,26 @@ header-includes:
     - \usepackage[normalem]{ulem}
     - \usepackage{makecell}
     - \usepackage{xcolor}
-    - \usepackage{booktabs}
+
 
     - \linespread{1.0}
     - \setlength{\parskip}{0.5em}
+    - \setlength{\footskip}{20pt}
+
+    - \linespread{1.15}
+    - \setlength{\parskip}{0.3em}
+
 
     - \textwidth 7in
     - \textheight 9.95in
     - \oddsidemargin -.25in
     - \evensidemargin -.25in
     - \topmargin -1in
+    
 ---
 \fontsize{13}{13}
 \selectfont
-
+\vspace{-10truemm}
 
 \newcommand{\resheading}[1]{%
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
@@ -68,7 +76,7 @@ header-includes:
 \end{tabular}}
 
 \renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{30pt} 
+\setlength{\headheight}{25pt} 
 
 \resheading{\Large 每日新闻}
 
@@ -84,46 +92,55 @@ library(knitr)
 library(xtable)
 library(kableExtra)
 
-international_news = read_excel("./input/international_news.xlsx") %>%
+global_news = read_excel("./input/news.xlsx",sheet = 1) %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 
-native_news = read_excel("./input/native_news.xlsx") %>%
+china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
   janitor::clean_names() %>% 
   select(pub,title,content)
 ```
 
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}**: **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r global_news$pub[1]`}**: **`r global_news$title[1]`**
 
-`r international_news$content[1]`
+`r global_news$content[1]`
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r global_news$pub[2]`}** : **`r global_news$title[2]`**
 
-`r international_news$content[1]`
+`r global_news$content[2]`
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r global_news$pub[3]`}** : **`r global_news$title[3]`**
 
-`r international_news$content[1]`
+`r global_news$content[3]`
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r global_news$pub[4]`}** : **`r global_news$title[4]`**
 
-`r international_news$content[1]`
+`r global_news$content[4]`
 
-**\textcolor{glaucous}{`r international_news$pub[1]`}** : **`r international_news$title[1]`**
+**\textcolor{glaucous}{`r global_news$pub[5]`}** : **`r global_news$title[5]`**
 
-`r international_news$content[1]`
+`r global_news$content[5]`
+
+**\textcolor{glaucous}{`r global_news$pub[6]`}** : **`r global_news$title[6]`**
+
+`r global_news$content[6]`
 
 ## \textcolor{glaucous}{\Large 国内}
-**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
+**\textcolor{glaucous}{`r china_news$pub[1]`}**: **`r china_news$title[1]`**
 
-`r international_news$content[1]`
+`r china_news$content[1]`
 
-**\textcolor{glaucous}{`r native_news$pub[1]`}**: **`r native_news$title[1]`**
+**\textcolor{glaucous}{`r china_news$pub[2]`}**: **`r china_news$title[2]`**
 
-`r international_news$content[1]`
+`r china_news$content[2]`
+
+
 
 \newpage
+
+
+
 
 \resheading{\Large 疫情观察}
 
@@ -149,22 +166,23 @@ insight = read_excel("./input/insight.xlsx") %>%
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-t1 = read_csv('input/table1.csv') %>% rename(' ' = X1) %>% 
+options(knitr.kable.NA = '')
+t1 = read_csv('input/table1.csv') %>%  rename(' ' = ranking) %>%
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t2 = read_csv('input/table2.csv') %>% rename(' ' = X1) %>% 
+t2 = read_csv('input/table2.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t3 = read_csv('input/table3.csv') %>% rename(' ' = X1) %>% 
+t3 = read_csv('input/table3.csv') %>%   rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t4 = read_csv('input/table4.csv') %>% rename(' ' = X1) %>% 
+t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t5= read_csv('input/table5.csv') %>% rename(' ' = X1) %>% 
+t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
-t6 = read_csv('input/table6.csv') %>% rename(' ' = X1) %>% 
+t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
 ```
@@ -177,7 +195,7 @@ cat(c("\\begin{table}[H]
         t1,
     "\\begin{tablenotes}
         \\footnotesize
-        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：累计确诊病例/⼈×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/⼈）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -248,7 +266,11 @@ cat(c("\\begin{table}[H]
       \\vspace{-0.5\\baselineskip}
       \\centering",
         t4,
-    "\\end{table}"
+    "\\begin{tablenotes}
+    \\footnotesize
+    \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
+    \\end{tablenotes}
+    \\end{table}"
 ))
 ```
 
@@ -295,8 +317,19 @@ cat(c("\\begin{table}
 `r insight$content[4]`
 
 
+\centering
+\small
+\begin{tabular}{ll}
 
-                    主编：马晶                  副主编:薛成海 仁晖 何鸿恺
-                    执行责任编辑:史珂玮 王冠    新闻组:张宁 张心其
-                    可视化组:霍舒同 张立达      数据分析:杜兆慧
-                    感谢所有为日报作出贡献的志愿者:李忠锦 慕帼眉 李祎杰
+
+主编：马晶  &  副主编:薛成海\,  仁晖 \, 何鸿恺 \\
+执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
+可视化组:霍舒同\, 张立达 & 数据分析:杜兆慧 \\
+\multicolumn{2}{l}{感谢所有为日报作出贡献的志愿者:李忠锦 \, 慕帼眉\, 李祎杰}
+
+\end{tabular}
+
+
+
+
+                   
