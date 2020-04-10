@@ -15,10 +15,10 @@ p3_ylab,Number of Cases,Number of Cases per day
 p4_title,US-active cases-deaths-recovered,"Active, Recovered and Death cases in U.S."
 p4_xlab,Date,Date
 p4_ylab,Number of Cases,Number of Cases
-p5_title,US-state-confirmed-total-sort-by-total,Cumulative Confirmed Cases (Top 5 Sates of Cumulative Confirmed Cases in U.S.)
+p5_title,US-state-confirmed-total-sort-by-total,Cumulative Confirmed Cases (Top 5 States of Cumulative Confirmed Cases in U.S.)
 p5_xlab,Date,Date
 p5_ylab,Number of Cases,Number of Cases
-p6_title,US-state-confirmed-incremental-sort-by-total,Incremental Confirmed Cases (Top 5 Sates of Incremental Confirmed Cases in U.S.)
+p6_title,US-state-confirmed-incremental-sort-by-total,Incremental Confirmed Cases (Top 5 States of Incremental Confirmed Cases in U.S.)
 p6_xlab,Date,Date
 p6_ylab,Number of Cases,Number of Cases per day
 p7_1_title,Crude Incidence Rate Cumulative,Crude Incidence Rate Cumulative (Including China and Hubei alone)
@@ -28,12 +28,24 @@ p7_ylab,"Incidence Rate Per 100,000",Number of Cases
 p8_1_title,country-death-total-sort-by-death including China,Cumulative Death Cases (Top 5 Countries of Cumulative Death Cases Including China)
 p8_xlab,Date,Date
 p8_ylab,Number of Cases,Number of Cases
-p9_title,US-state-death-total-sort-by-total,Cumulative Death Cases (Top 5 Sates of Cumulative Death Cases in U.S.)
+p9_title,US-state-death-total-sort-by-total,Cumulative Death Cases (Top 5 States of Cumulative Death Cases in U.S.)
 p9_xlab,Date,Date
 p9_ylab,Number of Cases,Number of Cases
 p10_1_title,country-incremental-sort-by-incremental including China,Incremental Death Cases (Top 5 Countries of Incremental Death Cases Including China)
 p10_xlab,Date,Date
 p10_ylab,Number of Cases,Number of Cases per day
-p11_title,US-state-confirmed-incremental-sort-by-total,Incremental Death Cases (Top 5 Sates of Incremental Death Cases in U.S.)
+p11_title,US-state-confirmed-incremental-sort-by-total,Incremental Death Cases (Top 5 States of Incremental Death Cases in U.S.)
 p11_xlab,Date,Date
 p11_ylab,Number of Cases,Number of Cases per day
+p12_title,country-confirmed-total-sort-by-weekly-incremental,Cumulative Confirmed Cases (Top 5 Countries of Cumulative Confirmed Cases)
+p12_xlab,Date,Date
+p12_ylab,Number of Cases,Number of Cases per day
+p13_title,US-state-confirmed-sort-by-weekly-incremental,Cumulative Confirmed Cases (Top 5 States of Cumulative Confirmed Cases in U.S.)
+p13_xlab,Date,Date
+p13_ylab,Number of Cases,Number of Cases per day
+p14_title,country-death-total-sort-by-weekly-incremental,Cumulative Death Cases (Top 5 Countries of Cumulative Death Cases)
+p14_xlab,Date,Date
+p14_ylab,Number of Cases,Number of Cases per day
+p15_title,US-state-death-sort-by-weekly-incremental,Cumulative Deaths Cases (Top 5 States of Cumulative Death Cases in U.S.)
+p15_xlab,Date,Date
+p15_ylab,Number of Cases,Number of Cases per day
