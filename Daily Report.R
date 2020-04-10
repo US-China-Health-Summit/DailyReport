@@ -39,9 +39,9 @@
 
 # getwd()
 
-# folder = "YOUR_PATH/csse_covid_19_time_series"
-# 
-# setwd(folder)
+folder = "YOUR_PATH/csse_covid_19_time_series"
+
+setwd(folder)
 
 ##### Filter report type
 # weekly_summary = FALSE
