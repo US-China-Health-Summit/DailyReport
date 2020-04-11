@@ -166,7 +166,7 @@ time_series_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/m
 web_data_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/"
 
 
-color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33", "#A65628", "#F781BF","#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D", "#666666")
+color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#A65628", "#F781BF","#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D", "#666666")
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
 
@@ -552,6 +552,44 @@ write_excel_csv(data_global_latest_death_top %>%
             translate_country() %>% 
             translate_country_colname(3), 
           paste(report_date, "table_3_case_death_latest_date_ch.csv"))
+
+# table 8& 9 for weekly report
+if (weekly_summary){
+  # Table 8
+  temp = data_all_countries
+  temp_end = temp[temp$Date == end_date_wr,]
+  temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
+  temp_diff = temp[temp$Date == max(data_all_countries$Date),] 
+  temp_diff$Confirmed_start = temp_start$Confirmed
+  temp_diff$Confirmed_end = temp_end$Confirmed
+  temp_diff$Confirmed_diff = temp_diff$Confirmed_end - temp_diff$Confirmed_start
+  temp_diff$"Confirmed_diff_perc(%)" = temp_diff$Confirmed_diff/temp_diff$Confirmed_start * 100
+  temp_diff$"Confirmed_diff_perc(%)" = round(temp_diff$"Confirmed_diff_perc(%)",2)
+  #temp_diff = temp_diff[temp_diff$Confirmed_end >=end_date_confirmed_threshold,]
+  
+  data_confirmed_weekly_incremental = temp_diff %>%
+    select("Country/Region", "Confirmed_start","Confirmed_end","Confirmed_diff","Confirmed_diff_perc(%)")
+  
+  colnames(data_confirmed_weekly_incremental)[2] <- paste("Confirmed_cases_on",as.Date(start_date_wr)-1)
+  colnames(data_confirmed_weekly_incremental)[3] <- paste("Confirmed_cases_on",end_date_wr)
+  write_excel_csv(data_confirmed_weekly_incremental, paste(report_date, "table_8_Country_Confirmed_Weekly_Incremental_Rate.csv"))
+  
+  #Table 10
+  temp_diff$Deaths_start = temp_start$Deaths
+  temp_diff$Deaths_end = temp_end$Deaths
+  temp_diff$Deaths_diff = temp_diff$Deaths_end - temp_diff$Deaths_start
+  temp_diff$"Deaths_diff_perc(%)" = temp_diff$Deaths_diff/temp_diff$Deaths_start * 100
+  temp_diff$"Deaths_diff_perc(%)" = round(temp_diff$"Deaths_diff_perc(%)",2)
+  #temp_diff = temp_diff[temp_diff$Confirmed_end >=end_date_confirmed_threshold,]
+  
+  data_Deaths_weekly_incremental = temp_diff %>%
+    select("Country/Region", "Deaths_start","Deaths_end","Deaths_diff","Deaths_diff_perc(%)")
+  
+  colnames(data_Deaths_weekly_incremental)[2] <- paste("Deaths_cases_on",as.Date(start_date_wr)-1)
+  colnames(data_Deaths_weekly_incremental)[3] <- paste("Deaths_cases_on",end_date_wr)
+  write_excel_csv(data_Deaths_weekly_incremental, paste(report_date, "table_10_Country_Deaths_Weekly_Incremental_Rate.csv"))
+}
+
 
 # x label break for plots:
 x_min = min(data_all_countries$Date)
@@ -1226,6 +1264,44 @@ write_excel_csv(data_us_latest_fatality_top %>%
             translate_state() %>% 
             translate_state_colname(6), paste(report_date,"table_6_fatality_US_ch.csv"))
 
+# table 9& 11
+if (weekly_summary){
+  temp = data_us_states
+  temp_end = temp[temp$Date == end_date_wr,]
+  temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
+  temp_diff = temp[temp$Date == max(data_us_states$Date),] 
+  
+  #Table 9
+  temp_diff$Confirmed_start = temp_start$Confirmed
+  temp_diff$Confirmed_end = temp_end$Confirmed
+  temp_diff$Confirmed_diff = temp_diff$Confirmed_end - temp_diff$Confirmed_start
+  temp_diff$"Confirmed_diff_perc(%)" = temp_diff$Confirmed_diff/temp_diff$Confirmed_start * 100
+  temp_diff$"Confirmed_diff_perc(%)" = round(temp_diff$"Confirmed_diff_perc(%)",2)
+  #temp_diff = temp_diff[temp_diff$Confirmed_end >=end_date_confirmed_threshold,]
+  
+  data_us_confirmed_weekly_incremental = temp_diff %>%
+    select("state", "Confirmed_start","Confirmed_end","Confirmed_diff","Confirmed_diff_perc(%)")
+  
+  colnames(data_confirmed_weekly_incremental)[2] <- paste("Confirmed_cases_on",as.Date(start_date_wr)-1)
+  colnames(data_confirmed_weekly_incremental)[3] <- paste("Confirmed_cases_on",end_date_wr)
+  write_excel_csv(data_us_confirmed_weekly_incremental, paste(report_date, "table_9_US_Confirmed_Weekly_Incremental_Rate.csv"))
+  
+  #Table 11
+  temp_diff$Deaths_start = temp_start$Deaths
+  temp_diff$Deaths_end = temp_end$Deaths
+  temp_diff$Deaths_diff = temp_diff$Deaths_end - temp_diff$Deaths_start
+  temp_diff$"Deaths_diff_perc(%)" = temp_diff$Deaths_diff/temp_diff$Deaths_start * 100
+  temp_diff$"Deaths_diff_perc(%)" = round(temp_diff$"Deaths_diff_perc(%)",2)
+  
+  data_US_Deaths_weekly_incremental = temp_diff %>%
+    select("state", "Deaths_start","Deaths_end","Deaths_diff","Deaths_diff_perc(%)")
+  
+  colnames(data_Deaths_weekly_incremental)[2] <- paste("Deaths_cases_on",as.Date(start_date_wr)-1)
+  colnames(data_Deaths_weekly_incremental)[3] <- paste("Deaths_cases_on",end_date_wr)
+  write_excel_csv(data_US_Deaths_weekly_incremental, paste(report_date, "table_11_US_Deaths_Weekly_Incremental_Rate.csv"))
+}
+
+
 
 # data for plots
 
@@ -1282,7 +1358,8 @@ if (weekly_summary){
 		filter_death_diff = temp_death_diff$state[1:top_n]
 		
 		temp_diff$Death_diff_perc = temp_diff$Death_diff/temp_start$Deaths
-		temp_death_diff_perc = temp_diff[order(temp_diff$Death_diff_perc,decreasing = T),]
+		temp_death_diff_perc = temp_diff[temp_start$Deaths > 0,]
+		temp_death_diff_perc = temp_death_diff_perc[order(temp_death_diff_perc$Death_diff_perc,decreasing = T),]
 		filter_death_diff_perc = temp_death_diff_perc$state[1:top_n]
   }
   color_list_state = unique(c(color_list_state, filter_total_confirmed_diff,filter_total_confirmed_diff_perc,filter_death_diff,filter_death_diff_perc))
