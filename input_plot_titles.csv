@@ -47,3 +47,15 @@ p14_ylab,Number of Cases,Number of Cases per day
 p15_title,US-state-death-sort-by-weekly-incremental,Cumulative Deaths Cases (Top 5 States of Weekly Cumulative Death Cases in U.S.)
 p15_xlab,Date,Date
 p15_ylab,Number of Cases,Number of Cases per day
+p16_title,country-confirmed-total-sort-by-weekly-incremental-percentage,Cumulative Confirmed Cases (Top 5 Countries of Weekly Cumulative Confirmed Cases)
+p16_xlab,Date,Date
+p16_ylab,Number of Cases,Number of Cases per day
+p17_title,country-death-total-sort-by-weekly-incremental-percentage,Cumulative Death Cases (Top 5 Countries of Weekly Cumulative Death Cases)
+p17_xlab,Date,Date
+p17_ylab,Number of Cases,Number of Cases per day
+p18_title,US-state-confirmed-sort-by-weekly-incremental-percentage,Cumulative Confirmed Cases (Top 5 States of Weekly Cumulative Confirmed Cases in U.S.)
+p18_xlab,Date,Date
+p18_ylab,Number of Cases,Number of Cases per day
+p19_title,US-state-death-sort-by-weekly-incremental-percentage,Cumulative Deaths Cases (Top 5 States of Weekly Cumulative Death Cases in U.S.)
+p19_xlab,Date,Date
+p19_ylab,Number of Cases,Number of Cases per day
