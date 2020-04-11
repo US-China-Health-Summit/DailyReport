@@ -43,6 +43,12 @@ folder = "YOUR_PATH/csse_covid_19_time_series"
 
 setwd(folder)
 
+##### Filter countries #####
+## Set template_input to TRUE if filter country using template file provided; 
+## Otherwise, auto select countries/State by Top N
+template_input = FALSE
+top_n = 5
+
 ##### FOR WEEKLY REPORT #####
 weekly_summary = FALSE
 start_date_wr = NULL
@@ -52,21 +58,15 @@ end_date_wr = NULL
 # start_date_wr = "2020-03-23"
 # end_date_wr = "2020-03-29"
 
-##### Filter countries #####
-## Set template_input to TRUE if filter country using template file provided; 
-## Otherwise, auto select countries/State by Top N
-template_input = FALSE
-top_n = 5
-
 ##### filter date #####
 # date filter input format: "yyyy-mm-dd" ; set as NULL if not used
 # start_date/end_date control the start and end date for global plots 
 # start_date_US/end_date_US control the start and end date for US plots 
 
 start_date = NULL
-end_date =  NULL
+end_date = NULL
 start_date_US = "2020-03-01" 
-end_date_US =  NULL
+end_date_US = NULL
 
 #####  sort without China: TRUE, FALSE ; default is TRUE (sort without China)
 remove_mainland_china = TRUE
@@ -313,6 +313,16 @@ convert_date = function(date_label){
   date_label %>% as.character() %>% as.Date("%m/%d/%y") %>% format("%Y-%m-%d")
 }
 
+filter_by_date = function(ds, date_var, start_date, end_date){
+  if (!is.null(start_date)){
+    ds = ds[ds[,date_var] >= start_date, ]
+  }
+  if (!is.null(end_date)){
+    ds = ds[ds[,date_var]  <= end_date, ]
+  }
+  ds
+}
+
 adjust_y_interval = function(y_max){
   temp_interval = y_max / 10
   if (temp_interval < 15) {
@@ -493,8 +503,8 @@ write_excel_csv(crude_incidence_rate_top %>%
 						
 # data for plots
 data_all_countries = countries_data$data_all
-data_all_countries = data_all_countries[data_all_countries$Date >= start_date & data_all_countries$Date <= end_date, ] 
-
+data_all_countries = filter_by_date(data_all_countries, "Date", start_date, end_date)
+	
 data_global_latest = data_all_countries[data_all_countries$Date == max(data_all_countries$Date), ]
 data_global_latest$Fatality_rate = round(data_global_latest$Deaths/data_global_latest$Confirmed*100, 1)
 
@@ -547,7 +557,7 @@ if (as.numeric(x_max - x_min) < 15 ) {
 ##  specify country_filter for daily report
 if (template_input) {
 	country_list = read.csv("input_country_list.csv", stringsAsFactors = F)
-	filter_total <- filter_incremental <- country_list$Countries
+	filter_total <- filter_incremental <- filter_death <- filter_death_incremental <- country_list$Countries
 } else {
 	temp = data_all_countries
 	if (remove_mainland_china) temp = temp[!temp$Country %in% china_label, ]
@@ -570,18 +580,21 @@ color_list_country = unique(c(filter_total, filter_incremental,filter_death, fil
 
 ## specify country_filter by weekly difference (for plots 12&14)
 if (weekly_summary){
-  temp = data_all_countries
-  temp_end = temp[temp$Date == end_date_wr,]
-  temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
-  temp_diff = temp[temp$Date == max(data_all_countries$Date),] 
-  temp_diff$Confirmed_diff = temp_end$Confirmed - temp_start$Confirmed
-  temp_confirmed_diff = temp_diff[order(temp_diff$Confirmed_diff,decreasing = T), ]
-  filter_total_confirmed_diff = temp_confirmed_diff$`Country/Region`[1:top_n]
-  
-  temp_diff$Death_diff = temp_end$Deaths - temp_start$Deaths
-  temp_death_diff = temp_diff[order(temp_diff$Death_diff,decreasing = T), ]
-  filter_death_diff = temp_death_diff$`Country/Region`[1:top_n]
-  
+	if (template_input) {
+		filter_total_confirmed_diff <- filter_death_diff <- country_list$Countries
+	} else {
+		temp = data_all_countries
+		temp_end = temp[temp$Date == end_date_wr,]
+		temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
+		temp_diff = temp[temp$Date == max(data_all_countries$Date),] 
+		temp_diff$Confirmed_diff = temp_end$Confirmed - temp_start$Confirmed
+		temp_confirmed_diff = temp_diff[order(temp_diff$Confirmed_diff,decreasing = T), ]
+		filter_total_confirmed_diff = temp_confirmed_diff$`Country/Region`[1:top_n]
+		
+		temp_diff$Death_diff = temp_end$Deaths - temp_start$Deaths
+		temp_death_diff = temp_diff[order(temp_diff$Death_diff,decreasing = T), ]
+		filter_death_diff = temp_death_diff$`Country/Region`[1:top_n]
+  }
   color_list_country = unique(c(color_list_country, filter_total_confirmed_diff, filter_death_diff))
 }
 
@@ -765,7 +778,7 @@ ggsave(filename=paste(report_date,"p3_1",p3_1_title, ".pdf"), plot = p3_1, width
 # filter by country and cumulative confirmed
 
 Hubei_data_plot = Hubei_data$data_all
-Hubei_data_plot = Hubei_data_plot[Hubei_data_plot$Date >= start_date & Hubei_data_plot$Date <= end_date, ] 
+Hubei_data_plot = filter_by_date(Hubei_data_plot, "Date", start_date, end_date)
 names(Hubei_data_plot)[1] = "Region"
 
 data_to_plot_IR = data_all_countries[data_all_countries$Country %in% filter_total_with_china, ]
@@ -1141,7 +1154,7 @@ if (as.numeric(x_max - x_min) < 15) {
 
 if (template_input) {
 	state_list = read.csv("input_us_state_list.csv", stringsAsFactors = F)
-	filter_total <- filter_incremental <- state_list$States
+	filter_total <- filter_incremental <- filter_death <- filter_death_incremental <- state_list$States
 }else{
 	temp = data_us_states
 	temp = temp[temp$Date == max(data_us_states$Date),] 
@@ -1159,24 +1172,27 @@ if (template_input) {
 color_list_state = unique(c(filter_total, filter_incremental, filter_death, filter_death_incremental))
 
 if (weekly_summary){
-  temp = data_us_states
-  temp_end = temp[temp$Date == end_date_wr,]
-  temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
-  temp_diff = temp[temp$Date == max(data_us_states$Date),] 
-  temp_diff$Confirmed_diff = temp_end$Confirmed - temp_start$Confirmed
-  temp_confirmed_diff = temp_diff[order(temp_diff$Confirmed_diff,decreasing = T), ]
-  filter_total_confirmed_diff = temp_confirmed_diff$state[1:top_n]
-  
-  temp_diff$Death_diff = temp_end$Deaths - temp_start$Deaths
-  temp_death_diff = temp_diff[order(temp_diff$Death_diff,decreasing = T), ]
-  filter_death_diff = temp_death_diff$state[1:top_n]
-  
+	if (template_input) {
+		filter_total_confirmed_diff <- filter_death_diff <- state_list$States
+	}else{
+		temp = data_us_states
+		temp_end = temp[temp$Date == end_date_wr,]
+		temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
+		temp_diff = temp[temp$Date == max(data_us_states$Date),] 
+		temp_diff$Confirmed_diff = temp_end$Confirmed - temp_start$Confirmed
+		temp_confirmed_diff = temp_diff[order(temp_diff$Confirmed_diff,decreasing = T), ]
+		filter_total_confirmed_diff = temp_confirmed_diff$state[1:top_n]
+		
+		temp_diff$Death_diff = temp_end$Deaths - temp_start$Deaths
+		temp_death_diff = temp_diff[order(temp_diff$Death_diff,decreasing = T), ]
+		filter_death_diff = temp_death_diff$state[1:top_n]
+  }
   color_list_state = unique(c(color_list_state, filter_total_confirmed_diff,filter_death_diff))
 }
 
 
 # filter by date
-data_us_states = data_us_states[data_us_states$Date >= start_date_US & data_us_states$Date <= end_date_US, ]
+data_us_states = filter_by_date(data_us_states, "Date", start_date_US, end_date_US)
 
 # plot 5: total confirmed cases by US States sort by Cumulative 
 data_to_plot = data_us_states[data_us_states$state %in% filter_total, ]
