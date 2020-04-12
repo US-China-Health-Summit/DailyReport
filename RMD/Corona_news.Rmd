@@ -4,6 +4,7 @@ subtitle: \textcolor{glaucous}{\Large 第13期 \space 4月8日}
 output: 
   pdf_document:
     latex_engine: xelatex
+    keep_tex: true
 header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
@@ -76,7 +77,7 @@ header-includes:
 
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{25pt} 
-\setlength{\headsep}{-20pt} 
+\setlength{\headsep}{-15pt} 
 
 \resheading{\Large 每日新闻}
 
@@ -193,7 +194,7 @@ cat(c("\\begin{table}[H]
         t1,
     "\\begin{tablenotes}
         \\footnotesize
-        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/⼈）×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
