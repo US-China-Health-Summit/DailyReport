@@ -322,17 +322,18 @@ cat(c("\\begin{table}
 
 ```{r, echo=FALSE}
 example = read_excel("./input/example.xlsx")
+title = example$content[1]
+content = example$content[2]
+reference = example$content[3]
 ```
 
 
-# \textcolor{glaucous}{`r example$content[1]`}
+# \textcolor{glaucous}{`r title`}
 
-`r example$content[2]`
+`r content`
 
-\begin{small}{
-`r example$content[3]`}
-\end{small}
 
+\small `r reference`
 
 
 

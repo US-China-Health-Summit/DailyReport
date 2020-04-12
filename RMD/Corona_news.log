@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.11)  11 APR 2020 22:28
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.11)  11 APR 2020 23:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -897,8 +897,23 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 ty
 Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count348
+) (./Corona_news.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
 )
-No file Corona_news.aux.
 \openout1 = `Corona_news.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 131.
@@ -1208,11 +1223,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 131.
 LaTeX Info: Redefining \pageref on input line 131.
 LaTeX Info: Redefining \nameref on input line 131.
+(./Corona_news.out) (./Corona_news.out)
 \@outlinefile=\write3
 \openout3 = `Corona_news.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1480,16 +1493,47 @@ Overfull \hbox (50.58435pt too wide) in paragraph at lines 402--450
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [5]
-! Undefined control sequence.
-l.475 目前我国国内疫情局势相对稳定，已大规模复工复产，医用防护服、医用防护口罩\面罩
-                                             、测温仪、呼吸机产能已基本能满足国内需求，企业也正尽力组织扩大...
- 
+Overfull \hbox (97.6264pt too wide) in paragraph at lines 490--492
+[]\TU/SimSun(0)/m/n/9.03374 南 财 快 评 之 全 球 疫 情 观 察：|  从 塞 拉 利 昂 看 非 洲 防 控 \TU/lm
+r/m/n/9.03374 https://k.sina.com.cn/article_1651428902_626ece2602000p2bm.html?f
+rom=news&subch=onews 
+ []
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.03374pt on input line 492.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.03456pt on input line 492.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.03276pt on input line 492.
+
+Overfull \hbox (30.57051pt too wide) in paragraph at lines 494--495
+[]\TU/SimSun(0)/m/n/9.03374 工 信 部：|  中 国 呼 吸 机 产 能 无 法 满 足 全 球 疫 情 防 控 需 求 \TU/
+lmr/m/n/9.03374 https://baijiahao.baidu.com/s?id=1663393284129099919&wfr=spider
+&for=pc 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 508.
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
+[6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 508.
+(./Corona_news.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 508.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 508.
+Package rerunfilecheck Info: File `Corona_news.out' has not changed.
+(rerunfilecheck)             Checksum: F8B8C93A06A0DBDE149030754D541762;182.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 508.
+ ) 
 Here is how much of TeX's memory you used:
- 23585 strings out of 481385
- 454150 string characters out of 5926394
- 856194 words of memory out of 5000000
- 40575 multiletter control sequences out of 15000+600000
- 541933 words of font info for 113 fonts, out of 8000000 for 9000
+ 23624 strings out of 481385
+ 455451 string characters out of 5926394
+ 857644 words of memory out of 5000000
+ 40602 multiletter control sequences out of 15000+600000
+ 542894 words of font info for 119 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 67i,18n,126p,905b,508s stack positions out of 5000i,500n,10000p,200000b,80000s
-Output written on Corona_news.pdf (5 pages).
+ 67i,18n,126p,905b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Corona_news.pdf (6 pages).
