@@ -185,7 +185,7 @@ t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>%
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-4mm}
+  \\vspace{-7mm}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
       \\centering",
