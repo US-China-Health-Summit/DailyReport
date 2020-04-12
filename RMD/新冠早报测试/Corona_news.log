@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  12 APR 2020 12:49
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  12 APR 2020 14:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1332,6 +1332,9 @@ File: ./input/covid4.png Graphic file (type bmp)
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [4]
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
+[5]
 File: ./input/covid5.pdf Graphic file (type pdf)
 <use ./input/covid5.pdf>
 File: ./input/covid5.pdf Graphic file (type pdf)
@@ -1348,7 +1351,7 @@ Overfull \hbox (50.58435pt too wide) in paragraph at lines 395--443
 
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
-[5]
+[6]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 9.03374pt on input line 484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1367,7 +1370,7 @@ flt;mapping=tex-text;!
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 503.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
-[6]
+[7]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 503.
 (./Corona_news.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 503.
@@ -1386,6 +1389,6 @@ Here is how much of TeX's memory you used:
  40280 multiletter control sequences out of 15000+600000
  545773 words of font info for 135 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 62i,18n,122p,905b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,18n,122p,905b,517s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Corona_news.pdf (6 pages).
+Output written on Corona_news.pdf (7 pages).
