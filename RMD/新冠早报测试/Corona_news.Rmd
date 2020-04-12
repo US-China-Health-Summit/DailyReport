@@ -205,6 +205,7 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}
+\\vspace{-7mm}
     \\begin{minipage}{.45\\linewidth}
     \\centering
     \\captionsetup{justification=centering}
@@ -293,6 +294,7 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}
+\\vspace{-7mm}
     \\begin{minipage}{.4\\linewidth}
     \\caption{美国新增确诊前十位州}
     \\vspace{-0.5\\baselineskip}
