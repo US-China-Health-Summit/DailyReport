@@ -1,12 +1,21 @@
+<<<<<<< HEAD
 This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  12 APR 2020 11:03
+=======
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.12)  12 APR 2020 11:46
+>>>>>>> 91b4d39a10f8cc219325c7e58f0c79907b1a653c
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Corona_news.tex
 (./Corona_news.tex
 LaTeX2e <2020-02-02> patch level 5
+<<<<<<< HEAD
 L3 programming layer <2020-02-25> (/Users/zhangqimin/Library/TinyTeX/texmf-dist
 /tex/latex/base/article.cls
+=======
+L3 programming layer <2020-04-06> (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-
+dist/tex/latex/base/article.cls
+>>>>>>> 91b4d39a10f8cc219325c7e58f0c79907b1a653c
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
 (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
@@ -135,6 +144,7 @@ Package fixltx2e Warning: fixltx2e is not required with releases after 2015
 
 Already applied: [0000/00/00] Old fixltx2e package on input line 53.
 )
+<<<<<<< HEAD
 (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-ma
 th.sty (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.s
 ty
@@ -143,6 +153,16 @@ Package: expl3 2020-02-25 L3 programming layer (loader)
 (/Users/zhangqimin/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xdv
 ipdfmx.def
 File: l3backend-xdvipdfmx.def 2020-02-23 L3 backend support: xdvipdfmx
+=======
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicod
+e-math.sty (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel
+/expl3.sty
+Package: expl3 2020-04-06 L3 programming layer (loader) 
+
+(c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend
+-xdvipdfmx.def
+File: l3backend-xdvipdfmx.def 2020-03-12 L3 backend support: xdvipdfmx
+>>>>>>> 91b4d39a10f8cc219325c7e58f0c79907b1a653c
 \g__graphics_track_int=\count183
 \l__pdf_internal_box=\box47
 \g__pdf_backend_object_int=\count184
@@ -1291,6 +1311,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 7.37677pt on input line 247.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+<<<<<<< HEAD
 (Font)              scaled to size 5.26912pt on input line 247.
 LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
 (Font)              scaled to size 7.52812pt on input line 266.
@@ -1303,6 +1324,15 @@ Overfull \hbox (2.56155pt too wide) in paragraph at lines 285--301
 
 
 Overfull \hbox (96.25839pt too wide) in paragraph at lines 310--326
+=======
+(Font)              scaled to size 5.26912pt on input line 242.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 7.16054pt on input line 261.
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
+[2]
+Overfull \hbox (89.05374pt too wide) in paragraph at lines 305--321
+>>>>>>> 91b4d39a10f8cc219325c7e58f0c79907b1a653c
  [][] 
  []
 
@@ -1323,7 +1353,11 @@ File: ./input/covid5.pdf Graphic file (type pdf)
 File: ./input/covid5.pdf Graphic file (type pdf)
 <use ./input/covid5.pdf>
 
+<<<<<<< HEAD
 Overfull \hbox (22.76117pt too wide) in paragraph at lines 413--430
+=======
+Overfull \hbox (15.55652pt too wide) in paragraph at lines 408--425
+>>>>>>> 91b4d39a10f8cc219325c7e58f0c79907b1a653c
  [][] 
  []
 
@@ -1335,6 +1369,7 @@ Overfull \hbox (50.58435pt too wide) in paragraph at lines 407--455
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [5]
+<<<<<<< HEAD
 LaTeX Font Info:    Calculating math sizes for size <13> on input line 484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 13.0pt on input line 484.
@@ -1354,6 +1389,27 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 9.09898pt on input line 484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 6.4993pt on input line 484.
+=======
+LaTeX Font Info:    Calculating math sizes for size <13> on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 13.0pt on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.09996pt on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.5pt on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 13.00119pt on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.10078pt on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.5006pt on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 12.99861pt on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.09898pt on input line 464.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.4993pt on input line 464.
+>>>>>>> 91b4d39a10f8cc219325c7e58f0c79907b1a653c
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 9.03374pt on input line 497.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1385,6 +1441,7 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 516.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  23699 strings out of 481765
  463959 string characters out of 5935007
  858522 words of memory out of 5000000
@@ -1392,5 +1449,14 @@ Here is how much of TeX's memory you used:
  545773 words of font info for 135 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,18n,122p,905b,536s stack positions out of 5000i,500n,10000p,200000b,80000s
+=======
+ 23708 strings out of 481384
+ 459981 string characters out of 5926360
+ 859681 words of memory out of 5000000
+ 40677 multiletter control sequences out of 15000+600000
+ 545797 words of font info for 138 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 67i,18n,126p,905b,536s stack positions out of 5000i,500n,10000p,200000b,80000s
+>>>>>>> 91b4d39a10f8cc219325c7e58f0c79907b1a653c
 
 Output written on Corona_news.pdf (6 pages).
