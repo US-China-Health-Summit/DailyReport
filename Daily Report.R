@@ -587,9 +587,9 @@ if (weekly_summary){
   
   colnames(data_Deaths_weekly_incremental)[2] <- paste("Deaths_cases_on",as.Date(start_date_wr)-1)
   colnames(data_Deaths_weekly_incremental)[3] <- paste("Deaths_cases_on",end_date_wr)
-  write_excel_csv(data_Deaths_weekly_incremental, paste(report_date, "table_10_Country_Deaths_Weekly_Incremental_Rate.csv"))
+  data_Deaths_weekly_incremental = data_Deaths_weekly_incremental[order(data_Deaths_weekly_incremental$`Deaths_diff_perc(%)`,decreasing = T),]
+  write_excel_csv(data_Deaths_weekly_incremental, paste(report_date, "Country_Deaths_Weekly_Incremental_Rate.csv"))
 }
-
 
 # x label break for plots:
 x_min = min(data_all_countries$Date)
@@ -1298,7 +1298,9 @@ if (weekly_summary){
   
   colnames(data_Deaths_weekly_incremental)[2] <- paste("Deaths_cases_on",as.Date(start_date_wr)-1)
   colnames(data_Deaths_weekly_incremental)[3] <- paste("Deaths_cases_on",end_date_wr)
-  write_excel_csv(data_US_Deaths_weekly_incremental, paste(report_date, "table_11_US_Deaths_Weekly_Incremental_Rate.csv"))
+  data_US_Deaths_weekly_incremental = data_US_Deaths_weekly_incremental[order(data_US_Deaths_weekly_incremental$`Deaths_diff_perc(%)`,decreasing = T),]
+  
+  write_excel_csv(data_US_Deaths_weekly_incremental, paste(report_date, "US_Deaths_Weekly_Incremental_Rate.csv"))
 }
 
 
