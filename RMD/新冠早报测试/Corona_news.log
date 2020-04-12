@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  12 APR 2020 12:39
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.26)  12 APR 2020 12:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1316,12 +1316,7 @@ LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/n' will be
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [2]
-Overfull \hbox (9.02219pt too wide) in paragraph at lines 272--288
- [][] 
- []
-
-
-Overfull \hbox (96.25839pt too wide) in paragraph at lines 297--313
+Overfull \hbox (70.96236pt too wide) in paragraph at lines 297--313
  [][] 
  []
 
