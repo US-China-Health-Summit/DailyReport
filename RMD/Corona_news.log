@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.11)  12 APR 2020 10:51
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.12)  12 APR 2020 11:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Corona_news.tex
 (./Corona_news.tex
 LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-03-06> (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-
+L3 programming layer <2020-04-06> (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-
 dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
 (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -140,7 +140,7 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicod
 e-math.sty (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel
 /expl3.sty
-Package: expl3 2020-03-06 L3 programming layer (loader) 
+Package: expl3 2020-04-06 L3 programming layer (loader) 
 
 (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend
 -xdvipdfmx.def
@@ -1355,12 +1355,6 @@ LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
 (Font)              scaled to size 10.02475pt on input line 231.
 File: ./input/covid1.png Graphic file (type bmp)
 <./input/covid1.png>
-
-Overfull \hbox (10.60225pt too wide) in paragraph at lines 238--238
- |\TU/lmr/m/n/10.53937 <U+7D2F><U+8BA1><U+786E><U+8BCA><U+524D><U+5341><U+4F4D>
-<U+56FD><U+5BB6>| 
- []
-
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 7.37756pt on input line 242.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -1377,52 +1371,12 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 7.37677pt on input line 242.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.26912pt on input line 242.
-
-Overfull \hbox (537.89671pt too wide) in paragraph at lines 242--259
- [][] 
- []
-
-
-Overfull \hbox (760.51329pt too wide) in paragraph at lines 261--262
-[]\TU/lmr/m/n/7.52812 <U+6CE8>:<U+7C97><U+53D1><U+75C5><U+7387><U+5B9A><U+4E49>
-:<U+7D2F><U+8BA1><U+786E><U+8BCA><U+75C5><U+4F8B>/10<U+4E07><U+4EBA><U+3002><U+
-8BA1><U+7B97><U+65B9><U+5F0F>:(<U+7D2F><U+8BA1><U+786E><U+8BCA><U+75C5><U+4F8B>
-/<U+2F08>)×10<U+4E07> 
- []
-
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 7.16054pt on input line 261.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [2]
-Overfull \hbox (482.93787pt too wide) in paragraph at lines 275--275
- |\TU/lmr/m/n/10.53937 <U+65E5><U+65B0><U+589E><U+786E><U+8BCA><U+75C5><U+4F8B>
-<U+56FD><U+5BB6><U+8D8B><U+52BF><U+56FE>  
- []
-
-
-Overfull \hbox (378.28198pt too wide) in paragraph at lines 275--275
- \TU/lmr/m/n/10.53937 (<U+4E2D><U+56FD><U+53CA><U+5176><U+4ED6><U+524D><U+4E94>
-<U+4F4D><U+56FD><U+5BB6>)| 
- []
-
-
-Overfull \hbox (407.51569pt too wide) in paragraph at lines 280--296
- [][] 
- []
-
-
-Overfull \hbox (432.42267pt too wide) in paragraph at lines 300--300
- |\TU/lmr/m/n/10.53937 <U+7D2F><U+8BA1><U+6B7B><U+4EA1><U+75C5><U+4F8B><U+56FD>
-<U+5BB6><U+8D8B><U+52BF><U+56FE>  
- []
-
-
-Overfull \hbox (378.28198pt too wide) in paragraph at lines 300--300
- \TU/lmr/m/n/10.53937 (<U+4E2D><U+56FD><U+53CA><U+5176><U+4ED6><U+524D><U+4E94>
-<U+4F4D><U+56FD><U+5BB6>)| 
- []
-
-
-Overfull \hbox (752.85045pt too wide) in paragraph at lines 305--321
+Overfull \hbox (89.05374pt too wide) in paragraph at lines 305--321
  [][] 
  []
 
@@ -1435,25 +1389,6 @@ File: ./input/logo.png Graphic file (type bmp)
 [3]
 File: ./input/covid4.png Graphic file (type bmp)
 <./input/covid4.png>
-
-Overfull \hbox (70.79256pt too wide) in paragraph at lines 357--357
- |\TU/lmr/m/n/10.53937 <U+7F8E><U+56FD><U+7D2F><U+8BA1><U+786E><U+8BCA><U+524D>
-<U+5341><U+4F4D><U+5DDE>| 
- []
-
-
-Overfull \hbox (1272.06664pt too wide) in paragraph at lines 361--378
- [][] 
- []
-
-
-Overfull \hbox (764.84195pt too wide) in paragraph at lines 380--381
-[]\TU/lmr/m/n/7.52812 <U+6CE8>: <U+68C0><U+6D4B><U+7387><U+5B9A><U+4E49>:<U+7D2
-F><U+8BA1><U+68C0><U+6D4B><U+4EBA><U+6570>/10<U+4E07><U+4EBA><U+3002><U+8BA1><U
-+7B97><U+65B9><U+5F0F>:(<U+7D2F><U+8BA1><U+68C0><U+6D4B><U+4EBA><U+6570>/<U+4EB
-A><U+53E3>)*10<U+4E07> 
- []
-
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [4]
@@ -1464,24 +1399,7 @@ Missing character: There is no ⽇ in font SimSun/OT:script=hani;language=dflt;!
 File: ./input/covid5.pdf Graphic file (type pdf)
 <use ./input/covid5.pdf>
 
-Overfull \hbox (197.75308pt too wide) in paragraph at lines 403--403
- |\TU/lmr/m/n/10.53937 <U+786E><U+8BCA><U+524D><U+5341><U+4F4D><U+56FD><U+5BB6>
-| 
- []
-
-
-Overfull \hbox (668.27638pt too wide) in paragraph at lines 408--425
- [][] 
- []
-
-
-Overfull \hbox (162.22322pt too wide) in paragraph at lines 427--427
- |\TU/lmr/m/n/10.53937 <U+7D2F><U+8BA1><U+6B7B><U+4EA1><U+524D><U+5341><U+4F4D>
-<U+56FD><U+5BB6>| 
- []
-
-
-Overfull \hbox (580.60826pt too wide) in paragraph at lines 432--449
+Overfull \hbox (15.55652pt too wide) in paragraph at lines 408--425
  [][] 
  []
 
@@ -1493,25 +1411,25 @@ Overfull \hbox (50.58435pt too wide) in paragraph at lines 402--450
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [5]
-LaTeX Font Info:    Calculating math sizes for size <13> on input line 479.
+LaTeX Font Info:    Calculating math sizes for size <13> on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 13.0pt on input line 479.
+(Font)              scaled to size 13.0pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.09996pt on input line 479.
+(Font)              scaled to size 9.09996pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.5pt on input line 479.
+(Font)              scaled to size 6.5pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 13.00119pt on input line 479.
+(Font)              scaled to size 13.00119pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.10078pt on input line 479.
+(Font)              scaled to size 9.10078pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.5006pt on input line 479.
+(Font)              scaled to size 6.5006pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.99861pt on input line 479.
+(Font)              scaled to size 12.99861pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.09898pt on input line 479.
+(Font)              scaled to size 9.09898pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.4993pt on input line 479.
+(Font)              scaled to size 6.4993pt on input line 464.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 9.03374pt on input line 492.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1541,12 +1459,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 511.
  ) 
 Here is how much of TeX's memory you used:
- 23652 strings out of 481385
- 456397 string characters out of 5926394
- 858644 words of memory out of 5000000
- 40621 multiletter control sequences out of 15000+600000
- 545789 words of font info for 137 fonts, out of 8000000 for 9000
+ 23708 strings out of 481384
+ 459981 string characters out of 5926360
+ 859681 words of memory out of 5000000
+ 40677 multiletter control sequences out of 15000+600000
+ 545797 words of font info for 138 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 67i,18n,126p,905b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,18n,126p,905b,536s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Corona_news.pdf (6 pages).
