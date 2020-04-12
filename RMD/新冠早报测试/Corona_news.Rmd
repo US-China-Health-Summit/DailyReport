@@ -208,7 +208,7 @@ cat(c("\\begin{table}[H]
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}
 
-    \\begin{minipage}{.45\\linewidth}
+    \\begin{minipage}{.4\\linewidth}
     \\centering
     \\captionsetup{justification=centering}
     \\caption{日新增病例前十位国家}
@@ -216,8 +216,8 @@ cat(c("\\begin{table}
       \\centering
     \\captionsetup{justification=centering}",
         t2,
-    "\\end{minipage}%
-    \\begin{minipage}{.45\\linewidth}
+    "\\end{minipage}
+    \\begin{minipage}{.6\\linewidth}
     \\centering
     \\captionsetup{justification=centering}
      \\caption{累计死亡病例前十位国家}
