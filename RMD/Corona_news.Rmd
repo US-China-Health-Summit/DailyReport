@@ -316,11 +316,29 @@ cat(c("\\begin{table}
 
 `r insight$content[4]`
 
+\newpage
+
+\resheading{\Large 疫情观察}
+
+```{r, echo=FALSE}
+example = read_excel("./input/example.xlsx")
+```
+
+
+# \textcolor{glaucous}{`r example$content[1]`}
+
+`r example$content[2]`
+
+\begin{small}{
+`r example$content[3]`}
+\end{small}
+
+
+
 
 \centering
 \small
 \begin{tabular}{ll}
-
 
 主编：马晶  &  副主编:薛成海\,  仁晖 \, 何鸿恺 \\
 执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
