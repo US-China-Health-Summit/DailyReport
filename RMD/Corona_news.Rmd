@@ -321,7 +321,7 @@ cat(c("\\begin{table}
 \resheading{\Large 疫情观察}
 
 ```{r, echo=FALSE}
-example = read_excel("./input/example.xlsx")
+example = read_excel("./input/module3.xlsx")
 title = example$content[1]
 content = example$content[2]
 reference = example$content[3]
