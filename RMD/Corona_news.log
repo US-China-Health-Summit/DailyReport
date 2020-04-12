@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.11)  11 APR 2020 23:31
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.11)  12 APR 2020 10:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1493,6 +1493,26 @@ Overfull \hbox (50.58435pt too wide) in paragraph at lines 402--450
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [5]
+LaTeX Font Info:    Calculating math sizes for size <13> on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 13.0pt on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.09996pt on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.5pt on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 13.00119pt on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.10078pt on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.5006pt on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 12.99861pt on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.09898pt on input line 478.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.4993pt on input line 478.
+
 Overfull \hbox (97.6264pt too wide) in paragraph at lines 490--492
 []\TU/SimSun(0)/m/n/9.03374 南 财 快 评 之 全 球 疫 情 观 察：|  从 塞 拉 利 昂 看 非 洲 防 控 \TU/lm
 r/m/n/9.03374 https://k.sina.com.cn/article_1651428902_626ece2602000p2bm.html?f
@@ -1528,11 +1548,11 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 508.
  ) 
 Here is how much of TeX's memory you used:
- 23624 strings out of 481385
- 455451 string characters out of 5926394
+ 23652 strings out of 481385
+ 456397 string characters out of 5926394
  857644 words of memory out of 5000000
- 40602 multiletter control sequences out of 15000+600000
- 542894 words of font info for 119 fonts, out of 8000000 for 9000
+ 40621 multiletter control sequences out of 15000+600000
+ 545789 words of font info for 137 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  67i,18n,126p,905b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
 
