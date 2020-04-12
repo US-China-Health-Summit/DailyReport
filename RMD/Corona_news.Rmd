@@ -42,7 +42,7 @@ header-includes:
     - \usepackage{makecell}
     - \usepackage{xcolor}
 
-
+    - \setlength\parindent{0pt}
     - \linespread{1.0}
     - \setlength{\parskip}{0.5em}
     - \setlength{\footskip}{20pt}
@@ -139,9 +139,6 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 \newpage
 
-
-
-
 \resheading{\Large 疫情观察}
 
 \begin{small}
@@ -189,6 +186,7 @@ t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>%
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
+  \\vspace{-4mm}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
       \\centering",
