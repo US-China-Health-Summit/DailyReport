@@ -195,7 +195,7 @@ cat(c("\\begin{table}[H]
         t1,
     "\\begin{tablenotes}
         \\footnotesize
-        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：累计确诊病例/⼈×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/⼈）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -266,7 +266,11 @@ cat(c("\\begin{table}[H]
       \\vspace{-0.5\\baselineskip}
       \\centering",
         t4,
-    "\\end{table}"
+    "\\begin{tablenotes}
+    \\footnotesize
+    \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
+    \\end{tablenotes}
+    \\end{table}"
 ))
 ```
 
