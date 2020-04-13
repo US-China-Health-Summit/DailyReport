@@ -4,6 +4,7 @@ subtitle: \textcolor{glaucous}{\Large 第13期 \space 4月8日}
 output: 
   pdf_document:
     latex_engine: xelatex
+    keep_tex: true
 header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
@@ -76,6 +77,7 @@ header-includes:
 
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{25pt} 
+\setlength{\headsep}{-15pt} 
 
 \resheading{\Large 每日新闻}
 
@@ -192,7 +194,7 @@ cat(c("\\begin{table}[H]
         t1,
     "\\begin{tablenotes}
         \\footnotesize
-        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/⼈）×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -205,20 +207,20 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}
-\\vspace{-7mm}
-    \\begin{minipage}{.45\\linewidth}
+
+    \\begin{minipage}{.4\\linewidth}
     \\centering
     \\captionsetup{justification=centering}
-    \\caption{日新增确诊病例国家趋势图 \\newline（中国及其他前五位国家）}
+    \\caption{日新增病例前十位国家}
     \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
         t2,
-    "\\end{minipage}%
-    \\begin{minipage}{.45\\linewidth}
+    "\\end{minipage}
+    \\begin{minipage}{.6\\linewidth}
     \\centering
     \\captionsetup{justification=centering}
-     \\caption{累计死亡病例国家趋势图 \\newline（中国及其他前五位国家）}
+     \\caption{累计死亡病例前十位国家}
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
@@ -238,7 +240,7 @@ cat(c("\\begin{table}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\caption{累计死亡病例国家趋势图\\（中国及其他前五位国家） }
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
 \includegraphics[]{./input/covid3.pdf}
 \label{}
 \end{minipage}
@@ -279,13 +281,13 @@ cat(c("\\begin{table}[H]
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
-\caption{美国累计确诊前五位州趋势图}
+\caption{美国日新增确诊前五位州趋势图}
 \includegraphics[]{./input/covid5.pdf}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\caption{美国⽇新增确诊前五位州趋势图}
+\caption{美国日新增死亡前五位州趋势图}
 \includegraphics[]{./input/covid5.pdf}
 \label{}
 \end{minipage}
@@ -294,7 +296,7 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}
-\\vspace{-7mm}
+
     \\begin{minipage}{.4\\linewidth}
     \\caption{美国新增确诊前十位州}
     \\vspace{-0.5\\baselineskip}

@@ -1,9 +1,10 @@
 ---
 title: \textcolor{glaucous}{\Huge \textbf {新冠早报}}
-subtitle: \textcolor{glaucous}{\Large 第六期 3月28日}
+subtitle: \textcolor{glaucous}{\Large 第13期 \space 4月8日}
 output: 
   pdf_document:
     latex_engine: xelatex
+    keep_tex: true
 header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
@@ -42,7 +43,6 @@ header-includes:
     - \usepackage{makecell}
     - \usepackage{xcolor}
 
-    - \setlength\parindent{0pt}
     - \linespread{1.0}
     - \setlength{\parskip}{0.5em}
     - \setlength{\footskip}{20pt}
@@ -77,6 +77,7 @@ header-includes:
 
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{25pt} 
+\setlength{\headsep}{-15pt} 
 
 \resheading{\Large 每日新闻}
 
@@ -186,14 +187,14 @@ t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>%
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-4mm}
+  \\vspace{-7mm}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
       \\centering",
         t1,
     "\\begin{tablenotes}
         \\footnotesize
-        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/⼈）×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -206,7 +207,8 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}
-    \\begin{minipage}{.4\\linewidth}
+
+    \\begin{minipage}{.45\\linewidth}
     \\centering
     \\captionsetup{justification=centering}
     \\caption{日新增确诊病例国家趋势图 \\newline（中国及其他前五位国家）}
@@ -215,7 +217,7 @@ cat(c("\\begin{table}
     \\captionsetup{justification=centering}",
         t2,
     "\\end{minipage}%
-    \\begin{minipage}{.4\\linewidth}
+    \\begin{minipage}{.45\\linewidth}
     \\centering
     \\captionsetup{justification=centering}
      \\caption{累计死亡病例国家趋势图 \\newline（中国及其他前五位国家）}
@@ -260,6 +262,7 @@ cat(c("\\begin{table}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
+\\vspace{-7mm}
     \\caption{美国累计确诊前十位州}
       \\vspace{-0.5\\baselineskip}
       \\centering",
@@ -293,15 +296,16 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}
+
     \\begin{minipage}{.4\\linewidth}
-    \\caption{确诊前十位国家}
+    \\caption{美国新增确诊前十位州}
     \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
         t5,
     "\\end{minipage}%
     \\begin{minipage}{.7\\linewidth}
-     \\caption{累计死亡前十位国家}
+     \\caption{美国累计死亡前十位州}
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
@@ -339,10 +343,10 @@ reference = example$content[3]
 \small
 \begin{tabular}{ll}
 
-主编：马晶  &  副主编:薛成海\,  仁晖 \, 何鸿恺 \\
+主编：马晶  &  副主编:薛成海\,  仁晖  \\
 执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
-可视化组:霍舒同\, 张立达 & 数据分析:杜兆慧 \\
-\multicolumn{2}{l}{感谢所有为日报作出贡献的志愿者:李忠锦 \, 慕帼眉\, 李祎杰}
+数据分析:杜兆慧  &  案例分析: 史珂玮\\
+\multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
 
 \end{tabular}
 

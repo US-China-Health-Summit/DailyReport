@@ -690,7 +690,7 @@ p1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Countr
 	ylab(p1_ylab) 
 
 ggsave(filename = paste(report_date,"p1",p1_title, ".pdf"), plot = p1, width = 10, height = 8 )
-
+ggsave(filename = paste(report_date,"p1",p1_title, ".png"), plot = p1, width = 10, height = 8 )
 
 # plot 1-1. total confirmed cases sort by countries cumulative (including China)
 filter_total_with_china = c(china_label, filter_total)
@@ -724,7 +724,7 @@ p1_1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Coun
 	ylab(p1_ylab)
 
 ggsave(filename = paste(report_date, "p1-1", p1_1_title, ".pdf"), plot = p1_1, width = 10, height = 8 )
-
+ggsave(filename = paste(report_date, "p1-1", p1_1_title, ".png"), plot = p1_1, width = 10, height = 8 )
 
 # plot 2. incremental cases for top N total confirmed
 
@@ -765,7 +765,7 @@ p2 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed_incremental,
 	ylab(p2_ylab)
 
 ggsave(filename = paste(report_date,"p2",p2_title, ".pdf"), plot = p2, width = 10, height = 8 )
-
+ggsave(filename = paste(report_date,"p2",p2_title, ".png"), plot = p2, width = 10, height = 8 )
 
 
 # plot 3. new confirmed cases daily sort by countries incremental
@@ -801,7 +801,7 @@ p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_increm
 	ylab(p3_ylab)
 
 ggsave(filename = paste(report_date,"p3",p3_title, ".pdf"), plot = p3, width = 10, height = 8 )
-
+ggsave(filename = paste(report_date,"p3",p3_title, ".png"), plot = p3, width = 10, height = 8 )
 
 
 # plot 3-1. new confirmed cases daily sort by countries incremental (including China)
@@ -834,7 +834,7 @@ p3_1 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increme
 	ylab(p3_ylab)
 
 ggsave(filename=paste(report_date,"p3_1",p3_1_title, ".pdf"), plot = p3_1, width = 10, height = 8 )
-
+ggsave(filename=paste(report_date,"p3_1",p3_1_title, ".png"), plot = p3_1, width = 10, height = 8 )
 
 # plot 7-1 crude incidence rate VS Hubei
 # filter by country and cumulative confirmed
@@ -876,6 +876,7 @@ p7_1 = ggplot(data_to_plot_IR , aes(x=Date, y=Crude_Incidence_Rate, group=Region
 	ylab(p7_ylab)
 
 ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".pdf"), plot = p7_1, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".png"), plot = p7_1, width = 10, height = 8 )
 
 # plot 8-1. cumulative death cases sort by countries cumulative (including China)
 filter_total_with_china = c(china_label, filter_death)
@@ -908,6 +909,7 @@ p8_1 = ggplot(data_to_plot_death_total , aes(x=Date, y= Deaths, group=Country, c
 	ylab(p8_ylab)
 
 ggsave(filename=paste(report_date,"p8-1",p8_1_title, ".pdf"), plot = p8_1, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p8-1",p8_1_title, ".png"), plot = p8_1, width = 10, height = 8 )
 
 # plot 10-1. incremental cases for top N deaths 
 
@@ -940,7 +942,7 @@ p10 = ggplot(data_to_plot_death_incremental, aes(x=Date, y=Deaths_incremental, g
 	ylab(p10_ylab)
 
 ggsave(filename=paste(report_date,"p10",p10_title, ".pdf"), plot = p10, width = 10, height = 8 )
-
+ggsave(filename=paste(report_date,"p10",p10_title, ".png"), plot = p10, width = 10, height = 8 )
 
 if (weekly_summary){
   
@@ -976,7 +978,8 @@ if (weekly_summary){
     ylab(p12_ylab) 
   
   ggsave(filename = paste(report_date,"p12",p12_title, ".pdf"), plot = p12, width = 10, height = 8 )
- 
+	ggsave(filename = paste(report_date,"p12",p12_title, ".png"), plot = p12, width = 10, height = 8 )
+	
    # plot 14. Total death cases sort by death difference of given dates
   
   # filter by country and cumulative death
@@ -1009,6 +1012,7 @@ if (weekly_summary){
     ylab(p14_ylab) 
   
   ggsave(filename = paste(report_date,"p14",p14_title, ".pdf"), plot = p14, width = 10, height = 8 )
+	ggsave(filename = paste(report_date,"p14",p14_title, ".png"), plot = p14, width = 10, height = 8 )
 
   # plot 16. total confirmed cases sort by confirmed difference percentage of given dates
   
@@ -1042,6 +1046,7 @@ if (weekly_summary){
     ylab(p16_ylab) 
   
   ggsave(filename = paste(report_date,"p16",p16_title, ".pdf"), plot = p16, width = 10, height = 8 )
+	ggsave(filename = paste(report_date,"p16",p16_title, ".png"), plot = p16, width = 10, height = 8 )
   
   # plot 17. Total death cases sort by death difference of given dates
   
@@ -1075,7 +1080,7 @@ if (weekly_summary){
     ylab(p17_ylab) 
   
   ggsave(filename = paste(report_date,"p17",p17_title, ".pdf"), plot = p17, width = 10, height = 8 )
-  
+  ggsave(filename = paste(report_date,"p17",p17_title, ".png"), plot = p17, width = 10, height = 8 )
     
 }
 
@@ -1401,7 +1406,7 @@ p5 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,
 
 
 ggsave(filename=paste(report_date,"p5",p5_title, ".pdf"), plot = p5, width = 10, height = 8 )
-
+ggsave(filename=paste(report_date,"p5",p5_title, ".png"), plot = p5, width = 10, height = 8 )
 
 # plot 6: new confirmed cases daily by US States sort by incremental
 data_to_plot_incremental = data_us_states[data_us_states$state %in% filter_incremental , ]
@@ -1438,7 +1443,7 @@ p6 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_incremental,
 	ylab(p6_ylab)
 
 ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10, height = 8 )
-
+ggsave(filename=paste(report_date,"p6",p6_title, ".png"), plot = p6, width = 10, height = 8 )
 
 # plot9: total death cases by US States sorted by cumulative
 data_to_plot_death = data_us_states[data_us_states$state %in% filter_death,]
@@ -1467,6 +1472,7 @@ p9 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = sta
 	ylab(p9_ylab)
 
 ggsave(filename=paste(report_date,"p9",p9_title, ".pdf"), plot = p9, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p9",p9_title, ".png"), plot = p9, width = 10, height = 8 )
 
 # plot 11: new death cases daily by US States sort by incremental
 data_to_plot_death_incremental = data_us_states[data_us_states$state %in% filter_death_incremental , ]
@@ -1497,7 +1503,7 @@ p11 = ggplot(data_to_plot_death_incremental , aes(x=Date, y=Deaths_incremental, 
 	ylab(p11_ylab)
 
 ggsave(filename=paste(report_date,"p11",p11_title, ".pdf"), plot = p11, width = 10, height = 8 )
-  
+ggsave(filename=paste(report_date,"p11",p11_title, ".png"), plot = p11, width = 10, height = 8 )  
 
 if (weekly_summary){
   # plot 13: total confirmed cases by US States sort by Cumulative 
@@ -1531,6 +1537,7 @@ if (weekly_summary){
     ylab(p13_ylab)
   
   ggsave(filename=paste(report_date,"p13",p13_title, ".pdf"), plot = p13, width = 10, height = 8 )
+	ggsave(filename=paste(report_date,"p13",p13_title, ".png"), plot = p13, width = 10, height = 8 )
   
   # plot 15: total deaths cases by US States sort by Cumulative 
   data_to_plot = data_us_states[data_us_states$state %in% filter_death_diff, ]
@@ -1563,6 +1570,7 @@ if (weekly_summary){
     ylab(p15_ylab)
   
   ggsave(filename=paste(report_date,"p15",p15_title, ".pdf"), plot = p15, width = 10, height = 8 )
+	ggsave(filename=paste(report_date,"p15",p15_title, ".png"), plot = p15, width = 10, height = 8 )
   
   # plot 18: total confirmed cases by US States sort by Cumulative 
   data_to_plot = data_us_states[data_us_states$state %in% filter_total_confirmed_diff_perc, ]
@@ -1595,6 +1603,7 @@ if (weekly_summary){
     ylab(p18_ylab)
   
   ggsave(filename=paste(report_date,"p18",p18_title, ".pdf"), plot = p18, width = 10, height = 8 )
+	ggsave(filename=paste(report_date,"p18",p18_title, ".png"), plot = p18, width = 10, height = 8 )
   
   # plot 19: total deaths cases by US States sort by Cumulative 
   data_to_plot = data_us_states[data_us_states$state %in% filter_death_diff_perc, ]
@@ -1627,6 +1636,7 @@ if (weekly_summary){
     ylab(p19_ylab)
   
   ggsave(filename=paste(report_date,"p19",p19_title, ".pdf"), plot = p19, width = 10, height = 8 )
+	ggsave(filename=paste(report_date,"p19",p19_title, ".png"), plot = p19, width = 10, height = 8 )
   
 }
 
