@@ -402,7 +402,10 @@ read_data = function(label, type, web_data, Province_name = NULL ){
   for (i in 3:ncol(data_wide)) {
     #The first oen is country name,so start with 3-2
     if (any(data_wide[,i] < data_wide[, (i - 1)])) {
+      data_wide = as.data.frame(data_wide)
+      data_wide[data_wide[,i] < data_wide[, (i - 1)], i]      
       data_wide[data_wide[,i] < data_wide[, (i - 1)], i] = data_wide[data_wide[,i] < data_wide[, (i - 1)], (i - 1)]
+      data_wide = as_tibble(data_wide)
     }
   }
   # build incremental data
