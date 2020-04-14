@@ -1,6 +1,4 @@
 ---
-title: \textcolor{glaucous}{\Huge \textbf {新冠早报}}
-subtitle: \textcolor{glaucous}{\Large 第13期 \space 4月8日}
 output: 
   pdf_document:
     latex_engine: xelatex
@@ -10,7 +8,6 @@ header-includes:
     - \usepackage{xcolor}
     - \usepackage{fancyhdr}
     - \pagestyle{fancy}
-    - \cfoot{\thepage}
     
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
@@ -20,7 +17,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{a4paper,scale=1}
+    - \geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage[font=Large]{caption}
@@ -44,17 +41,10 @@ header-includes:
     - \usepackage{makecell}
     - \usepackage{xcolor}
 
-    - \linespread{1.5}
-    - \setlength{\parskip}{2em}
+    - \linespread{1.15}
+    - \setlength{\parskip}{1.5em}
     - \setlength{\footskip}{20pt}
 
-
-    - \textwidth 7in
-    - \textheight 9.95in
-    - \oddsidemargin -.25in
-    - \evensidemargin -.25in
-    - \topmargin -1in
-    
 ---
 \fontsize{22}{22}
 \selectfont
@@ -65,7 +55,6 @@ header-includes:
 }
 
 
-\pagestyle{fancyplain}
 \lhead{\includegraphics[height=2cm]{./input/logo.png}}
 \rhead{
 \begin{tabular}{ccc}
@@ -73,9 +62,22 @@ header-includes:
 \\ \\ \\ \\ \\
 \end{tabular}}
 
-\renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{25pt} 
-\setlength{\headsep}{-15pt} 
+\begin{tabular}{lr}
+
+\includegraphics[height=2cm]{./input/logo.png}&\textcolor{gray}{\fontsize{12}{12}{中美健康峰会「智援组」新冠早报组}}\\
+\end{tabular}
+
+
+
+\begin{center}
+\fontsize{34}{34}
+\textcolor{glaucous}{\textbf{新冠早报}}
+\end{center}
+
+\begin{center}
+\fontsize{18}{18}
+{\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
+\end{center}
 
 
 \resheading{\Huge 每日新闻}
@@ -137,7 +139,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 
 
-\newpage
+
 
 \resheading{\Huge 疫情观察}
 
@@ -201,7 +203,6 @@ cat(c("\\begin{table}[H]
 ```
 
 
-\newpage
 
 `r insight$content[2]`
 
@@ -239,7 +240,7 @@ cat(c("\\begin{table}[H]
 \label{} %用于文内引用的标签
 \end{figure}
 
-\newpage
+
 
 # \textcolor{glaucous}{\Huge 二、美国疫情}
 
@@ -309,7 +310,6 @@ cat(c("\\begin{table}[H]
 
 `r insight$content[4]`
 
-\newpage
 
 \resheading{\Huge 疫情观察}
 
