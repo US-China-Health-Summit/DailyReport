@@ -23,6 +23,7 @@ header-includes:
     - \geometry{a4paper,scale=1}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
+    - \usepackage[font=Large]{caption}
     - \usepackage{subfigure}
     - \usepackage{float}
     - \usepackage{graphicx}
@@ -167,22 +168,22 @@ insight = read_excel("./input/insight.xlsx") %>%
 options(knitr.kable.NA = '')
 t1 = read_csv('input/table1.csv') %>%  rename(' ' = ranking) %>%
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 t2 = read_csv('input/table2.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 t3 = read_csv('input/table3.csv') %>%   rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 12)
 t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
@@ -193,7 +194,8 @@ cat(c("\\begin{table}[H]
       \\centering",
         t1,
     "\\begin{tablenotes}
-        \\footnotesize
+        \\fontsize{15}{15}
+        \\selectfont
         \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
@@ -261,7 +263,8 @@ cat(c("\\begin{table}[H]
       \\centering",
         t4,
     "\\begin{tablenotes}
-    \\footnotesize
+    \\fontsize{12}{12}
+      \\selectfont
     \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
     \\end{tablenotes}
     \\end{table}"
@@ -269,7 +272,6 @@ cat(c("\\begin{table}[H]
 ```
 
 
-\newpage
 
 \begin{figure}[H]
 \caption{美国日新增确诊前五位州趋势图} %最终文档中希望显示的图片标题
@@ -325,13 +327,23 @@ reference = example$content[3]
 
 `r content`
 
+\
 
+<<<<<<< HEAD
 \normalsize `r reference`
+=======
+\Large `r reference`
+>>>>>>> 1cffc3e2c59d5a1392a8ade3450eb6aa3286fd28
 
 
 
 \centering
+<<<<<<< HEAD
 \normalsize
+=======
+\fontsize{12}{12}
+\selectfont
+>>>>>>> 1cffc3e2c59d5a1392a8ade3450eb6aa3286fd28
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\

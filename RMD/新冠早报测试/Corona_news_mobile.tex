@@ -77,6 +77,7 @@
 \geometry{a4paper,scale=1}
 \usepackage{blindtext}
 \usepackage[center]{caption}
+\usepackage[font=Large]{caption}
 \usepackage{subfigure}
 \usepackage{float}
 \usepackage{graphicx}
@@ -231,7 +232,8 @@
     \caption{累计确诊前十位国家}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
-\centering
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlrrr}
 \toprule
   & 国家（地区） & 累计确诊病例 & 总人口 & 粗发病率\\
@@ -249,8 +251,10 @@
 \rowcolor{gray!6}  10 & 瑞士 Switzerland & 22,253 & 8,654,622 & 257\\
 \bottomrule
 \end{tabular}
+\endgroup{}
 \end{table} \begin{tablenotes}
-        \footnotesize
+        \fontsize{15}{15}
+        \selectfont
         \item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \end{tablenotes}
     \end{table}
@@ -266,7 +270,8 @@
     \caption{日新增病例前十位国家}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
-\centering
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlr}
 \toprule
   & 国家 & 当日新增病例\\
@@ -283,12 +288,14 @@
 10 & 比利時 Belgium & 1,380\\
 \bottomrule
 \end{tabular}
+\endgroup{}
 \end{table} \end{table}\begin{table}[H]
   \vspace{-7mm}
     \caption{累计死亡病例前十位国家}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
-\centering
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlrrr}
 \toprule
   & 国家 & 累计死亡病例 & 较昨日 & 病死率\\
@@ -305,6 +312,7 @@
 10 & 德国 Germany & 2,012 & 202 & 1.9\\
 \bottomrule
 \end{tabular}
+\endgroup{}
 \end{table} \end{table}
 
 \begin{figure}[H]
@@ -346,7 +354,8 @@
     \caption{美国累计确诊前十位州}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
-\centering
+\centering\begingroup\fontsize{12}{14}\selectfont
+
 \begin{tabular}{rlrrrrrr}
 \toprule
   & 国家/州名 & 累计确诊 & 粗发病率 & 阳性率\% & 累计检测 & 日新增检测 & 检测率\\
@@ -364,13 +373,13 @@
 \rowcolor{gray!6}  10 & 乔治亚州 GA & 8,822 & 83 & 26 & 33,713 & 6,299 & 318\\
 \bottomrule
 \end{tabular}
+\endgroup{}
 \end{table} \begin{tablenotes}
-    \footnotesize
+    \fontsize{12}{12}
+      \selectfont
     \item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
     \end{tablenotes}
     \end{table}
-
-\newpage
 
 \begin{figure}[H]
 \caption{美国日新增确诊前五位州趋势图} %最终文档中希望显示的图片标题
@@ -391,7 +400,8 @@
     \caption{美国新增确诊前十位州}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
-\centering
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlrr}
 \toprule
   & 国家/州名 & 当日新增 & 全美比率\\
@@ -409,12 +419,14 @@
 \rowcolor{gray!6}  10 & 加利福尼亚州 CA & 410 & 2\\
 \bottomrule
 \end{tabular}
+\endgroup{}
 \end{table} \end{table}\begin{table}[H]
   \vspace{-7mm}
     \caption{美国累计死亡前十位州}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
-\centering
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlrr}
 \toprule
   & 国家/州名 & 累计死亡人数 & 病死率\\
@@ -432,6 +444,7 @@
 \rowcolor{gray!6}  10 & 马萨诸塞州 MA & 260 & 1.9\\
 \bottomrule
 \end{tabular}
+\endgroup{}
 \end{table} \end{table}
 
 \(\quad\)从表5新增确诊人数来看，纽约州、新泽西州的新增确诊数仍高居前二，宾夕法尼亚州，佐治亚州，路易斯安那州、和佛罗里达州的日新增确诊病例数均超过1,000人。值得注意的是，佐治亚州的日新增确诊首次进入前五，超1,500例；印第安纳州和佛吉尼亚州日新增确诊也首次进入全美前十。鉴于这些州的人均检测率均低于全美平均值（印第安纳州：427/10万人；佛吉尼亚州：336/10万人），显示这些地区疫情存在恶化的风险。
@@ -468,7 +481,11 @@
 
 \(\quad\)目前我国国内疫情局势相对稳定，已大规模复工复产，医用防护服、医用防护口罩/面罩、测温仪、呼吸机产能已基本能满足国内需求，企业也正尽力组织扩大出口\(^3\)。在未来一段时间的抗疫物资援助和贸易上，我国相关产业可更多的将目光放在类似塞拉利昂这样的医疗资源和经济基础更加薄弱的国家。
 
+<<<<<<< HEAD
 \normalsize 参考文献：
+=======
+\Large 参考文献：
+>>>>>>> 1cffc3e2c59d5a1392a8ade3450eb6aa3286fd28
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -483,7 +500,12 @@
 \end{enumerate}
 
 \centering
+<<<<<<< HEAD
 \normalsize
+=======
+\fontsize{12}{12}
+\selectfont
+>>>>>>> 1cffc3e2c59d5a1392a8ade3450eb6aa3286fd28
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\
