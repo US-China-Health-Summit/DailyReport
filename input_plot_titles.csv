@@ -29,7 +29,7 @@ p8_ylab,Number of Cases,Number of Cases
 p9_title,US-state-death-total-sort-by-total,Cumulative Death Cases (Top 5 States of Cumulative Death Cases in U.S.)
 p9_xlab,Date,Date
 p9_ylab,Number of Cases,Number of Cases
-p10_title,country-incremental-sort-by-incremental including China,Incremental Death Cases (Top 5 Countries of Incremental Death Cases Including China)
+p10_title,country-incremental-sort-by-incremental including China,Incremental Death Cases (Top 5 Countries of Incremental Death Cases)
 p10_xlab,Date,Date
 p10_ylab,Number of Cases,Number of Cases per day
 p11_title,US-state-confirmed-incremental-sort-by-total,Incremental Death Cases (Top 5 States of Incremental Death Cases in U.S.)
