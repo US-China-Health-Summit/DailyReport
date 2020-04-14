@@ -44,11 +44,9 @@ header-includes:
     - \usepackage{makecell}
     - \usepackage{xcolor}
 
-    - \linespread{1.0}
-    - \setlength{\parskip}{1em}
+    - \linespread{1.5}
+    - \setlength{\parskip}{2em}
     - \setlength{\footskip}{20pt}
-
-    - \linespread{1.25}
 
 
     - \textwidth 7in
@@ -327,23 +325,15 @@ reference = example$content[3]
 
 `r content`
 
-\
 
-<<<<<<< HEAD
-\normalsize `r reference`
-=======
+
+
 \Large `r reference`
->>>>>>> 1cffc3e2c59d5a1392a8ade3450eb6aa3286fd28
-
 
 
 \centering
-<<<<<<< HEAD
-\normalsize
-=======
 \fontsize{12}{12}
 \selectfont
->>>>>>> 1cffc3e2c59d5a1392a8ade3450eb6aa3286fd28
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\
