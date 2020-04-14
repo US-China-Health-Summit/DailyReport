@@ -23,6 +23,7 @@ header-includes:
     - \geometry{a4paper,scale=1}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
+    - \usepackage[font=Large]{caption}
     - \usepackage{subfigure}
     - \usepackage{float}
     - \usepackage{graphicx}
@@ -43,12 +44,9 @@ header-includes:
     - \usepackage{makecell}
     - \usepackage{xcolor}
 
-    - \linespread{1.0}
-    - \setlength{\parskip}{0.5em}
+    - \linespread{1.5}
+    - \setlength{\parskip}{2em}
     - \setlength{\footskip}{20pt}
-
-    - \linespread{1.15}
-    - \setlength{\parskip}{0.3em}
 
 
     - \textwidth 7in
@@ -58,7 +56,7 @@ header-includes:
     - \topmargin -1in
     
 ---
-\fontsize{13}{13}
+\fontsize{22}{22}
 \selectfont
 \vspace{-10truemm}
 
@@ -79,10 +77,11 @@ header-includes:
 \setlength{\headheight}{25pt} 
 \setlength{\headsep}{-15pt} 
 
-\resheading{\Large 每日新闻}
+
+\resheading{\Huge 每日新闻}
 
 
-## \textcolor{glaucous}{\Large 国际}
+## \textcolor{glaucous}{\Huge 国际}
 
 
 ```{r setup, include=FALSE}
@@ -127,7 +126,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 `r global_news$content[6]`
 
-## \textcolor{glaucous}{\Large 国内}
+## \textcolor{glaucous}{\Huge 国内}
 **\textcolor{glaucous}{`r china_news$pub[1]`}**: **`r china_news$title[1]`**
 
 `r china_news$content[1]`
@@ -140,13 +139,13 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 \newpage
 
-\resheading{\Large 疫情观察}
+\resheading{\Huge 疫情观察}
 
-\begin{small}
-{数据源：约翰霍普金斯大学，The COVID Tracking Project \quad   数据截止至：北京时间3月28日 早4:00}
-\end{small}
+\begin{Large}
+{数据源：约翰霍普金斯大学，The COVID Tracking Project \\ 数据截止至：北京时间3月28日 早4:00}
+\end{Large}
 
-# \textcolor{glaucous}{一、世界疫情}
+# \textcolor{glaucous}{\Huge 一、世界疫情}
 ```{r include=FALSE}
 insight = read_excel("./input/insight.xlsx") %>%
   janitor::clean_names() %>% 
@@ -167,22 +166,22 @@ insight = read_excel("./input/insight.xlsx") %>%
 options(knitr.kable.NA = '')
 t1 = read_csv('input/table1.csv') %>%  rename(' ' = ranking) %>%
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 t2 = read_csv('input/table2.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 t3 = read_csv('input/table3.csv') %>%   rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 12)
 t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = "striped", font_size = 18)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
@@ -193,7 +192,8 @@ cat(c("\\begin{table}[H]
       \\centering",
         t1,
     "\\begin{tablenotes}
-        \\footnotesize
+        \\fontsize{15}{15}
+        \\selectfont
         \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
@@ -206,49 +206,42 @@ cat(c("\\begin{table}[H]
 `r insight$content[2]`
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
-
-    \\begin{minipage}{.4\\linewidth}
-    \\centering
-    \\captionsetup{justification=centering}
+cat(c("\\begin{table}[H]
+  \\vspace{-7mm}
     \\caption{日新增病例前十位国家}
-    \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
         t2,
-    "\\end{minipage}
-    \\begin{minipage}{.6\\linewidth}
-    \\centering
-    \\captionsetup{justification=centering}
-     \\caption{累计死亡病例前十位国家}
-     \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
+    "\\end{table}"
+))
+
+cat(c("\\begin{table}[H]
+  \\vspace{-7mm}
+    \\caption{累计死亡病例前十位国家}
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
         t3,
-    "\\end{minipage} 
-\\end{table}"
+    "\\end{table}"
 ))
 ```
 
+\begin{figure}[H]
+\caption{日新增确诊病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
+\centering
+\includegraphics[]{./input/covid2.pdf} 
+\label{} %用于文内引用的标签
+\end{figure}
 
 \begin{figure}[H]
+\caption{日新增死亡病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
 \centering
-\begin{minipage}[b]{0.45\linewidth}
-\caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
-\includegraphics[]{./input/covid2.pdf}
-\label{}
-\end{minipage}
-\quad
-\begin{minipage}[b]{0.45\linewidth}
-\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
-\includegraphics[]{./input/covid3.pdf}
-\label{}
-\end{minipage}
+\includegraphics[]{./input/covid3.pdf} 
+\label{} %用于文内引用的标签
 \end{figure}
 
 \newpage
 
-# \textcolor{glaucous}{二、美国疫情}
+# \textcolor{glaucous}{\Huge 二、美国疫情}
 
 `r insight$content[3]`
 
@@ -268,7 +261,8 @@ cat(c("\\begin{table}[H]
       \\centering",
         t4,
     "\\begin{tablenotes}
-    \\footnotesize
+    \\fontsize{12}{12}
+      \\selectfont
     \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
     \\end{tablenotes}
     \\end{table}"
@@ -276,42 +270,39 @@ cat(c("\\begin{table}[H]
 ```
 
 
-\newpage
 
 \begin{figure}[H]
+\caption{美国日新增确诊前五位州趋势图} %最终文档中希望显示的图片标题
 \centering
-\begin{minipage}[b]{0.45\linewidth}
-\caption{美国日新增确诊前五位州趋势图}
-\includegraphics[]{./input/covid5.pdf}
-\label{}
-\end{minipage}
-\quad
-\begin{minipage}[b]{0.45\linewidth}
-\caption{美国日新增死亡前五位州趋势图}
-\includegraphics[]{./input/covid6.pdf}
-\label{}
-\end{minipage}
+\includegraphics[]{./input/covid5.pdf} 
+\label{} %用于文内引用的标签
+\end{figure}
+
+\begin{figure}[H]
+\caption{美国日新增死亡前五位州趋势图} %最终文档中希望显示的图片标题
+\centering
+\includegraphics[]{./input/covid6.pdf} 
+\label{} %用于文内引用的标签
 \end{figure}
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
-
-    \\begin{minipage}{.4\\linewidth}
+cat(c("\\begin{table}[H]
+  \\vspace{-7mm}
     \\caption{美国新增确诊前十位州}
-    \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
         t5,
-    "\\end{minipage}%
-    \\begin{minipage}{.7\\linewidth}
-     \\caption{美国累计死亡前十位州}
-     \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
+    "\\end{table}"
+))
+
+cat(c("\\begin{table}[H]
+  \\vspace{-7mm}
+    \\caption{美国累计死亡前十位州}
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
         t6,
-    "\\end{minipage} 
-\\end{table}"
+    "\\end{table}"
 ))
 ```
 
@@ -320,7 +311,7 @@ cat(c("\\begin{table}
 
 \newpage
 
-\resheading{\Large 疫情观察}
+\resheading{\Huge 疫情观察}
 
 ```{r, echo=FALSE}
 example = read_excel("./input/module3.xlsx")
@@ -330,17 +321,19 @@ reference = example$content[3]
 ```
 
 
-# \textcolor{glaucous}{`r title`}
+# \textcolor{glaucous}{\Huge `r title`}
 
 `r content`
 
 
-\small `r reference`
 
+
+\Large `r reference`
 
 
 \centering
-\small
+\fontsize{12}{12}
+\selectfont
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\

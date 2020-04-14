@@ -1,4 +1,4 @@
-State_Full, State_cn, State_abb
+﻿State_Full, State_cn, State_abb
 
 Alabama,阿拉巴马州, AL
 
@@ -116,4 +116,4 @@ Grand Princess, 大公主号游轮, GP
 
 Diamond Princess, 钻石公主号游轮, DP
 
-United States, 美国, US
+US, 美国, US
