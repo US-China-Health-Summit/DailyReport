@@ -44,11 +44,10 @@ header-includes:
     - \usepackage{xcolor}
 
     - \linespread{1.0}
-    - \setlength{\parskip}{0.5em}
+    - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
 
-    - \linespread{1.15}
-    - \setlength{\parskip}{0.3em}
+    - \linespread{1.25}
 
 
     - \textwidth 7in
@@ -79,10 +78,11 @@ header-includes:
 \setlength{\headheight}{25pt} 
 \setlength{\headsep}{-15pt} 
 
-\resheading{\Large 每日新闻}
+
+\resheading{\Huge 每日新闻}
 
 
-## \textcolor{glaucous}{\Large 国际}
+## \textcolor{glaucous}{\Huge 国际}
 
 
 ```{r setup, include=FALSE}
@@ -127,7 +127,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 `r global_news$content[6]`
 
-## \textcolor{glaucous}{\Large 国内}
+## \textcolor{glaucous}{\Huge 国内}
 **\textcolor{glaucous}{`r china_news$pub[1]`}**: **`r china_news$title[1]`**
 
 `r china_news$content[1]`
@@ -140,13 +140,13 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 \newpage
 
-\resheading{\Large 疫情观察}
+\resheading{\Huge 疫情观察}
 
 \begin{small}
 {数据源：约翰霍普金斯大学，The COVID Tracking Project \quad   数据截止至：北京时间3月28日 早4:00}
 \end{small}
 
-# \textcolor{glaucous}{一、世界疫情}
+# \textcolor{glaucous}{\Huge 一、世界疫情}
 ```{r include=FALSE}
 insight = read_excel("./input/insight.xlsx") %>%
   janitor::clean_names() %>% 
@@ -241,7 +241,7 @@ cat(c("\\begin{table}[H]
 
 \newpage
 
-# \textcolor{glaucous}{二、美国疫情}
+# \textcolor{glaucous}{\Huge 二、美国疫情}
 
 `r insight$content[3]`
 
@@ -311,7 +311,7 @@ cat(c("\\begin{table}[H]
 
 \newpage
 
-\resheading{\Large 疫情观察}
+\resheading{\Huge 疫情观察}
 
 ```{r, echo=FALSE}
 example = read_excel("./input/module3.xlsx")
@@ -321,17 +321,17 @@ reference = example$content[3]
 ```
 
 
-# \textcolor{glaucous}{`r title`}
+# \textcolor{glaucous}{\Huge `r title`}
 
 `r content`
 
 
-\small `r reference`
+\normalsize `r reference`
 
 
 
 \centering
-\small
+\normalsize
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\
