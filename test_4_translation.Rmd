@@ -163,6 +163,12 @@ translate_state_colname = function(ut_data, x) {
     return(ut_data)
   }
 }
+
+tidy_uk = function(country_order) {
+  country_order[which(country_order == "United Kingdom")] = "UK"
+  
+  return(country_order)
+}
 ```
 
 ```{r no longer in use}
@@ -196,6 +202,10 @@ translate_state_colname = function(ut_data, x) {
 the data below is from Daily Report.R 
 
 To test, pls first run the R script to make sure the data is in Environment
+```{r}
+# change United Kingdom to UK
+country_order[which(country_order == "United Kingdom")] = "UK"
+```
 
 ```{r}
 # Apr 4: pass for plot 2 and 3 data
