@@ -180,8 +180,7 @@ t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>%
 cat(c("\\begin{table}[H]
   \\vspace{-7mm}
     \\caption{累计确诊前十位国家}
-      \\vspace{-0.5\\baselineskip}
-      \\centering",
+      \\vspace{-0.5\\baselineskip}",
         t1,
     "\\begin{tablenotes}
         \\fontsize{15}{15}

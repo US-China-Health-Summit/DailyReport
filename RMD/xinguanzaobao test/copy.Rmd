@@ -285,20 +285,23 @@ cat(c("\\begin{table}[H]
 \end{figure}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
+cat(c("\\tiny
+      \\begin{table}
 
     \\begin{minipage}{.4\\linewidth}
     \\caption{美国新增确诊前十位州}
     \\vspace{-0.5\\baselineskip}
       \\centering
-    \\captionsetup{justification=centering}",
+    \\captionsetup{justification=centering}
+         \\fontsize{10}{10}\\selectfont",
         t5,
     "\\end{minipage}%
     \\begin{minipage}{.7\\linewidth}
      \\caption{美国累计死亡前十位州}
      \\vspace{-0.5\\baselineskip}
       \\centering
-    \\captionsetup{justification=centering}",
+    \\captionsetup{justification=centering}
+         \\fontsize{10}{10}\\selectfont",
         t6,
     "\\end{minipage} 
 \\end{table}"

@@ -1,39 +1,46 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{article}
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -42,25 +49,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
@@ -204,7 +200,7 @@
 例。在180多个出现确诊病例的国家或地区中，有17个国家累计确诊超万人。目前，主要病例集中在亚洲、欧洲及北美洲。发展中国家和地区的疫情发展也不可忽视：拉丁美洲国家的确诊病例数快速增长，非洲国家累计确诊病例已逾一万例。表1显示，法国确诊病例首次超过德国成为欧洲第三，中国确诊病例数已下降至第六位。
 
 \begin{figure}[H]
-\caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
+\caption{世界疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -238,7 +234,7 @@
 \end{table} \begin{tablenotes}
         \fontsize{15}{15}
         \selectfont
-        \item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+        \item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率  %此处加入注释信息
       \end{tablenotes}
     \end{table}
 
@@ -246,11 +242,15 @@
 
 \(\quad\)表3和图3显示，美国的日新增死亡病例再登新高（1,508例），从4月4日至今一直为前十位国家中首位，疫情发展不容乐观。法国的日新增死亡病例数迅速上升，昨日新增死亡病例数仅次于美国，高达1,417例，病死率持续上升，提示该国医疗系统正面临巨大压力。意大利和西班牙的日新增死亡病例数呈下降趋势。
 
-\begin{table}[H]
-  \vspace{-7mm}
+\begin{table}
+
+    \begin{minipage}{.4\linewidth}
+    \centering
+    \captionsetup{justification=centering}
     \caption{日新增病例前十位国家}
-      \vspace{-0.5\baselineskip}
-      \centering \begin{table}[H]
+    \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
 \centering\begingroup\fontsize{18}{20}\selectfont
 
 \begin{tabular}{rlr}
@@ -270,11 +270,14 @@
 \bottomrule
 \end{tabular}
 \endgroup{}
-\end{table} \end{table}\begin{table}[H]
-  \vspace{-7mm}
-    \caption{累计死亡病例前十位国家}
-      \vspace{-0.5\baselineskip}
-      \centering \begin{table}[H]
+\end{table} \end{minipage}
+    \begin{minipage}{.6\linewidth}
+    \centering
+    \captionsetup{justification=centering}
+     \caption{累计死亡病例前十位国家}
+     \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
 \centering\begingroup\fontsize{18}{20}\selectfont
 
 \begin{tabular}{rlrrr}
@@ -294,20 +297,22 @@
 \bottomrule
 \end{tabular}
 \endgroup{}
-\end{table} \end{table}
+\end{table} \end{minipage} 
+\end{table}
 
 \begin{figure}[H]
-\caption{日新增确诊病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid2.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
-
-\begin{figure}[H]
-\caption{日新增死亡病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid3.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.45\linewidth}
+\caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
+\includegraphics[]{./input/covid2.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\includegraphics[]{./input/covid3.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
 \hypertarget{section-3}{%
@@ -322,7 +327,7 @@
 \(\quad\)值得注意的是，佐治亚州(GA)累计确诊病例首次进入全美前十，取代华盛顿州(WA)。在累计检测人数较少的情况下，佐治亚州的阳性率为26\%，超过美国平均阳性率(19\%)，提示该州疫情不容乐观。
 
 \begin{figure}[H] 
-\caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
+\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -361,24 +366,29 @@
     \end{table}
 
 \begin{figure}[H]
-\caption{美国日新增确诊前五位州趋势图} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid5.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.45\linewidth}
+\caption{美国日新增确诊前五位州趋势图}
+\includegraphics[]{./input/covid5.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\caption{美国日新增死亡前五位州趋势图}
+\includegraphics[]{./input/covid6.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
-\begin{figure}[H]
-\caption{美国日新增死亡前五位州趋势图} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid6.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
+\tiny
+      \begin{table}
 
-\begin{table}[H]
-  \vspace{-7mm}
+    \begin{minipage}{.4\linewidth}
     \caption{美国新增确诊前十位州}
-      \vspace{-0.5\baselineskip}
-      \centering \begin{table}[H]
+    \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering}
+         \fontsize{10}{10}\selectfont \begin{table}[H]
 \centering\begingroup\fontsize{18}{20}\selectfont
 
 \begin{tabular}{rlrr}
@@ -399,11 +409,13 @@
 \bottomrule
 \end{tabular}
 \endgroup{}
-\end{table} \end{table}\begin{table}[H]
-  \vspace{-7mm}
-    \caption{美国累计死亡前十位州}
-      \vspace{-0.5\baselineskip}
-      \centering \begin{table}[H]
+\end{table} \end{minipage}%
+    \begin{minipage}{.7\linewidth}
+     \caption{美国累计死亡前十位州}
+     \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering}
+         \fontsize{10}{10}\selectfont \begin{table}[H]
 \centering\begingroup\fontsize{18}{20}\selectfont
 
 \begin{tabular}{rlrr}
@@ -424,7 +436,8 @@
 \bottomrule
 \end{tabular}
 \endgroup{}
-\end{table} \end{table}
+\end{table} \end{minipage} 
+\end{table}
 
 \(\quad\)从表5新增确诊人数来看，纽约州、新泽西州的新增确诊数仍高居前二，宾夕法尼亚州，佐治亚州，路易斯安那州、和佛罗里达州的日新增确诊病例数均超过1,000人。值得注意的是，佐治亚州的日新增确诊首次进入前五，超1,500例；印第安纳州和佛吉尼亚州日新增确诊也首次进入全美前十。鉴于这些州的人均检测率均低于全美平均值（印第安纳州：427/10万人；佛吉尼亚州：336/10万人），显示这些地区疫情存在恶化的风险。
 
@@ -478,8 +491,9 @@
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\
-执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
-数据分析:杜兆慧  &  案例分析: 史珂玮\\
+执行责任编辑:王冠  & 责任编辑:乐昊欣\, 闫怡璇 \\
+新闻组:张宁\, 张心其  & 数据分析:杜兆慧 \\
+案例分析: 史珂玮  &  微信排版:韩佩瑾 \\
 \multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
 
 \end{tabular}
