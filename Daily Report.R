@@ -609,7 +609,7 @@ if (as.numeric(x_max - x_min) < 15 ) {
 
 ##Following code limits the occueance of data into 7 pieces
 break.vec = pretty(break.vec,n=9)
-break.vec = c(x_min,break.vec[break.vec>=x_min & break.vec<x_max],x_max)
+break.vec = c(x_min,break.vec[break.vec>x_min+1 & break.vec<x_max],x_max)
 length(break.vec)
 
 # specify country_filter for weekly report and daily report
@@ -1323,23 +1323,23 @@ if (weekly_summary){
 # data for plots
 
 # x label break for all plots:
-x_min = min(data_us_states$Date)
-x_max = max(data_us_states$Date)
-if (as.numeric(x_max - x_min) < 15) {
-  break.vec <- seq( x_min, x_max, by = "day")
+x_min_us = min(data_us_states$Date)
+x_max_us = max(data_us_states$Date)
+if (as.numeric(x_max_us - x_min_us) < 15) {
+  break.vec_us <- seq( x_min_us, x_max_us, by = "day")
 }else{
-  if (as.numeric(x_max - x_min) %% 3 == 2) {
-    break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + x_min, x_max, by = "3 days"))
+  if (as.numeric(x_max_us - x_min_us) %% 3 == 2) {
+    break.vec_us <- c(x_min_us, seq( as.numeric(x_max_us - x_min_us) %% 3 + x_min_us, x_max_us, by = "3 days"))
   }else{
-    break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + 3 + x_min, x_max, by = "3 days"))
+    break.vec_us <- c(x_min_us, seq( as.numeric(x_max_us - x_min_us) %% 3 + 3 + x_min_us, x_max_us, by = "3 days"))
   }
 }
 
-##Following code limits the length of break.vec into 7
-break.vec = pretty(break.vec,n=9)
-break.vec = c(x_min,break.vec[break.vec>=x_min & break.vec<x_max],x_max)
-length(break.vec)
-
+##Following code limits the length of break.vec_us into 7
+break.vec_us = pretty(break.vec_us,n=9)
+break.vec_us = c(x_min_us,break.vec_us[break.vec_us>x_min_us+1 & break.vec_us<x_max_us],x_max_us)
+length(break.vec_us)
+#
 
 if (template_input) {
 	state_list = read.csv("input_us_state_list.csv", stringsAsFactors = F)
@@ -1414,7 +1414,7 @@ p5 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,
 	theme(legend.position = c(0.15, 0.8)) + 
 	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
 	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
-	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+	scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
 	xlab("") +
 	ylab(p5_ylab)
@@ -1452,7 +1452,7 @@ p6 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_incremental,
 	theme(legend.title = element_text(size = 19,face = "bold.italic"), 
 				legend.text = element_text(size = 18,face = "italic")) +
 	scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+	scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
 	scale_color_manual(values = color_list[match(state_order, color_list_state)]) +
 	xlab("") +
 	ylab(p6_ylab)
@@ -1481,7 +1481,7 @@ p9 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = sta
 	theme(legend.position = c(0.15, 0.8)) + 
 	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
 	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
-	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+	scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
 	xlab("") +
 	ylab(p9_ylab)
@@ -1512,7 +1512,7 @@ p11 = ggplot(data_to_plot_death_incremental , aes(x=Date, y=Deaths_incremental, 
 	theme(legend.position = c(0.15, 0.8)) + 
 	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
 	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
-	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+	scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
 	scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
 	xlab("") +
 	ylab(p11_ylab)
