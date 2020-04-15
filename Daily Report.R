@@ -350,7 +350,7 @@ filter_by_date = function(ds, date_var, start_date, end_date){
 }
 
 adjust_y_interval = function(y_max){
-  temp_interval = y_max / 10
+  temp_interval = y_max / 6
   if (temp_interval < 15) {
     y_interval = ceiling((temp_interval/20))*20
   } else if (temp_interval < 30) {
