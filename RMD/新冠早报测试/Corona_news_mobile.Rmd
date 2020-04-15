@@ -147,7 +147,7 @@ insight = read_excel("./input/insight.xlsx") %>%
 `r insight$content[1]`
 
 \begin{figure}[H]
-\caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
+\caption{世界疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -186,7 +186,7 @@ cat(c("\\begin{table}[H]
     "\\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
-        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -217,18 +217,20 @@ cat(c("\\begin{table}[H]
 ```
 
 \begin{figure}[H]
-\caption{日新增确诊病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid2.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.45\linewidth}
+\caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
+\includegraphics[]{./input/covid2.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\includegraphics[]{./input/covid3.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
-\begin{figure}[H]
-\caption{日新增死亡病例国家趋势图 \\（前五位国家）} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid3.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
 
 
 
@@ -237,7 +239,7 @@ cat(c("\\begin{table}[H]
 `r insight$content[3]`
 
 \begin{figure}[H] 
-\caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
+\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -263,17 +265,18 @@ cat(c("\\begin{table}[H]
 
 
 \begin{figure}[H]
-\caption{美国日新增确诊前五位州趋势图} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid5.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
-
-\begin{figure}[H]
-\caption{美国日新增死亡前五位州趋势图} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid6.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.45\linewidth}
+\caption{美国日新增确诊前五位州趋势图}
+\includegraphics[]{./input/covid5.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\caption{美国日新增死亡前五位州趋势图}
+\includegraphics[]{./input/covid6.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
 
