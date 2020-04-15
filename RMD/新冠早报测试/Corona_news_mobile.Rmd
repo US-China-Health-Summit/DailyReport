@@ -7,7 +7,7 @@ header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
     - \usepackage{fancyhdr}
-    - \pagestyle{fancy}
+    - \pagestyle{plain}
     
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
@@ -54,19 +54,11 @@ header-includes:
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
 }
 
-
-\lhead{\includegraphics[height=2cm]{./input/logo.png}}
-\rhead{
 \begin{tabular}{ccc}
-\textcolor{gray}{中美健康峰会「智援组」新冠早报组}\\
-\\ \\ \\ \\ \\
-\end{tabular}}
-
-\begin{tabular}{lr}
-
-\includegraphics[height=2cm]{./input/logo.png}&\textcolor{gray}{\fontsize{12}{12}{中美健康峰会「智援组」新冠早报组}}\\
+\centering
+\includegraphics[height=2cm]{./input/logo.png} & &
+\textcolor{gray}{\fontsize{12}{12}{中美健康峰会「智援组」新冠早报组}}\\
 \end{tabular}
-
 
 
 \begin{center}
