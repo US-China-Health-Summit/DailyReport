@@ -199,6 +199,10 @@ translate_country = function(ut_data) {
            Country = name_y) %>% 
     unite("Country_bi", Country_cn:Country, sep = " ", remove = F)
   
+  ut_data = ut_data %>% 
+    mutate(Country = case_when(Country == "United Kingdom"~ "UK", 
+                               TRUE ~ as.character(Country)))
+  
   t_data = left_join(ut_data, trans_name, by = "Country") %>% 
     # in this step coercing warning will show up but dont worry
     mutate(Country =  as.factor(as.character(Country)), 
@@ -320,6 +324,14 @@ translate_state_colname = function(ut_data, x) {
     warning("x can only be 4, 5, 6; column name is NOT translated")
     return(ut_data)
   }
+}
+
+tidy_uk = function(country_order) {
+  # tidy United Kingdom and UK
+  # wwqi4realGitHub
+  country_order[which(country_order == "United Kingdom")] = "UK"
+  
+  return(country_order)
 }
 
 convert_date = function(date_label){
@@ -680,7 +692,7 @@ data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels 
 
 y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
-p1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Country, colour = Country,  shape = Country)) + 
+p1 = ggplot(data_to_plot_confirmed %>% translate_country(), aes(x = Date, y = Confirmed, group = Country, colour = Country,  shape = Country)) + 
 	geom_point(size = 2) + 
 	geom_line(size = 1) +
 	theme_bw() + 
@@ -693,7 +705,7 @@ p1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Countr
 	theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
 	scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
 	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+	scale_color_manual(values = color_list[match(country_order %>% tidy_uk(), color_list_country %>% tidy_uk())]) +
 	xlab("") +
 	ylab(p1_ylab) 
 
@@ -715,7 +727,7 @@ data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels 
 
 y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1) * 1000
 y_interval = adjust_y_interval(y_max)
-p1_1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Country, colour = Country,  shape = Country)) + 
+p1_1 = ggplot(data_to_plot_confirmed %>% translate_country(), aes(x = Date, y = Confirmed, group = Country, colour = Country,  shape = Country)) + 
 	geom_point(size = 2) + 
 	geom_line(size = 1) +
 	theme_bw() + 
@@ -728,7 +740,7 @@ p1_1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Coun
 	theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
 	scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
 	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+	scale_color_manual(values = color_list[match(country_order %>% tidy_uk(), color_list_country %>% tidy_uk())]) +
 	xlab("") +
 	ylab(p1_ylab)
 
@@ -752,7 +764,7 @@ y_interval = adjust_y_interval(y_max)
 # plot 2
 
 
-p2 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed_incremental, 
+p2 = ggplot(data_to_plot_confirmed %>% translate_country(), aes(x = Date, y = Confirmed_incremental, 
 																				group = Country, 
 																				colour = Country, 
 																				shape = Country)) + 
@@ -768,7 +780,7 @@ p2 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed_incremental,
 	theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
 	scale_y_continuous(breaks = seq(0,y_max, y_interval), label = comma) +
 	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+	scale_color_manual(values = color_list[match(country_order %>% tidy_uk(), color_list_country %>% tidy_uk())]) +
 	# ggtitle("日新增确诊病例国家趋势图", subtitle = "中国及其他前五位国家") + 
 	xlab("") +
 	ylab(p2_ylab)
@@ -788,7 +800,7 @@ data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increm
 
 y_max = (round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
-p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_incremental, 
+p3 = ggplot(data_to_plot_confirmed_increment %>% translate_country(), aes(x = Date, y = Confirmed_incremental, 
 																									group = Country, 
 																									colour = Country,
 																									shape = Country)) + 
@@ -804,7 +816,7 @@ p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_increm
 	theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
 	scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
 	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+	scale_color_manual(values = color_list[match(country_order %>% tidy_uk(), color_list_country %>% tidy_uk())]) +
 	# ggtitle("累计确诊病例国家趋势图", subtitle = "中国及其他前五位国家") + 
 	xlab("") +
 	ylab(p3_ylab)
@@ -825,7 +837,8 @@ data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increm
 
 y_max=(round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
-p3_1 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_incremental, group=Country, colour = Country,  shape = Country)) + 
+p3_1 = ggplot(data_to_plot_confirmed_increment %>% translate_country(), 
+              aes(x = Date, y = Confirmed_incremental, group = Country, colour = Country, shape = Country)) + 
 	geom_point(size=2) + 
 	geom_line(size=1) +
 	theme_bw() + 
@@ -835,10 +848,10 @@ p3_1 = ggplot(data_to_plot_confirmed_increment , aes(x=Date, y=Confirmed_increme
 	theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 18)) + 
 	theme(axis.text.y = element_text(size = 18), axis.title.y = element_text(size = 18)) + 
 	theme(legend.position = c(0.15, 0.8)) + 
-	theme(legend.title = element_text(size=19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
-	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+	theme(legend.title = element_text(size = 19,face = "bold.italic"), legend.text = element_text(size = 18,face = "italic")) +
+	scale_y_continuous(breaks = seq(0,y_max, y_interval),label=comma) +
 	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+	scale_color_manual(values = color_list[match(country_order %>% tidy_uk(), color_list_country %>% tidy_uk())]) +
 	xlab("") +
 	ylab(p3_ylab)
 
@@ -863,10 +876,11 @@ temp = temp[order(temp$Crude_Incidence_Rate,decreasing = T),]
 region_order=temp$Region
 data_to_plot_IR$Region <- factor(data_to_plot_IR$Region, levels = region_order)
 
-y_max=(round(max(data_to_plot_IR$Crude_Incidence_Rate)/10)+1)*10
+y_max = (round(max(data_to_plot_IR$Crude_Incidence_Rate)/10) + 1)*10
 y_interval = adjust_y_interval(y_max)
 
-p7_1 = ggplot(data_to_plot_IR , aes(x=Date, y=Crude_Incidence_Rate, group=Region, colour = Region,  shape = Region)) + 
+p7_1 = ggplot(data_to_plot_IR, 
+              aes(x=Date, y=Crude_Incidence_Rate, group=Region, colour = Region,  shape = Region)) + 
 	geom_point(size=2) + 
 	geom_line(size=1) +
 	scale_shape_manual(values=1:nlevels(data_to_plot_IR$Region)) +
@@ -880,7 +894,7 @@ p7_1 = ggplot(data_to_plot_IR , aes(x=Date, y=Crude_Incidence_Rate, group=Region
 	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
 	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
 	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values=color_list[match(region_order, color_list_country)]) +
+	scale_color_manual(values=color_list[match(region_order %>% tidy_uk(), color_list_country %>% tidy_uk())]) +
 	xlab("") +
 	ylab(p7_ylab)
 
@@ -900,7 +914,7 @@ data_to_plot_death_total$Country <- factor(data_to_plot_death_total$Country, lev
 
 y_max=(round(max(data_to_plot_death_total$Deaths)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
-p8_1 = ggplot(data_to_plot_death_total , aes(x=Date, y= Deaths, group=Country, colour = Country,  shape = Country)) + 
+p8_1 = ggplot(data_to_plot_death_total %>% translate_country(), aes(x=Date, y= Deaths, group=Country, colour = Country,  shape = Country)) + 
 	geom_point(size=2) + 
 	geom_line(size=1) +
 	theme_bw() + 
@@ -913,7 +927,7 @@ p8_1 = ggplot(data_to_plot_death_total , aes(x=Date, y= Deaths, group=Country, c
 	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
 	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
 	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+	scale_color_manual(values=color_list[match(country_order %>% tidy_uk(), color_list_country %>% tidy_uk())]) +
 	xlab("") +
 	ylab(p8_ylab)
 
@@ -934,7 +948,7 @@ data_to_plot_death_incremental$Country <- factor(data_to_plot_death_incremental$
 
 y_max=(round(max(data_to_plot_death_incremental$Deaths_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
-p10 = ggplot(data_to_plot_death_incremental, aes(x=Date, y=Deaths_incremental, group=Country, colour = Country,  shape = Country)) + 
+p10 = ggplot(data_to_plot_death_incremental %>% translate_country(), aes(x=Date, y=Deaths_incremental, group=Country, colour = Country,  shape = Country)) + 
 	geom_point(size=2) + 
 	geom_line(size=1) +
 	theme_bw() + 
@@ -947,7 +961,7 @@ p10 = ggplot(data_to_plot_death_incremental, aes(x=Date, y=Deaths_incremental, g
 	theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 18,face="italic")) +
 	scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
 	scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-	scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+	scale_color_manual(values=color_list[match(country_order %>% tidy_uk(), color_list_country %>% tidy_uk())]) +
 	xlab("") +
 	ylab(p10_ylab)
 
