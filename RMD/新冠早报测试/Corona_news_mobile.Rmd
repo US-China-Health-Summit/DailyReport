@@ -1,6 +1,4 @@
 ---
-title: \textcolor{glaucous}{\Huge \textbf {新冠早报}}
-subtitle: \textcolor{glaucous}{\Large 第13期 \space 4月8日}
 output: 
   pdf_document:
     latex_engine: xelatex
@@ -9,8 +7,7 @@ header-includes:
     - \usepackage{ctex}
     - \usepackage{xcolor}
     - \usepackage{fancyhdr}
-    - \pagestyle{fancy}
-    - \cfoot{\thepage}
+    - \pagestyle{plain}
     
     - \usepackage{sectsty}
     - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
@@ -20,7 +17,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{a4paper,scale=1}
+    - \geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage[font=Large]{caption}
@@ -44,17 +41,10 @@ header-includes:
     - \usepackage{makecell}
     - \usepackage{xcolor}
 
-    - \linespread{1.5}
-    - \setlength{\parskip}{2em}
+    - \linespread{1.15}
+    - \setlength{\parskip}{1.5em}
     - \setlength{\footskip}{20pt}
 
-
-    - \textwidth 7in
-    - \textheight 9.95in
-    - \oddsidemargin -.25in
-    - \evensidemargin -.25in
-    - \topmargin -1in
-    
 ---
 \fontsize{22}{22}
 \selectfont
@@ -64,18 +54,20 @@ header-includes:
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
 }
 
+\begin{center}
+\includegraphics[height=2cm]{./input/logo2.png} 
+\end{center}
 
-\pagestyle{fancyplain}
-\lhead{\includegraphics[height=2cm]{./input/logo.png}}
-\rhead{
-\begin{tabular}{ccc}
-\textcolor{gray}{中美健康峰会「智援组」新冠早报组}\\
-\\ \\ \\ \\ \\
-\end{tabular}}
 
-\renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{25pt} 
-\setlength{\headsep}{-15pt} 
+\begin{center}
+\fontsize{34}{34}
+\textcolor{glaucous}{\textbf{新冠早报}}
+\end{center}
+
+\begin{center}
+\fontsize{18}{18}
+{\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
+\end{center}
 
 
 \resheading{\Huge 每日新闻}
@@ -137,7 +129,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 
 
-\newpage
+
 
 \resheading{\Huge 疫情观察}
 
@@ -155,7 +147,7 @@ insight = read_excel("./input/insight.xlsx") %>%
 `r insight$content[1]`
 
 \begin{figure}[H]
-\caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
+\caption{世界疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -194,14 +186,13 @@ cat(c("\\begin{table}[H]
     "\\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
-        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
 ```
 
 
-\newpage
 
 `r insight$content[2]`
 
@@ -226,27 +217,29 @@ cat(c("\\begin{table}[H]
 ```
 
 \begin{figure}[H]
-\caption{日新增确诊病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid2.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.45\linewidth}
+\caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
+\includegraphics[]{./input/covid2.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\includegraphics[]{./input/covid3.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
-\begin{figure}[H]
-\caption{日新增死亡病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid3.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
 
-\newpage
+
 
 # \textcolor{glaucous}{\Huge 二、美国疫情}
 
 `r insight$content[3]`
 
 \begin{figure}[H] 
-\caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
+\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -272,17 +265,18 @@ cat(c("\\begin{table}[H]
 
 
 \begin{figure}[H]
-\caption{美国日新增确诊前五位州趋势图} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid5.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
-
-\begin{figure}[H]
-\caption{美国日新增死亡前五位州趋势图} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid6.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.45\linewidth}
+\caption{美国日新增确诊前五位州趋势图}
+\includegraphics[]{./input/covid5.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\caption{美国日新增死亡前五位州趋势图}
+\includegraphics[]{./input/covid6.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
 
@@ -309,7 +303,6 @@ cat(c("\\begin{table}[H]
 
 `r insight$content[4]`
 
-\newpage
 
 \resheading{\Huge 疫情观察}
 
@@ -337,8 +330,9 @@ reference = example$content[3]
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\
-执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
-数据分析:杜兆慧  &  案例分析: 史珂玮\\
+执行责任编辑:王冠  & 责任编辑:乐昊欣\, 闫怡璇 \\
+新闻组:张宁\, 张心其  & 数据分析:杜兆慧 \\
+案例分析: 史珂玮  &  微信排版:韩佩瑾 \\
 \multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
 
 \end{tabular}

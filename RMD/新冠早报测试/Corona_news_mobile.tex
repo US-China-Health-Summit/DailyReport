@@ -64,8 +64,7 @@
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
-\pagestyle{fancy}
-\cfoot{\thepage}
+\pagestyle{plain}
 \usepackage{sectsty}
 \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
 \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
@@ -74,7 +73,7 @@
 \usepackage{color}% http://ctan.org/pkg/color
 \usepackage{hyperref}% http://ctan.org/pkg/hyperref
 \usepackage{geometry}
-\geometry{a4paper,scale=1}
+\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
 \usepackage{blindtext}
 \usepackage[center]{caption}
 \usepackage[font=Large]{caption}
@@ -97,20 +96,9 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\linespread{1.5}
-\setlength{\parskip}{2em}
+\linespread{1.15}
+\setlength{\parskip}{1.5em}
 \setlength{\footskip}{20pt}
-\textwidth 7in
-\textheight 9.95in
-\oddsidemargin -.25in
-\evensidemargin -.25in
-\topmargin -1in
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -126,14 +114,10 @@
 \usepackage{makecell}
 \usepackage{xcolor}
 
-\title{\textcolor{glaucous}{\Huge \textbf {新冠早报}}}
-\providecommand{\subtitle}[1]{}
-\subtitle{\textcolor{glaucous}{\Large 第13期 \space 4月8日}}
 \author{}
 \date{\vspace{-2.5em}}
 
 \begin{document}
-\maketitle
 
 \fontsize{22}{22}
 \selectfont
@@ -143,17 +127,19 @@
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
 }
 
-\pagestyle{fancyplain}
-\lhead{\includegraphics[height=2cm]{./input/logo.png}}
-\rhead{
-\begin{tabular}{ccc}
-\textcolor{gray}{中美健康峰会「智援组」新冠早报组}\\
-\\ \\ \\ \\ \\
-\end{tabular}}
+\begin{center}
+\includegraphics[height=2cm]{./input/logo2.png} 
+\end{center}
 
-\renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{25pt} 
-\setlength{\headsep}{-15pt}
+\begin{center}
+\fontsize{34}{34}
+\textcolor{glaucous}{\textbf{新冠早报}}
+\end{center}
+
+\begin{center}
+\fontsize{18}{18}
+{\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
+\end{center}
 
 %
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 每日新闻}}}%
@@ -203,8 +189,6 @@
 \textbf{从26国乘机回国的中国籍旅客需提前填报防疫健康信息}
 
 据北京时间4月7日发布的《关于中国籍旅客乘坐航班回国前填报防疫健康信息的公告》，自4月8日起，从意大利、美国、西班牙等26个国家已购买回国机票的中国籍旅客需要提前填报防疫健康信息。未按要求填报的旅客将无法登机。
-
-\newpage
 
 %
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 疫情观察}}}%
@@ -257,8 +241,6 @@
         \item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \end{tablenotes}
     \end{table}
-
-\newpage
 
 \(\quad\)表2和图2显示，美国新增病例数仍居全球首位，已连续八天日新增病例数超过两万人。西班牙与意大利日新增病例数连续下降，意大利昨日新增病例首次跌出日新增国家前五。值得注意的是，法国的日新增病例较昨日翻倍，已突破一万例。同时，土耳其单日确诊病例连续五天增加，提示该地区疫情发展迅速。巴西日新增病例首次进入前十，表明疫情在南美洲有蔓延趋势。
 
@@ -327,8 +309,6 @@
 \includegraphics[]{./input/covid3.pdf} 
 \label{} %用于文内引用的标签
 \end{figure}
-
-\newpage
 
 \hypertarget{section-3}{%
 \section{\texorpdfstring{\textcolor{glaucous}{\Huge 二、美国疫情}}{}}\label{section-3}}
@@ -449,8 +429,6 @@
 \(\quad\)从表5新增确诊人数来看，纽约州、新泽西州的新增确诊数仍高居前二，宾夕法尼亚州，佐治亚州，路易斯安那州、和佛罗里达州的日新增确诊病例数均超过1,000人。值得注意的是，佐治亚州的日新增确诊首次进入前五，超1,500例；印第安纳州和佛吉尼亚州日新增确诊也首次进入全美前十。鉴于这些州的人均检测率均低于全美平均值（印第安纳州：427/10万人；佛吉尼亚州：336/10万人），显示这些地区疫情存在恶化的风险。
 
 \(\quad\)从表6来看，美国累计死亡病例已突破一万二千例。纽约州的病死率已上升至4\%，提示纽约州的医疗系统已严重超过负荷。同时，纽约州日新增确诊病例已连续4日下降（图5），可能与居家隔离措施与扩大检测规模有关。值得注意的是，佐治亚州的病死率上升迅速（从4月7日3.1\%到4月8日3.7\%），提示该地区医疗系统正面临巨大挑战。
-
-\newpage
 
 %
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 疫情观察}}}%

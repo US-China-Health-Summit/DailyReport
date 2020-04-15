@@ -260,8 +260,8 @@ translate_country_colname = function(ut_data, x) {
       select(ranking, Country_bi, Deaths, Deaths_incremental, Fatality_rate) %>% 
       rename("国家" = Country_bi, 
              "累计死亡病例" = Deaths, 
-             "较昨日" = Deaths_incremental, 
-             "病死率" = Fatality_rate)
+             "较昨日新增" = Deaths_incremental, 
+             "病死率%" = Fatality_rate)
     
     return(t_data)
   } else {
@@ -303,7 +303,7 @@ translate_state_colname = function(ut_data, x) {
       select(ranking, state_bi, Confirmed_incremental, Percentage) %>%
     rename("国家/州名" = state_bi, 
            "当日新增" = Confirmed_incremental, 
-           "全美比率" = Percentage)
+           "构成比%" = Percentage)
     
     return(t_data)
   } else if (x == 6) {
@@ -312,7 +312,7 @@ translate_state_colname = function(ut_data, x) {
       select(ranking, state_bi, Deaths, Fatality_rate) %>%
     rename("国家/州名" = state_bi, 
            "累计死亡人数" = Deaths, 
-           "病死率" = Fatality_rate)
+           "病死率%" = Fatality_rate)
     
     return(t_data)
   } else {
@@ -607,6 +607,11 @@ if (as.numeric(x_max - x_min) < 15 ) {
   }
 }
 
+##Following code limits the occueance of data into 7 pieces
+break.vec = pretty(break.vec,n=9)
+break.vec = c(x_min,break.vec[break.vec>=x_min & break.vec<x_max],x_max)
+length(break.vec)
+
 # specify country_filter for weekly report and daily report
 
 ##  specify country_filter for daily report
@@ -695,6 +700,7 @@ p1 = ggplot(data_to_plot_confirmed , aes(x = Date, y = Confirmed, group = Countr
 ggsave(filename = paste(report_date,"p1",p1_title, ".pdf"), plot = p1, width = 10, height = 8 )
 ggsave(filename = paste(report_date,"p1",p1_title, ".png"), plot = p1, width = 10, height = 8 )
 
+?scale_x_date
 # plot 1-1. total confirmed cases sort by countries cumulative (including China)
 filter_total_with_china = c(china_label, filter_total)
 
@@ -1328,6 +1334,11 @@ if (as.numeric(x_max - x_min) < 15) {
     break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + 3 + x_min, x_max, by = "3 days"))
   }
 }
+
+##Following code limits the length of break.vec into 7
+break.vec = pretty(break.vec,n=9)
+break.vec = c(x_min,break.vec[break.vec>=x_min & break.vec<x_max],x_max)
+length(break.vec)
 
 
 if (template_input) {
