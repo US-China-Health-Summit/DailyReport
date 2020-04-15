@@ -17,7 +17,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+    - \geometry{a4paper,left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage[font=Large]{caption}
@@ -42,7 +42,7 @@ header-includes:
     - \usepackage{xcolor}
 
     - \linespread{1.15}
-    - \setlength{\parskip}{1.5em}
+    - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
 
 ---
@@ -60,12 +60,12 @@ header-includes:
 
 
 \begin{center}
-\fontsize{34}{34}
+\fontsize{45}{45}
 \textcolor{glaucous}{\textbf{新冠早报}}
 \end{center}
 
 \begin{center}
-\fontsize{18}{18}
+\fontsize{22}{22}
 {\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
 \end{center}
 
@@ -178,7 +178,6 @@ t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>%
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
       \\centering",
@@ -186,7 +185,7 @@ cat(c("\\begin{table}[H]
     "\\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
-        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率  %此处加入注释信息
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -198,7 +197,6 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
     \\caption{日新增病例前十位国家}
       \\vspace{-0.5\\baselineskip}
       \\centering",
@@ -282,7 +280,6 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
     \\caption{美国新增确诊前十位州}
       \\vspace{-0.5\\baselineskip}
       \\centering",
@@ -299,6 +296,7 @@ cat(c("\\begin{table}[H]
     "\\end{table}"
 ))
 ```
+
 
 
 `r insight$content[4]`
