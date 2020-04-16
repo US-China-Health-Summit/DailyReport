@@ -64,8 +64,7 @@
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
-\pagestyle{fancy}
-\cfoot{\thepage}
+\pagestyle{plain}
 \usepackage{sectsty}
 \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
 \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
@@ -74,9 +73,10 @@
 \usepackage{color}% http://ctan.org/pkg/color
 \usepackage{hyperref}% http://ctan.org/pkg/hyperref
 \usepackage{geometry}
-\geometry{a4paper,scale=1}
+\geometry{a4paper,left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
 \usepackage{blindtext}
 \usepackage[center]{caption}
+\usepackage[font=Large]{caption}
 \usepackage{subfigure}
 \usepackage{float}
 \usepackage{graphicx}
@@ -96,22 +96,9 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\linespread{1.0}
-\setlength{\parskip}{0.5em}
+\linespread{1.3}
+\setlength{\parskip}{1em}
 \setlength{\footskip}{20pt}
-\linespread{1.15}
-\setlength{\parskip}{0.3em}
-\textwidth 7in
-\textheight 9.95in
-\oddsidemargin -.25in
-\evensidemargin -.25in
-\topmargin -1in
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -127,16 +114,12 @@
 \usepackage{makecell}
 \usepackage{xcolor}
 
-\title{\textcolor{glaucous}{\Huge \textbf {新冠早报}}}
-\providecommand{\subtitle}[1]{}
-\subtitle{\textcolor{glaucous}{\Large 第13期 \space 4月8日}}
 \author{}
 \date{\vspace{-2.5em}}
 
 \begin{document}
-\maketitle
 
-\fontsize{13}{13}
+\fontsize{22}{22}
 \selectfont
 \vspace{-10truemm}
 
@@ -144,23 +127,25 @@
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
 }
 
-\pagestyle{fancyplain}
-\lhead{\includegraphics[height=2cm]{./input/logo.png}}
-\rhead{
-\begin{tabular}{ccc}
-\textcolor{gray}{中美健康峰会「智援组」新冠早报组}\\
-\\ \\ \\ \\ \\
-\end{tabular}}
+\begin{center}
+\includegraphics[height=2cm]{./input/logo2.png} 
+\end{center}
 
-\renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{25pt} 
-\setlength{\headsep}{-15pt}
+\begin{center}
+\fontsize{45}{45}
+\textcolor{glaucous}{\textbf{新冠早报}}
+\end{center}
+
+\begin{center}
+\fontsize{22}{22}
+{\textcolor{glaucous}{\textbf{第19期 \space 4月16日}}}
+\end{center}
 
 %
-  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Large 每日新闻}}}%
+  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 每日新闻}}}%
 
 \hypertarget{section}{%
-\subsection{\texorpdfstring{\textcolor{glaucous}{\Large 国际}}{}}\label{section}}
+\subsection{\texorpdfstring{\textcolor{glaucous}{\Huge 国际}}{}}\label{section}}
 
 \textbf{\textcolor{glaucous}{英国广播公司(BBC)}}:
 \textbf{G20允许最贫穷国家延期偿付高达120亿美元债务 }
@@ -193,7 +178,7 @@
 当地时间4月15日，韩国举行国会选举。选民在投票时需要严守防疫规定，包括戴口罩及塑胶手套，以及彼此之间保持1公尺以上的距离。经过消毒的14000个投票点于上午6点开放，选民抵达后还要需要接受体温检测，37.5度以上的选民将被安排到特别设置的小隔间投票。新冠疫情爆发以来，许多国家相继推迟选举时程，韩国是如期举行选举的首批国家之一。
 
 \hypertarget{section-1}{%
-\subsection{\texorpdfstring{\textcolor{glaucous}{\Large 国内}}{}}\label{section-1}}
+\subsection{\texorpdfstring{\textcolor{glaucous}{\Huge 国内}}{}}\label{section-1}}
 
 \textbf{\textcolor{glaucous}{央视新闻}}:
 \textbf{影剧院、游戏厅等娱乐场所暂不开业 大型展览展会暂不开展 }
@@ -205,17 +190,15 @@
 
 北京时间4月15日，记者从中国民用航空局了解到，3月4日至4月12日，民航局共安排16架次临时航班协助在伊朗、意大利、英国、美国、西班牙的2744名中国公民回国，其中留学生1449名。
 
-\newpage
-
 %
-  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Large 疫情观察}}}%
+  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 疫情观察}}}%
 
-\begin{small}
-{数据源：约翰霍普金斯大学，The COVID Tracking Project \quad   数据截止至：北京时间3月28日 早4:00}
-\end{small}
+\begin{Large}
+{数据源：约翰霍普金斯大学，The COVID Tracking Project \\ 数据截止至：北京时间3月28日 早4:00}
+\end{Large}
 
 \hypertarget{section-2}{%
-\section{\texorpdfstring{\textcolor{glaucous}{一、世界疫情}}{}}\label{section-2}}
+\section{\texorpdfstring{\textcolor{glaucous}{\Huge 一、世界疫情}}{}}\label{section-2}}
 
 \(\quad\)截至北京时间4月16日早7：00，全球累计确诊病例已经达到2,056,055例，累计死亡134,178
 例。在180多个出现确诊病例的国家或地区中，已有23个国家累计确诊超万人。除欧洲和美国以外，拉美和亚州的发展中国家的病例快速增长：印度和秘鲁确诊人数已经超过万人。非洲国家累计确诊病例已逾一万六千例。英国确诊病例已经超过中国，成为世界第六位
@@ -229,11 +212,11 @@
 \end{figure}
 
 \begin{table}[H]
-  \vspace{-7mm}
     \caption{累计确诊前十位国家}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
-\centering
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlrrr}
 \toprule
   & 国家(地区) & 累计确诊病例 & 总人口 & 粗发病率\\
@@ -251,13 +234,13 @@
 \rowcolor{gray!6}  10 & 比利时 Belgium & 33,573 & 11,589,623 & 290\\
 \bottomrule
 \end{tabular}
+\endgroup{}
 \end{table} \begin{tablenotes}
-        \footnotesize
+        \fontsize{15}{15}
+        \selectfont
         \item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \end{tablenotes}
     \end{table}
-
-\newpage
 
 \(\quad\)美国新增病例数仍居全球首位，已连续十六天日新增病例数超过两万五千人。意大利日新增病例数已经连续三日下降，西班牙和德国的日新增病例较昨日翻倍。值得注意的是，俄罗斯、巴西和比利时的病例较前日增长很快，这三个国家的累计确诊人数已突破两万例。提示欧洲、北美和南美疫情发展迅速
 (表2和图2）。
@@ -265,16 +248,12 @@
 \(\quad\)美国的日新增死亡病例已经接近2,500（2,494例），从4月4日至今一直为前十位国家中首位，病死率已经上升到4.5\%，疫情发展不容乐观。法国的日新增死亡病例数波动较大。今日较昨日翻倍，成为日新增死亡病例数仅次于美国的国家（1,440）例。法国病死率持续上升（12.5\%），提示该国医疗系统正面临巨大压力。意大利和西班牙的日新增死亡病例数呈波动下降趋势。英国新增死亡病例数波动上升，还有待进一步观察
 （表3和图3）。
 
-\begin{table}
-
-    \begin{minipage}{.4\linewidth}
-    \centering
-    \captionsetup{justification=centering}
+\begin{table}[H]
     \caption{日新增病例前十位国家}
-    \vspace{-0.5\baselineskip}
-      \centering
-    \captionsetup{justification=centering} \begin{table}[H]
-\centering
+      \vspace{-0.5\baselineskip}
+      \centering \begin{table}[H]
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlr}
 \toprule
   & 国家 & 当日新增病例\\
@@ -291,15 +270,14 @@
 10 & 伊朗 Iran & 1,512\\
 \bottomrule
 \end{tabular}
-\end{table} \end{minipage}
-    \begin{minipage}{.6\linewidth}
-    \centering
-    \captionsetup{justification=centering}
-     \caption{累计死亡病例前十位国家}
-     \vspace{-0.5\baselineskip}
-      \centering
-    \captionsetup{justification=centering} \begin{table}[H]
-\centering
+\endgroup{}
+\end{table} \end{table}\begin{table}[H]
+  \vspace{-7mm}
+    \caption{累计死亡病例前十位国家}
+      \vspace{-0.5\baselineskip}
+      \centering \begin{table}[H]
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlrrr}
 \toprule
   & 国家 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
@@ -316,8 +294,8 @@
 10 & 荷兰 Netherlands & 3,145 & 190 & 11.1\\
 \bottomrule
 \end{tabular}
-\end{table} \end{minipage} 
-\end{table}
+\endgroup{}
+\end{table} \end{table}
 
 \begin{figure}[H]
 \centering
@@ -334,10 +312,8 @@
 \end{minipage}
 \end{figure}
 
-\newpage
-
 \hypertarget{section-3}{%
-\section{\texorpdfstring{\textcolor{glaucous}{二、美国疫情}}{}}\label{section-3}}
+\section{\texorpdfstring{\textcolor{glaucous}{\Huge 二、美国疫情}}{}}\label{section-3}}
 
 \(\quad\)截至北京时间4月16日早7:00，
 美国累计确诊病例数已达到636,350例，共28,326
@@ -359,7 +335,8 @@
     \caption{美国累计确诊前十位州}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
-\centering
+\centering\begingroup\fontsize{12}{14}\selectfont
+
 \begin{tabular}{rlrrrrrr}
 \toprule
   & 国家/州名 & 累计确诊 & 粗发病率 & 阳性率\% & 累计检测 & 日新增检测 & 检测率\\
@@ -377,13 +354,13 @@
 \rowcolor{gray!6}  10 & 得克萨斯州 TX & 15,907 & 55 & 10 & 151,810 & 5,343 & 524\\
 \bottomrule
 \end{tabular}
+\endgroup{}
 \end{table} \begin{tablenotes}
-    \footnotesize
+    \fontsize{12}{12}
+      \selectfont
     \item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
     \end{tablenotes}
     \end{table}
-
-\newpage
 
 \begin{figure}[H]
 \centering
@@ -400,14 +377,12 @@
 \end{minipage}
 \end{figure}
 
-\begin{table}
-
-    \begin{minipage}{.4\linewidth}
+\begin{table}[H]
     \caption{美国新增确诊前十位州}
-    \vspace{-0.5\baselineskip}
-      \centering
-    \captionsetup{justification=centering} \begin{table}[H]
-\centering
+      \vspace{-0.5\baselineskip}
+      \centering \begin{table}[H]
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlrr}
 \toprule
   & 国家/州名 & 当日新增 & 构成比\%\\
@@ -425,13 +400,14 @@
 \rowcolor{gray!6}  10 & 康涅狄格州 CT & 766 & 3\\
 \bottomrule
 \end{tabular}
-\end{table} \end{minipage}%
-    \begin{minipage}{.7\linewidth}
-     \caption{美国累计死亡前十位州}
-  
-      \centering
-    \captionsetup{justification=centering} \begin{table}[H]
-\centering
+\endgroup{}
+\end{table} \end{table}\begin{table}[H]
+
+    \caption{美国累计死亡前十位州}
+      \vspace{-0.5\baselineskip}
+      \centering \begin{table}[H]
+\centering\begingroup\fontsize{18}{20}\selectfont
+
 \begin{tabular}{rlrr}
 \toprule
   & 国家/州名 & 累计死亡人数 & 病死率\%\\
@@ -449,21 +425,19 @@
 \rowcolor{gray!6}  10 & 佛罗里达州 FL & 596 & 2.6\\
 \bottomrule
 \end{tabular}
-\end{table} \end{minipage} 
-\end{table}
+\endgroup{}
+\end{table} \end{table}
 
 \(\quad\)纽约州、新泽西州的新增确诊数仍高居前二，其中纽约州较前日增加大约5,000例（表5）。美国共有7个州当日新增病例超过1,000人,
 除纽约州外，其余几个州的确诊病例人数近日都在波动 （图5）。
 
 \(\quad\)美国累计死亡病例已突破二万五千例（表6）。纽约州日新增死亡人数近日以来较为稳定，新泽西州，马萨诸塞州和康涅狄格州的日新增死亡人数上升趋势明显（图6）。其他州的日新增死亡人数近日都在波动上升，提示美国疫情仍在恶化。
 
-\newpage
-
 %
-  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Large 疫情观察}}}%
+  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 疫情观察}}}%
 
 \hypertarget{section-4}{%
-\section{\texorpdfstring{\textcolor{glaucous}{全球卫生体系最薄弱国家之一 — 非洲：塞拉利昂}}{}}\label{section-4}}
+\section{\texorpdfstring{\textcolor{glaucous}{\Huge 全球卫生体系最薄弱国家之一 — 非洲：塞拉利昂}}{}}\label{section-4}}
 
 \(\quad\)据《金融时报》报道，塞拉利昂750万人口，已有6人被确诊新冠肺炎，可塞拉利昂只有一台呼吸机。这台唯一的呼吸机在当地的一家私人医院，当地17家公立医院均无呼吸机。
 
@@ -487,7 +461,7 @@
 
 \(\quad\)目前我国国内疫情局势相对稳定，已大规模复工复产，医用防护服、医用防护口罩/面罩、测温仪、呼吸机产能已基本能满足国内需求，企业也正尽力组织扩大出口\(^3\)。在未来一段时间的抗疫物资援助和贸易上，我国相关产业可更多的将目光放在类似塞拉利昂这样的医疗资源和经济基础更加薄弱的国家。
 
-\small 参考文献：
+\Large 参考文献：
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -502,12 +476,14 @@
 \end{enumerate}
 
 \centering
-\small
+\fontsize{12}{12}
+\selectfont
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\
-执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
-数据分析:杜兆慧  &  案例分析: 史珂玮\\
+执行责任编辑:王冠  & 责任编辑:乐昊欣\, 闫怡璇 \\
+新闻组:张宁\, 张心其  & 数据分析:杜兆慧 \\
+案例分析: 史珂玮  &  微信排版:韩佩瑾 \\
 \multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
 
 \end{tabular}

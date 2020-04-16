@@ -17,7 +17,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+    - \geometry{a4paper,left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage[font=Large]{caption}
@@ -42,7 +42,7 @@ header-includes:
     - \usepackage{xcolor}
 
     - \linespread{1.15}
-    - \setlength{\parskip}{1.5em}
+    - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
 
 ---
@@ -60,12 +60,12 @@ header-includes:
 
 
 \begin{center}
-\fontsize{34}{34}
+\fontsize{45}{45}
 \textcolor{glaucous}{\textbf{新冠早报}}
 \end{center}
 
 \begin{center}
-\fontsize{18}{18}
+\fontsize{22}{22}
 {\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
 \end{center}
 
@@ -161,24 +161,23 @@ t1 = read_csv('input/table1.csv') %>%  rename(' ' = ranking) %>%
   kable_styling(latex_options = "striped", font_size = 18)
 t2 = read_csv('input/table2.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 t3 = read_csv('input/table3.csv') %>%   rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped", font_size = 12)
 t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
       \\centering",
@@ -186,7 +185,7 @@ cat(c("\\begin{table}[H]
     "\\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
-        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率  %此处加入注释信息
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -223,13 +222,13 @@ cat(c("\\begin{table}
 
 \begin{figure}[H]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
 \includegraphics[]{./input/covid2.pdf}
 \label{}
 \end{minipage}
 \quad
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
 \includegraphics[]{./input/covid3.pdf}
 \label{}
@@ -271,37 +270,35 @@ cat(c("\\begin{table}[H]
 
 \begin{figure}[H]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{美国日新增确诊前五位州趋势图}
 \includegraphics[]{./input/covid5.pdf}
 \label{}
 \end{minipage}
 \quad
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{美国日新增死亡前五位州趋势图}
 \includegraphics[]{./input/covid6.pdf}
 \label{}
 \end{minipage}
 \end{figure}
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\tiny
-      \\begin{table}
 
-    \\begin{minipage}{.4\\linewidth}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+cat(c("\\begin{table}
+      \\centering
+    \\begin{minipage}{.45\\linewidth}
     \\caption{美国新增确诊前十位州}
     \\vspace{-0.5\\baselineskip}
       \\centering
-    \\captionsetup{justification=centering}
-         \\fontsize{10}{10}\\selectfont",
+    \\captionsetup{justification=centering}",
         t5,
     "\\end{minipage}%
-    \\begin{minipage}{.7\\linewidth}
+    \\begin{minipage}{.45\\linewidth}
      \\caption{美国累计死亡前十位州}
      \\vspace{-0.5\\baselineskip}
       \\centering
-    \\captionsetup{justification=centering}
-         \\fontsize{10}{10}\\selectfont",
+    \\captionsetup{justification=centering}",
         t6,
     "\\end{minipage} 
 \\end{table}"

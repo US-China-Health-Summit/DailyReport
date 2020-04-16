@@ -45,6 +45,10 @@ translate_country = function(ut_data) {
          Country = name_y) %>% 
   unite("Country_bi", Country_cn:Country, sep = " ", remove = F)
   
+  ut_data = ut_data %>% 
+    mutate(Country = case_when(Country == "United Kingdom"~ "UK", 
+                             TRUE ~ as.character(Country)))
+  
   t_data = left_join(ut_data, trans_name, by = "Country") %>% 
     # in this step coercing warning will show up but dont worry
     mutate(Country =  as.factor(as.character(Country)), 
@@ -207,16 +211,21 @@ update0405: change the name in table 1 code, ignore note0403
 # 0404: pass for table 1
 # 0405: no NA now, all check
   # tidy the form to template
-# 
-tt1 = crude_incidence_rate %>% 
+# 0415: pass for UK abbreviation
+tt1 = crude_incidence_rate_top %>% 
   translate_country() %>% 
   translate_country_colname(1)
+
+ttt1 = crude_incidence_rate %>% 
+  mutate(Country = case_when(Country == "United Kingdom"~ "UK", 
+                             TRUE ~ as.character(Country)))
 ```
 
 ```{r}
 # 0405 pass for table 2
   # tidy the form to template
-tt2 = data_global_latest_confirmed %>% 
+# 0415: pass for UK abbreviation
+tt2 = data_global_latest_confirmed_top %>% 
   rename("Country" = "Country/Region") %>% 
   translate_country() %>% 
   translate_country_colname(2)
@@ -224,7 +233,8 @@ tt2 = data_global_latest_confirmed %>%
 
 ```{r}
 # 0405 pass for table 3
-tt3 = data_global_latest_death %>% 
+# 0415: pass for UK abbreviation
+tt3 = data_global_latest_death_top %>% 
   rename("Country" = "Country/Region") %>% 
   translate_country() %>% 
   translate_country_colname(3)
