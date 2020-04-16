@@ -300,8 +300,9 @@ cat(c("\\begin{table}[H]
 
 `r insight$content[4]`
 
+\
 
-\resheading{\Huge 疫情观察}
+\resheading{\Huge 案例分析}
 
 ```{r, echo=FALSE}
 example = read_excel("./input/module3.xlsx")
