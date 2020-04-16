@@ -129,7 +129,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 
 
-
+\
 
 \resheading{\Huge 疫情观察}
 
