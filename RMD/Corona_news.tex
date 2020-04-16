@@ -216,7 +216,7 @@
 例。在180多个出现确诊病例的国家或地区中，有17个国家累计确诊超万人。目前，主要病例集中在亚洲、欧洲及北美洲。发展中国家和地区的疫情发展也不可忽视：拉丁美洲国家的确诊病例数快速增长，非洲国家累计确诊病例已逾一万例。表1显示，法国确诊病例首次超过德国成为欧洲第三，中国确诊病例数已下降至第六位。
 
 \begin{figure}[H]
-\caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
+\caption{世界疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -247,7 +247,7 @@
 \end{tabular}
 \end{table} \begin{tablenotes}
         \footnotesize
-        \item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+        \item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率  %此处加入注释信息
       \end{tablenotes}
     \end{table}
 
@@ -259,10 +259,10 @@
 
 \begin{table}
 
-    \begin{minipage}{.45\linewidth}
+    \begin{minipage}{.4\linewidth}
     \centering
     \captionsetup{justification=centering}
-    \caption{日新增确诊病例国家趋势图 \newline（中国及其他前五位国家）}
+    \caption{日新增病例前十位国家}
     \vspace{-0.5\baselineskip}
       \centering
     \captionsetup{justification=centering} \begin{table}[H]
@@ -283,11 +283,11 @@
 10 & 比利時 Belgium & 1,380\\
 \bottomrule
 \end{tabular}
-\end{table} \end{minipage}%
-    \begin{minipage}{.45\linewidth}
+\end{table} \end{minipage}
+    \begin{minipage}{.6\linewidth}
     \centering
     \captionsetup{justification=centering}
-     \caption{累计死亡病例国家趋势图 \newline（中国及其他前五位国家）}
+     \caption{累计死亡病例前十位国家}
      \vspace{-0.5\baselineskip}
       \centering
     \captionsetup{justification=centering} \begin{table}[H]
@@ -320,7 +320,7 @@
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\caption{累计死亡病例国家趋势图\\（中国及其他前五位国家） }
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
 \includegraphics[]{./input/covid3.pdf}
 \label{}
 \end{minipage}
@@ -340,7 +340,7 @@
 \(\quad\)值得注意的是，佐治亚州(GA)累计确诊病例首次进入全美前十，取代华盛顿州(WA)。在累计检测人数较少的情况下，佐治亚州的阳性率为26\%，超过美国平均阳性率(19\%)，提示该州疫情不容乐观。
 
 \begin{figure}[H] 
-\caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
+\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -380,14 +380,14 @@
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
-\caption{美国累计确诊前五位州趋势图}
+\caption{美国日新增确诊前五位州趋势图}
 \includegraphics[]{./input/covid5.pdf}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\caption{美国⽇新增确诊前五位州趋势图}
-\includegraphics[]{./input/covid5.pdf}
+\caption{美国日新增死亡前五位州趋势图}
+\includegraphics[]{./input/covid6.pdf}
 \label{}
 \end{minipage}
 \end{figure}

@@ -1,39 +1,46 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{article}
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -42,25 +49,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
@@ -73,7 +69,7 @@
 \usepackage{color}% http://ctan.org/pkg/color
 \usepackage{hyperref}% http://ctan.org/pkg/hyperref
 \usepackage{geometry}
-\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+\geometry{a4paper,left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
 \usepackage{blindtext}
 \usepackage[center]{caption}
 \usepackage[font=Large]{caption}
@@ -96,8 +92,8 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\linespread{1.15}
-\setlength{\parskip}{1.5em}
+\linespread{1.3}
+\setlength{\parskip}{1em}
 \setlength{\footskip}{20pt}
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -132,13 +128,13 @@
 \end{center}
 
 \begin{center}
-\fontsize{34}{34}
+\fontsize{45}{45}
 \textcolor{glaucous}{\textbf{新冠早报}}
 \end{center}
 
 \begin{center}
-\fontsize{18}{18}
-{\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
+\fontsize{22}{22}
+{\textcolor{glaucous}{\textbf{第19期 \space 4月16日}}}
 \end{center}
 
 %
@@ -200,21 +196,20 @@
 \hypertarget{section-2}{%
 \section{\texorpdfstring{\textcolor{glaucous}{\Huge 一、世界疫情}}{}}\label{section-2}}
 
-\(\quad\)截至北京时间4月8日早6:30，全球累计确诊病例已经达到1,414,738例，累计死亡81,259
-例。在180多个出现确诊病例的国家或地区中，有17个国家累计确诊超万人。目前，主要病例集中在亚洲、欧洲及北美洲。发展中国家和地区的疫情发展也不可忽视：拉丁美洲国家的确诊病例数快速增长，非洲国家累计确诊病例已逾一万例。表1显示，法国确诊病例首次超过德国成为欧洲第三，中国确诊病例数已下降至第六位。
+\(\quad\)截至北京时间4月16日早7：00，全球累计确诊病例已经达到2,056,055例，累计死亡134,178
+例。在180多个出现确诊病例的国家或地区中，已有23个国家累计确诊超万人。除欧洲和美国以外，拉美和亚州的发展中国家的病例快速增长：印度和秘鲁确诊人数已经超过万人。非洲国家累计确诊病例已逾一万六千例。英国确诊病例已经超过中国，成为世界第六位
+（表1）。
 
 \begin{figure}[H]
-\caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
+\caption{世界疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
 \end{figure}
 
 \begin{table}[H]
-  \vspace{-7mm}
     \caption{累计确诊前十位国家}
-      \vspace{-0.5\baselineskip}
-      \centering \begin{table}[H]
+      \vspace{-0.5\baselineskip} \begin{table}[H]
 \centering\begingroup\fontsize{18}{20}\selectfont
 
 \begin{tabular}{rlrrr}
@@ -238,16 +233,17 @@
 \end{table} \begin{tablenotes}
         \fontsize{15}{15}
         \selectfont
-        \item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+        \item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \end{tablenotes}
     \end{table}
 
-\(\quad\)表2和图2显示，美国新增病例数仍居全球首位，已连续八天日新增病例数超过两万人。西班牙与意大利日新增病例数连续下降，意大利昨日新增病例首次跌出日新增国家前五。值得注意的是，法国的日新增病例较昨日翻倍，已突破一万例。同时，土耳其单日确诊病例连续五天增加，提示该地区疫情发展迅速。巴西日新增病例首次进入前十，表明疫情在南美洲有蔓延趋势。
+\(\quad\)美国新增病例数仍居全球首位，已连续十六天日新增病例数超过两万五千人。意大利日新增病例数已经连续三日下降，西班牙和德国的日新增病例较昨日翻倍。值得注意的是，俄罗斯、巴西和比利时的病例较前日增长很快，这三个国家的累计确诊人数已突破两万例。提示欧洲、北美和南美疫情发展迅速
+(表2和图2）。
 
-\(\quad\)表3和图3显示，美国的日新增死亡病例再登新高（1,508例），从4月4日至今一直为前十位国家中首位，疫情发展不容乐观。法国的日新增死亡病例数迅速上升，昨日新增死亡病例数仅次于美国，高达1,417例，病死率持续上升，提示该国医疗系统正面临巨大压力。意大利和西班牙的日新增死亡病例数呈下降趋势。
+\(\quad\)美国的日新增死亡病例已经接近2,500（2,494例），从4月4日至今一直为前十位国家中首位，病死率已经上升到4.5\%，疫情发展不容乐观。法国的日新增死亡病例数波动较大。今日较昨日翻倍，成为日新增死亡病例数仅次于美国的国家（1,440）例。法国病死率持续上升（12.5\%），提示该国医疗系统正面临巨大压力。意大利和西班牙的日新增死亡病例数呈波动下降趋势。英国新增死亡病例数波动上升，还有待进一步观察
+（表3和图3）。
 
 \begin{table}[H]
-  \vspace{-7mm}
     \caption{日新增病例前十位国家}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
@@ -297,32 +293,33 @@
 \end{table} \end{table}
 
 \begin{figure}[H]
-\caption{日新增确诊病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid2.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
-
-\begin{figure}[H]
-\caption{日新增死亡病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid3.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.48\linewidth}
+\caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
+\includegraphics[]{./input/covid2.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.48\linewidth}
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\includegraphics[]{./input/covid3.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
 \hypertarget{section-3}{%
 \section{\texorpdfstring{\textcolor{glaucous}{\Huge 二、美国疫情}}{}}\label{section-3}}
 
-\(\quad\)截至北京时间4月8日早6:30，
-美国累计确诊病例数已达到387,547例，共 12,291
-死亡病例。从州疫情分布图（图4，图5）来看，东西海岸，五大湖及南部地区疫情严重，中部地区疫情呈快速蔓延趋势。
+\(\quad\)截至北京时间4月16日早7:00，
+美国累计确诊病例数已达到636,350例，共28,326
+死亡病例。从州疫情分布图（图4，图5）来看，美国各州疫情严重，前十州都超过一万五千人。中部地区疫情呈快速蔓延趋势。
 
-\(\quad\)从表4来看，纽约州(NY)、新泽西州(NJ)和密歇根州(MI)仍为美国疫情最严重的三个州。纽约州粗发病率持续位居全美第一位，高达714/10万人，检测率同为全美最高，达1,748/10万人，而阳性率为全国平均阳性率的2.15倍（41\%），提示该州病人数量巨大，医疗资源持续面临巨大压力。
-
-\(\quad\)值得注意的是，佐治亚州(GA)累计确诊病例首次进入全美前十，取代华盛顿州(WA)。在累计检测人数较少的情况下，佐治亚州的阳性率为26\%，超过美国平均阳性率(19\%)，提示该州疫情不容乐观。
+\(\quad\)纽约州(NY)、新泽西州(NJ)和马萨诸塞州(MA)为美国疫情最严重的三个州。纽约州和新泽西州检测的阳性率仍然居高不下（40\%以上）提示两个州病人数量巨大，医疗资源持续面临巨大压力
+（表4）。密歇根州（MI）的阳性率下降至31\%
+（表4），提示该州的检测范围扩大，检测能力增强。
 
 \begin{figure}[H] 
-\caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
+\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -361,21 +358,21 @@
     \end{table}
 
 \begin{figure}[H]
-\caption{美国日新增确诊前五位州趋势图} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid5.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
-
-\begin{figure}[H]
-\caption{美国日新增死亡前五位州趋势图} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid6.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.48\linewidth}
+\caption{美国日新增确诊前五位州趋势图}
+\includegraphics[]{./input/covid5.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.48\linewidth}
+\caption{美国日新增死亡前五位州趋势图}
+\includegraphics[]{./input/covid6.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
 \begin{table}[H]
-  \vspace{-7mm}
     \caption{美国新增确诊前十位州}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
@@ -400,7 +397,7 @@
 \end{tabular}
 \endgroup{}
 \end{table} \end{table}\begin{table}[H]
-  \vspace{-7mm}
+
     \caption{美国累计死亡前十位州}
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
@@ -426,9 +423,10 @@
 \endgroup{}
 \end{table} \end{table}
 
-\(\quad\)从表5新增确诊人数来看，纽约州、新泽西州的新增确诊数仍高居前二，宾夕法尼亚州，佐治亚州，路易斯安那州、和佛罗里达州的日新增确诊病例数均超过1,000人。值得注意的是，佐治亚州的日新增确诊首次进入前五，超1,500例；印第安纳州和佛吉尼亚州日新增确诊也首次进入全美前十。鉴于这些州的人均检测率均低于全美平均值（印第安纳州：427/10万人；佛吉尼亚州：336/10万人），显示这些地区疫情存在恶化的风险。
+\(\quad\)纽约州、新泽西州的新增确诊数仍高居前二，其中纽约州较前日增加大约5,000例（表5）。美国共有7个州当日新增病例超过1,000人,
+除纽约州外，其余几个州的确诊病例人数近日都在波动 （图5）。
 
-\(\quad\)从表6来看，美国累计死亡病例已突破一万二千例。纽约州的病死率已上升至4\%，提示纽约州的医疗系统已严重超过负荷。同时，纽约州日新增确诊病例已连续4日下降（图5），可能与居家隔离措施与扩大检测规模有关。值得注意的是，佐治亚州的病死率上升迅速（从4月7日3.1\%到4月8日3.7\%），提示该地区医疗系统正面临巨大挑战。
+\(\quad\)美国累计死亡病例已突破二万五千例（表6）。纽约州日新增死亡人数近日以来较为稳定，新泽西州，马萨诸塞州和康涅狄格州的日新增死亡人数上升趋势明显（图6）。其他州的日新增死亡人数近日都在波动上升，提示美国疫情仍在恶化。
 
 %
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 疫情观察}}}%
@@ -478,8 +476,9 @@
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\
-执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
-数据分析:杜兆慧  &  案例分析: 史珂玮\\
+执行责任编辑:王冠  & 责任编辑:乐昊欣\, 闫怡璇 \\
+新闻组:张宁\, 张心其  & 数据分析:杜兆慧 \\
+案例分析: 史珂玮  &  微信排版:韩佩瑾 \\
 \multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
 
 \end{tabular}

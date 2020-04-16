@@ -17,7 +17,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+    - \geometry{a4paper,left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage[font=Large]{caption}
@@ -42,7 +42,7 @@ header-includes:
     - \usepackage{xcolor}
 
     - \linespread{1.15}
-    - \setlength{\parskip}{1.5em}
+    - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
 
 ---
@@ -60,12 +60,12 @@ header-includes:
 
 
 \begin{center}
-\fontsize{34}{34}
+\fontsize{45}{45}
 \textcolor{glaucous}{\textbf{新冠早报}}
 \end{center}
 
 \begin{center}
-\fontsize{18}{18}
+\fontsize{22}{22}
 {\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
 \end{center}
 
@@ -147,7 +147,7 @@ insight = read_excel("./input/insight.xlsx") %>%
 `r insight$content[1]`
 
 \begin{figure}[H]
-\caption{世界疫情分布图 (Global Map of Cumulative Confirmed COVID-19 Cases)} %最终文档中希望显示的图片标题
+\caption{世界疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -161,24 +161,23 @@ t1 = read_csv('input/table1.csv') %>%  rename(' ' = ranking) %>%
   kable_styling(latex_options = "striped", font_size = 18)
 t2 = read_csv('input/table2.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 t3 = read_csv('input/table3.csv') %>%   rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped", font_size = 12)
 t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
       \\centering",
@@ -186,7 +185,7 @@ cat(c("\\begin{table}[H]
     "\\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
-        \\item 注：粗发病率定义：累计确诊病例/10万人。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -197,38 +196,45 @@ cat(c("\\begin{table}[H]
 `r insight$content[2]`
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
-    \\caption{日新增病例前十位国家}
-      \\vspace{-0.5\\baselineskip}
-      \\centering",
-        t2,
-    "\\end{table}"
-))
+cat(c("\\begin{table}
 
-cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
-    \\caption{累计死亡病例前十位国家}
-      \\vspace{-0.5\\baselineskip}
-      \\centering",
+    \\begin{minipage}{.4\\linewidth}
+    \\centering
+    \\captionsetup{justification=centering}
+    \\caption{日新增病例前十位国家}
+    \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
+        t2,
+    "\\end{minipage}
+    \\begin{minipage}{.6\\linewidth}
+    \\centering
+    \\captionsetup{justification=centering}
+     \\caption{累计死亡病例前十位国家}
+     \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
         t3,
-    "\\end{table}"
+    "\\end{minipage} 
+\\end{table}"
 ))
 ```
 
 \begin{figure}[H]
-\caption{日新增确诊病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid2.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.48\linewidth}
+\caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
+\includegraphics[]{./input/covid2.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.48\linewidth}
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\includegraphics[]{./input/covid3.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
-\begin{figure}[H]
-\caption{日新增死亡病例国家趋势图 \\（中国及其他前五位国家）} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid3.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
 
 
 
@@ -237,7 +243,7 @@ cat(c("\\begin{table}[H]
 `r insight$content[3]`
 
 \begin{figure}[H] 
-\caption{美国本土疫情分布图 (Map of Cumulative Confirmed COVID-19 Cases in Contiguous U.S.)} %最终文档中希望显示的图片标题
+\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \label{} %用于文内引用的标签
@@ -263,39 +269,42 @@ cat(c("\\begin{table}[H]
 
 
 \begin{figure}[H]
-\caption{美国日新增确诊前五位州趋势图} %最终文档中希望显示的图片标题
 \centering
-\includegraphics[]{./input/covid5.pdf} 
-\label{} %用于文内引用的标签
-\end{figure}
-
-\begin{figure}[H]
-\caption{美国日新增死亡前五位州趋势图} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid6.pdf} 
-\label{} %用于文内引用的标签
+\begin{minipage}[b]{0.48\linewidth}
+\caption{美国日新增确诊前五位州趋势图}
+\includegraphics[]{./input/covid5.pdf}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.48\linewidth}
+\caption{美国日新增死亡前五位州趋势图}
+\includegraphics[]{./input/covid6.pdf}
+\label{}
+\end{minipage}
 \end{figure}
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
+cat(c("\\begin{table}
+      \\centering
+    \\begin{minipage}{.45\\linewidth}
     \\caption{美国新增确诊前十位州}
-      \\vspace{-0.5\\baselineskip}
-      \\centering",
+    \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
         t5,
-    "\\end{table}"
-))
-
-cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
-    \\caption{美国累计死亡前十位州}
-      \\vspace{-0.5\\baselineskip}
-      \\centering",
+    "\\end{minipage}%
+    \\begin{minipage}{.45\\linewidth}
+     \\caption{美国累计死亡前十位州}
+     \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
         t6,
-    "\\end{table}"
+    "\\end{minipage} 
+\\end{table}"
 ))
 ```
+
 
 
 `r insight$content[4]`
@@ -327,8 +336,9 @@ reference = example$content[3]
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:薛成海\,  仁晖  \\
-执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
-数据分析:杜兆慧  &  案例分析: 史珂玮\\
+执行责任编辑:王冠  & 责任编辑:乐昊欣\, 闫怡璇 \\
+新闻组:张宁\, 张心其  & 数据分析:杜兆慧 \\
+案例分析: 史珂玮  &  微信排版:韩佩瑾 \\
 \multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
 
 \end{tabular}
