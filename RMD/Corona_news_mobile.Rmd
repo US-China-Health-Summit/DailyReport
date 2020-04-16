@@ -288,7 +288,7 @@ cat(c("\\begin{table}[H]
 ))
 
 cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
+
     \\caption{美国累计死亡前十位州}
       \\vspace{-0.5\\baselineskip}
       \\centering",
