@@ -215,13 +215,13 @@ cat(c("\\begin{table}[H]
 
 \begin{figure}[H]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
 \includegraphics[]{./input/covid2.pdf}
 \label{}
 \end{minipage}
 \quad
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
 \includegraphics[]{./input/covid3.pdf}
 \label{}
@@ -263,13 +263,13 @@ cat(c("\\begin{table}[H]
 
 \begin{figure}[H]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{美国日新增确诊前五位州趋势图}
 \includegraphics[]{./input/covid5.pdf}
 \label{}
 \end{minipage}
 \quad
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{美国日新增死亡前五位州趋势图}
 \includegraphics[]{./input/covid6.pdf}
 \label{}

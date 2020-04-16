@@ -1,39 +1,46 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{article}
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -42,25 +49,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
@@ -106,12 +102,6 @@
 \oddsidemargin -.25in
 \evensidemargin -.25in
 \topmargin -1in
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -128,7 +118,12 @@
 \usepackage{xcolor}
 
 \title{\textcolor{glaucous}{\Huge \textbf {新冠早报}}}
-\providecommand{\subtitle}[1]{}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
 \subtitle{\textcolor{glaucous}{\Large 第13期 \space 4月8日}}
 \author{}
 \date{\vspace{-2.5em}}
@@ -162,48 +157,48 @@
 \hypertarget{section}{%
 \subsection{\texorpdfstring{\textcolor{glaucous}{\Large 国际}}{}}\label{section}}
 
-\textbf{\textcolor{glaucous}{英国广播公司(BBC)}}:
-\textbf{G20允许最贫穷国家延期偿付高达120亿美元债务 }
+\textbf{\textcolor{glaucous}{有线电视新闻网(CNN)}}:
+\textbf{纽约部分县殡仪馆空间不足}
 
-当地时间4月15日，二十国集团（G20）主要经济体国家同意允许一些世界上最贫穷国家延期支付共计高达120亿美金的债务，宽限至2022年至2024年间偿还。该协议涵盖了到2020年底应支付给G20政府的款项，目的是帮助各国应对冠状病毒大流行的健康和经济影响。共有77个国家将从该协议中受益。
+当地时间4月7日，纽约州萨福克县在短时间内新冠死亡病例增多，该县殡仪馆已接近最大容量。目前，纽约州长岛县已计划在农场使用冷藏建筑来帮助储存尸体。
 
-\textbf{\textcolor{glaucous}{盖茨基金会（Bill and Melinda Gates Foundation)}}
-: \textbf{盖茨基金会再度提高赠款总额，呼吁全球合作保护民众免受疫情侵害}
+\textbf{\textcolor{glaucous}{纽约时报(NYT)}} :
+\textbf{美国财政部正试图扩大对小企业的贷款计划}
 
-当地时间4月15日，比尔及梅琳达·盖茨基金会宣布再次追加捐赠金额，以支持全球对新冠肺炎（COVID-19）疫情的响应行动。此次盖茨基金会额外赠款1.5亿美元，并承诺将动用基金会``战略投资基金''的资源，用于加快关键医疗物资的采购，帮助生命科学公司获得生产新冠肺炎相关产品所需的资金。在宣布追加赠款的同时，盖茨基金会还呼吁各国领导人携手应对疫情，确保人人享有获得诊断、治疗和疫苗的公平权利。
-
-\textbf{\textcolor{glaucous}{福布斯新闻(Forbes)}} :
-\textbf{美国部分州可能在5月1日前重启经济}
-
-当地时间4月15日，美国疾控中心主任罗伯特·雷德菲尔德在接受采访时说，联邦政府正在筹划在5月1日之前对大约20个受新冠病毒影响较小的州放宽限制。重新开放的社区必须满足的条件包括：拥有有效的病例追踪系统、具有充足的资源以备治疗新增病例的能力、以及足够低的感染发生率。然而也有报告表示，一些社区可能需要将隔离措施进行到2022年。因此，各社区需做好间歇性采取更严格的措施的准备，以避免病毒感染``大反弹''。
-
-\textbf{\textcolor{glaucous}{纽约时报(New York Times)}} :
-\textbf{纽约州州长要求所有人在公共场所必须戴口罩 }
-
-当地时间4月15日，纽约州州长科莫在新冠疫情新闻发布会上表示，为防止疫情扩散，他将签署一项行政命令，要求纽约州所有人在难以保持社交距离（人和人之间保持至少6英尺）的公共场合，例如乘坐公共交通时，必须用口罩或其他遮挡物覆盖面部。该行政命令在本周六生效，纽约州居民有三天的时间准备好有关物资。
+当地时间4月7日，美国财政部长史蒂芬·姆努钦表示，为了应对新冠肺炎疫情的冲击，他已向共和党及民主党议员提出再提供2500亿美元，用于扩大一项旨在帮助小型企业从银行获得贷款的计划。
 
 \textbf{\textcolor{glaucous}{英国广播公司(BBC)}} :
-\textbf{德国缓慢放宽封锁措施 }
+\textbf{巴黎禁止白天户外锻炼}
 
-当地时间4月15日，德国总理默克尔宣布计划将逐步放宽应对冠状病毒大流行的限制措施。默克尔表示，社交距离规则将保留到至少5月3日，在商店和公共交通工具上也建议坚持使用口罩。但从下周开始，部分商店可以开门营业，从5月4日起，学校也将逐渐开始重新开放。
+当地时间4月7日，法国累计新冠死亡病例数持续上升并已超过一万例，巴黎当局宣布禁止市民白天在户外运动。新规定从本周三开始实施，于每日早10点至晚7点生效。
 
-\textbf{\textcolor{glaucous}{英国广播公司(BBC)}} :
-\textbf{韩国举行国会选举 选民戴口罩及塑胶手套投票 }
+\textbf{\textcolor{glaucous}{日本广播协会(NHK)}} :
+\textbf{安倍晋三发布紧急事态宣言}
 
-当地时间4月15日，韩国举行国会选举。选民在投票时需要严守防疫规定，包括戴口罩及塑胶手套，以及彼此之间保持1公尺以上的距离。经过消毒的14000个投票点于上午6点开放，选民抵达后还要需要接受体温检测，37.5度以上的选民将被安排到特别设置的小隔间投票。新冠疫情爆发以来，许多国家相继推迟选举时程，韩国是如期举行选举的首批国家之一。
+当地时间4月7日下午，由于日本新冠肺炎疫情扩大，日本首相安倍晋三基于新冠肺炎特别措施法发布``紧急事态宣言''，涵盖东京都、神奈川县、大阪县等七个都府区，将持续至5月6日。安倍表示不会实行城市封锁，但呼吁国民配合，避免不必要的外出。
+
+\textbf{\textcolor{glaucous}{华尔街日报(WSJ)}} :
+\textbf{印度再次允许出口可能对新冠病毒有效的抗疟疾药物}
+
+当地时间4月7日，应美国总统特朗普要求，印度宣布结束出口羟氯喹的禁令。此前，印度为确保国内药品供应量，于上个月对羟氯喹的出口进行了限制。
+
+\textbf{\textcolor{glaucous}{非洲新闻(Africa News)}} :
+\textbf{非洲不会成为新冠疫苗的试验地}
+
+当地时间4月6日，在两位法国科学家宣称新冠病毒疫苗应首先在非洲进行测试后，世界卫生组织总干事谭德赛在新冠肺炎疫情每日发布会中强调，任何地方的任何疫苗接种都将遵循世界公认的方案，非洲不能也不会成为任何疫苗的试验地。
 
 \hypertarget{section-1}{%
 \subsection{\texorpdfstring{\textcolor{glaucous}{\Large 国内}}{}}\label{section-1}}
 
-\textbf{\textcolor{glaucous}{央视新闻}}:
-\textbf{影剧院、游戏厅等娱乐场所暂不开业 大型展览展会暂不开展 }
+\textbf{\textcolor{glaucous}{国家卫健委官网}}:
+\textbf{中国首次零新增死亡病例}
 
-北京时间4月15日下午，国务院联防联控机制召开新闻发布会，中国疾控中心环境所所长施小明介绍，影剧院或者是游戏厅等娱乐性或休闲性场所暂不开业，大型的体育活动或展览展会也暂不开展。
+北京时间4月7日，据国家卫健委报道，4月6日0时至24时，中国全境无新增死亡病例，这是自1月新冠肺炎疫情爆发以来中国国内首次无新增死亡病例。
 
-\textbf{\textcolor{glaucous}{央视新闻}}:
-\textbf{民航已安排临时航班（包机）赴疫情严重国家接回2744名中国公民}
+\textbf{\textcolor{glaucous}{中国民航局官网}}:
+\textbf{从26国乘机回国的中国籍旅客需提前填报防疫健康信息}
 
-北京时间4月15日，记者从中国民用航空局了解到，3月4日至4月12日，民航局共安排16架次临时航班协助在伊朗、意大利、英国、美国、西班牙的2744名中国公民回国，其中留学生1449名。
+据北京时间4月7日发布的《关于中国籍旅客乘坐航班回国前填报防疫健康信息的公告》，自4月8日起，从意大利、美国、西班牙等26个国家已购买回国机票的中国籍旅客需要提前填报防疫健康信息。未按要求填报的旅客将无法登机。
 
 \newpage
 
@@ -217,9 +212,8 @@
 \hypertarget{section-2}{%
 \section{\texorpdfstring{\textcolor{glaucous}{一、世界疫情}}{}}\label{section-2}}
 
-\(\quad\)截至北京时间4月16日早7：00，全球累计确诊病例已经达到2,056,055例，累计死亡134,178
-例。在180多个出现确诊病例的国家或地区中，已有23个国家累计确诊超万人。除欧洲和美国以外，拉美和亚州的发展中国家的病例快速增长：印度和秘鲁确诊人数已经超过万人。非洲国家累计确诊病例已逾一万六千例。英国确诊病例已经超过中国，成为世界第六位
-（表1）。
+\(\quad\)截至北京时间4月8日早6:30，全球累计确诊病例已经达到1,414,738例，累计死亡81,259
+例。在180多个出现确诊病例的国家或地区中，有17个国家累计确诊超万人。目前，主要病例集中在亚洲、欧洲及北美洲。发展中国家和地区的疫情发展也不可忽视：拉丁美洲国家的确诊病例数快速增长，非洲国家累计确诊病例已逾一万例。表1显示，法国确诊病例首次超过德国成为欧洲第三，中国确诊病例数已下降至第六位。
 
 \begin{figure}[H]
 \caption{世界疫情分布图} %最终文档中希望显示的图片标题
@@ -236,34 +230,32 @@
 \centering
 \begin{tabular}{rlrrr}
 \toprule
-  & 国家(地区) & 累计确诊病例 & 总人口 & 粗发病率\\
+  & 国家（地区） & 累计确诊病例 & 总人口 & 粗发病率\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 636,350 & 331,002,651 & 192\\
-2 & 西班牙 Spain & 177,644 & 46,754,778 & 380\\
-\rowcolor{gray!6}  3 & 意大利 Italy & 165,155 & 60,461,826 & 273\\
-4 & 法国 France & 137,875 & 65,273,511 & 211\\
-\rowcolor{gray!6}  5 & 德国 Germany & 134,753 & 83,783,942 & 161\\
-6 & 英国 UK & 99,483 & 67,886,011 & 147\\
-\rowcolor{gray!6}  7 & 中国 China & 83,356 & 1,439,323,776 & 6\\
- & 湖北 Hubei & 67,803 & 59,172,000 & 115\\
-\rowcolor{gray!6}  8 & 伊朗 Iran & 76,389 & 83,992,949 & 91\\
-9 & 土耳其 Turkey & 69,392 & 84,339,067 & 82\\
-\rowcolor{gray!6}  10 & 比利时 Belgium & 33,573 & 11,589,623 & 290\\
+\rowcolor{gray!6}  1 & 美国 US & 387,547 & 331,002,651 & 117\\
+2 & 西班牙 Spain & 140,618 & 46,754,778 & 301\\
+\rowcolor{gray!6}  3 & 意大利 Italy & 135,586 & 60,461,826 & 224\\
+4 & 法国 France & 110,049 & 65,273,511 & 169\\
+\rowcolor{gray!6}  5 & 德国 Germany & 107,591 & 83,783,942 & 128\\
+6 & 中国 China & 82,718 & 1,439,323,776 & 6\\
+\rowcolor{gray!6}   & 湖北 Hubei & 67,803 & 59,172,000 & 115\\
+7 & 伊朗 Iran & 62,589 & 83,992,949 & 75\\
+\rowcolor{gray!6}  8 & 英国 United Kingdom & 55,946 & 67,886,011 & 82\\
+9 & 土耳其 Turkey & 34,109 & 84,339,067 & 40\\
+\rowcolor{gray!6}  10 & 瑞士 Switzerland & 22,253 & 8,654,622 & 257\\
 \bottomrule
 \end{tabular}
 \end{table} \begin{tablenotes}
         \footnotesize
-        \item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+        \item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率  %此处加入注释信息
       \end{tablenotes}
     \end{table}
 
 \newpage
 
-\(\quad\)美国新增病例数仍居全球首位，已连续十六天日新增病例数超过两万五千人。意大利日新增病例数已经连续三日下降，西班牙和德国的日新增病例较昨日翻倍。值得注意的是，俄罗斯、巴西和比利时的病例较前日增长很快，这三个国家的累计确诊人数已突破两万例。提示欧洲、北美和南美疫情发展迅速
-(表2和图2）。
+\(\quad\)表2和图2显示，美国新增病例数仍居全球首位，已连续八天日新增病例数超过两万人。西班牙与意大利日新增病例数连续下降，意大利昨日新增病例首次跌出日新增国家前五。值得注意的是，法国的日新增病例较昨日翻倍，已突破一万例。同时，土耳其单日确诊病例连续五天增加，提示该地区疫情发展迅速。巴西日新增病例首次进入前十，表明疫情在南美洲有蔓延趋势。
 
-\(\quad\)美国的日新增死亡病例已经接近2,500（2,494例），从4月4日至今一直为前十位国家中首位，病死率已经上升到4.5\%，疫情发展不容乐观。法国的日新增死亡病例数波动较大。今日较昨日翻倍，成为日新增死亡病例数仅次于美国的国家（1,440）例。法国病死率持续上升（12.5\%），提示该国医疗系统正面临巨大压力。意大利和西班牙的日新增死亡病例数呈波动下降趋势。英国新增死亡病例数波动上升，还有待进一步观察
-（表3和图3）。
+\(\quad\)表3和图3显示，美国的日新增死亡病例再登新高（1,508例），从4月4日至今一直为前十位国家中首位，疫情发展不容乐观。法国的日新增死亡病例数迅速上升，昨日新增死亡病例数仅次于美国，高达1,417例，病死率持续上升，提示该国医疗系统正面临巨大压力。意大利和西班牙的日新增死亡病例数呈下降趋势。
 
 \begin{table}
 
@@ -279,16 +271,16 @@
 \toprule
   & 国家 & 当日新增病例\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 28,680\\
-2 & 西班牙 Spain & 5,103\\
-\rowcolor{gray!6}  3 & 英国 UK & 4,638\\
-4 & 土耳其 Turkey & 4,281\\
-\rowcolor{gray!6}  5 & 德国 Germany & 3,394\\
-6 & 俄罗斯 Russia & 3,388\\
-\rowcolor{gray!6}  7 & 巴西 Brazil & 3,058\\
-8 & 意大利 Italy & 2,667\\
-\rowcolor{gray!6}  9 & 比利时 Belgium & 2,454\\
-10 & 伊朗 Iran & 1,512\\
+\rowcolor{gray!6}  1 & 美国 US & 20,880\\
+2 & 法国 France & 11,086\\
+\rowcolor{gray!6}  3 & 德国 Germany & 4,217\\
+4 & 西班牙 Spain & 3,943\\
+\rowcolor{gray!6}  5 & 土耳其 Turkey & 3,892\\
+6 & 英国 United Kingdom & 3,667\\
+\rowcolor{gray!6}  7 & 意大利 Italy & 3,039\\
+8 & 伊朗 Iran & 2,089\\
+\rowcolor{gray!6}  9 & 巴西 Brazil & 1,670\\
+10 & 比利時 Belgium & 1,380\\
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage}
@@ -302,18 +294,18 @@
 \centering
 \begin{tabular}{rlrrr}
 \toprule
-  & 国家 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
+  & 国家 & 累计死亡病例 & 较昨日 & 病死率\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 28,326 & 2,494 & 4.5\\
-2 & 意大利 Italy & 21,645 & 578 & 13.1\\
-\rowcolor{gray!6}  3 & 西班牙 Spain & 18,708 & 652 & 10.5\\
-4 & 法国 France & 17,188 & 1,440 & 12.5\\
-\rowcolor{gray!6}  5 & 英国 UK & 12,894 & 765 & 13.0\\
-6 & 伊朗 Iran & 4,777 & 94 & 6.3\\
-\rowcolor{gray!6}  7 & 比利时 Belgium & 4,440 & 283 & 13.2\\
-8 & 德国 Germany & 3,804 & 510 & 2.8\\
-\rowcolor{gray!6}  9 & 中国 China & 3,346 & 1 & 4.0\\
-10 & 荷兰 Netherlands & 3,145 & 190 & 11.1\\
+\rowcolor{gray!6}  1 & 意大利 Italy & 17,127 & 604 & 12.6\\
+2 & 西班牙 Spain & 13,912 & 571 & 9.9\\
+\rowcolor{gray!6}  3 & 美国 US & 12,291 & 1,508 & 3.2\\
+4 & 法国 France & 10,343 & 1,417 & 9.4\\
+\rowcolor{gray!6}  5 & 英国 United Kingdom & 6,171 & 786 & 11.0\\
+6 & 伊朗 Iran & 3,872 & 133 & 6.2\\
+\rowcolor{gray!6}  7 & 中国 China & 3,335 & 0 & 4.0\\
+8 & 荷兰 Netherlands & 2,108 & 234 & 10.7\\
+\rowcolor{gray!6}  9 & 比利時 Belgium & 2,035 & 403 & 9.2\\
+10 & 德国 Germany & 2,012 & 202 & 1.9\\
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage} 
@@ -339,13 +331,13 @@
 \hypertarget{section-3}{%
 \section{\texorpdfstring{\textcolor{glaucous}{二、美国疫情}}{}}\label{section-3}}
 
-\(\quad\)截至北京时间4月16日早7:00，
-美国累计确诊病例数已达到636,350例，共28,326
-死亡病例。从州疫情分布图（图4，图5）来看，美国各州疫情严重，前十州都超过一万五千人。中部地区疫情呈快速蔓延趋势。
+\(\quad\)截至北京时间4月8日早6:30，
+美国累计确诊病例数已达到387,547例，共 12,291
+死亡病例。从州疫情分布图（图4，图5）来看，东西海岸，五大湖及南部地区疫情严重，中部地区疫情呈快速蔓延趋势。
 
-\(\quad\)纽约州(NY)、新泽西州(NJ)和马萨诸塞州(MA)为美国疫情最严重的三个州。纽约州和新泽西州检测的阳性率仍然居高不下（40\%以上）提示两个州病人数量巨大，医疗资源持续面临巨大压力
-（表4）。密歇根州（MI）的阳性率下降至31\%
-（表4），提示该州的检测范围扩大，检测能力增强。
+\(\quad\)从表4来看，纽约州(NY)、新泽西州(NJ)和密歇根州(MI)仍为美国疫情最严重的三个州。纽约州粗发病率持续位居全美第一位，高达714/10万人，检测率同为全美最高，达1,748/10万人，而阳性率为全国平均阳性率的2.15倍（41\%），提示该州病人数量巨大，医疗资源持续面临巨大压力。
+
+\(\quad\)值得注意的是，佐治亚州(GA)累计确诊病例首次进入全美前十，取代华盛顿州(WA)。在累计检测人数较少的情况下，佐治亚州的阳性率为26\%，超过美国平均阳性率(19\%)，提示该州疫情不容乐观。
 
 \begin{figure}[H] 
 \caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
@@ -364,17 +356,17 @@
 \toprule
   & 国家/州名 & 累计确诊 & 粗发病率 & 阳性率\% & 累计检测 & 日新增检测 & 检测率\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 636,350 & 192 & 20 & 3,242,373 & 161,130 & 980\\
-1 & 纽约州 NY & 214,454 & 1,102 & 41 & 526,012 & 26,869 & 2,704\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 71,030 & 800 & 49 & 144,021 & 4,247 & 1,621\\
-3 & 马萨诸塞州 MA & 29,918 & 431 & 23 & 132,023 & 5,472 & 1,900\\
-\rowcolor{gray!6}  4 & 密歇根州 MI & 28,059 & 281 & 31 & 89,697 & 3,471 & 898\\
-5 & 宾夕法尼亚州 PA & 26,753 & 209 & 19 & 137,584 & 3,953 & 1,075\\
-\rowcolor{gray!6}  6 & 加利福尼亚州 CA & 26,686 & 68 & 12 & 216,486 & 14,278 & 548\\
-7 & 伊利诺伊州 IL & 24,593 & 194 & 21 & 116,929 & 6,313 & 923\\
-\rowcolor{gray!6}  8 & 佛罗里达州 FL & 22,511 & 105 & 11 & 213,509 & 10,329 & 994\\
-9 & 路易斯安那州 LA & 21,951 & 472 & 18 & 121,928 & 3,506 & 2,623\\
-\rowcolor{gray!6}  10 & 得克萨斯州 TX & 15,907 & 55 & 10 & 151,810 & 5,343 & 524\\
+\rowcolor{gray!6}   & 美国 US & 387,547 & 117 & 19 & 2,054,462 & 137,367 & 621\\
+1 & 纽约州 NY & 138,863 & 714 & 41 & 340,058 & 19,247 & 1,748\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 44,416 & 500 & 47 & 94,974 & 5,942 & 1,069\\
+3 & 密歇根州 MI & 17,221 & 172 & 34 & 50,332 & 3,081 & 504\\
+\rowcolor{gray!6}  4 & 加利福尼亚州 CA & 16,429 & 42 & 13 & 131,229 & 13,798 & 332\\
+5 & 路易斯安那州 LA & 16,284 & 350 & 22 & 74,655 & 5,489 & 1,606\\
+\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 14,852 & 116 & 16 & 91,278 & 7,424 & 713\\
+7 & 佛罗里达州 FL & 14,504 & 68 & 10 & 138,162 & 14,888 & 643\\
+\rowcolor{gray!6}  8 & 马萨诸塞州 MA & 13,837 & 199 & 17 & 81,344 & 4,915 & 1,171\\
+9 & 伊利诺伊州 IL & 12,266 & 97 & 18 & 68,732 & 5,790 & 542\\
+\rowcolor{gray!6}  10 & 乔治亚州 GA & 8,822 & 83 & 26 & 33,713 & 6,299 & 318\\
 \bottomrule
 \end{tabular}
 \end{table} \begin{tablenotes}
@@ -410,52 +402,51 @@
 \centering
 \begin{tabular}{rlrr}
 \toprule
-  & 国家/州名 & 当日新增 & 构成比\%\\
+  & 国家/州名 & 当日新增 & 全美比率\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 28,680 & 100\\
-1 & 纽约州 NY & 11,434 & 40\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 2,206 & 8\\
-3 & 马萨诸塞州 MA & 1,754 & 6\\
-\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 1,345 & 5\\
-5 & 加利福尼亚州 CA & 1,330 & 5\\
-\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 1,288 & 4\\
-7 & 密歇根州 MI & 1,058 & 4\\
-\rowcolor{gray!6}  8 & 得克萨斯州 TX & 901 & 3\\
-9 & 佛罗里达州 FL & 883 & 3\\
-\rowcolor{gray!6}  10 & 康涅狄格州 CT & 766 & 3\\
+\rowcolor{gray!6}   & 美国 US & 20,880 & 100\\
+1 & 纽约州 NY & 7,048 & 34\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 3,326 & 16\\
+3 & 宾夕法尼亚州 PA & 1,725 & 8\\
+\rowcolor{gray!6}  4 & 乔治亚州 GA & 1,508 & 7\\
+5 & 路易斯安那州 LA & 1,417 & 7\\
+\rowcolor{gray!6}  6 & 佛罗里达州 FL & 1,180 & 6\\
+7 & 印第安纳州 IN & 554 & 3\\
+\rowcolor{gray!6}  8 & 弗吉尼亚州 VA & 457 & 2\\
+9 & 得克萨斯州 TX & 452 & 2\\
+\rowcolor{gray!6}  10 & 加利福尼亚州 CA & 410 & 2\\
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage}%
     \begin{minipage}{.7\linewidth}
      \caption{美国累计死亡前十位州}
-  
+     \vspace{-0.5\baselineskip}
       \centering
     \captionsetup{justification=centering} \begin{table}[H]
 \centering
 \begin{tabular}{rlrr}
 \toprule
-  & 国家/州名 & 累计死亡人数 & 病死率\%\\
+  & 国家/州名 & 累计死亡人数 & 病死率\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 28,326 & 4.5\\
-1 & 纽约州 NY & 11,617 & 5.4\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 3,156 & 4.4\\
-3 & 密歇根州 MI & 1,921 & 6.8\\
-\rowcolor{gray!6}  4 & 马萨诸塞州 MA & 1,108 & 3.7\\
-5 & 路易斯安那州 LA & 1,103 & 5.0\\
-\rowcolor{gray!6}  6 & 伊利诺伊州 IL & 949 & 3.9\\
-7 & 康涅狄格州 CT & 868 & 5.9\\
-\rowcolor{gray!6}  8 & 加利福尼亚州 CA & 861 & 3.2\\
-9 & 宾夕法尼亚州 PA & 779 & 2.9\\
-\rowcolor{gray!6}  10 & 佛罗里达州 FL & 596 & 2.6\\
+\rowcolor{gray!6}   & 美国 US & 12,291 & 3.2\\
+1 & 纽约州 NY & 5,489 & 4.0\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 1,232 & 2.8\\
+3 & 密歇根州 MI & 727 & 4.2\\
+\rowcolor{gray!6}  4 & 路易斯安那州 LA & 582 & 3.6\\
+5 & 加利福尼亚州 CA & 397 & 2.4\\
+\rowcolor{gray!6}  6 & 华盛顿州 WA & 388 & 4.6\\
+7 & 乔治亚州 GA & 329 & 3.7\\
+\rowcolor{gray!6}  8 & 伊利诺伊州 IL & 308 & 2.5\\
+9 & 佛罗里达州 FL & 283 & 2.0\\
+\rowcolor{gray!6}  10 & 马萨诸塞州 MA & 260 & 1.9\\
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage} 
 \end{table}
 
-\(\quad\)纽约州、新泽西州的新增确诊数仍高居前二，其中纽约州较前日增加大约5,000例（表5）。美国共有7个州当日新增病例超过1,000人,
-除纽约州外，其余几个州的确诊病例人数近日都在波动 （图5）。
+\(\quad\)从表5新增确诊人数来看，纽约州、新泽西州的新增确诊数仍高居前二，宾夕法尼亚州，佐治亚州，路易斯安那州、和佛罗里达州的日新增确诊病例数均超过1,000人。值得注意的是，佐治亚州的日新增确诊首次进入前五，超1,500例；印第安纳州和佛吉尼亚州日新增确诊也首次进入全美前十。鉴于这些州的人均检测率均低于全美平均值（印第安纳州：427/10万人；佛吉尼亚州：336/10万人），显示这些地区疫情存在恶化的风险。
 
-\(\quad\)美国累计死亡病例已突破二万五千例（表6）。纽约州日新增死亡人数近日以来较为稳定，新泽西州，马萨诸塞州和康涅狄格州的日新增死亡人数上升趋势明显（图6）。其他州的日新增死亡人数近日都在波动上升，提示美国疫情仍在恶化。
+\(\quad\)从表6来看，美国累计死亡病例已突破一万二千例。纽约州的病死率已上升至4\%，提示纽约州的医疗系统已严重超过负荷。同时，纽约州日新增确诊病例已连续4日下降（图5），可能与居家隔离措施与扩大检测规模有关。值得注意的是，佐治亚州的病死率上升迅速（从4月7日3.1\%到4月8日3.7\%），提示该地区医疗系统正面临巨大挑战。
 
 \newpage
 
