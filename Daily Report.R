@@ -247,7 +247,7 @@ translate_country_colname = function(ut_data, x) {
       rename("国家（地区）" = Country_bi, 
              "累计确诊病例" = Confirmed_Cases, 
              "总人口" = Population, 
-             "粗发病率" = Crude_Incidence_Rate)
+             "粗发病率*" = Crude_Incidence_Rate)
     
     return(t_data)
     
@@ -291,7 +291,7 @@ translate_state_colname = function(ut_data, x) {
                "阳性率%" = positive_rate, 
                "累计检测" = totalTestResults, 
                "日新增检测" = totalTestResultsIncrease, 
-               "检测率" = pct_test)
+               "检测率*" = pct_test)
     } else {
       t_data = ut_data %>% 
         select(ranking, state_bi, Confirmed, Crude_Incidence_Rate) %>% 
