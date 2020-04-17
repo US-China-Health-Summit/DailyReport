@@ -198,7 +198,7 @@ cat(c("\\begin{table}[H]
 `r insight$content[2]`
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
+cat(c("\\begin{table}[H]
 
     \\begin{minipage}{.4\\linewidth}
     \\centering
@@ -287,7 +287,7 @@ cat(c("\\begin{table}[H]
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
+cat(c("\\begin{table}[H]
       \\centering
     \\begin{minipage}{.45\\linewidth}
     \\caption{美国新增确诊前十位州}
