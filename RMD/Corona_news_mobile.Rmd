@@ -130,7 +130,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 `r china_news$content[2]`
 
 
-\
+\vspace*{1\baselineskip} 
 
 \resheading{\Huge 疫情观察}
 
@@ -301,7 +301,7 @@ cat(c("\\begin{table}[H]
 
 `r insight$content[4]`
 
-\
+\vspace*{1\baselineskip}
 
 \resheading{\Huge 案例分析}
 
