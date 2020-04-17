@@ -46,6 +46,8 @@ header-includes:
     - \setlength{\footskip}{20pt}
 
 ---
+\captionsetup[figure]{name={图},labelsep=space} 
+\captionsetup[table]{name={表},labelsep=space} 
 \fontsize{22}{22}
 \selectfont
 \vspace{-10truemm}
@@ -129,7 +131,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 
 
-
+\
 
 \resheading{\Huge 疫情观察}
 
@@ -196,7 +198,7 @@ cat(c("\\begin{table}[H]
 `r insight$content[2]`
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
+cat(c("\\begin{table}[H]
 
     \\begin{minipage}{.4\\linewidth}
     \\centering
@@ -229,7 +231,7 @@ cat(c("\\begin{table}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.48\linewidth}
-\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\caption{日新增死亡病例国家趋势图\\（前五位国家） }
 \includegraphics[]{./input/covid3.pdf}
 \label{}
 \end{minipage}
@@ -285,7 +287,7 @@ cat(c("\\begin{table}[H]
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
+cat(c("\\begin{table}[H]
       \\centering
     \\begin{minipage}{.45\\linewidth}
     \\caption{美国新增确诊前十位州}
@@ -309,8 +311,9 @@ cat(c("\\begin{table}
 
 `r insight$content[4]`
 
+\
 
-\resheading{\Huge 疫情观察}
+\resheading{\Huge 案例分析}
 
 ```{r, echo=FALSE}
 example = read_excel("./input/module3.xlsx")

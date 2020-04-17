@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.12)  15 APR 2020 16:30
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.4.12)  16 APR 2020 23:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1313,33 +1313,33 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 133
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/SimSun(0)/b/n' will be
-(Font)              scaled to size 14.19862pt on input line 155.
+(Font)              scaled to size 14.19862pt on input line 157.
 LaTeX Font Info:    Font shape `TU/SimSun(0)/b/n' will be
-(Font)              scaled to size 12.2595pt on input line 160.
+(Font)              scaled to size 12.2595pt on input line 162.
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
-(Font)              scaled to size 12.36523pt on input line 163.
+(Font)              scaled to size 12.36523pt on input line 165.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 203.
+(Font)              scaled to size 10.0pt on input line 198.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 203.
+(Font)              scaled to size 7.0pt on input line 198.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 203.
+(Font)              scaled to size 5.0pt on input line 198.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 203.
+(Font)              scaled to size 10.00092pt on input line 198.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 203.
+(Font)              scaled to size 7.00064pt on input line 198.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 203.
+(Font)              scaled to size 5.00046pt on input line 198.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 203.
+(Font)              scaled to size 9.99893pt on input line 198.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 203.
+(Font)              scaled to size 6.99925pt on input line 198.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 203.
+(Font)              scaled to size 4.99947pt on input line 198.
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
-(Font)              scaled to size 9.51172pt on input line 203.
+(Font)              scaled to size 9.51172pt on input line 198.
 
 Package Fancyhdr Warning: \headheight is too small (25.0pt): 
 Make it at least 90.40552pt.
@@ -1349,58 +1349,59 @@ This may cause the page layout to be inconsistent, however.
 [1
 
 ]
-LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
-(Font)              scaled to size 8.59264pt on input line 209.
-LaTeX Font Info:    Calculating math sizes for size <13> on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 13.0pt on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.09996pt on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.5pt on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 13.00119pt on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.10078pt on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.5006pt on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.99861pt on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.09898pt on input line 215.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.4993pt on input line 215.
-LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
-(Font)              scaled to size 10.02475pt on input line 219.
-File: ./input/covid1.png Graphic file (type bmp)
-<./input/covid1.png>
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.37756pt on input line 231.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.26968pt on input line 231.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.54033pt on input line 231.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.37823pt on input line 231.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.27016pt on input line 231.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.53824pt on input line 231.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.37677pt on input line 231.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.26912pt on input line 231.
-LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
-(Font)              scaled to size 7.16054pt on input line 250.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
 [2]
-Overfull \hbox (4.90524pt too wide) in paragraph at lines 270--286
- [][] 
- []
-
-
-Overfull \hbox (2.33974pt too wide) in paragraph at lines 262--312
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 8.59264pt on input line 211.
+LaTeX Font Info:    Calculating math sizes for size <13> on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 13.0pt on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.09996pt on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.5pt on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 13.00119pt on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.10078pt on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.5006pt on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 12.99861pt on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.09898pt on input line 217.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.4993pt on input line 217.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 10.02475pt on input line 222.
+File: ./input/covid1.png Graphic file (type bmp)
+<./input/covid1.png>
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.37756pt on input line 234.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.26968pt on input line 234.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.54033pt on input line 234.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.37823pt on input line 234.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.27016pt on input line 234.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.53824pt on input line 234.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.37677pt on input line 234.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.26912pt on input line 234.
+LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
+(Font)              scaled to size 7.16054pt on input line 253.
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
+[3]
+File: ./input/logo.png Graphic file (type bmp)
+<./input/logo.png>
+[4]
+Overfull \hbox (2.33974pt too wide) in paragraph at lines 267--317
 []$[]$ $[]$ 
  []
 
@@ -1410,64 +1411,64 @@ File: ./input/covid3.pdf Graphic file (type pdf)
 <use ./input/covid3.pdf>
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
-[3]
+[5]
 File: ./input/covid4.png Graphic file (type bmp)
 <./input/covid4.png>
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
-[4]
+[6]
 File: ./input/covid5.pdf Graphic file (type pdf)
 <use ./input/covid5.pdf>
 File: ./input/covid6.pdf Graphic file (type pdf)
 <use ./input/covid6.pdf>
 
-Overfull \hbox (15.55652pt too wide) in paragraph at lines 403--420
+Overfull \hbox (14.31107pt too wide) in paragraph at lines 408--425
  [][] 
  []
 
 
-Overfull \hbox (50.58435pt too wide) in paragraph at lines 397--445
+Overfull \hbox (50.58435pt too wide) in paragraph at lines 402--450
 []$[]$$[]$ 
  []
 
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
-[5]
+[7]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.03374pt on input line 487.
+(Font)              scaled to size 9.03374pt on input line 493.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.03456pt on input line 487.
+(Font)              scaled to size 9.03456pt on input line 493.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.03276pt on input line 487.
+(Font)              scaled to size 9.03276pt on input line 493.
 
-Underfull \hbox (badness 2460) in paragraph at lines 491--493
+Underfull \hbox (badness 2460) in paragraph at lines 497--499
 []\TU/SimSun(0)/m/n/9.03374 工 信 部：|  中 国 呼 吸 机 产 能 无 法 满 足 全 球 疫 情 防 控 需 求  []$
 [][][][][] [] [] [] [][][][][][][][][] [] [][][][][] [] [][][] [] [] [] [][] []
  [][][][][][][][][][][][][][][][][][][][][][][] []
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 506.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 512.
 File: ./input/logo.png Graphic file (type bmp)
 <./input/logo.png>
-[6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 506.
+[8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 512.
 (./Corona_news.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 506.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 506.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 512.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 512.
 Package rerunfilecheck Info: File `Corona_news.out' has not changed.
 (rerunfilecheck)             Checksum: F8B8C93A06A0DBDE149030754D541762;182.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 506.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 512.
  ) 
 Here is how much of TeX's memory you used:
- 23716 strings out of 481384
- 460259 string characters out of 5926360
+ 23751 strings out of 481384
+ 462352 string characters out of 5926360
  859682 words of memory out of 5000000
- 40684 multiletter control sequences out of 15000+600000
+ 40719 multiletter control sequences out of 15000+600000
  545797 words of font info for 138 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 67i,18n,126p,905b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,19n,126p,905b,535s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Corona_news.pdf (6 pages).
+Output written on Corona_news.pdf (8 pages).
