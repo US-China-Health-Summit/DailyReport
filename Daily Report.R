@@ -419,8 +419,10 @@ read_data = function(label, type, web_data, Province_name = NULL ){
   }
   # Change specific country name
   data_wide = as.data.frame(data_wide)
-  data_wide$`Country/Region`[data_wide$`Country/Region` == "United Kingdom"] <- "UK"
-  data_wide = as_tibble(data_wide)
+	if (type == "Country") {
+		data_wide$`Country/Region`[data_wide$`Country/Region` == "United Kingdom"] <- "UK"
+  }
+	data_wide = as_tibble(data_wide)
   # build incremental data
   temp = data_wide[,-1]
   # Change of each day
@@ -735,7 +737,7 @@ y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1) * 1000
 y_interval = adjust_y_interval(y_max)
 p1_1 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed, 
                                           group = Country, 
-                                          colour = Country, 
+                                          colour = Country
                                           # shape = Country
                                           )) + 
   # geom_point(size = 2) + 
