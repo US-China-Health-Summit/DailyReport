@@ -164,6 +164,7 @@ translate_state_colname = function(ut_data, x) {
   }
 }
 
+
 tidy_uk = function(country_order) {
   # tidy United Kingdom and UK
   # wwqi4realGitHub
@@ -173,13 +174,10 @@ tidy_uk = function(country_order) {
 }
 
 tidy_uk_df = function(ut_df) {
-  
   ### tidy the dataframe that contains United Kingdom
   ### maintain the original order
-  
   t_df = ut_df %>% 
     mutate(Country = fct_recode(Country, "United Kindom" = "UK"))
-  
   return(t_df)
 }
 ```

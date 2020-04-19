@@ -17,7 +17,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1cm}
+    - \geometry{a4paper,left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage[font=Large]{caption}
@@ -41,11 +41,13 @@ header-includes:
     - \usepackage{makecell}
     - \usepackage{xcolor}
 
-    - \linespread{1.15}
-    - \setlength{\parskip}{1.5em}
+    - \linespread{1.3}
+    - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
 
 ---
+\captionsetup[figure]{name={图},labelsep=space} 
+\captionsetup[table]{name={表},labelsep=space} 
 \fontsize{22}{22}
 \selectfont
 \vspace{-10truemm}
@@ -60,13 +62,13 @@ header-includes:
 
 
 \begin{center}
-\fontsize{34}{34}
+\fontsize{45}{45}
 \textcolor{glaucous}{\textbf{新冠早报}}
 \end{center}
 
 \begin{center}
-\fontsize{18}{18}
-{\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
+\fontsize{22}{22}
+{\textcolor{glaucous}{\textbf{第19期 \space 4月16日}}}
 \end{center}
 
 
@@ -128,8 +130,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 `r china_news$content[2]`
 
 
-
-
+\vspace*{1\baselineskip} 
 
 \resheading{\Huge 疫情观察}
 
@@ -178,15 +179,13 @@ t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>%
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
     \\caption{累计确诊前十位国家}
-      \\vspace{-0.5\\baselineskip}
-      \\centering",
+      \\vspace{-0.5\\baselineskip}",
         t1,
     "\\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
-        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率  %此处加入注释信息
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
     \\end{table}"
 ))
@@ -197,41 +196,35 @@ cat(c("\\begin{table}[H]
 `r insight$content[2]`
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
-
-    \\begin{minipage}{.4\\linewidth}
-    \\centering
-    \\captionsetup{justification=centering}
+cat(c("\\begin{table}[H]
     \\caption{日新增病例前十位国家}
-    \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
         t2,
-    "\\end{minipage}
-    \\begin{minipage}{.6\\linewidth}
-    \\centering
-    \\captionsetup{justification=centering}
-     \\caption{累计死亡病例前十位国家}
-     \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
+    "\\end{table}"
+))
+
+cat(c("\\begin{table}[H]
+  \\vspace{-7mm}
+    \\caption{累计死亡病例前十位国家}
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
         t3,
-    "\\end{minipage} 
-\\end{table}"
+    "\\end{table}"
 ))
 ```
 
 \begin{figure}[H]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
-\includegraphics[]{./input/covid2.pdf}
+\includegraphics[]{./input/covid2.png}
 \label{}
 \end{minipage}
 \quad
-\begin{minipage}[b]{0.45\linewidth}
-\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
-\includegraphics[]{./input/covid3.pdf}
+\begin{minipage}[b]{0.48\linewidth}
+\caption{日新增死亡病例国家趋势图\\（前五位国家） }
+\includegraphics[]{./input/covid3.png}
 \label{}
 \end{minipage}
 \end{figure}
@@ -271,37 +264,36 @@ cat(c("\\begin{table}[H]
 
 \begin{figure}[H]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{美国日新增确诊前五位州趋势图}
-\includegraphics[]{./input/covid5.pdf}
+\includegraphics[]{./input/covid5.png}
 \label{}
 \end{minipage}
 \quad
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[b]{0.48\linewidth}
 \caption{美国日新增死亡前五位州趋势图}
-\includegraphics[]{./input/covid6.pdf}
+\includegraphics[]{./input/covid6.png}
 \label{}
 \end{minipage}
 \end{figure}
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}
 
-    \\begin{minipage}{.4\\linewidth}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+cat(c("\\begin{table}[H]
     \\caption{美国新增确诊前十位州}
-    \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
         t5,
-    "\\end{minipage}%
-    \\begin{minipage}{.7\\linewidth}
-     \\caption{美国累计死亡前十位州}
-     \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
+    "\\end{table}"
+))
+
+cat(c("\\begin{table}[H]
+
+    \\caption{美国累计死亡前十位州}
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
         t6,
-    "\\end{minipage} 
-\\end{table}"
+    "\\end{table}"
 ))
 ```
 
@@ -309,8 +301,9 @@ cat(c("\\begin{table}
 
 `r insight$content[4]`
 
+\vspace*{1\baselineskip}
 
-\resheading{\Huge 疫情观察}
+\resheading{\Huge 案例分析}
 
 ```{r, echo=FALSE}
 example = read_excel("./input/module3.xlsx")
@@ -335,11 +328,11 @@ reference = example$content[3]
 \selectfont
 \begin{tabular}{ll}
 
-主编：马晶  &  副主编:薛成海\,  仁晖  \\
+主编：马晶  &  副主编:仁晖\,  薛成海  \\
 执行责任编辑:王冠  & 责任编辑:乐昊欣\, 闫怡璇 \\
 新闻组:张宁\, 张心其  & 数据分析:杜兆慧 \\
 案例分析: 史珂玮  &  微信排版:韩佩瑾 \\
-\multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
+\multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\, 张祺珉\, 周梓淇}
 
 \end{tabular}
 

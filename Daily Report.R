@@ -717,8 +717,9 @@ p1 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed,
 # ggsave(filename = paste(report_date,"p1",p1_title, ".pdf"), plot = p1, width = 10, height = 8)
 ggsave(filename = paste(report_date,"p1",p1_title, ".png"), plot = p1, width = 10, height = 8 )
 
-?scale_x_date
+
 ##### plot 1-1. total confirmed cases sort by countries cumulative (including China) #####
+
 filter_total_with_china = c(china_label, filter_total)
 
 # filter by country and cumulative confirmed
@@ -1441,8 +1442,7 @@ p5 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   xlab("") +
   ylab(p5_ylab)
-
-
+                        
 # ggsave(filename=paste(report_date,"p5",p5_title, ".pdf"), plot = p5, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p5",p5_title, ".png"), plot = p5, width = 10, height = 8 )
 
