@@ -165,9 +165,22 @@ translate_state_colname = function(ut_data, x) {
 }
 
 tidy_uk = function(country_order) {
+  # tidy United Kingdom and UK
+  # wwqi4realGitHub
   country_order[which(country_order == "United Kingdom")] = "UK"
   
   return(country_order)
+}
+
+tidy_uk_df = function(ut_df) {
+  
+  ### tidy the dataframe that contains United Kingdom
+  ### maintain the original order
+  
+  t_df = ut_df %>% 
+    mutate(Country = fct_recode(Country, "United Kindom" = "UK"))
+  
+  return(t_df)
 }
 ```
 
@@ -202,10 +215,6 @@ tidy_uk = function(country_order) {
 the data below is from Daily Report.R 
 
 To test, pls first run the R script to make sure the data is in Environment
-```{r}
-# change United Kingdom to UK
-country_order[which(country_order == "United Kingdom")] = "UK"
-```
 
 ```{r}
 # Apr 4: pass for plot 2 and 3 data
