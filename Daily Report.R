@@ -1,7 +1,6 @@
 ##############################
 ####        README        ####
 ##############################
-
 ### Data source:  https://github.com/CSSEGISandData/COVID-19
 ### Data source (Not used):  https://covidtracking.com/api/states/daily
 
@@ -420,6 +419,10 @@ read_data = function(label, type, web_data, Province_name = NULL ){
       data_wide = as_tibble(data_wide)
     }
   }
+  # Change specific country name
+  data_wide = as.data.frame(data_wide)
+  data_wide$`Country/Region`[data_wide$`Country/Region` == "United Kingdom"] <- "UK"
+  data_wide = as_tibble(data_wide)
   # build incremental data
   temp = data_wide[,-1]
   # Change of each day
@@ -434,6 +437,7 @@ read_data = function(label, type, web_data, Province_name = NULL ){
   
   # reverse column order of everything but the first
   data_wide = data_wide[, ncol(data_wide):1] %>% select(last_col(),everything())
+  
   data_incremental = data_incremental[, ncol(data_incremental):1] %>% select(last_col(),everything())
   
   
