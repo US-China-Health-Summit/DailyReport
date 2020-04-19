@@ -163,6 +163,17 @@ translate_state_colname = function(ut_data, x) {
     return(ut_data)
   }
 }
+
+tidy_uk_df = function(ut_df) {
+  
+  ### tidy the dataframe that contains United Kingdom
+  ### maintain the original order
+  
+  t_df = ut_df %>% 
+    mutate(Country = recode(Country, "United Kindom" = "UK"))
+  
+  return(t_df)
+}
 ```
 
 ```{r no longer in use}
