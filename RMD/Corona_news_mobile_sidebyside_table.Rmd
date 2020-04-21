@@ -231,7 +231,7 @@ cat(c("\\begin{table}[H]
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.48\linewidth}
-\caption{日新增死亡病例国家趋势图\\（前五位国家） }
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
 \includegraphics[]{./input/covid3.png}
 \label{}
 \end{minipage}

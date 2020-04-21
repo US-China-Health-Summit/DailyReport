@@ -281,12 +281,12 @@ translate_state_colname = function(ut_data, x) {
     
     if ("positive_rate" %in% colnames(ut_data)) {
       t_data = ut_data %>% 
-        select(ranking, state_bi, Confirmed, Crude_Incidence_Rate, positive_rate, totalTestResults, totalTestResultsIncrease, pct_test) %>% 
+        select(ranking, state_bi, Confirmed, Crude_Incidence_Rate, totalTestResults, positive_rate,  totalTestResultsIncrease, pct_test) %>% 
         rename("国家/州名" = state_bi, 
                "累计确诊" = Confirmed, 
                "粗发病率" = Crude_Incidence_Rate, 
+							 "累计检测" = totalTestResults, 
                "阳性率%" = positive_rate, 
-               "累计检测" = totalTestResults, 
                "日新增检测" = totalTestResultsIncrease, 
                "检测率*" = pct_test)
     } else {
