@@ -490,9 +490,9 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
 }
 
 
-##############################
-##        WORLDWIDE         ##
-##############################
+##################################
+####        WORLDWIDE         ####
+##################################
 
 # load data
 date_today = Sys.Date()
@@ -516,7 +516,7 @@ write_excel_csv(case_confirmed_incremental_wide, paste(report_date,"table_case_c
 write_excel_csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
 write_excel_csv(case_deaths_incremental_wide, paste(report_date,"table_case_deaths_incremental.csv"))
 
-# table 1
+#### table 1 ####
 crude_incidence_rate = as.data.frame(cbind(case_confirmed_wide$Country, case_confirmed_wide[, report_date], input_population$Population[match(case_confirmed_wide$Country, input_population$Country)]), stringsAsFactors = F)
 colnames(crude_incidence_rate) = c("Country", "Confirmed_Cases", "Population")
 ranking = 1:nrow(crude_incidence_rate)
@@ -531,6 +531,8 @@ write_excel_csv(crude_incidence_rate, paste(report_date, "table_1_crude_incidenc
 write_excel_csv(crude_incidence_rate_top, paste(report_date, "table_1_crude_incidence_rate.csv"))
 write_excel_csv(crude_incidence_rate_top %>% 
                   translate_country() %>% 
+                  mutate(Country_bi = case_when(Country_bi == "湖北 Hubei" ~ "(湖北 Hubei)", 
+                                                TRUE ~ as.character(Country_bi))) %>% 
                   translate_country_colname(1), paste(report_date, "table_1_crude_incidence_rate_ch.csv"))
 
 
@@ -543,7 +545,7 @@ data_global_latest$Fatality_rate = round(data_global_latest$Deaths/data_global_l
 
 US_total = data_global_latest[data_global_latest$Country == "US", ]
 
-# table 2
+#### table 2 ####
 data_global_latest_confirmed = data_global_latest[,c("Country/Region", "Confirmed_incremental")]
 data_global_latest_confirmed = data_global_latest_confirmed[order(data_global_latest_confirmed$Confirmed_incremental, decreasing = T), ]
 ranking = 1:nrow(data_global_latest_confirmed)
@@ -557,7 +559,7 @@ write_excel_csv(data_global_latest_confirmed_top %>%
                   translate_country_colname(2), 
                 paste(report_date, "table_2_case_confirmed_latest_date_ch.csv"))
 
-# table 3
+#### table 3 ####
 
 data_global_latest_death = data_global_latest[,c("Country/Region", "Deaths", "Deaths_incremental", "Fatality_rate")]
 data_global_latest_death = data_global_latest_death[order(data_global_latest_death$Deaths, decreasing = T), ]
@@ -572,7 +574,7 @@ write_excel_csv(data_global_latest_death_top %>%
                   translate_country_colname(3), 
                 paste(report_date, "table_3_case_death_latest_date_ch.csv"))
 
-# table 8& 9 for weekly report
+#### table 8& 9 for weekly report ####
 if (weekly_summary){
   # Table 8
   temp = data_all_countries
@@ -593,7 +595,7 @@ if (weekly_summary){
   colnames(data_confirmed_weekly_incremental)[3] <- paste("Confirmed_cases_on",end_date_wr)
   write_excel_csv(data_confirmed_weekly_incremental, paste(report_date, "table_8_Country_Confirmed_Weekly_Incremental_Rate.csv"))
   
-  #Table 10
+  #####Table 10####
   temp_diff$Deaths_start = temp_start$Deaths
   temp_diff$Deaths_end = temp_end$Deaths
   temp_diff$Deaths_diff = temp_diff$Deaths_end - temp_diff$Deaths_start
@@ -1121,9 +1123,9 @@ if (weekly_summary){
 }
 
 
-##############################
-## US by states
-##############################
+######################
+#### US by states ####
+######################
 
 state_population = read.csv("input_state_population.csv", stringsAsFactors = F)
 
@@ -1194,7 +1196,7 @@ colnames(data_us_states)[grep("Province_State", colnames(data_us_states))] = "st
 
 
 ##################
-# US Hospitalize and Test Results Detail View
+#### US Hospitalize and Test Results Detail View ####
 ##################
 
 library(httr)
