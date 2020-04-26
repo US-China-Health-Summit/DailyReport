@@ -364,7 +364,6 @@ adjust_y_interval = function(y_max){
 
 read_data = function(label, type, web_data, Province_name = NULL ){ 
   
-  
   #HS: Rewrote function using tiddyverse to make more readable
   # read time series data
   filename = paste("time_series_covid19_", tolower(label), "_global.csv", sep = "")
@@ -385,8 +384,9 @@ read_data = function(label, type, web_data, Province_name = NULL ){
   if (web_data &  (date_today %>% as.character() == max(date_label_fixed))) {
     time_series = time_series %>% select(-last_col())
   }
+	
   ##Clear data
-  if (type == "Country") {
+  if (type %in% c("Country", "Continent")) {
     # Remove all the unused column, and sum based on country
     data_wide = time_series %>% select(-"Province/State",-Lat,-Long) %>% group_by(`Country/Region`) %>% summarise_all(sum)
     if (web_data) {
@@ -395,7 +395,13 @@ read_data = function(label, type, web_data, Province_name = NULL ){
       data_wide = left_join(x = data_wide,y = wdata, by = "Country/Region") %>% rename_at(vars(label),~date_today %>% as.character() )
       data_wide[is.na(data_wide)] = 0
     }
-  } else if (type == "State") {
+		if (type == "Continent") {
+			input_continent = read_csv("input_continent.csv") %>% rename('Country/Region'='Country')
+			data_wide = left_join(data_wide, input_continent, by="Country/Region")  %>% select(-"Country/Region") %>% group_by(`Continent`) %>% summarise_all(sum)
+			data_wide = data_wide[!is.na(data_wide$Continent),]
+		}
+  } 
+	if (type == "State") {
     # Remove all the unused column, and sum based on country, Select the needed state, get its sum
     data_wide = time_series %>% select(-"Country/Region",-Lat,-Long) %>% filter(`Province/State` == Province_name) %>%
       group_by(`Province/State`) %>% summarise_all(sum)
@@ -405,8 +411,8 @@ read_data = function(label, type, web_data, Province_name = NULL ){
       data_wide = left_join(x = data_wide,y = wdata, by = "Province/State") %>% rename_at(vars(label),~date_today %>% as.character() )
       data_wide[is.na(data_wide)] = 0
     }
-    
   }
+	
   # Data validation : if N is smaller than previous data, assign the number from previous date (Unchanged from original function)
   for (i in 3:ncol(data_wide)) {
     #The first oen is country name,so start with 3-2
@@ -440,13 +446,12 @@ read_data = function(label, type, web_data, Province_name = NULL ){
   
   data_incremental = data_incremental[, ncol(data_incremental):1] %>% select(last_col(),everything())
   
-  
   return(list(data = data, data_wide = data_wide, data_incremental_wide = data_incremental))
 }
 
 create_final_data = function(type = NULL, Province_name = NULL, web_data){ 
   # type: "Country" if by country; "State" if by US states
-  if (!type %in% c("Country", "State")) stop("Please specify type as country or state.")
+  if (!type %in% c("Country", "State", "Continent")) stop("Please specify type as country or state.")
   data_confirmed = read_data("Confirmed", type , web_data,Province_name)
   data_deaths = read_data("Deaths", type, web_data,Province_name)
   data_recovered = read_data("Recovered", type, web_data,Province_name)
@@ -505,6 +510,7 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
 date_today = Sys.Date()
 countries_data = create_final_data(type = "Country", web_data = web_data)
 Hubei_data = create_final_data(type = "State",Province_name = "Hubei", web_data = web_data)
+continent_data = create_final_data(type = "Continent", web_data = web_data)
 
 # time series data
 case_confirmed_wide = countries_data$case_confirmed_wide
@@ -519,6 +525,8 @@ data_all_countries = countries_data$data_all
 data_all_countries = filter_by_date(data_all_countries, "Date", start_date, end_date)
 data_all_Hubei = Hubei_data$data_all
 data_all_Hubei = filter_by_date(data_all_Hubei, "Date", start_date, end_date)
+data_all_continent = continent_data$data_all
+data_all_continent = filter_by_date(data_all_continent, "Date", start_date, end_date)
 
 data_global_latest = data_all_countries[data_all_countries$Date == max(data_all_countries$Date), ]
 US_total = data_global_latest[data_global_latest$Country == "US", ]
@@ -536,7 +544,7 @@ write_excel_csv(case_confirmed_incremental_wide, paste(report_date,"table_case_c
 write_excel_csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
 write_excel_csv(case_deaths_incremental_wide, paste(report_date,"table_case_deaths_incremental.csv"))
 
-# case_recovered_wide sort by recovery rate 
+# case_recovered_wide sort by recovesry rate 
 # case_recovered_wide = merge(case_recovered_wide, data_global_latest[, c("Country/Region", "Recovery_Rate")])
 case_recovered_wide = case_recovered_wide[order(case_recovered_wide[,report_date], decreasing = T), ]
 case_recovered_incremental_wide = case_recovered_incremental_wide[order(case_recovered_incremental_wide[,report_date], decreasing = T), ]
@@ -548,6 +556,9 @@ recovery_rate_data = data_global_latest[, c("Country/Region", "Confirmed", "Reco
 recovery_rate_data = recovery_rate_data[order(recovery_rate_data[,'Recovered'], decreasing = T), ]
 write_excel_csv(recovery_rate_data, paste(report_date,"table_recovery_rate.csv"))
 
+# continent data
+data_continent_latest = data_all_continent[data_all_continent$Date == max(data_all_continent$Date),]
+write_excel_csv(data_continent_latest, paste(report_date,"table_continent_latest.csv"))
 
 #### table 1 ####
 crude_incidence_rate = data_global_latest[, c("Country/Region", "Confirmed", "Population", "Crude_Incidence_Rate")]
