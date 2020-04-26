@@ -240,12 +240,11 @@ translate_country_colname = function(ut_data, x) {
   if (x == 1) {
     
     t_data = ut_data %>% 
-      select(ranking, Country_bi, Confirmed_Cases, Population, Crude_Incidence_Rate) %>% 
+      select(ranking, Country_bi, Confirmed, Population, Crude_Incidence_Rate) %>% 
       rename("国家（地区）" = Country_bi, 
-             "累计确诊病例" = Confirmed_Cases, 
+             "累计确诊病例" = Confirmed, 
              "总人口" = Population, 
              "粗发病率*" = Crude_Incidence_Rate)
-    
     return(t_data)
     
   } else if (x == 2) {
@@ -310,9 +309,10 @@ translate_state_colname = function(ut_data, x) {
   } else if (x == 6) {
     
     t_data = ut_data %>% 
-      select(ranking, state_bi, Deaths, Fatality_rate) %>%
+      select(ranking, state_bi, Deaths, Deaths_incremental, Fatality_rate) %>%
       rename("国家/州名" = state_bi, 
-             "累计死亡人数" = Deaths, 
+             "累计死亡人数" = Deaths,
+             "较昨日新增" = Deaths_incremental, 
              "病死率%" = Fatality_rate)
     
     return(t_data)
@@ -459,6 +459,7 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
   case_deaths_wide = data_deaths$data_wide
   case_deaths_incremental_wide = data_deaths$data_incremental_wide
   case_recovered_wide = data_recovered$data_wide
+	case_recovered_incremental_wide = data_recovered$data_incremental_wide
   
   data_all = Reduce(function(x, y) merge(x, y, all = TRUE), list(case_confirmed, case_deaths, case_recovered))
   data_all$Active = data_all$Confirmed - data_all$Deaths - data_all$Recovered
@@ -470,9 +471,13 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
   }
   if (type == "State") { if (Province_name == "Hubei") {
     data_all$Population = 59172000
-    data_all$Crude_Incidence_Rate = as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000
+    data_all$Crude_Incidence_Rate = round(as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000, 0)
     data_all$Active_Crude_Incidence_Rate = as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000
   }}
+	# fatality rate
+	data_all$Fatality_rate = round(data_all$Deaths/data_all$Confirmed*100, 1)
+	# recovery rate
+	data_all$Recovery_Rate = round(as.numeric(data_all$Recovered/data_all$Confirmed)*100, 1)
   
   output = list(data_all = data_all,
                 case_confirmed_wide = case_confirmed_wide %>% 
@@ -484,7 +489,9 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
                 case_deaths_incremental_wide = case_deaths_incremental_wide %>% 
                   as.data.frame(),
                 case_recovered_wide = case_recovered_wide %>% 
-                  as.data.frame()
+                  as.data.frame(),
+								case_recovered_incremental_wide = case_recovered_incremental_wide %>% 
+                  as.data.frame()	
   )
   return(output)  
 }
@@ -499,11 +506,24 @@ date_today = Sys.Date()
 countries_data = create_final_data(type = "Country", web_data = web_data)
 Hubei_data = create_final_data(type = "State",Province_name = "Hubei", web_data = web_data)
 
+# time series data
 case_confirmed_wide = countries_data$case_confirmed_wide
 case_confirmed_incremental_wide = countries_data$case_confirmed_incremental_wide
 case_deaths_wide = countries_data$case_deaths_wide
 case_deaths_incremental_wide = countries_data$case_deaths_incremental_wide
+case_recovered_wide = countries_data$case_recovered_wide
+case_recovered_incremental_wide = countries_data$case_recovered_incremental_wide
 
+# all data 
+data_all_countries = countries_data$data_all
+data_all_countries = filter_by_date(data_all_countries, "Date", start_date, end_date)
+data_all_Hubei = Hubei_data$data_all
+data_all_Hubei = filter_by_date(data_all_Hubei, "Date", start_date, end_date)
+
+data_global_latest = data_all_countries[data_all_countries$Date == max(data_all_countries$Date), ]
+US_total = data_global_latest[data_global_latest$Country == "US", ]
+
+# write to table
 report_date = max(colnames(case_confirmed_wide)[-1])
 
 # time series table
@@ -516,34 +536,37 @@ write_excel_csv(case_confirmed_incremental_wide, paste(report_date,"table_case_c
 write_excel_csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
 write_excel_csv(case_deaths_incremental_wide, paste(report_date,"table_case_deaths_incremental.csv"))
 
+# case_recovered_wide sort by recovery rate 
+# case_recovered_wide = merge(case_recovered_wide, data_global_latest[, c("Country/Region", "Recovery_Rate")])
+case_recovered_wide = case_recovered_wide[order(case_recovered_wide[,report_date], decreasing = T), ]
+case_recovered_incremental_wide = case_recovered_incremental_wide[order(case_recovered_incremental_wide[,report_date], decreasing = T), ]
+write_excel_csv(case_recovered_wide, paste(report_date,"table_case_recovered.csv"))
+write_excel_csv(case_recovered_incremental_wide, paste(report_date,"table_case_recovered_incremental.csv"))
+
+# recovery status 
+recovery_rate_data = data_global_latest[, c("Country/Region", "Confirmed", "Recovered", "Recovery_Rate")]
+recovery_rate_data = recovery_rate_data[order(recovery_rate_data[,'Recovered'], decreasing = T), ]
+write_excel_csv(recovery_rate_data, paste(report_date,"table_recovery_rate.csv"))
+
+
 #### table 1 ####
-crude_incidence_rate = as.data.frame(cbind(case_confirmed_wide$Country, case_confirmed_wide[, report_date], input_population$Population[match(case_confirmed_wide$Country, input_population$Country)]), stringsAsFactors = F)
-colnames(crude_incidence_rate) = c("Country", "Confirmed_Cases", "Population")
+crude_incidence_rate = data_global_latest[, c("Country/Region", "Confirmed", "Population", "Crude_Incidence_Rate")]
+crude_incidence_rate = crude_incidence_rate[order(crude_incidence_rate$Confirmed, decreasing=T),]
 ranking = 1:nrow(crude_incidence_rate)
 crude_incidence_rate = cbind(ranking, crude_incidence_rate)
 # add Hubei data to crude_incidence_rate
-case_confirmed_wide_hubei = Hubei_data$case_confirmed_wide
-case_confirmed_wide_hubei = case_confirmed_wide_hubei[, ncol(case_confirmed_wide_hubei):1]
-crude_incidence_rate = rbind(crude_incidence_rate[1:which(crude_incidence_rate$Country == "China"),],c("", "Hubei", case_confirmed_wide_hubei[, report_date], 59172000), crude_incidence_rate[(which(crude_incidence_rate$Country == "China")+1):nrow(crude_incidence_rate),])
-crude_incidence_rate$Crude_Incidence_Rate = round(as.numeric(crude_incidence_rate$Confirmed_Cases)/as.numeric(crude_incidence_rate$Population) * 100000, 0)
+Hubei_CIR = data_all_Hubei[data_all_Hubei$Date == max(data_all_Hubei$Date), c("Province/State", "Confirmed", "Population", "Crude_Incidence_Rate")] %>% rename("Country/Region"="Province/State")
+crude_incidence_rate = rbind(crude_incidence_rate[1:which(crude_incidence_rate$Country == "China"),],c("",unlist(Hubei_CIR)), crude_incidence_rate[(which(crude_incidence_rate$Country == "China")+1):nrow(crude_incidence_rate),])
 crude_incidence_rate_top = crude_incidence_rate[1:which(crude_incidence_rate$ranking == 10),]
 write_excel_csv(crude_incidence_rate, paste(report_date, "table_1_crude_incidence_rate_all.csv"))
 write_excel_csv(crude_incidence_rate_top, paste(report_date, "table_1_crude_incidence_rate.csv"))
 write_excel_csv(crude_incidence_rate_top %>% 
+									rename("Country" = "Country/Region") %>% 
                   translate_country() %>% 
                   mutate(Country_bi = case_when(Country_bi == "湖北 Hubei" ~ "(湖北 Hubei)", 
                                                 TRUE ~ as.character(Country_bi))) %>% 
                   translate_country_colname(1), paste(report_date, "table_1_crude_incidence_rate_ch.csv"))
 
-
-# data for plots
-data_all_countries = countries_data$data_all
-data_all_countries = filter_by_date(data_all_countries, "Date", start_date, end_date)
-
-data_global_latest = data_all_countries[data_all_countries$Date == max(data_all_countries$Date), ]
-data_global_latest$Fatality_rate = round(data_global_latest$Deaths/data_global_latest$Confirmed*100, 1)
-
-US_total = data_global_latest[data_global_latest$Country == "US", ]
 
 #### table 2 ####
 data_global_latest_confirmed = data_global_latest[,c("Country/Region", "Confirmed_incremental")]
@@ -1253,7 +1276,6 @@ us_pct_test_wide = us_pct_test_wide[order(us_pct_test_wide[,report_date], decrea
 write_excel_csv(us_positive_rate_wide, paste(report_date,"table_us_positive_rate.csv" ))
 write_excel_csv(us_pct_test_wide, paste(report_date,"table_us_pct_test.csv" ))
 
-
 # filter by latest date
 data_us_latest = data_us_states[data_us_states$Date == max(data_us_states$Date),]
 data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "Crude_Incidence_Rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test")]
@@ -1266,7 +1288,6 @@ US_total$positive_rate = round(US_total$Confirmed/US_total$totalTestResults, 2) 
 US_total$pct_test = round(US_total$totalTestResults/US_total$Population * 100000, 0)
 
 ##### table 4 #####
-
 data_us_latest_confirm = data_us_latest_confirm[order(data_us_latest_confirm$Confirmed, decreasing = T),]
 colnames(US_total)[1] = "state"
 data_us_latest_confirm = rbind(US_total[, colnames(data_us_latest_confirm)], data_us_latest_confirm)
@@ -1295,7 +1316,7 @@ write_excel_csv(data_us_latest_incremental_top %>%
                   translate_state_colname(5), paste(report_date,"table_5_confirmed_incremental_US_ch.csv"))
 
 ##### table 6 ####
-data_us_latest_fatality = data_us_latest[, c("state", "Deaths", "Fatality_rate")]
+data_us_latest_fatality = data_us_latest[, c("state", "Deaths", "Deaths_incremental", "Fatality_rate")]
 data_us_latest_fatality = data_us_latest_fatality[order(data_us_latest_fatality$Deaths, decreasing = T),]
 data_us_latest_fatality = rbind(US_total[, colnames(data_us_latest_fatality)], data_us_latest_fatality)
 ranking = c("", 1:(nrow(data_us_latest_fatality)-1))
