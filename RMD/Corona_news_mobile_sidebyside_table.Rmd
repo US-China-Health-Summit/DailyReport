@@ -308,8 +308,8 @@ cat(c("\\begin{table}[H]
 ```
 
 
-
 `r insight$content[4]`
+
 
 \
 
@@ -322,15 +322,14 @@ content = example$content[2]
 reference = example$content[3]
 ```
 
-
 # \textcolor{glaucous}{\Huge `r title`}
 
 `r content`
 
-
-
+<!-- Insert image for module 3 HERE --> 
 
 \Large `r reference`
+
 
 
 \centering
