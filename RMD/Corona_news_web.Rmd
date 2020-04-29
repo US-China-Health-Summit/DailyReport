@@ -1,0 +1,335 @@
+---
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: true
+header-includes:
+    - \usepackage{ctex}
+    - \usepackage{xcolor}
+    - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \cfoot{\thepage}
+    
+    - \usepackage{sectsty}
+    - \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
+    - \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
+    - \usepackage{enumitem}% http://ctan.org/pkg/enumitem
+    - \usepackage[empty]{fullpage}% http://ctan.org/pkg/fullpage
+    - \usepackage{color}% http://ctan.org/pkg/color
+    - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
+    - \usepackage{geometry}
+    - \geometry{a4paper,left=1.5cm,right=1.5cm,top=0.3cm,bottom=0.3cm}
+    - \usepackage{blindtext}
+    - \usepackage[center]{caption}
+    - \usepackage{subfigure}
+    - \usepackage{float}
+    - \usepackage{graphicx}
+    - \usepackage{booktabs}
+    - \usepackage[justification=centering]{caption}
+    - \usepackage{threeparttable}
+    - \usepackage{longtable}
+    - \usepackage{array}
+    - \usepackage{multirow}
+    - \usepackage{wrapfig}
+    - \usepackage{float}
+    - \usepackage{colortbl}
+    - \usepackage{pdflscape}
+    - \usepackage{tabu}
+    - \usepackage{threeparttable}
+    - \usepackage{threeparttablex}
+    - \usepackage[normalem]{ulem}
+    - \usepackage{makecell}
+    - \usepackage{xcolor}
+
+    - \linespread{1.0}
+    - \setlength{\parskip}{0.5em}
+    - \setlength{\footskip}{20pt}
+
+    - \linespread{1.15}
+    - \setlength{\parskip}{0.3em}
+
+    
+---
+\captionsetup[figure]{name={图},labelsep=space} 
+\captionsetup[table]{name={表},labelsep=space} 
+\fontsize{14}{14}
+\selectfont
+\vspace{-10truemm}
+
+\newcommand{\resheading}[1]{%
+  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~#1}}}%
+}
+
+\begin{center}
+\includegraphics[height=2cm]{./input/logo2.png} 
+\end{center}
+
+\vspace{-5truemm}
+
+\begin{center}
+\fontsize{40}{40}
+\textcolor{glaucous}{\textbf{新冠早报}}
+\end{center}
+
+\begin{center}
+\fontsize{20}{20}
+{\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
+\end{center}
+
+
+\resheading{\Large 每日新闻}
+
+
+## \textcolor{glaucous}{\Large 国际}
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(xtable)
+library(kableExtra)
+
+global_news = read_excel("./input/news.xlsx",sheet = 1) %>%
+  janitor::clean_names() %>% 
+  select(pub,title,content)
+
+china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
+  janitor::clean_names() %>% 
+  select(pub,title,content)
+```
+
+
+**\textcolor{glaucous}{`r global_news$pub[1]`}**: **`r global_news$title[1]`**
+
+`r global_news$content[1]`
+
+**\textcolor{glaucous}{`r global_news$pub[2]`}** : **`r global_news$title[2]`**
+
+`r global_news$content[2]`
+
+**\textcolor{glaucous}{`r global_news$pub[3]`}** : **`r global_news$title[3]`**
+
+`r global_news$content[3]`
+
+**\textcolor{glaucous}{`r global_news$pub[4]`}** : **`r global_news$title[4]`**
+
+`r global_news$content[4]`
+
+**\textcolor{glaucous}{`r global_news$pub[5]`}** : **`r global_news$title[5]`**
+
+`r global_news$content[5]`
+
+**\textcolor{glaucous}{`r global_news$pub[6]`}** : **`r global_news$title[6]`**
+
+`r global_news$content[6]`
+
+## \textcolor{glaucous}{\Large 国内}
+**\textcolor{glaucous}{`r china_news$pub[1]`}**: **`r china_news$title[1]`**
+
+`r china_news$content[1]`
+
+**\textcolor{glaucous}{`r china_news$pub[2]`}**: **`r china_news$title[2]`**
+
+`r china_news$content[2]`
+
+
+
+\newpage
+
+\resheading{\Large 疫情观察}
+
+\begin{small}
+{数据源：约翰霍普金斯大学，The COVID Tracking Project \quad   数据截止至：北京时间3月28日 早4:00}
+\end{small}
+
+# \textcolor{glaucous}{一、世界疫情}
+```{r include=FALSE}
+insight = read_excel("./input/insight.xlsx") %>%
+  janitor::clean_names() %>% 
+  select(content)
+```
+
+`r insight$content[1]`
+
+\begin{figure}[H]
+\caption{世界疫情分布图} %最终文档中希望显示的图片标题
+\centering
+\includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\label{} %用于文内引用的标签
+\end{figure}
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+options(knitr.kable.NA = '')
+t1 = read_csv("./input/table1.csv") %>%  rename(' ' = ranking) %>%
+  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+  kable_styling(latex_options = "striped")
+t2 = read_csv('./input/table2.csv') %>%  rename(' ' = ranking) %>% 
+  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+  kable_styling(latex_options = "striped")
+t3 = read_csv('input/table3.csv') %>%   rename(' ' = ranking) %>% 
+  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+  kable_styling(latex_options = "striped")
+t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
+  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+  kable_styling(latex_options = "striped")
+t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
+  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+  kable_styling(latex_options = "striped")
+t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
+  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+  kable_styling(latex_options = "striped")
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+cat(c("\\begin{table}[H]
+  \\vspace{-7mm}
+    \\caption{累计确诊前十位国家}
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
+        t1,
+    "\\begin{tablenotes}
+        \\footnotesize
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+      \\end{tablenotes}
+    \\end{table}"
+))
+```
+
+
+\newpage
+
+`r insight$content[2]`
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+cat(c("\\begin{table}[H]
+
+    \\begin{minipage}{.4\\linewidth}
+    \\centering
+    \\captionsetup{justification=centering}
+    \\caption{日新增病例前十位国家}
+    \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
+        t2,
+    "\\end{minipage}
+    \\begin{minipage}{.6\\linewidth}
+    \\centering
+    \\captionsetup{justification=centering}
+     \\caption{累计死亡病例前十位国家}
+     \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
+        t3,
+    "\\end{minipage} 
+\\end{table}"
+))
+```
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.45\linewidth}
+\caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
+\includegraphics[]{./input/covid2.png}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\includegraphics[]{./input/covid3.png}
+\label{}
+\end{minipage}
+\end{figure}
+
+\newpage
+
+# \textcolor{glaucous}{二、美国疫情}
+
+`r insight$content[3]`
+
+\begin{figure}[H] 
+\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
+\centering
+\includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\label{} %用于文内引用的标签
+\end{figure}
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+cat(c("\\begin{table}[H]
+\\vspace{-7mm}
+    \\caption{美国累计确诊前十位州}
+      \\vspace{-0.5\\baselineskip}
+      \\centering",
+        t4,
+    "\\begin{tablenotes}
+    \\footnotesize
+    \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
+    \\end{tablenotes}
+    \\end{table}"
+))
+```
+
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.45\linewidth}
+\caption{美国日新增确诊前五位州趋势图}
+\includegraphics[]{./input/covid5.png}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.45\linewidth}
+\caption{美国日新增死亡前五位州趋势图}
+\includegraphics[]{./input/covid6.png}
+\label{}
+\end{minipage}
+\end{figure}
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+cat(c("\\begin{table}[H]
+
+    \\begin{minipage}{.4\\linewidth}
+    \\caption{美国新增确诊前十位州}
+    \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
+        t5,
+    "\\end{minipage}%
+    \\begin{minipage}{.7\\linewidth}
+     \\caption{美国累计死亡前十位州}
+     \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
+        t6,
+    "\\end{minipage} 
+\\end{table}"
+))
+```
+
+
+`r insight$content[4]`
+
+\
+
+\centering
+\small
+\begin{tabular}{ll}
+
+主编：马晶  &  副主编:仁晖\,  薛成海  \\
+执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
+数据分析:杜兆慧  &  案例分析: 史珂玮\\
+\multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\, 张祺珉\, 周梓淇}
+
+\end{tabular}
+
+
+
+
+                   
