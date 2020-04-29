@@ -1,39 +1,46 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{article}
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -42,25 +49,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
@@ -96,7 +92,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\linespread{1.15}
+\linespread{1.35}
 \setlength{\parskip}{1em}
 \setlength{\footskip}{20pt}
 \usepackage{booktabs}
@@ -146,51 +142,60 @@
 %
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 每日新闻}}}%
 
+\vspace{-5mm}
+
 \hypertarget{section}{%
 \subsection{\texorpdfstring{\textcolor{glaucous}{\Huge 国际}}{}}\label{section}}
 
+\vspace{-3mm}
+
 \textbf{\textcolor{glaucous}{英国广播公司(BBC)}}:
-\textbf{G20允许最贫穷国家延期偿付高达120亿美元债务 }
+\textbf{纽约州长制定五月重新开放的计划 }
 
-当地时间4月15日，二十国集团（G20）主要经济体国家同意允许一些世界上最贫穷国家延期支付共计高达120亿美金的债务，宽限至2022年至2024年间偿还。该协议涵盖了到2020年底应支付给G20政府的款项，目的是帮助各国应对冠状病毒大流行的健康和经济影响。共有77个国家将从该协议中受益。
+据当地时间4月28日报道，美国纽约州州长安德鲁·库莫称，纽约州部分地区若满足解禁条件（包括连续14天新冠病例下降），则5月15日可以开始放宽新冠限制措施。但医院容纳量在70％以上，或新冠传染率高于1.1的地区都不能重新开放。如果制造业和建筑业能够采取充分预防措施，它们将会是首批重新开放的企业。
 
-\textbf{\textcolor{glaucous}{盖茨基金会（Bill and Melinda Gates Foundation)}}
-: \textbf{盖茨基金会再度提高赠款总额，呼吁全球合作保护民众免受疫情侵害}
+\textbf{\textcolor{glaucous}{美国有线电视新闻网(CNN)}} :
+\textbf{特朗普命令肉类加工厂保持开放}
 
-当地时间4月15日，比尔及梅琳达·盖茨基金会宣布再次追加捐赠金额，以支持全球对新冠肺炎（COVID-19）疫情的响应行动。此次盖茨基金会额外赠款1.5亿美元，并承诺将动用基金会``战略投资基金''的资源，用于加快关键医疗物资的采购，帮助生命科学公司获得生产新冠肺炎相关产品所需的资金。在宣布追加赠款的同时，盖茨基金会还呼吁各国领导人携手应对疫情，确保人人享有获得诊断、治疗和疫苗的公平权利。
+当地时间4月28日，美国总统特朗普称，他将根据《国防生产法》签署一项五页的行政命令，保持肉类加工厂在冠状病毒大流行中继续开放。此命令是在一些公司（例如泰森食品公司）考虑只开放其20％的设施之后签署的。美国政府还将与劳工部合作，发布对有关对肉类加工厂雇员的居家指导。
 
-\textbf{\textcolor{glaucous}{福布斯新闻(Forbes)}} :
-\textbf{美国部分州可能在5月1日前重启经济}
+\textbf{\textcolor{glaucous}{英国广播公司(BBC)}} :
+\textbf{英国将扩大面向护理机构员工和65岁以上老人的新冠测试}
 
-当地时间4月15日，美国疾控中心主任罗伯特·雷德菲尔德在接受采访时说，联邦政府正在筹划在5月1日之前对大约20个受新冠病毒影响较小的州放宽限制。重新开放的社区必须满足的条件包括：拥有有效的病例追踪系统、具有充足的资源以备治疗新增病例的能力、以及足够低的感染发生率。然而也有报告表示，一些社区可能需要将隔离措施进行到2022年。因此，各社区需做好间歇性采取更严格的措施的准备，以避免病毒感染``大反弹''。
+当地时间4月28日，英国卫生部长马特·汉考克称，英国所有疗养院居民和工作人员，不论是否有症状，都将符合新冠检测的资格。从4月29日开始，所有有症状的65岁以上以及必须出门上班的人，也可以接受检查。汉考克称，现在英国每日测试能力高达73,400，到五月，政府每天将进行10万次测试。
 
 \textbf{\textcolor{glaucous}{纽约时报(New York Times)}} :
-\textbf{纽约州州长要求所有人在公共场所必须戴口罩 }
+\textbf{西班牙，法国和希腊公布放宽新冠限制措施计划 }
 
-当地时间4月15日，纽约州州长科莫在新冠疫情新闻发布会上表示，为防止疫情扩散，他将签署一项行政命令，要求纽约州所有人在难以保持社交距离（人和人之间保持至少6英尺）的公共场合，例如乘坐公共交通时，必须用口罩或其他遮挡物覆盖面部。该行政命令在本周六生效，纽约州居民有三天的时间准备好有关物资。
-
-\textbf{\textcolor{glaucous}{英国广播公司(BBC)}} :
-\textbf{德国缓慢放宽封锁措施 }
-
-当地时间4月15日，德国总理默克尔宣布计划将逐步放宽应对冠状病毒大流行的限制措施。默克尔表示，社交距离规则将保留到至少5月3日，在商店和公共交通工具上也建议坚持使用口罩。但从下周开始，部分商店可以开门营业，从5月4日起，学校也将逐渐开始重新开放。
+据美东时间4月28日报道，西班牙总理佩德罗·桑切斯宣布，自5月2日起，成年人可以在户外运动。限制措施的放宽将因地区而异，但学校不会在9月之前重新开放。希腊总理基里亚科斯·米佐塔基斯表示，5月4日开始，希腊人可以自由离开家，届时一些商店将重新营业，但沙龙将仅通过预约开放，教堂将开放但不能举行礼拜，人们可以去海滩运动，高中生将从5月11日起分阶段重返学校。法国总理爱德华·菲利普称，如果新冠疫情持续得到控制，政府将在5月11日开始放宽限制措施，并于6月2日重新评估这些措施。
 
 \textbf{\textcolor{glaucous}{英国广播公司(BBC)}} :
-\textbf{韩国举行国会选举 选民戴口罩及塑胶手套投票 }
+\textbf{特朗普承诺向尼日利亚提供呼吸机 }
 
-当地时间4月15日，韩国举行国会选举。选民在投票时需要严守防疫规定，包括戴口罩及塑胶手套，以及彼此之间保持1公尺以上的距离。经过消毒的14000个投票点于上午6点开放，选民抵达后还要需要接受体温检测，37.5度以上的选民将被安排到特别设置的小隔间投票。新冠疫情爆发以来，许多国家相继推迟选举时程，韩国是如期举行选举的首批国家之一。
+当地时间4月28日，尼日利亚政府官员在每日新闻发布会上表示，既美国总统特朗普承诺向厄瓜多尔提供呼吸机后，其首次承诺向尼日利亚等西非国家提供呼吸机，帮助其应对冠状病毒的流行。
+
+\textbf{\textcolor{glaucous}{NA}} : \textbf{NA}
+
+NA
+
+\vspace{-5mm}
 
 \hypertarget{section-1}{%
 \subsection{\texorpdfstring{\textcolor{glaucous}{\Huge 国内}}{}}\label{section-1}}
 
-\textbf{\textcolor{glaucous}{央视新闻}}:
-\textbf{影剧院、游戏厅等娱乐场所暂不开业 大型展览展会暂不开展 }
+\vspace{-3mm}
 
-北京时间4月15日下午，国务院联防联控机制召开新闻发布会，中国疾控中心环境所所长施小明介绍，影剧院或者是游戏厅等娱乐性或休闲性场所暂不开业，大型的体育活动或展览展会也暂不开展。
+\textbf{\textcolor{glaucous}{中国新闻网}}:
+\textbf{小汤山医院新冠肺炎患者全部``清零'' }
 
-\textbf{\textcolor{glaucous}{央视新闻}}:
-\textbf{民航已安排临时航班（包机）赴疫情严重国家接回2744名中国公民}
+北京时间4月28日上午，随着最后两名患者顺利出院，小汤山医院新冠肺炎患者全部``清零''，首批912名医务人员零感染回家。
 
-北京时间4月15日，记者从中国民用航空局了解到，3月4日至4月12日，民航局共安排16架次临时航班协助在伊朗、意大利、英国、美国、西班牙的2744名中国公民回国，其中留学生1449名。
+\textbf{\textcolor{glaucous}{美国公共广播电台(NPR)}}:
+\textbf{北京批评印度取消中国抗体检测试剂盒订单是``不公正''的决定}
+
+当地时间4月27日，印度医药研究议会建议停止使用从中国广州万孚生物技术和珠海丽珠试剂公司生产的抗体检测试剂盒，并将65万个抗体检测试剂盒的订单退回中国供应商。该议会声称这批抗体检测试剂盒的检测敏感性差异较大。北京时间4月28日，中国驻新德里使馆发言人吉荣批评印度取消进口中国抗体检测试剂盒订单的决定，坚持测试剂盒已经过验证和批准。他在声明中称：``某些人将中国产品标记为`有缺陷'，并以固有偏见看待这些问题是不公平和不负责任的。''
+
+\vspace{5mm}
 
 %
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 疫情观察}}}%
@@ -199,12 +204,15 @@
 {数据源：约翰霍普金斯大学，The COVID Tracking Project \\ 数据截止至：北京时间3月28日 早4:00}
 \end{Large}
 
+\vspace{-7mm}
+
 \hypertarget{section-2}{%
 \section{\texorpdfstring{\textcolor{glaucous}{\Huge 一、世界疫情}}{}}\label{section-2}}
 
-\(\quad\)截至北京时间4月16日早7：00，全球累计确诊病例已经达到2,056,055例，累计死亡134,178
-例。在180多个出现确诊病例的国家或地区中，已有23个国家累计确诊超万人。除欧洲和美国以外，拉美和亚州的发展中国家的病例快速增长：印度和秘鲁确诊人数已经超过万人。非洲国家累计确诊病例已逾一万六千例。英国确诊病例已经超过中国，成为世界第六位
-（表1）。
+\vspace{-5mm}
+
+\(\quad\)截至北京时间4月29日早7：00，全球累计确诊病例已经达到3,111,730例，累计死亡216,857例。25个国家累计确诊病例超过15,000例。总体来看，欧洲与北美仍是累计确诊病例数最多的地区。英国的累计确诊数突破十六万，超过德国进入世界前五位。爱尔兰的累计确诊病例接近两万（19,877），粗发病率达403/10万人，已经超过意大利与瑞士，疫情正在迅速恶化。俄罗斯的累计确诊病例数超过伊朗，跃升至世界第八位。
+中东地区除伊朗外，沙特阿拉伯累计确诊病例超过两万，以色列，巴基斯坦，卡塔尔与阿联酋的累计确诊均已超过一万例。东欧地区白俄罗斯病例增长迅速（累计确诊12,208例），较上周（4月22日）接近翻倍，粗发病率到达129/10万，超过湖北。中东及东欧各国变化表明，疫情在欧亚大陆自西向东多点扩散。（表1）
 
 \begin{figure}[H]
 \caption{世界疫情分布图} %最终文档中希望显示的图片标题
@@ -221,19 +229,18 @@
 
 \begin{tabular}{rlrrr}
 \toprule
-  & 国家(地区) & 累计确诊病例 & 总人口 & 粗发病率\\
+  & 国家（地区） & 累计确诊病例 & 总人口 & 粗发病率*\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 636,350 & 331,002,651 & 192\\
-2 & 西班牙 Spain & 177,644 & 46,754,778 & 380\\
-\rowcolor{gray!6}  3 & 意大利 Italy & 165,155 & 60,461,826 & 273\\
-4 & 法国 France & 137,875 & 65,273,511 & 211\\
-\rowcolor{gray!6}  5 & 德国 Germany & 134,753 & 83,783,942 & 161\\
-6 & 英国 UK & 99,483 & 67,886,011 & 147\\
-\rowcolor{gray!6}  7 & 中国 China & 83,356 & 1,439,323,776 & 6\\
- & 湖北 Hubei & 67,803 & 59,172,000 & 115\\
-\rowcolor{gray!6}  8 & 伊朗 Iran & 76,389 & 83,992,949 & 91\\
-9 & 土耳其 Turkey & 69,392 & 84,339,067 & 82\\
-\rowcolor{gray!6}  10 & 比利时 Belgium & 33,573 & 11,589,623 & 290\\
+\rowcolor{gray!6}  1 & 美国 US & 1,011,600 & 331,002,651 & 306\\
+2 & 西班牙 Spain & 232,128 & 46,754,778 & 496\\
+\rowcolor{gray!6}  3 & 意大利 Italy & 201,505 & 60,461,826 & 333\\
+4 & 法国 France & 169,052 & 65,273,511 & 259\\
+\rowcolor{gray!6}  5 & 英国 UK & 162,350 & 67,886,011 & 239\\
+6 & 德国 Germany & 159,735 & 83,783,942 & 191\\
+\rowcolor{gray!6}  7 & 土耳其 Turkey & 114,653 & 84,339,067 & 136\\
+8 & 俄罗斯 Russia & 93,558 & 145,934,462 & 64\\
+\rowcolor{gray!6}  9 & 伊朗 Iran & 92,584 & 83,992,949 & 110\\
+10 & 中国 China & 83,938 & 1,439,323,776 & 6\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -244,11 +251,11 @@
       \end{tablenotes}
     \end{table}
 
-\(\quad\)美国新增病例数仍居全球首位，已连续十六天日新增病例数超过两万五千人。意大利日新增病例数已经连续三日下降，西班牙和德国的日新增病例较昨日翻倍。值得注意的是，俄罗斯、巴西和比利时的病例较前日增长很快，这三个国家的累计确诊人数已突破两万例。提示欧洲、北美和南美疫情发展迅速
-(表2和图2）。
+\(\quad\)从日新增病例数来看，美国与俄罗斯仍就占据世界前二，值得注意的是，俄罗斯的日新增病例呈明显上升趋势，该国疫情发展不容乐观。巴西日新增突破4000例，首次进入世界前三；秘鲁日新增接近2500例，两国日新增较上周均接近翻倍（4月22日：巴西2678例，秘鲁1413例），显示疫情在南美洲呈爆发性增长趋势。
+白俄罗斯的单日新增919例，疫情在该国发展需要进一步关注。另一方面，西班牙与意大利的日新增病例持续下降，表明疫情逐步得到较好控制。(表2和图2）
 
-\(\quad\)美国的日新增死亡病例已经接近2,500（2,494例），从4月4日至今一直为前十位国家中首位，病死率已经上升到4.5\%，疫情发展不容乐观。法国的日新增死亡病例数波动较大。今日较昨日翻倍，成为日新增死亡病例数仅次于美国的国家（1,440）例。法国病死率持续上升（12.5\%），提示该国医疗系统正面临巨大压力。意大利和西班牙的日新增死亡病例数呈波动下降趋势。英国新增死亡病例数波动上升，还有待进一步观察
-（表3和图3）。
+\(\quad\)从死亡病例数来看，美国仍是累计死亡病例最多的国家，虽日新增死亡呈现波动下降趋势。巴西累计死亡病例突破5000例，超过中国，日新增死亡也呈逐日上升态势。此外，意大利、西班牙、法国、德国等欧洲国家日新增死亡病例数呈现下降趋势，提示疫情在欧洲逐步缓解。
+（表3和图3）
 
 \begin{table}[H]
 
@@ -265,16 +272,16 @@
 \toprule
   & 国家 & 当日新增病例\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 28,680\\
-2 & 西班牙 Spain & 5,103\\
-\rowcolor{gray!6}  3 & 英国 UK & 4,638\\
-4 & 土耳其 Turkey & 4,281\\
-\rowcolor{gray!6}  5 & 德国 Germany & 3,394\\
-6 & 俄罗斯 Russia & 3,388\\
-\rowcolor{gray!6}  7 & 巴西 Brazil & 3,058\\
-8 & 意大利 Italy & 2,667\\
-\rowcolor{gray!6}  9 & 比利时 Belgium & 2,454\\
-10 & 伊朗 Iran & 1,512\\
+\rowcolor{gray!6}  1 & 美国 US & 23,403\\
+2 & 俄罗斯 Russia & 6,411\\
+\rowcolor{gray!6}  3 & 巴西 Brazil & 4,440\\
+4 & 英国 UK & 4,002\\
+\rowcolor{gray!6}  5 & 法国 France & 3,089\\
+6 & 西班牙 Spain & 2,706\\
+\rowcolor{gray!6}  7 & 秘鲁 Peru & 2,491\\
+8 & 土耳其 Turkey & 2,392\\
+\rowcolor{gray!6}  9 & 意大利 Italy & 2,091\\
+10 & 印度 India & 1,909\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -292,16 +299,16 @@
 \toprule
   & 国家 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 28,326 & 2,494 & 4.5\\
-2 & 意大利 Italy & 21,645 & 578 & 13.1\\
-\rowcolor{gray!6}  3 & 西班牙 Spain & 18,708 & 652 & 10.5\\
-4 & 法国 France & 17,188 & 1,440 & 12.5\\
-\rowcolor{gray!6}  5 & 英国 UK & 12,894 & 765 & 13.0\\
-6 & 伊朗 Iran & 4,777 & 94 & 6.3\\
-\rowcolor{gray!6}  7 & 比利时 Belgium & 4,440 & 283 & 13.2\\
-8 & 德国 Germany & 3,804 & 510 & 2.8\\
-\rowcolor{gray!6}  9 & 中国 China & 3,346 & 1 & 4.0\\
-10 & 荷兰 Netherlands & 3,145 & 190 & 11.1\\
+\rowcolor{gray!6}  1 & 美国 US & 58,343 & 2,084 & 5.8\\
+2 & 意大利 Italy & 27,359 & 382 & 13.6\\
+\rowcolor{gray!6}  3 & 西班牙 Spain & 23,822 & 301 & 10.3\\
+4 & 法国 France & 23,694 & 367 & 14.0\\
+\rowcolor{gray!6}  5 & 英国 UK & 21,745 & 588 & 13.4\\
+6 & 比利时 Belgium & 7,331 & 124 & 15.5\\
+\rowcolor{gray!6}  7 & 德国 Germany & 6,280 & 154 & 3.9\\
+8 & 伊朗 Iran & 5,877 & 71 & 6.3\\
+\rowcolor{gray!6}  9 & 巴西 Brazil & 5,017 & 414 & 7.0\\
+10 & 中国 China & 4,637 & 0 & 5.5\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -312,27 +319,29 @@
 \centering
 \begin{minipage}[b]{0.48\linewidth}
 \caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
-\includegraphics[]{./input/covid2.pdf}
+\includegraphics[]{./input/covid2.png}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.48\linewidth}
-\caption{日新增死亡病例国家趋势图\\（前五位国家） }
-\includegraphics[]{./input/covid3.pdf}
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\includegraphics[]{./input/covid3.png}
 \label{}
 \end{minipage}
 \end{figure}
 
+\vspace{-7mm}
+
 \hypertarget{section-3}{%
 \section{\texorpdfstring{\textcolor{glaucous}{\Huge 二、美国疫情}}{}}\label{section-3}}
 
-\(\quad\)截至北京时间4月16日早7:00，
-美国累计确诊病例数已达到636,350例，共28,326
-死亡病例。从州疫情分布图（图4，图5）来看，美国各州疫情严重，前十州都超过一万五千人。中部地区疫情呈快速蔓延趋势。
+\vspace{-5mm}
 
-\(\quad\)纽约州(NY)、新泽西州(NJ)和马萨诸塞州(MA)为美国疫情最严重的三个州。纽约州和新泽西州检测的阳性率仍然居高不下（40\%以上）提示两个州病人数量巨大，医疗资源持续面临巨大压力
-（表4）。密歇根州（MI）的阳性率下降至31\%
-（表4），提示该州的检测范围扩大，检测能力增强。
+\(\quad\)截至北京时间4月29日早7:00，
+美国累计确诊病例数超过101万例（1,011,600），共58,343
+死亡病例。从分布来看，疫情主要集中在东西海岸和五大湖地区，全美19个州累计病例数超过一万人。除中部地区以外，东海岸地区疫情也在迅速扩散。罗得岛州累计确诊接近8000例，而粗发病率为全美第四（748/10万人）。（图4）
+
+\(\quad\)纽约州、新泽西州和马萨诸塞州为美国疫情最严重的三个州。纽约州检测率超过4300/10万人，而阳性率下降至35\%，提示疫情逐步得到控制。此外，特拉华州，科罗拉多州与华盛顿特区阳性率均为22\%左右，超过伊利诺伊州，而检测在2000/10万人左右，略低于新泽西州，显示这些州对于检测的需求仍然十分庞大。（表4）
 
 \begin{figure}[H] 
 \caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
@@ -350,19 +359,19 @@
 
 \begin{tabular}{rlrrrrrr}
 \toprule
-  & 国家/州名 & 累计确诊 & 粗发病率 & 阳性率\% & 累计检测 & 日新增检测 & 检测率\\
+  & 国家/州名 & 累计确诊 & 粗发病率 & 累计检测 & 阳性率\% & 日新增检测 & 检测率*\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 636,350 & 192 & 20 & 3,242,373 & 161,130 & 980\\
-1 & 纽约州 NY & 214,454 & 1,102 & 41 & 526,012 & 26,869 & 2,704\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 71,030 & 800 & 49 & 144,021 & 4,247 & 1,621\\
-3 & 马萨诸塞州 MA & 29,918 & 431 & 23 & 132,023 & 5,472 & 1,900\\
-\rowcolor{gray!6}  4 & 密歇根州 MI & 28,059 & 281 & 31 & 89,697 & 3,471 & 898\\
-5 & 宾夕法尼亚州 PA & 26,753 & 209 & 19 & 137,584 & 3,953 & 1,075\\
-\rowcolor{gray!6}  6 & 加利福尼亚州 CA & 26,686 & 68 & 12 & 216,486 & 14,278 & 548\\
-7 & 伊利诺伊州 IL & 24,593 & 194 & 21 & 116,929 & 6,313 & 923\\
-\rowcolor{gray!6}  8 & 佛罗里达州 FL & 22,511 & 105 & 11 & 213,509 & 10,329 & 994\\
-9 & 路易斯安那州 LA & 21,951 & 472 & 18 & 121,928 & 3,506 & 2,623\\
-\rowcolor{gray!6}  10 & 得克萨斯州 TX & 15,907 & 55 & 10 & 151,810 & 5,343 & 524\\
+\rowcolor{gray!6}   & 美国 US & 1,011,600 & 306 & 5,794,950 & 17 & 202,230 & 1,751\\
+1 & 纽约州 NY & 295,106 & 1,517 & 844,994 & 35 & 18,899 & 4,344\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 113,856 & 1,282 & 234,359 & 49 & 6,584 & 2,639\\
+3 & 马萨诸塞州 MA & 58,302 & 839 & 254,500 & 23 & 9,613 & 3,662\\
+\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 48,102 & 380 & 242,189 & 20 & 14,561 & 1,911\\
+5 & 加利福尼亚州 CA & 46,033 & 117 & 577,608 & 8 & 24,199 & 1,462\\
+\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 45,137 & 353 & 209,088 & 22 & 5,666 & 1,633\\
+7 & 密歇根州 MI & 39,262 & 393 & 164,805 & 24 & 7,045 & 1,650\\
+\rowcolor{gray!6}  8 & 佛罗里达州 FL & 32,848 & 153 & 366,875 & 9 & 10,412 & 1,708\\
+9 & 路易斯安那州 LA & 27,286 & 587 & 151,108 & 18 & 4,119 & 3,250\\
+\rowcolor{gray!6}  10 & 康涅狄格州 CT & 26,312 & 738 & 92,745 & 28 & 12,934 & 2,601\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -377,13 +386,13 @@
 \centering
 \begin{minipage}[b]{0.48\linewidth}
 \caption{美国日新增确诊前五位州趋势图}
-\includegraphics[]{./input/covid5.pdf}
+\includegraphics[]{./input/covid5.png}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.48\linewidth}
 \caption{美国日新增死亡前五位州趋势图}
-\includegraphics[]{./input/covid6.pdf}
+\includegraphics[]{./input/covid6.png}
 \label{}
 \end{minipage}
 \end{figure}
@@ -401,17 +410,17 @@
 \toprule
   & 国家/州名 & 当日新增 & 构成比\%\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 28,680 & 100\\
-1 & 纽约州 NY & 11,434 & 40\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 2,206 & 8\\
-3 & 马萨诸塞州 MA & 1,754 & 6\\
-\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 1,345 & 5\\
-5 & 加利福尼亚州 CA & 1,330 & 5\\
-\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 1,288 & 4\\
-7 & 密歇根州 MI & 1,058 & 4\\
-\rowcolor{gray!6}  8 & 得克萨斯州 TX & 901 & 3\\
-9 & 佛罗里达州 FL & 883 & 3\\
-\rowcolor{gray!6}  10 & 康涅狄格州 CT & 766 & 3\\
+\rowcolor{gray!6}   & 美国 US & 23,403 & 100\\
+1 & 纽约州 NY & 3,110 & 13\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 2,668 & 11\\
+3 & 伊利诺伊州 IL & 2,219 & 9\\
+\rowcolor{gray!6}  4 & 马萨诸塞州 MA & 1,840 & 8\\
+5 & 宾夕法尼亚州 PA & 1,579 & 7\\
+\rowcolor{gray!6}  6 & 加利福尼亚州 CA & 1,067 & 5\\
+7 & 密歇根州 MI & 1,052 & 4\\
+\rowcolor{gray!6}  8 & 得克萨斯州 TX & 901 & 4\\
+9 & 弗吉尼亚州 VA & 801 & 3\\
+\rowcolor{gray!6}  10 & 佛罗里达州 FL & 710 & 3\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -427,80 +436,86 @@
 \toprule
   & 国家/州名 & 累计死亡人数 & 病死率\%\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 28,326 & 4.5\\
-1 & 纽约州 NY & 11,617 & 5.4\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 3,156 & 4.4\\
-3 & 密歇根州 MI & 1,921 & 6.8\\
-\rowcolor{gray!6}  4 & 马萨诸塞州 MA & 1,108 & 3.7\\
-5 & 路易斯安那州 LA & 1,103 & 5.0\\
-\rowcolor{gray!6}  6 & 伊利诺伊州 IL & 949 & 3.9\\
-7 & 康涅狄格州 CT & 868 & 5.9\\
-\rowcolor{gray!6}  8 & 加利福尼亚州 CA & 861 & 3.2\\
-9 & 宾夕法尼亚州 PA & 779 & 2.9\\
-\rowcolor{gray!6}  10 & 佛罗里达州 FL & 596 & 2.6\\
+\rowcolor{gray!6}   & 美国 US & 58,343 & 5.8\\
+1 & 纽约州 NY & 22,912 & 7.8\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 6,442 & 5.7\\
+3 & 密歇根州 MI & 3,568 & 9.1\\
+\rowcolor{gray!6}  4 & 马萨诸塞州 MA & 3,153 & 5.4\\
+5 & 伊利诺伊州 IL & 2,125 & 4.4\\
+\rowcolor{gray!6}  6 & 康涅狄格州 CT & 2,087 & 7.9\\
+7 & 宾夕法尼亚州 PA & 2,046 & 4.5\\
+\rowcolor{gray!6}  8 & 加利福尼亚州 CA & 1,864 & 4.0\\
+9 & 路易斯安那州 LA & 1,801 & 6.6\\
+\rowcolor{gray!6}  10 & 佛罗里达州 FL & 1,171 & 3.6\\
 \bottomrule
 \end{tabular}
 \endgroup{}
 \end{table} \end{minipage} 
 \end{table}
 
-\(\quad\)纽约州、新泽西州的新增确诊数仍高居前二，其中纽约州较前日增加大约5,000例（表5）。美国共有7个州当日新增病例超过1,000人,
-除纽约州外，其余几个州的确诊病例人数近日都在波动 （图5）。
+\(\quad\)从日新增确诊来看，纽约州单日新增连续多日下降，较昨日再次下降800例左右，提示疫情好转。伊利诺伊州日新增病例逐步上升，需要进一步关注。（表5和图5）
 
-\(\quad\)美国累计死亡病例已突破二万五千例（表6）。纽约州日新增死亡人数近日以来较为稳定，新泽西州，马萨诸塞州和康涅狄格州的日新增死亡人数上升趋势明显（图6）。其他州的日新增死亡人数近日都在波动上升，提示美国疫情仍在恶化。
+\(\quad\)从死亡病例数来看，密歇根州病死率超过9\%，为全美最高。纽约州与马萨诸塞州日新增死亡呈明显波动下降趋势，提示医疗资源压力得到缓解。值得注意的是，罗得岛州病死率为3\%，略低于佛罗里达州，但其累计病例只有佛罗里达州的1/4（佛罗里达州：32,848例）,提示该州存在医疗资源紧张的风险。（表6和图6）
+
+\vspace{5mm}
 
 %
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 案例分析}}}%
 
+\vspace{-5mm}
+
 \hypertarget{section-4}{%
-\section{\texorpdfstring{\textcolor{glaucous}{\Huge 全球卫生体系最薄弱国家之一 — 非洲：塞拉利昂}}{}}\label{section-4}}
+\section{\texorpdfstring{\textcolor{glaucous}{\Huge 明星疫苗介绍}}{}}\label{section-4}}
 
-\(\quad\)据《金融时报》报道，塞拉利昂750万人口，已有6人被确诊新冠肺炎，可塞拉利昂只有一台呼吸机。这台唯一的呼吸机在当地的一家私人医院，当地17家公立医院均无呼吸机。
+\vspace{-3mm}
 
-\(\quad\)造成塞拉利昂防疫形势严峻的原因有很多。主要原因由如下几点：
+\(\quad\)
+每年4月最后一周（4月24---30日）是``世界免疫周''，其目的是促进接种疫苗以保护各年龄人群免患疾病。在新冠疫情在全球肆虐的背景下，疫苗被寄予了彻底终结疫情的厚望。3月，中国和美国几乎同时有疫苗研究宣布进入临床阶段，并且有一些中美合作共同推进的项目。现在全球正在进行的新冠疫苗研究超过100项。
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  塞拉利昂是世界上最不发达国家之一，经济发展水平落后，医疗资源匮乏。
-  1991-2001，该国经历了长达十年之久的内战。在2014年联合国开发计划署发布的人类发展指数排名中，塞拉利昂排名倒数第五。其首都弗里敦的面积只有整个国
-  家的1/200，却承受着这个全国1/5人口的压力，且失业率高达70\%。2017年全国注册医生不到200名。
-\item
-  塞拉利昂的公共卫生体系发展不全面。塞拉利昂曾经是埃博拉病毒的重灾区，尽管在对抗埃博拉之后政府成立了公共卫生应急处理中心，但是由于国内无法量产抗疫物资，依然需要依靠外国援助来解决相关问题。
-\item
-  新冠疫情已经在非洲大陆快速扩散。截至4月5日，非洲已有51个国家报告出现新冠确诊病例，累计确诊人数8,736人。而两周前，非洲累计确诊人数仅为1,654
-  例。在两周之内，非洲确诊人数就增长了4倍。由于防疫能力和资源有限，塞拉利昂无法同时在控制本土病例的同时兼顾严防输入型病例，使疫情防控雪上加霜\(^1\)。
-\end{enumerate}
+\(\quad\)
+下面我们来看在全球率先进入临床试验阶段的几款不同原理的新冠病毒疫苗：
 
-\(\quad\)我国政府长期以来支持非洲公共卫生事业的发展。早在2016年6月，中非就共同签署了《中华人民共和国商务部和非洲联盟委员会关于开展非洲疾病预防控制中心合作谅解备忘录》。2016年塞拉利昂总统欧内斯特·巴伊·科罗马访问中国时特别到访了中国疾控中心，商议中塞公共卫生技术合作相关事宜\(^2\)。
+\(\quad\) mRNA-1273 \(^1\) \(\quad\)
+全球第一个获批进入临床试验的候选疫苗为美国Moderna公司的mRNA疫苗。mRNA疫苗是指直接给人体注射病毒的编码核酸，再由人体的细胞自己合成病毒蛋白并产生免疫应答。1月13日，美国国立卫生院(NIH)和Moderna就完成该新冠病毒疫苗序列的设计，起名为
+mRNA-1273。由CEPI(Coalition for Epidemic Preparedness Innovations,
+防疫创新联盟)出资后Moderna启动临床生产，2月7日第一批临床生产的疫苗完成。3月4日，美国食品药品监管局(FDA)批准了mRNA-1273进入临床试验，3月16日，第一位志愿者接受了第一剂疫苗的接种。目前尚在临床I期实验阶段，并于本周开始对45名志愿者注射第二针疫苗。
 
-\(\quad\)目前我国国内疫情局势相对稳定，已大规模复工复产，医用防护服、医用防护口罩/面罩、测温仪、呼吸机产能已基本能满足国内需求，企业也正尽力组织扩大出口\(^3\)。在未来一段时间的抗疫物资援助和贸易上，我国相关产业可更多的将目光放在类似塞拉利昂这样的医疗资源和经济基础更加薄弱的国家。
+\(\quad\) Ad5-nCoV \(^2\) \(\quad\)
+中国第一个获批进入临床试验的候选疫苗为重组腺病毒载体疫苗Ad5-nCoV。腺病毒疫苗的原理是把新冠病毒表面的蛋白整合到没有致病力的腺病毒的表面，以免疫刺激人体产生针对新冠病毒的抗体。Ad5-nCoV是由军事科学院军事医学研究院的陈薇院士团队与国内康希诺公司联合开发，
+3月16日获国家药品监督局批准展开I期临床试验，并于4月9日公布I期临床试验108名志愿者的初步安全数据，并宣布进入临床II期。
+
+\(\quad\) INO-4800 \(^3\) \(\quad\)
+全球第三款进入临床试验阶段的新冠疫苗，也是第一个候选的DNA疫苗，是来自Inovio
+Pharmaceuticals公司的INO-4800。DNA疫苗原理与mRNA疫苗相同，目前已用于艾滋病毒、流感病毒、疟疾等多种疫苗的开发。Inovio在获得病毒基因序列后在三个小时内就完成了疫苗设计。1月30日，Inovio公司宣布与中国国内企业艾棣维欣达成合作协议，共同推进INO-4800在中国的研发工作。4月7日，美国食品药品监管局(FDA)接受该公司为新冠病毒候选DNA疫苗递交的新药临床试验(IND)申请灭活病毒疫苗。Inovio于4月29日宣布其在美国招收的40名志愿者已经完成第一轮疫苗注射。
+
+\(\quad\) 新冠病毒灭活疫苗 \(^4\) \(\quad\)
+全球第一个灭活病毒疫苗由国药集团下武汉生物制品研究所有限责任公司与中科院武汉病毒所研发。灭毒活疫苗的原理是杀死病毒以使其失去致病力，但保留病毒表面的蛋白质，使其注射入体内后依然可以刺激免疫反应。2月1日，该项目获得科技部国家重点研发计划``公共安全风险防控与应急技术装备''重点专项``2019-nCoV灭活疫苗''的紧急立项。在4月12日获得了国家药品监督管理局临床试验许可，已开展随机、双盲、安慰剂平行对照I/II期临床试验。
 
 \Large 参考文献：
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  南财快评之全球疫情观察：从塞拉利昂看非洲防控
-  ~\url{https://k.sina.com.cn/article_1651428902_626ece2602000p2bm.html?from=news\&subch=onews}
-\item
-  塞拉利昂总统访华，为何首站选择疾控中心？~\url{https://mp.weixin.qq.com/s/lf5e9PfSU7LF-3FiNoi72A}
-\item
-  工信部：中国呼吸机产能无法满足全球疫情防控需求
-  ~\url{https://baijiahao.baidu.com/s?id=1663393284129099919\&wfr=spider\&for=pc}
-\end{enumerate}
+1 Safety and Immunogenicity Study of 2019-nCoV Vaccine (mRNA-1273) for
+Prophylaxis SARS CoV-2 Infection
+(COVID-19).https://www.clinicaltrials.gov/ct2/show/NCT04283461 2.Phase I
+Clinical Trial of a COVID-19 Vaccine in 18-60 Healthy Adults
+(CTCOVID-19). \url{https://clinicaltrials.gov/ct2/show/NCT04313127}
+3.Safety, Tolerability and Immunogenicity of INO-4800 for COVID-19 in
+Healthy Volunteers.
+\url{https://clinicaltrials.gov/ct2/show/NCT04336410} 4.斥资10亿元
+国药集团新冠疫苗研发领跑全球.
+\url{http://www.xinhuanet.com/2020-04/27/c_1125909948.htm}
+
+\vspace{5mm}
 
 \centering
 \fontsize{12}{12}
 \selectfont
 \begin{tabular}{ll}
 
-主编：马晶  &  副主编:薛成海\,  仁晖  \\
-执行责任编辑:王冠  & 责任编辑:乐昊欣\, 闫怡璇 \\
+主编：马晶  &  副主编:仁晖\,  薛成海  \\
+责任编辑:王冠  
 新闻组:张宁\, 张心其  & 数据分析:杜兆慧 \\
 案例分析: 史珂玮  &  微信排版:韩佩瑾 \\
-\multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
+\multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\, 张祺珉\, 周梓淇}
 
 \end{tabular}
 

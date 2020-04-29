@@ -136,8 +136,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 
 
-\newpage
-
+\vspace{5mm}
 \resheading{\Large 疫情观察}
 
 \begin{small}
@@ -188,7 +187,6 @@ t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>%
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-  \\vspace{-7mm}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
       \\centering",
@@ -202,13 +200,13 @@ cat(c("\\begin{table}[H]
 ```
 
 
+
 \newpage
 
 `r insight$content[2]`
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-
     \\begin{minipage}{.4\\linewidth}
     \\centering
     \\captionsetup{justification=centering}
@@ -298,7 +296,7 @@ cat(c("\\begin{table}[H]
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
-
+    \\vspace{-7mm}
     \\begin{minipage}{.4\\linewidth}
     \\caption{美国新增确诊前十位州}
     \\vspace{-0.5\\baselineskip}
@@ -320,7 +318,8 @@ cat(c("\\begin{table}[H]
 
 `r insight$content[4]`
 
-\
+
+\vspace{5mm}
 
 \centering
 \small
