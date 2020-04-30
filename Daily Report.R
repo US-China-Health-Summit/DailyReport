@@ -300,10 +300,9 @@ translate_state_colname = function(ut_data, x) {
     
   } else if (x == 5) {
     t_data = ut_data %>% 
-      select(ranking, state_bi, Confirmed_incremental, Percentage) %>%
+      select(ranking, state_bi, Confirmed_incremental) %>%
       rename("国家/州名" = state_bi, 
-             "当日新增" = Confirmed_incremental, 
-             "构成比%" = Percentage)
+             "当日新增" = Confirmed_incremental)
     
     return(t_data)
   } else if (x == 6) {
@@ -311,7 +310,7 @@ translate_state_colname = function(ut_data, x) {
     t_data = ut_data %>% 
       select(ranking, state_bi, Deaths, Deaths_incremental, Fatality_rate) %>%
       rename("国家/州名" = state_bi, 
-             "累计死亡人数" = Deaths,
+             "累计死亡病例" = Deaths,
              "较昨日新增" = Deaths_incremental, 
              "病死率%" = Fatality_rate)
     
