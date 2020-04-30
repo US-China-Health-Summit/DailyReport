@@ -1313,8 +1313,8 @@ write_excel_csv(data_us_latest_confirm_top %>%
 #### table 5 ####
 data_us_latest_incremental = data_us_latest[, c("state", "Confirmed_incremental")]
 data_us_latest_incremental = data_us_latest_incremental[order(data_us_latest_incremental$Confirmed_incremental, decreasing = T),]
-data_us_latest_incremental$Percentage = round(data_us_latest_incremental$Confirmed_incremental/US_total$Confirmed_incremental*100,0)
-US_total$Percentage = 100
+# data_us_latest_incremental$Percentage = round(data_us_latest_incremental$Confirmed_incremental/US_total$Confirmed_incremental*100,0)
+# US_total$Percentage = 100
 data_us_latest_incremental = rbind(US_total[, colnames(data_us_latest_incremental)], data_us_latest_incremental)
 ranking = c("", 1:(nrow(data_us_latest_incremental)-1))
 data_us_latest_incremental = cbind(ranking, data_us_latest_incremental)
