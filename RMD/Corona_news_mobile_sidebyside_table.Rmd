@@ -75,7 +75,9 @@ header-includes:
 \resheading{\Huge 每日新闻}
 
 \vspace{-5mm}
+
 ## \textcolor{glaucous}{\Huge 国际}
+
 \vspace{-3mm}
 
 ```{r setup, include=FALSE}
@@ -121,7 +123,9 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 `r global_news$content[6]`
 
 \vspace{-5mm}
+
 ## \textcolor{glaucous}{\Huge 国内}
+
 \vspace{-3mm}
 
 **\textcolor{glaucous}{`r china_news$pub[1]`}**: **`r china_news$title[1]`**
@@ -143,7 +147,9 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 \end{Large}
 
 \vspace{-7mm}
+
 # \textcolor{glaucous}{\Huge 一、世界疫情}
+
 \vspace{-5mm}
 
 
@@ -245,7 +251,9 @@ cat(c("\\begin{table}[H]
 \end{figure}
 
 \vspace{-7mm}
+
 # \textcolor{glaucous}{\Huge 二、美国疫情}
+
 \vspace{-5mm}
 
 `r insight$content[3]`
@@ -329,7 +337,9 @@ reference = example$content[3]
 ```
 
 \vspace{-5mm}
+
 # \textcolor{glaucous}{\Huge `r title`}
+
 \vspace{-3mm}
 
 `r content`
