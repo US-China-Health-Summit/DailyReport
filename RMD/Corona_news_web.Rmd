@@ -311,7 +311,7 @@ cat(c("\\begin{table}[H]
     \\captionsetup{justification=centering}",
         t5,
     "\\end{minipage}%
-    \\begin{minipage}{.7\\linewidth}
+    \\begin{minipage}{.6\\linewidth}
      \\caption{美国累计死亡前十位州}
      \\vspace{-0.5\\baselineskip}
       \\centering
