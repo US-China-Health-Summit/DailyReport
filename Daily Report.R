@@ -53,11 +53,15 @@ weekly_summary = FALSE
 start_date_wr = NULL
 end_date_wr = NULL
 
-# weekly_summary = TRUE
-# start_date_wr = "2020-04-04"
-# end_date_wr = "2020-04-10"
-# end_date_confirmed_threshold = 1000
-# end_date_deaths_threshold = 10
+weekly_summary = TRUE
+start_date_wr = "2020-04-25"
+end_date_wr = "2020-05-01"
+end_date_confirmed_threshold = 10000
+end_date_deaths_threshold = 1000
+
+end_date_us_confirmed_threshold = 1000
+end_date_us_deaths_threshold = 100
+
 
 ##### filter date #####
 # date filter input format: "yyyy-mm-dd" ; set as NULL if not used
@@ -160,6 +164,10 @@ p18_ylab = input_plot_titles$Input[input_plot_titles$Item == "p18_ylab"]
 p19_title = input_plot_titles$Input[input_plot_titles$Item == "p19_title"]
 p19_xlab = input_plot_titles$Input[input_plot_titles$Item == "p19_xlab"]
 p19_ylab = input_plot_titles$Input[input_plot_titles$Item == "p19_ylab"]
+p20_title = input_plot_titles$Input[input_plot_titles$Item == "p20_title"]
+p20_xlab = input_plot_titles$Input[input_plot_titles$Item == "p20_xlab"]
+p20_ylab = input_plot_titles$Input[input_plot_titles$Item == "p20_ylab"]
+
 
 time_series_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/"
 web_data_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/"
@@ -697,7 +705,8 @@ if (weekly_summary){
     temp = data_all_countries
     temp_end = temp[temp$Date == end_date_wr,]
     temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
-    temp_diff = temp[temp$Date == max(data_all_countries$Date),] 
+    temp_diff = temp[temp$Date == max(data_all_countries$Date),]
+    
     temp_diff$Confirmed_diff = temp_end$Confirmed - temp_start$Confirmed
     temp_confirmed_diff = temp_diff[order(temp_diff$Confirmed_diff,decreasing = T), ]
     filter_total_confirmed_diff = temp_confirmed_diff$`Country/Region`[1:top_n]
@@ -715,8 +724,14 @@ if (weekly_summary){
     temp_death_diff_perc = temp_diff[temp_end$Deaths >=end_date_deaths_threshold,]
     temp_death_diff_perc = temp_death_diff_perc[order(temp_death_diff_perc$Death_diff_perc,decreasing = T),]
     filter_death_diff_perc = temp_death_diff_perc$`Country/Region`[1:top_n]
+    
+    # filter by crude indicience rate
+    temp_cir = temp[temp$Date == max(data_all_countries$Date),] 
+    temp_cir = temp_cir[temp_cir$Confirmed >=end_date_confirmed_threshold,]
+    temp_cir = temp_cir[order(temp_cir$Crude_Incidence_Rate, decreasing = T), ]
+    filter_cir = temp_cir$Country[1:top_n]
   }
-  color_list_country = unique(c(color_list_country, filter_total_confirmed_diff,filter_total_confirmed_diff_perc,filter_death_diff,filter_death_diff_perc))
+  color_list_country = unique(c(color_list_country, filter_total_confirmed_diff,filter_total_confirmed_diff_perc,filter_death_diff,filter_death_diff_perc,filter_cir))
 }
 
 ##### plot 1. total confirmed cases sort by countries cumulative #####
@@ -1153,6 +1168,39 @@ if (weekly_summary){
   # ggsave(filename = paste(report_date,"p17",p17_title, ".pdf"), plot = p17, width = 10, height = 8 )
   ggsave(filename = paste(report_date,"p17",p17_title, ".png"), plot = p17, width = 10, height = 8 )
   
+  ##### plot 20. total confirmed cases sort by crude indicidence rate #####
+  
+  # filter by country and cumulative confirmed
+  data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_cir, ]
+  # reorder factor levels by country filter order
+  temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date), ]
+  temp = temp[order(temp$Confirmed, decreasing = T),]
+  country_order = temp$Country
+  data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
+  
+  y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1)*1000
+  y_interval = adjust_y_interval(y_max)
+  p20 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed, 
+                                          group = Country, 
+                                          colour = Country, 
+                                          shape = Country)) + 
+    # geom_point(size = 2) + 
+    geom_line(size = 1) +
+    theme_bw() + 
+    theme(panel.border = element_blank()) +
+    theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+    theme(axis.line = element_line(colour = "black")) + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
+    theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
+    theme(legend.position = c(0.2, 0.8)) + 
+    theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
+    scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
+    scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+    scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+    xlab("") +
+    ylab(p20_ylab) 
+  
+  ggsave(filename = paste(report_date,"p20",p20_title, ".png"), plot = p20, width = 10, height = 8 )
 }
 
 
@@ -1426,11 +1474,14 @@ if (weekly_summary){
     temp_end = temp[temp$Date == end_date_wr,]
     temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
     temp_diff = temp[temp$Date == max(data_us_states$Date),] 
+    
+    
     temp_diff$Confirmed_diff = temp_end$Confirmed - temp_start$Confirmed
     temp_confirmed_diff = temp_diff[order(temp_diff$Confirmed_diff,decreasing = T), ]
     filter_total_confirmed_diff = temp_confirmed_diff$state[1:top_n]
     
     temp_diff$Confirmed_diff_perc = temp_diff$Confirmed_diff/temp_start$Confirmed
+    temp_confirmed_diff_perc = temp_diff[temp_end$Confirmed >=end_date_us_confirmed_threshold,]
     temp_confirmed_diff_perc = temp_diff[order(temp_diff$Confirmed_diff_perc,decreasing = T),]
     filter_total_confirmed_diff_perc = temp_confirmed_diff_perc$state[1:top_n]
     
@@ -1439,7 +1490,7 @@ if (weekly_summary){
     filter_death_diff = temp_death_diff$state[1:top_n]
     
     temp_diff$Death_diff_perc = temp_diff$Death_diff/temp_start$Deaths
-    temp_death_diff_perc = temp_diff[temp_start$Deaths > 0,]
+    temp_death_diff_perc = temp_diff[temp_start$Deaths >= end_date_us_deaths_threshold,]
     temp_death_diff_perc = temp_death_diff_perc[order(temp_death_diff_perc$Death_diff_perc,decreasing = T),]
     filter_death_diff_perc = temp_death_diff_perc$state[1:top_n]
   }

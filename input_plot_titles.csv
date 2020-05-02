@@ -59,3 +59,6 @@ p18_ylab,Number of Cases,Number of Cases per day
 p19_title,US-state-death-sort-by-weekly-incremental-percentage,Cumulative Deaths Cases (Top 5 States of Weekly Death Cases Incremental Rate in U.S.)
 p19_xlab,Date,Date
 p19_ylab,Number of Cases,Number of Cases per day
+p20_title,country-confirmed-total-sort-by-crude-incidence-rate,Cumulative Confirmed Cases  sort by crude incidence rate(Top 5 Countries of Cumulative Confirmed Cases)
+p20_xlab,Date,Date
+p20_ylab,Number of Cases,Number of Cases
