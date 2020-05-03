@@ -173,7 +173,7 @@ insight = read_excel("./input/insight.xlsx") %>%
 options(knitr.kable.NA = '')
 t1 = read_csv('input/table1.csv') %>%  rename(' ' = ranking) %>%
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 18)
+  kable_styling(latex_options = "striped", font_size = 12)
 t2 = read_csv('input/table2.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped", font_size = 12)
@@ -189,20 +189,39 @@ t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>%
 t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped", font_size = 12)
+t7 = read_csv('input/table7.csv') %>%  rename(' ' = ranking) %>% 
+  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+  kable_styling(latex_options = "striped", font_size = 12)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
+    
+    \\begin{minipage}{.4\\linewidth}
+    \\centering
+    \\captionsetup{justification=centering}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
-      \\centering",
+      \\centering
+      \\captionsetup{justification=centering}",
         t1,
-    "\\begin{tablenotes}
+    "\\end{minipage}
+    \\begin{minipage}{.7\\linewidth}
+    \\centering
+    \\captionsetup{justification=centering}
+     \\caption{粗发病率前十位国家}
+     \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
+      t2,
+    "\\end{minipage}
+    
+    \\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
         \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
-    \\end{table}"
+\\end{table}"
 ))
 ```
 
@@ -220,7 +239,7 @@ cat(c("\\begin{table}[H]
     \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t2,
+        t3,
     "\\end{minipage}
     \\begin{minipage}{.6\\linewidth}
     \\centering
@@ -229,7 +248,7 @@ cat(c("\\begin{table}[H]
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t3,
+        t4,
     "\\end{minipage} 
 \\end{table}"
 ))
@@ -272,7 +291,7 @@ cat(c("\\begin{table}[H]
     \\caption{美国累计确诊前十位州}
       \\vspace{-0.5\\baselineskip}
       \\centering",
-        t4,
+        t5,
     "\\begin{tablenotes}
     \\fontsize{12}{12}
       \\selectfont
@@ -308,14 +327,14 @@ cat(c("\\begin{table}[H]
     \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t5,
+        t6,
     "\\end{minipage}%
     \\begin{minipage}{.6\\linewidth}
      \\caption{美国累计死亡前十位州}
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t6,
+        t7,
     "\\end{minipage} 
 \\end{table}"
 ))

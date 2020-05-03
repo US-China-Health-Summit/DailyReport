@@ -189,19 +189,39 @@ t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>%
 t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped")
+t7 = read_csv('input/table7.csv') %>%  rename(' ' = ranking) %>% 
+  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+  kable_styling(latex_options = "striped")
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
+    
+    \\begin{minipage}{.4\\linewidth}
+    \\centering
+    \\captionsetup{justification=centering}
     \\caption{累计确诊前十位国家}
       \\vspace{-0.5\\baselineskip}
-      \\centering",
+      \\centering
+      \\captionsetup{justification=centering}",
         t1,
-    "\\begin{tablenotes}
-        \\footnotesize
+    "\\end{minipage}
+    \\begin{minipage}{.7\\linewidth}
+    \\centering
+    \\captionsetup{justification=centering}
+     \\caption{粗发病率前十位国家}
+     \\vspace{-0.5\\baselineskip}
+      \\centering
+    \\captionsetup{justification=centering}",
+      t2,
+    "\\end{minipage}
+    
+    \\begin{tablenotes}
+        \\fontsize{12}{12}
+        \\selectfont
         \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
       \\end{tablenotes}
-    \\end{table}"
+\\end{table}"
 ))
 ```
 
