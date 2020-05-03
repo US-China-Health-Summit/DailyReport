@@ -303,31 +303,6 @@ NA
       \centering
     \captionsetup{justification=centering} \begin{table}[H]
 \centering
-\begin{tabular}{rlrr}
-\toprule
-  & 国家(地区) & 粗发病率* & 累计确诊病例\\
-\midrule
-\rowcolor{gray!6}  1 & 圣马力诺 San Marino & 1,709 & 580\\
-2 & 梵蒂冈 Holy See & 1,373 & 11\\
-\rowcolor{gray!6}  3 & 安道尔 Andorra & 967 & 747\\
-4 & 卢森堡 Luxembourg & 609 & 3,812\\
-\rowcolor{gray!6}  5 & 冰岛 Iceland & 527 & 1,798\\
-6 & 卡塔尔 Qatar & 516 & 14,872\\
-\rowcolor{gray!6}  7 & 西班牙 Spain & 463 & 216,582\\
-8 & 爱尔兰 Ireland & 429 & 21,176\\
-\rowcolor{gray!6}  9 & 比利时 Belgium & 427 & 49,517\\
-10 & 意大利 Italy & 346 & 209,328\\
-\bottomrule
-\end{tabular}
-\end{table} \end{minipage}
-    \begin{minipage}{.6\linewidth}
-    \centering
-    \captionsetup{justification=centering}
-     \caption{累计死亡病例前十位国家}
-     \vspace{-0.5\baselineskip}
-      \centering
-    \captionsetup{justification=centering} \begin{table}[H]
-\centering
 \begin{tabular}{rlr}
 \toprule
   & 国家 & 当日新增病例\\
@@ -342,6 +317,31 @@ NA
 8 & 土耳其 Turkey & 2,392\\
 \rowcolor{gray!6}  9 & 意大利 Italy & 2,091\\
 10 & 印度 India & 1,909\\
+\bottomrule
+\end{tabular}
+\end{table} \end{minipage}
+    \begin{minipage}{.6\linewidth}
+    \centering
+    \captionsetup{justification=centering}
+     \caption{累计死亡病例前十位国家}
+     \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
+\centering
+\begin{tabular}{rlrrr}
+\toprule
+  & 国家 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
+\midrule
+\rowcolor{gray!6}  1 & 美国 US & 58,343 & 2,084 & 5.8\\
+2 & 意大利 Italy & 27,359 & 382 & 13.6\\
+\rowcolor{gray!6}  3 & 西班牙 Spain & 23,822 & 301 & 10.3\\
+4 & 法国 France & 23,694 & 367 & 14.0\\
+\rowcolor{gray!6}  5 & 英国 UK & 21,745 & 588 & 13.4\\
+6 & 比利时 Belgium & 7,331 & 124 & 15.5\\
+\rowcolor{gray!6}  7 & 德国 Germany & 6,280 & 154 & 3.9\\
+8 & 伊朗 Iran & 5,877 & 71 & 6.3\\
+\rowcolor{gray!6}  9 & 巴西 Brazil & 5,017 & 414 & 7.0\\
+10 & 中国 China & 4,637 & 0 & 5.5\\
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage} 
@@ -388,20 +388,21 @@ NA
       \vspace{-0.5\baselineskip}
       \centering \begin{table}[H]
 \centering
-\begin{tabular}{rlrrr}
+\begin{tabular}{rlrrrrrr}
 \toprule
-  & 国家 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
+  & 国家/州名 & 累计确诊 & 粗发病率 & 累计检测 & 阳性率\% & 日新增检测 & 检测率*\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 58,343 & 2,084 & 5.8\\
-2 & 意大利 Italy & 27,359 & 382 & 13.6\\
-\rowcolor{gray!6}  3 & 西班牙 Spain & 23,822 & 301 & 10.3\\
-4 & 法国 France & 23,694 & 367 & 14.0\\
-\rowcolor{gray!6}  5 & 英国 UK & 21,745 & 588 & 13.4\\
-6 & 比利时 Belgium & 7,331 & 124 & 15.5\\
-\rowcolor{gray!6}  7 & 德国 Germany & 6,280 & 154 & 3.9\\
-8 & 伊朗 Iran & 5,877 & 71 & 6.3\\
-\rowcolor{gray!6}  9 & 巴西 Brazil & 5,017 & 414 & 7.0\\
-10 & 中国 China & 4,637 & 0 & 5.5\\
+\rowcolor{gray!6}   & 美国 US & 1,011,600 & 306 & 5,794,950 & 17 & 202,230 & 1,751\\
+1 & 纽约州 NY & 295,106 & 1,517 & 844,994 & 35 & 18,899 & 4,344\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 113,856 & 1,282 & 234,359 & 49 & 6,584 & 2,639\\
+3 & 马萨诸塞州 MA & 58,302 & 839 & 254,500 & 23 & 9,613 & 3,662\\
+\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 48,102 & 380 & 242,189 & 20 & 14,561 & 1,911\\
+5 & 加利福尼亚州 CA & 46,033 & 117 & 577,608 & 8 & 24,199 & 1,462\\
+\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 45,137 & 353 & 209,088 & 22 & 5,666 & 1,633\\
+7 & 密歇根州 MI & 39,262 & 393 & 164,805 & 24 & 7,045 & 1,650\\
+\rowcolor{gray!6}  8 & 佛罗里达州 FL & 32,848 & 153 & 366,875 & 9 & 10,412 & 1,708\\
+9 & 路易斯安那州 LA & 27,286 & 587 & 151,108 & 18 & 4,119 & 3,250\\
+\rowcolor{gray!6}  10 & 康涅狄格州 CT & 26,312 & 738 & 92,745 & 28 & 12,934 & 2,601\\
 \bottomrule
 \end{tabular}
 \end{table} \begin{tablenotes}
@@ -435,30 +436,6 @@ NA
       \centering
     \captionsetup{justification=centering} \begin{table}[H]
 \centering
-\begin{tabular}{rlrrrrrr}
-\toprule
-  & 国家/州名 & 累计确诊 & 粗发病率 & 累计检测 & 阳性率\% & 日新增检测 & 检测率*\\
-\midrule
-\rowcolor{gray!6}   & 美国 US & 1,011,600 & 306 & 5,794,950 & 17 & 202,230 & 1,751\\
-1 & 纽约州 NY & 295,106 & 1,517 & 844,994 & 35 & 18,899 & 4,344\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 113,856 & 1,282 & 234,359 & 49 & 6,584 & 2,639\\
-3 & 马萨诸塞州 MA & 58,302 & 839 & 254,500 & 23 & 9,613 & 3,662\\
-\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 48,102 & 380 & 242,189 & 20 & 14,561 & 1,911\\
-5 & 加利福尼亚州 CA & 46,033 & 117 & 577,608 & 8 & 24,199 & 1,462\\
-\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 45,137 & 353 & 209,088 & 22 & 5,666 & 1,633\\
-7 & 密歇根州 MI & 39,262 & 393 & 164,805 & 24 & 7,045 & 1,650\\
-\rowcolor{gray!6}  8 & 佛罗里达州 FL & 32,848 & 153 & 366,875 & 9 & 10,412 & 1,708\\
-9 & 路易斯安那州 LA & 27,286 & 587 & 151,108 & 18 & 4,119 & 3,250\\
-\rowcolor{gray!6}  10 & 康涅狄格州 CT & 26,312 & 738 & 92,745 & 28 & 12,934 & 2,601\\
-\bottomrule
-\end{tabular}
-\end{table} \end{minipage}%
-    \begin{minipage}{.6\linewidth}
-     \caption{美国累计死亡前十位州}
-     \vspace{-0.5\baselineskip}
-      \centering
-    \captionsetup{justification=centering} \begin{table}[H]
-\centering
 \begin{tabular}{rlrr}
 \toprule
   & 国家/州名 & 当日新增 & 构成比\%\\
@@ -474,6 +451,30 @@ NA
 \rowcolor{gray!6}  8 & 得克萨斯州 TX & 901 & 4\\
 9 & 弗吉尼亚州 VA & 801 & 3\\
 \rowcolor{gray!6}  10 & 佛罗里达州 FL & 710 & 3\\
+\bottomrule
+\end{tabular}
+\end{table} \end{minipage}%
+    \begin{minipage}{.6\linewidth}
+     \caption{美国累计死亡前十位州}
+     \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
+\centering
+\begin{tabular}{rlrr}
+\toprule
+  & 国家/州名 & 累计死亡人数 & 病死率\%\\
+\midrule
+\rowcolor{gray!6}   & 美国 US & 58,343 & 5.8\\
+1 & 纽约州 NY & 22,912 & 7.8\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 6,442 & 5.7\\
+3 & 密歇根州 MI & 3,568 & 9.1\\
+\rowcolor{gray!6}  4 & 马萨诸塞州 MA & 3,153 & 5.4\\
+5 & 伊利诺伊州 IL & 2,125 & 4.4\\
+\rowcolor{gray!6}  6 & 康涅狄格州 CT & 2,087 & 7.9\\
+7 & 宾夕法尼亚州 PA & 2,046 & 4.5\\
+\rowcolor{gray!6}  8 & 加利福尼亚州 CA & 1,864 & 4.0\\
+9 & 路易斯安那州 LA & 1,801 & 6.6\\
+\rowcolor{gray!6}  10 & 佛罗里达州 FL & 1,171 & 3.6\\
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage} 

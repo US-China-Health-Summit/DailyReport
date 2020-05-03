@@ -240,7 +240,7 @@ cat(c("\\begin{table}[H]
     \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t2,
+        t3,
     "\\end{minipage}
     \\begin{minipage}{.6\\linewidth}
     \\centering
@@ -249,7 +249,7 @@ cat(c("\\begin{table}[H]
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t3,
+        t4,
     "\\end{minipage} 
 \\end{table}"
 ))
@@ -293,7 +293,7 @@ cat(c("\\begin{table}[H]
     \\caption{美国累计确诊前十位州}
       \\vspace{-0.5\\baselineskip}
       \\centering",
-        t4,
+        t5,
     "\\begin{tablenotes}
     \\footnotesize
     \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
@@ -329,14 +329,14 @@ cat(c("\\begin{table}[H]
     \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t5,
+        t6,
     "\\end{minipage}%
     \\begin{minipage}{.6\\linewidth}
      \\caption{美国累计死亡前十位州}
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t6,
+        t7,
     "\\end{minipage} 
 \\end{table}"
 ))
