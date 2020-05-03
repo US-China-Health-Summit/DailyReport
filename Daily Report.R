@@ -53,12 +53,13 @@ weekly_summary = FALSE
 start_date_wr = NULL
 end_date_wr = NULL
 
-weekly_summary = TRUE
-start_date_wr = "2020-04-25"
-end_date_wr = "2020-05-01"
+# weekly_summary = TRUE
+# start_date_wr = "2020-04-25"
+# end_date_wr = "2020-05-01"
+# The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
+## Values can be changed as needed.
 end_date_confirmed_threshold = 10000
 end_date_deaths_threshold = 1000
-
 end_date_us_confirmed_threshold = 1000
 end_date_us_deaths_threshold = 100
 
