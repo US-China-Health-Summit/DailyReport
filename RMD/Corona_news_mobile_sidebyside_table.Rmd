@@ -346,7 +346,7 @@ cat(c("\\begin{table}[H]
 
 \vspace{5mm}
 
-\resheading{\Huge 案例分析}
+\resheading{\Huge 热点话题}
 
 ```{r, echo=FALSE}
 example = read_excel("./input/module3.xlsx")
