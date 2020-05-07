@@ -68,7 +68,7 @@ header-includes:
 
 \begin{center}
 \fontsize{22}{22}
-{\textcolor{glaucous}{\textbf{第13期 \space 4月8日}}}
+{\textcolor{glaucous}{\textbf{第34期 \space 5月7日}}}
 \end{center}
 
 
@@ -118,9 +118,6 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 `r global_news$content[5]`
 
-**\textcolor{glaucous}{`r global_news$pub[6]`}** : **`r global_news$title[6]`**
-
-`r global_news$content[6]`
 
 \vspace{-5mm}
 
@@ -143,7 +140,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 \resheading{\Huge 疫情观察}
 
 \begin{Large}
-{数据源：约翰霍普金斯大学，The COVID Tracking Project \\ 数据截止至：北京时间3月28日 早4:00}
+{数据源：约翰霍普金斯大学，The COVID Tracking Project \\ 数据截止至：北京时间5月7日 上午8:00}
 \end{Large}
 
 \vspace{-7mm}
@@ -219,7 +216,7 @@ cat(c("\\begin{table}[H]
     \\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
-        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万；**国家人口不足10万人，圣马力诺33,931人，梵蒂冈801人，安道尔77,265人。  %此处加入注释信息
       \\end{tablenotes}
 \\end{table}"
 ))
@@ -295,7 +292,7 @@ cat(c("\\begin{table}[H]
     "\\begin{tablenotes}
     \\fontsize{12}{12}
       \\selectfont
-    \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
+    \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万；**截至数据下载时间，纽约州尚未更新当日新增检测数量
     \\end{tablenotes}
     \\end{table}"
 ))
@@ -370,15 +367,16 @@ reference = example$content[3]
 
 \vspace{5mm}
 
+
 \centering
 \fontsize{12}{12}
 \selectfont
 \begin{tabular}{ll}
 
 主编：马晶  &  副主编:仁晖\,  薛成海  \\
-责任编辑:王冠  
-新闻组:张宁\, 张心其  & 数据分析:杜兆慧 \\
-案例分析: 史珂玮  &  微信排版:韩佩瑾 \\
+责任编辑:王冠  \\
+新闻组:张宁  &  数据分析:曹洁 \\
+热点话题：微信排版:韩佩瑾 \\
 \multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\, 张祺珉\, 周梓淇}
 
 \end{tabular}
