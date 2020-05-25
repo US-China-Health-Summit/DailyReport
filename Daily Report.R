@@ -297,12 +297,13 @@ translate_state_colname = function(ut_data, x) {
     
     if ("positive_rate" %in% colnames(ut_data)) {
       t_data = ut_data %>% 
-        select(ranking, state_bi, Confirmed, Crude_Incidence_Rate, totalTestResults, positive_rate,  totalTestResultsIncrease, pct_test) %>% 
+        select(ranking, state_bi, Confirmed, Crude_Incidence_Rate, totalTestResults, positive_rate,  totalTestResultsIncrease, incre_positive_rate,pct_test) %>% 
         rename("国家/州名" = state_bi, 
                "累计确诊" = Confirmed, 
                "粗发病率" = Crude_Incidence_Rate, 
 							 "累计检测" = totalTestResults, 
-               "阳性率%" = positive_rate, 
+               "累计阳性率%" = positive_rate, 
+							 "新增中阳性率%" = incre_positive_rate, 
                "日新增检测" = totalTestResultsIncrease, 
                "检测率*" = pct_test)
     } else {
@@ -1343,11 +1344,14 @@ data_us_states$Fatality_rate = round(data_us_states$Deaths/data_us_states$Confir
 data_us_states[is.na(data_us_states)] = 0
 
 # merge data_us_states_detailed into data_us_states																									 
-data_us_states_detailed_keep = data_us_states_detailed[, c("state", "date","totalTestResults", "totalTestResultsIncrease", "deathIncrease")]
+data_us_states_detailed_keep = data_us_states_detailed[, c("state", "date","totalTestResults", "totalTestResultsIncrease", "deathIncrease","positiveIncrease")]
 colnames(data_us_states_detailed_keep)[2]="Date"
 data_us_states = merge(data_us_states, data_us_states_detailed_keep, by = c("state","Date"), all.x=TRUE)
 data_us_states$positive_rate = round(data_us_states$Confirmed/data_us_states$totalTestResults, 2) * 100
 data_us_states$pct_test = round(data_us_states$totalTestResults/data_us_states$Population * 100000, 0)
+
+# add postive rate among increase
+data_us_states = data_us_states%>%as_tibble()%>%mutate(incre_positive_rate = (positiveIncrease/totalTestResultsIncrease)%>%round(2)*100)%>%as.data.frame()
 
 ## correct negative death increase
 data_us_states$Deaths_incremental[data_us_states$Deaths_incremental<0] = data_us_states$deathIncrease[data_us_states$Deaths_incremental<0]
@@ -1365,14 +1369,16 @@ write_excel_csv(us_pct_test_wide, paste(report_date,"table_us_pct_test.csv" ))
 
 # filter by latest date
 data_us_latest = data_us_states[data_us_states$Date == max(data_us_states$Date),]
-data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "Crude_Incidence_Rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test")]
+data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "Crude_Incidence_Rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test","incre_positive_rate","positiveIncrease")]
 if (data_us_latest$Date[1] != max(data_us_states_detailed$date)) warning("US test data hasn't been updated yet. Try later.")
 
 # US TOTAL
-data_us_latest_total = as.data.frame(t(colSums(data_us_latest[, c("totalTestResults", "totalTestResultsIncrease") ], na.rm = T)))
+data_us_latest_total = as.data.frame(t(colSums(data_us_latest[, c("totalTestResults", "totalTestResultsIncrease","positiveIncrease") ], na.rm = T)))
 US_total = cbind(US_total, data_us_latest_total)
 US_total$positive_rate = round(US_total$Confirmed/US_total$totalTestResults, 2) * 100
 US_total$pct_test = round(US_total$totalTestResults/US_total$Population * 100000, 0)
+US_total = US_total%>%as_tibble()%>%mutate(incre_positive_rate = (positiveIncrease/totalTestResultsIncrease)%>%round(2)*100)%>%as.data.frame()
+
 
 ##### table 5 #####
 data_us_latest_confirm = data_us_latest_confirm[order(data_us_latest_confirm$Confirmed, decreasing = T),]
@@ -1381,6 +1387,7 @@ data_us_latest_confirm = rbind(US_total[, colnames(data_us_latest_confirm)], dat
 ranking = c("", 1:(nrow(data_us_latest_confirm)-1))
 data_us_latest_confirm = cbind(ranking, data_us_latest_confirm)
 data_us_latest_confirm_top = data_us_latest_confirm[1:11, ]
+
 write_excel_csv(data_us_latest_confirm, paste(report_date,"table5_confirmed_cases_and_incidence_rate_US_all.csv"))
 write_excel_csv(data_us_latest_confirm_top, paste(report_date,"table5_en.csv"))
 write_excel_csv(data_us_latest_confirm_top %>% 
