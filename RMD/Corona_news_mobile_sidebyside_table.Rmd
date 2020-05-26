@@ -182,7 +182,7 @@ t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>%
   kable_styling(latex_options = "striped", font_size = 12)
 t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 12)
+  kable_styling(latex_options = "striped", font_size = 10)
 t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped", font_size = 12)
