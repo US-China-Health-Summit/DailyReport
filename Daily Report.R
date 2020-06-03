@@ -38,7 +38,7 @@
 
 # getwd()
 
-folder = "YOUR_PATH/csse_covid_19_time_series"
+folder = "./csse_covid_19_time_series"
 
 setwd(folder)
 
@@ -69,7 +69,7 @@ end_date_us_deaths_threshold = 100
 # start_date/end_date control the start and end date for global plots 
 # start_date_US/end_date_US control the start and end date for US plots 
 
-start_date = NULL
+start_date = "2020-03-01" 
 end_date = NULL
 start_date_US = "2020-03-01" 
 end_date_US = NULL
