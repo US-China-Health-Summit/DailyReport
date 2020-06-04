@@ -1050,7 +1050,7 @@ p10 = ggplot(data_to_plot_death_incremental, aes(x=Date, y=Deaths_incremental, g
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
   theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
   theme(legend.position = c(0.2, 0.8)) + 
-  theme(legend.title = element_text(size=19,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
+  theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
