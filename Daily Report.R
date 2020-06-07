@@ -1392,7 +1392,8 @@ write_excel_csv(data_us_latest_confirm, paste(report_date,"table5_confirmed_case
 write_excel_csv(data_us_latest_confirm_top, paste(report_date,"table5_en.csv"))
 write_excel_csv(data_us_latest_confirm_top %>% 
                   translate_state() %>% 
-                  translate_state_colname(4), paste(report_date,"table5.csv"))
+                  translate_state_colname(4) %>% 
+                  select(ranking, "国家/州名","累计确诊","粗发病率"), paste(report_date,"table5.csv"))
 
 #### table 6 ####
 data_us_latest_incremental = data_us_latest[, c("state", "Confirmed_incremental")]
