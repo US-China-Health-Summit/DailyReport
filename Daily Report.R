@@ -379,7 +379,7 @@ adjust_y_interval = function(y_max){
   y_interval
 }
 
-read_data = function(label, type, web_data, Province_name = NULL ){ 
+read_data = function(label, type, web_data, Province_name = NULL, updated_data = T){ 
   
   #HS: Rewrote function using tiddyverse to make more readable
   # read time series data
@@ -406,9 +406,15 @@ read_data = function(label, type, web_data, Province_name = NULL ){
   if (type %in% c("Country", "Continent")) {
     # Remove all the unused column, and sum based on country
     data_wide = time_series %>% select(-"Province/State",-Lat,-Long) %>% group_by(`Country/Region`) %>% summarise_all(sum)
-    if (web_data) {
+    if (web_data & updated_data = T) {
       fileurl = paste(web_data_url, "cases_country.csv", sep = "")
       wdata = getURL(fileurl) %>% read_csv() %>% select("Country/Region" = Country_Region ,label)
+      data_wide = left_join(x = data_wide,y = wdata, by = "Country/Region") %>% rename_at(vars(label),~date_today %>% as.character() )
+      data_wide[is.na(data_wide)] = 0
+    }
+    if (web_data & updated_data = F) {
+      fileurl = "./cases_country.csv"
+      wdata = fileurl %>% read_csv() %>% select("Country/Region" = Country_Region ,label)
       data_wide = left_join(x = data_wide,y = wdata, by = "Country/Region") %>% rename_at(vars(label),~date_today %>% as.character() )
       data_wide[is.na(data_wide)] = 0
     }
@@ -469,9 +475,9 @@ read_data = function(label, type, web_data, Province_name = NULL ){
 create_final_data = function(type = NULL, Province_name = NULL, web_data){ 
   # type: "Country" if by country; "State" if by US states
   if (!type %in% c("Country", "State", "Continent")) stop("Please specify type as country or state.")
-  data_confirmed = read_data("Confirmed", type , web_data,Province_name)
-  data_deaths = read_data("Deaths", type, web_data,Province_name)
-  data_recovered = read_data("Recovered", type, web_data,Province_name)
+  data_confirmed = read_data("Confirmed", type , web_data,Province_name, updated_data = T)
+  data_deaths = read_data("Deaths", type, web_data,Province_name, updated_data = T)
+  data_recovered = read_data("Recovered", type, web_data,Province_name, updated_data = T)
   
   case_confirmed = data_confirmed$data
   case_deaths = data_deaths$data
