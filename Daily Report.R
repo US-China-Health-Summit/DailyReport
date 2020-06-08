@@ -406,13 +406,13 @@ read_data = function(label, type, web_data, Province_name = NULL, updated_data =
   if (type %in% c("Country", "Continent")) {
     # Remove all the unused column, and sum based on country
     data_wide = time_series %>% select(-"Province/State",-Lat,-Long) %>% group_by(`Country/Region`) %>% summarise_all(sum)
-    if (web_data & updated_data = T) {
+    if (web_data & updated_data == T) {
       fileurl = paste(web_data_url, "cases_country.csv", sep = "")
       wdata = getURL(fileurl) %>% read_csv() %>% select("Country/Region" = Country_Region ,label)
       data_wide = left_join(x = data_wide,y = wdata, by = "Country/Region") %>% rename_at(vars(label),~date_today %>% as.character() )
       data_wide[is.na(data_wide)] = 0
     }
-    if (web_data & updated_data = F) {
+    if (web_data & updated_data == F) {
       fileurl = "./cases_country.csv"
       wdata = fileurl %>% read_csv() %>% select("Country/Region" = Country_Region ,label)
       data_wide = left_join(x = data_wide,y = wdata, by = "Country/Region") %>% rename_at(vars(label),~date_today %>% as.character() )
