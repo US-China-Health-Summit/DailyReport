@@ -237,13 +237,13 @@ cat(c("\\begin{table}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
 \caption{日新增确诊病例国家趋势图\\（中国及其他前五位国家）}
-\includegraphics[]{./input/covid2.pdf}
+\includegraphics[]{./input/covid2.png}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
-\caption{日新增死亡病例国家趋势图\\（前五位国家） }
-\includegraphics[]{./input/covid3.pdf}
+\caption{日新增死亡病例国家趋势图\\（中国及其他前五位国家） }
+\includegraphics[]{./input/covid3.png}
 \label{}
 \end{minipage}
 \end{figure}
@@ -284,13 +284,13 @@ cat(c("\\begin{table}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
 \caption{美国日新增确诊前五位州趋势图}
-\includegraphics[]{./input/covid5.pdf}
+\includegraphics[]{./input/covid5.png}
 \label{}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
 \caption{美国日新增死亡前五位州趋势图}
-\includegraphics[]{./input/covid6.pdf}
+\includegraphics[]{./input/covid6.png}
 \label{}
 \end{minipage}
 \end{figure}
@@ -345,10 +345,10 @@ reference = example$content[3]
 \small
 \begin{tabular}{ll}
 
-主编：马晶  &  副主编:薛成海\,  仁晖  \\
+主编：马晶  &  副主编:仁晖\,  薛成海  \\
 执行责任编辑:史珂玮 \, 王冠  & 新闻组:张宁\, 张心其 \\
 数据分析:杜兆慧  &  案例分析: 史珂玮\\
-\multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\,张祺珉\,周梓淇}
+\multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\, 张祺珉\, 周梓淇}
 
 \end{tabular}
 

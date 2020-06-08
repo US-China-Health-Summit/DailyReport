@@ -163,6 +163,23 @@ translate_state_colname = function(ut_data, x) {
     return(ut_data)
   }
 }
+
+
+tidy_uk = function(country_order) {
+  # tidy United Kingdom and UK
+  # wwqi4realGitHub
+  country_order[which(country_order == "United Kingdom")] = "UK"
+  
+  return(country_order)
+}
+
+tidy_uk_df = function(ut_df) {
+  ### tidy the dataframe that contains United Kingdom
+  ### maintain the original order
+  t_df = ut_df %>% 
+    mutate(Country = fct_recode(Country, "United Kindom" = "UK"))
+  return(t_df)
+}
 ```
 
 ```{r no longer in use}
@@ -212,8 +229,11 @@ update0405: change the name in table 1 code, ignore note0403
 # 0405: no NA now, all check
   # tidy the form to template
 # 0415: pass for UK abbreviation
+# 0421 uppdate: add a parentheses to Hubei; levels unchanged
 tt1 = crude_incidence_rate_top %>% 
   translate_country() %>% 
+  mutate(Country_bi = case_when(Country_bi == "湖北 Hubei" ~ "(湖北 Hubei)", 
+                                TRUE ~ as.character(Country_bi))) %>% 
   translate_country_colname(1)
 
 ttt1 = crude_incidence_rate %>% 

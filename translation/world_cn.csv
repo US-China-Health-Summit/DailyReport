@@ -4,7 +4,7 @@ id,name,alpha2,alpha3
 8,阿尔巴尼亚,al,alb
 12,阿尔及利亚,dz,dza
 16,美属萨摩亚,as,asm
-20,安道尔,ad,and
+20,安道尔**,ad,and
 24,安哥拉,ao,ago
 660,安圭拉,ai,aia
 10,南极洲,aq,ata
@@ -97,7 +97,7 @@ id,name,alpha2,alpha3
 328,圭亚那,gy,guy
 332,海地,ht,hti
 334,赫德岛和麦克唐纳群岛,hm,hmd
-336,梵蒂冈,va,vat
+336,梵蒂冈**,va,vat
 340,洪都拉斯,hn,hnd
 344,中国香港,hk,hkg
 348,匈牙利,hu,hun
@@ -192,9 +192,9 @@ id,name,alpha2,alpha3
 666,圣皮埃尔和密克隆,pm,spm
 670,圣文森特和格林纳丁斯,vc,vct
 882,萨摩亚,ws,wsm
-674,圣马力诺,sm,smr
+674,圣马力诺**,sm,smr
 678,圣多美和普林西比,st,stp
-682,沙特阿拉伯,sa,sau
+682,沙特,sa,sau
 686,塞内加尔,sn,sen
 688,塞尔维亚,rs,srb
 690,塞舌尔,sc,syc
