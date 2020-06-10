@@ -163,6 +163,8 @@ data_us_states_detailed$state = state_population$State_Full[match(data_us_states
 data_us_states_detailed$hospitalized_pct = data_us_states_detailed$hospitalized/data_us_states_detailed$positive
 
 # write to table
+report_date = max(colnames(case_confirmed_wide)[-1])
+
 # data_us_states_detailed
 report_date_us = as.character(max(data_us_states_detailed$date))
 write_excel_csv(data_us_states_detailed, paste(report_date_us,"table_US_details_data_all.csv"))
@@ -209,18 +211,18 @@ raw_governors <- read_excel("governors.xlsx")
 governors <- select(raw_governors, State,Party)
 
 us_party = merge(data_us_states, governors, by.x = "state", by.y = "State")
-us_party$test_rate = us_party$totalTestResults/us_party$Population
+us_party$test_rate = round(us_party$totalTestResults/us_party$Population*100000,0)
 
 #plot 1
 temp = us_party %>% 
-  filter(Date >="2020-03-15") %>% 
+  filter(Date >="2020-03-01") %>% 
   select(state,Date,Party,test_rate) %>% 
   group_by(Date,Party) %>% 
   summarise(test_rate = mean(test_rate))
 
 temp_sum = temp %>% 
   group_by(Date) %>% 
-  summarise(Party = 'Both',test_rate =  mean(test_rate)) 
+  summarise(Party = 'Overall',test_rate =  mean(test_rate)) 
 
 temp_final <- bind_rows(temp,temp_sum)
 
@@ -236,10 +238,10 @@ plot1 = ggplot(temp_final, aes(x=Date, y=test_rate, group=Party, colour = Party,
   theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
   theme(legend.position = c(0.2, 0.8)) + 
   theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
-  scale_x_date(breaks = '5 day',date_labels = "%m-%d") +
+  scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
   scale_color_manual(values=color_list[1:3]) +
   xlab("") +
-  ylab("test rate")
+  ylab("Test Rate")
 
 ggsave(filename=paste("plot1", ".png"), plot = plot1, width = 10, height = 8 )
 
@@ -254,7 +256,7 @@ temp = us_party %>%
 
 temp_sum = temp %>% 
   group_by(Date) %>% 
-  summarise(Party = 'Both',Confirmed =  sum(Confirmed)) 
+  summarise(Party = 'Overall',Confirmed =  sum(Confirmed)) 
 
 temp_final <- bind_rows(temp,temp_sum)
 
@@ -272,7 +274,7 @@ plot2 = ggplot(temp_final, aes(x=Date, y=Confirmed, group=Party, colour = Party,
   theme(legend.position = c(0.2, 0.8)) + 
   theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-  scale_x_date(breaks = '5 day',date_labels = "%m-%d") +
+  scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
   scale_color_manual(values=color_list[1:3]) +
   xlab("") +
   ylab("Confirmed Cases")
@@ -288,7 +290,7 @@ temp = us_party %>%
 
 temp_sum = temp %>% 
   group_by(Date) %>% 
-  summarise(Party = 'Both',Confirmed_incremental =  sum(Confirmed_incremental)) 
+  summarise(Party = 'Overall',Confirmed_incremental =  sum(Confirmed_incremental)) 
 
 temp_final <- bind_rows(temp,temp_sum)
 
@@ -303,10 +305,10 @@ plot3 = ggplot(temp_final, aes(x=Date, y=Confirmed_incremental, group=Party, col
   theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
   theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-  theme(legend.position = c(0.2, 0.8)) + 
-  theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
+  theme(legend.position = c(0.15, 0.8)) + 
+  theme(legend.title = element_text(size=20,face="bold.italic"), legend.text = element_text(size = 20,face="italic")) +
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-  scale_x_date(breaks = '5 day',date_labels = "%m-%d") +
+  scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
   scale_color_manual(values=color_list[1:3]) +
   xlab("") +
   ylab("Incremental Cases")
@@ -358,11 +360,11 @@ temp = us_party %>%
 
 temp_sum = temp %>% 
   group_by(Date) %>% 
-  summarise(Party = 'Both',Deaths_incremental =  sum(Deaths_incremental)) 
+  summarise(Party = 'Overall',Deaths_incremental =  sum(Deaths_incremental)) 
 
 temp_final <- bind_rows(temp,temp_sum)
 
-y_max=(round(max(temp_final$Deaths_incremental)/500)+1)*500
+y_max=(round(max(temp_final$Deaths_incremental,na.rm=TRUE)/500,0)+1)*500
 y_interval = adjust_y_interval(y_max)
 plot5 = ggplot(temp_final, aes(x=Date, y=Deaths_incremental, group=Party, colour = Party,  shape = Party)) + 
   geom_point(size=2) + 
@@ -376,7 +378,7 @@ plot5 = ggplot(temp_final, aes(x=Date, y=Deaths_incremental, group=Party, colour
   theme(legend.position = c(0.2, 0.8)) + 
   theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-  scale_x_date(breaks = '5 day',date_labels = "%m-%d") +
+  scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
   scale_color_manual(values=color_list[1:3]) +
   xlab("") +
   ylab("Incremental Cases")
@@ -385,7 +387,7 @@ ggsave(filename=paste("plot5", ".png"), plot = plot5, width = 10, height = 8 )
 
 #plot 6
 temp = us_party %>% 
-  filter(Date >="2020-03-18") %>% 
+  filter(Date >="2020-03-01") %>% 
   mutate(fatality_rate = Deaths/Confirmed) %>% 
   select(state,Date,Party,fatality_rate) %>% 
   group_by(Date,Party) %>% 
@@ -393,7 +395,7 @@ temp = us_party %>%
 
 temp_sum = temp %>% 
   group_by(Date) %>% 
-  summarise(Party = 'Both',fatality_rate =  mean(fatality_rate)) 
+  summarise(Party = 'Overall',fatality_rate =  mean(fatality_rate)) 
 
 temp_final <- bind_rows(temp,temp_sum)
 
@@ -408,7 +410,7 @@ plot6 = ggplot(temp_final, aes(x=Date, y=fatality_rate, group=Party, colour = Pa
   theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
   theme(legend.position = c(0.2, 0.8)) + 
   theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
-  scale_x_date(breaks = '5 day',date_labels = "%m-%d") +
+  scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
   scale_color_manual(values=color_list[1:3]) +
   xlab("") +
   ylab("Fatality Rate")
@@ -423,7 +425,7 @@ ggsave(filename=paste("plot6", ".png"), plot = plot6, width = 10, height = 8 )
 # or "Republican" or "both"
 p = "both"
 # later change p_date to 2020-05-22
-p_date = "2020-05-20"
+p_date = "2020-06-10"
 
 temp = us_party
 if (p == "Democratic" | p == "Republican"){
@@ -491,7 +493,7 @@ if (p == "Democratic" | p == "Republican"){
 # for seperate party
 if (p == "Democratic" | p == "Republican"){
   data_to_plot = us_party[us_party$state %in% filter_test_rate, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-15" & data_to_plot$Date <=p_date,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-01" & data_to_plot$Date <=p_date,]
   
   # reorder factor levels by country filter order
   temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
@@ -512,17 +514,17 @@ if (p == "Democratic" | p == "Republican"){
     theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
-    ylab("test rate")
+    ylab("Test Rate")
   
   ggsave(filename=paste("p1",p, ".png"), plot = p1, width = 10, height = 8 )
   
   
   # p2
   data_to_plot = us_party[us_party$state %in% filter_confirmed, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-15" & data_to_plot$Date <=p_date,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-01" & data_to_plot$Date <=p_date,]
   
   # reorder factor levels by country filter order
   temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
@@ -544,7 +546,7 @@ if (p == "Democratic" | p == "Republican"){
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
     ylab("Confirmed Cases")
@@ -554,7 +556,7 @@ if (p == "Democratic" | p == "Republican"){
   
   # p3
   data_to_plot = us_party[us_party$state %in% filter_confirmed_incre, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-15" & data_to_plot$Date <=p_date,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-01" & data_to_plot$Date <=p_date,]
   
   # reorder factor levels by country filter order
   temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
@@ -576,7 +578,7 @@ if (p == "Democratic" | p == "Republican"){
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
     ylab("Confirmed Cases")
@@ -585,7 +587,7 @@ if (p == "Democratic" | p == "Republican"){
   
   # p4
   data_to_plot = us_party[us_party$state %in% filter_Death, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-15" & data_to_plot$Date <=p_date,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-01" & data_to_plot$Date <=p_date,]
   
   # reorder factor levels by country filter order
   temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
@@ -607,7 +609,7 @@ if (p == "Democratic" | p == "Republican"){
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
     ylab("Deaths Cases")
@@ -617,7 +619,7 @@ if (p == "Democratic" | p == "Republican"){
   
   # p5
   data_to_plot = us_party[us_party$state %in% filter_Death_incre, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-15" & data_to_plot$Date <=p_date,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-01" & data_to_plot$Date <=p_date,]
   
   # reorder factor levels by country filter order
   temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
@@ -639,7 +641,7 @@ if (p == "Democratic" | p == "Republican"){
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
     ylab("Deaths Cases")
@@ -648,7 +650,7 @@ if (p == "Democratic" | p == "Republican"){
   
   # p6
   data_to_plot = us_party[us_party$state %in% filter_mortality, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-15" & data_to_plot$Date <=p_date,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-01" & data_to_plot$Date <=p_date,]
   data_to_plot$mortality = data_to_plot$Deaths/data_to_plot$Confirmed
   
   # reorder factor levels by country filter order
@@ -669,17 +671,17 @@ if (p == "Democratic" | p == "Republican"){
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
-    ylab("mortality rate")
+    ylab("Fatality rate")
   
   ggsave(filename=paste("p6",p, ".png"), plot = p6, width = 10, height = 8 )
   
 }else{
   # for total top 10 states
   data_to_plot = us_party[us_party$state %in% filter_test_rate, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-15" & data_to_plot$Date <=p_date,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= "2020-03-01" & data_to_plot$Date <=p_date,]
   
   # reorder factor levels by country filter order
   temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
@@ -700,10 +702,10 @@ if (p == "Democratic" | p == "Republican"){
     theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
-    ylab("test rate")
+    ylab("Test Rate")
   
   ggsave(filename=paste("p1", ".png"), plot = p1, width = 10, height = 8 )
  
@@ -795,7 +797,7 @@ if (p == "Democratic" | p == "Republican"){
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
     ylab("Deaths Cases")
@@ -827,7 +829,7 @@ if (p == "Democratic" | p == "Republican"){
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
     ylab("Deaths Cases")
@@ -857,10 +859,10 @@ if (p == "Democratic" | p == "Republican"){
     theme(legend.position ="right") + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 12,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-    scale_x_date(breaks = '3 day',date_labels = "%m-%d") +
+    scale_x_date(breaks = '10 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[1:10]) +
     xlab("") +
-    ylab("mortality rate")
+    ylab("Fatality rate")
   
   ggsave(filename=paste("p6", ".png"), plot = p6, width = 10, height = 8 )
 }
