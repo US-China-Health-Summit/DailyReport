@@ -217,7 +217,6 @@ cat(c("\\begin{table}[H]
     \\captionsetup{justification=centering}",
       t2,
     "\\end{minipage}
-    
     \\begin{tablenotes}
         \\fontsize{15}{15}
         \\selectfont
@@ -297,12 +296,7 @@ cat(c("\\begin{table}[H]
       \\centering
     \\captionsetup{justification=centering}",
         t5,
-    "\\\\begin{tablenotes}
-    \\fontsize{12}{12}
-      \\selectfont
-    \\item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万；**截至数据下载时间，纽约州尚未更新当日新增检测数量
-    \\end{tablenotes}
-    \\end{minipage}%
+    "\\end{minipage}%
     \\begin{minipage}{.6\\linewidth}
      \\caption{美国粗发病率前十位州}
      \\vspace{-0.5\\baselineskip}
@@ -310,6 +304,11 @@ cat(c("\\begin{table}[H]
     \\captionsetup{justification=centering}",
         t6,
     "\\end{minipage} 
+    \\begin{tablenotes}
+        \\fontsize{15}{15}
+        \\selectfont
+        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万；**国家人口不足10万人，圣马力诺33,931人，梵蒂冈801人，安道尔77,265人。  %此处加入注释信息
+      \\end{tablenotes}
 \\end{table}"
 ))
 ```
