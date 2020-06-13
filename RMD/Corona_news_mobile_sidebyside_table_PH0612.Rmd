@@ -387,7 +387,7 @@ reference=example$content[4]
 
 \vspace{-3mm}
 
-`r example$content[2]`
+`r example$content[3]`
 
 <!-- Insert image for module 3 HERE --> 
 
