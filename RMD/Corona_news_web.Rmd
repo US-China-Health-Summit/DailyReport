@@ -359,42 +359,6 @@ cat(c("\\begin{table}[H]
 
 `r insight$content[4]`
 
-\vspace{5mm}
-
-\resheading{\Huge 热点话题}
-
-```{r, echo=FALSE}
-example = read_excel("./input/module3.xlsx") %>%
-  janitor::clean_names() %>% 
-  select(content)
-title = example$content[1]
-reference=example$content[4]
-```
-
-# \textcolor{glaucous}{\Huge `r title`}
-
-`r example$content[2]`
-
-\begin{figure}[H]
-\centering
-\begin{minipage}[b]{0.48\linewidth}
-\caption{武汉六家医院每日停车场数量(2018.1-2020.4)}
-\includegraphics[]{./input/covid7.png}
-\label{}
-\end{minipage}
-\quad
-\begin{minipage}[b]{0.48\linewidth}
-\caption{百度“咳嗽”(蓝)“腹泻”(红)搜索量(2018.1-2020.5)}
-\includegraphics[]{./input/covid8.png}
-\label{}
-\end{minipage}
-\end{figure}
-
-\vspace{-3mm}
-
-`r example$content[2]`
-
-<!-- Insert image for module 3 HERE --> 
 
 \vspace{5mm}
 
