@@ -386,7 +386,7 @@ reference = example$content[3]
 \selectfont
 \begin{tabular}{ll}
 
-主编：马晶  &  副主编:仁晖\,  薛成海  \\
+主编：马晶  &  副主编:仁晖 \\
 责任编辑:王冠  \\
 新闻组:张宁  &  数据分析:曹洁 \\
 热点话题：微信排版:韩佩瑾 \\
