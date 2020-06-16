@@ -68,7 +68,7 @@ header-includes:
 
 \begin{center}
 \fontsize{22}{22}
-{\textcolor{glaucous}{\textbf{第34期 \space 5月7日}}}
+{\textcolor{glaucous}{\textbf{第62期 \space 6月16日}}}
 \end{center}
 
 
@@ -116,10 +116,6 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 `r global_news$content[4]`
 
-**\textcolor{glaucous}{`r global_news$pub[5]`}** : **`r global_news$title[5]`**
-
-`r global_news$content[5]`
-
 
 \vspace{-5mm}
 
@@ -142,7 +138,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 \resheading{\Huge 疫情观察}
 
 \begin{Large}
-{数据源：约翰霍普金斯大学，The COVID Tracking Project \\ 数据截止至：北京时间5月7日 上午8:00}
+{数据源：约翰霍普金斯大学，The COVID Tracking Project \\ 数据截止至：北京时间6月16日 上午7:00}
 \end{Large}
 
 \vspace{-7mm}
@@ -386,10 +382,10 @@ reference = example$content[3]
 \selectfont
 \begin{tabular}{ll}
 
-主编：马晶  &  副主编:仁晖\,  薛成海  \\
-责任编辑:王冠  \\
-新闻组:张宁  &  数据分析:曹洁 \\
-热点话题：微信排版:韩佩瑾 \\
+主编：马晶  &  副主编:仁晖\,  史珂玮  \\
+责任编辑：韩佩瑾  \\
+新闻组:胡睿绮  &  数据分析:宋琰 \\
+热点话题：吴舒兰 & 微信排版:韩佩瑾 \\
 \multicolumn{2}{l}{可视化组:张立达\, 孙昊\, 唐星鸿\, 齐维为\, 刘逸洋\, 张祺珉\, 周梓淇}
 
 \end{tabular}
