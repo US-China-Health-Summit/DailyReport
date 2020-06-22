@@ -15,6 +15,7 @@
 # Table 2: Confirmed cases Incrementally daily sort by the last day worldwide
 # Table 3: Total confirmed cases sort by the last day US
 # Table 4: Confirmed cases Incrementally daily sort by the last day US
+#
 
 ### Required input templates: (Please save these in the same folder with csse_covid_19_time_series input)
 # 'input_country_list.csv' : 
@@ -119,22 +120,19 @@ p3_ylab = input_plot_titles$Input[input_plot_titles$Item == "p3_ylab"]
 p4_title = input_plot_titles$Input[input_plot_titles$Item == "p4_title"]
 p4_xlab = input_plot_titles$Input[input_plot_titles$Item == "p4_xlab"]
 p4_ylab = input_plot_titles$Input[input_plot_titles$Item == "p4_ylab"]
-p5_title = input_plot_titles$Input[input_plot_titles$Item == "p5_title"]
-p5_xlab = input_plot_titles$Input[input_plot_titles$Item == "p5_xlab"]
-p5_ylab = input_plot_titles$Input[input_plot_titles$Item == "p5_ylab"]
-p6_title = input_plot_titles$Input[input_plot_titles$Item == "p6_title"]
-p6_xlab = input_plot_titles$Input[input_plot_titles$Item == "p6_xlab"]
-p6_ylab = input_plot_titles$Input[input_plot_titles$Item == "p6_ylab"]
-p7_1_title = input_plot_titles$Input[input_plot_titles$Item == "p7_1_title"]
-p7_2_title = input_plot_titles$Input[input_plot_titles$Item == "p7_2_title"]
-p7_xlab = input_plot_titles$Input[input_plot_titles$Item == "p7_xlab"]
-p7_ylab = input_plot_titles$Input[input_plot_titles$Item == "p7_ylab"]
-p8_1_title = input_plot_titles$Input[input_plot_titles$Item == "p8_1_title"]
-p8_xlab = input_plot_titles$Input[input_plot_titles$Item == "p8_xlab"]
-p8_ylab = input_plot_titles$Input[input_plot_titles$Item == "p8_ylab"]
-p9_title = input_plot_titles$Input[input_plot_titles$Item == "p9_title"]
-p9_xlab = input_plot_titles$Input[input_plot_titles$Item == "p9_xlab"]
-p9_ylab = input_plot_titles$Input[input_plot_titles$Item == "p9_ylab"]
+p5_title = input_plot_titles$Input[input_plot_titles$Item == "p6_title"]
+p5_xlab = input_plot_titles$Input[input_plot_titles$Item == "p6_xlab"]
+p5_ylab = input_plot_titles$Input[input_plot_titles$Item == "p6_ylab"]
+p6_1_title = input_plot_titles$Input[input_plot_titles$Item == "p7_1_title"]
+p6_2_title = input_plot_titles$Input[input_plot_titles$Item == "p7_2_title"]
+p6_xlab = input_plot_titles$Input[input_plot_titles$Item == "p7_xlab"]
+p6_ylab = input_plot_titles$Input[input_plot_titles$Item == "p7_ylab"]
+p7_1_title = input_plot_titles$Input[input_plot_titles$Item == "p8_1_title"]
+p7_xlab = input_plot_titles$Input[input_plot_titles$Item == "p8_xlab"]
+p7_ylab = input_plot_titles$Input[input_plot_titles$Item == "p8_ylab"]
+p8_title = input_plot_titles$Input[input_plot_titles$Item == "p9_title"]
+p8_xlab = input_plot_titles$Input[input_plot_titles$Item == "p9_xlab"]
+p8_ylab = input_plot_titles$Input[input_plot_titles$Item == "p9_ylab"]
 p10_title = input_plot_titles$Input[input_plot_titles$Item == "p10_title"]
 p10_xlab = input_plot_titles$Input[input_plot_titles$Item == "p10_xlab"]
 p10_ylab = input_plot_titles$Input[input_plot_titles$Item == "p10_ylab"]
@@ -318,18 +316,20 @@ translate_state_colname = function(ut_data, x) {
     
   } else if (x == 5) {
     t_data = ut_data %>% 
-      select(ranking, state_bi, Confirmed_incremental) %>%
+      select(ranking, state_bi, Confirmed_incremental,Confirmed) %>%
       rename("国家/州名" = state_bi, 
-             "当日新增" = Confirmed_incremental)
+             "当日新增" = Confirmed_incremental,
+             "累计确诊" = Confirmed
+             )
     
     return(t_data)
   } else if (x == 6) {
     
     t_data = ut_data %>% 
-      select(ranking, state_bi, Deaths, Deaths_incremental, Fatality_rate) %>%
+      select(ranking, state_bi,Deaths_incremental, Deaths, Fatality_rate) %>%
       rename("国家/州名" = state_bi, 
-             "累计死亡病例" = Deaths,
-             "较昨日新增" = Deaths_incremental, 
+             "累计死亡" = Deaths,
+             "当日新增" = Deaths_incremental, 
              "病死率%" = Fatality_rate)
     
     return(t_data)
@@ -956,7 +956,7 @@ p3_1 = ggplot(data_to_plot_confirmed_increment,
 # ggsave(filename=paste(report_date,"p3_1",p3_1_title, ".pdf"), plot = p3_1, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p3_1",p3_1_title, ".png"), plot = p3_1, width = 10, height = 8 )
 
-##### plot 7-1 crude incidence rate VS Hubei #####
+##### plot 6-1 crude incidence rate VS Hubei #####
 # filter by country and cumulative confirmed
 
 Hubei_data_plot = Hubei_data$data_all
@@ -977,7 +977,7 @@ data_to_plot_IR$Region <- factor(data_to_plot_IR$Region, levels = region_order)
 y_max = (round(max(data_to_plot_IR$Crude_Incidence_Rate)/10) + 1)*10
 y_interval = adjust_y_interval(y_max)
 
-p7_1 = ggplot(data_to_plot_IR, 
+p6_1 = ggplot(data_to_plot_IR, 
               aes(x=Date, y=Crude_Incidence_Rate, group=Region, colour = Region,  shape = Region)) + 
   # geom_point(size=2) + 
   geom_line(size=1) +
@@ -997,9 +997,9 @@ p7_1 = ggplot(data_to_plot_IR,
   ylab(p7_ylab)
 
 # ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".pdf"), plot = p7_1, width = 10, height = 8 )
-ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".png"), plot = p7_1, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".png"), plot = p6_1, width = 10, height = 8 )
 
-##### plot 8-1. cumulative death cases sort by countries cumulative (including China) #####
+##### plot 7-1. cumulative death cases sort by countries cumulative (including China) #####
 filter_total_with_china = c(china_label, filter_death)
 
 # filter by country and cumulative confirmed
@@ -1012,7 +1012,7 @@ data_to_plot_death_total$Country <- factor(data_to_plot_death_total$Country, lev
 
 y_max = (round(max(data_to_plot_death_total$Deaths)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
-p8_1 = ggplot(data_to_plot_death_total, aes(x = Date, y = Deaths, group=Country, colour = Country,  shape = Country)) + 
+p7_1 = ggplot(data_to_plot_death_total, aes(x = Date, y = Deaths, group=Country, colour = Country,  shape = Country)) + 
   # geom_point(size = 2) + 
   geom_line(size = 1) +
   theme_bw() + 
@@ -1027,10 +1027,10 @@ p8_1 = ggplot(data_to_plot_death_total, aes(x = Date, y = Deaths, group=Country,
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   xlab("") +
-  ylab(p8_ylab)
+  ylab(p7_ylab)
 
-# ggsave(filename=paste(report_date,"p8-1",p8_1_title, ".pdf"), plot = p8_1, width = 10, height = 8 )
-ggsave(filename=paste(report_date,"p8-1",p8_1_title, ".png"), plot = p8_1, width = 10, height = 8 )
+# ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".pdf"), plot = p7_1, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".png"), plot = p7_1, width = 10, height = 8 )
 
 ##### plot 10-1. incremental cases for top N deaths ####
 
@@ -1395,30 +1395,7 @@ data_us_latest_confirm = rbind(US_total[, colnames(data_us_latest_confirm)], dat
 ranking = c("", 1:(nrow(data_us_latest_confirm)-1))
 data_us_latest_confirm = cbind(ranking, data_us_latest_confirm)
 data_us_latest_confirm_top = data_us_latest_confirm[1:11, ]
-
-write_excel_csv(data_us_latest_confirm, paste(report_date,"table5_confirmed_cases_and_incidence_rate_US_all.csv"))
-write_excel_csv(data_us_latest_confirm_top, paste(report_date,"table5_en.csv"))
-write_excel_csv(data_us_latest_confirm_top %>% 
-                  translate_state() %>% 
-                  translate_state_colname(4) %>% 
-                  select(ranking, "国家/州名","累计确诊","粗发病率"), paste(report_date,"table5.csv"))
-
-##### table 6 #####
-data_us_crude_incidence_rate = data_us_crude_incidence_rate[order(data_us_crude_incidence_rate$Crude_Incidence_Rate, decreasing = T),]
-colnames(US_total)[1] = "state"
-data_us_crude_incidence_rate = rbind(US_total[, colnames(data_us_crude_incidence_rate)], data_us_crude_incidence_rate)
-ranking = c("", 1:(nrow(data_us_crude_incidence_rate)-1))
-data_us_crude_incidence_rate$ranking = ranking
-data_us_crude_incidence_rate_top = data_us_crude_incidence_rate[1:11, ]
-
-write_excel_csv(data_us_crude_incidence_rate, paste(report_date,"table6_confirmed_cases_and_incidence_rate_US_all.csv"))
-write_excel_csv(data_us_crude_incidence_rate_top, paste(report_date,"table6_en.csv"))
-write_excel_csv(data_us_crude_incidence_rate_top %>% 
-                  translate_state() %>% 
-                  translate_state_colname(4) %>% 
-                  select(ranking, "国家/州名","粗发病率","累计确诊"), paste(report_date,"table6.csv"))
-
-#### table 7 ####
+data_us_latest_confirm = data_us_latest_confirm%>%dplyr::select(state,"Confirmed")
 data_us_latest_incremental = data_us_latest[, c("state", "Confirmed_incremental")]
 data_us_latest_incremental = data_us_latest_incremental[order(data_us_latest_incremental$Confirmed_incremental, decreasing = T),]
 # data_us_latest_incremental$Percentage = round(data_us_latest_incremental$Confirmed_incremental/US_total$Confirmed_incremental*100,0)
@@ -1426,34 +1403,36 @@ data_us_latest_incremental = data_us_latest_incremental[order(data_us_latest_inc
 data_us_latest_incremental = rbind(US_total[, colnames(data_us_latest_incremental)], data_us_latest_incremental)
 ranking = c("", 1:(nrow(data_us_latest_incremental)-1))
 data_us_latest_incremental = cbind(ranking, data_us_latest_incremental)
-data_us_latest_incremental_top = data_us_latest_incremental[1:11, ]
-write_excel_csv(data_us_latest_incremental, paste(report_date,"table7_confirmed_incremental_US_all.csv"))
-write_excel_csv(data_us_latest_incremental_top, paste(report_date,"table7_en.csv"))
+temp = data_us_latest_incremental[1:11, ]
+data_us_latest_incremental_top = left_join(temp,data_us_latest_confirm,"state")%>%unique()
+data_us_latest_incremental = left_join(data_us_latest_incremental,data_us_latest_confirm,"state")%>%unique()
+write_excel_csv(data_us_latest_incremental, paste(report_date,"table5_confirmed_incremental_US_all.csv"))
+write_excel_csv(data_us_latest_incremental_top, paste(report_date,"table5_en.csv"))
 write_excel_csv(data_us_latest_incremental_top %>% 
                   translate_state() %>% 
-                  translate_state_colname(5), paste(report_date,"table7.csv"))
+                  translate_state_colname(5), paste(report_date,"table5.csv"))
 
-##### table 8 ####
+##### table 6 ####
 data_us_latest_fatality = data_us_latest[, c("state", "Deaths", "Deaths_incremental", "Fatality_rate")]
-data_us_latest_fatality = data_us_latest_fatality[order(data_us_latest_fatality$Deaths, decreasing = T),]
+data_us_latest_fatality = data_us_latest_fatality[order(data_us_latest_fatality$Deaths_incremental, decreasing = T),]
 data_us_latest_fatality = rbind(US_total[, colnames(data_us_latest_fatality)], data_us_latest_fatality)
 ranking = c("", 1:(nrow(data_us_latest_fatality)-1))
 data_us_latest_fatality = cbind(ranking, data_us_latest_fatality)
 data_us_latest_fatality_top = data_us_latest_fatality[1:11, ]
-write_excel_csv(data_us_latest_fatality, paste(report_date,"table8_fatality_US_all.csv"))
-write_excel_csv(data_us_latest_fatality_top, paste(report_date,"table8_en.csv"))
+write_excel_csv(data_us_latest_fatality, paste(report_date,"table6_fatality_US_all.csv"))
+write_excel_csv(data_us_latest_fatality_top, paste(report_date,"table6_en.csv"))
 write_excel_csv(data_us_latest_fatality_top %>% 
                   translate_state() %>% 
-                  translate_state_colname(6), paste(report_date,"table8.csv"))
+                  translate_state_colname(6), paste(report_date,"table6.csv"))
 
-##### table 9& 11 ####
+##### table 7& 9 ####
 if (weekly_summary){
   temp = data_us_states
   temp_end = temp[temp$Date == end_date_wr,]
   temp_start = temp[temp$Date == as.Date(start_date_wr)-1,]
   temp_diff = temp[temp$Date == max(data_us_states$Date),] 
   
-  #Table 9
+  #Table 7
   temp_diff$Confirmed_start = temp_start$Confirmed
   temp_diff$Confirmed_end = temp_end$Confirmed
   temp_diff$Confirmed_diff = temp_diff$Confirmed_end - temp_diff$Confirmed_start
@@ -1468,7 +1447,7 @@ if (weekly_summary){
   colnames(data_confirmed_weekly_incremental)[3] <- paste("Confirmed_cases_on",end_date_wr)
   write_excel_csv(data_us_confirmed_weekly_incremental, paste(report_date, "table_US_Confirmed_Weekly_Incremental_Rate.csv"))
   
-  ##### Table 11 #####
+  ##### Table 9 #####
   temp_diff$Deaths_start = temp_start$Deaths
   temp_diff$Deaths_end = temp_end$Deaths
   temp_diff$Deaths_diff = temp_diff$Deaths_end - temp_diff$Deaths_start
@@ -1561,7 +1540,7 @@ if (weekly_summary){
 # filter by date
 data_us_states = filter_by_date(data_us_states, "Date", start_date_US, end_date_US)
 
-##### plot 5: total confirmed cases by US States sort by Cumulative  ####
+##### plot 4: total confirmed cases by US States sort by Cumulative  ####
 data_to_plot = data_us_states[data_us_states$state %in% filter_total, ]
 
 # reorder factor levels by country filter order
@@ -1572,7 +1551,7 @@ data_to_plot$state <- factor(data_to_plot$state, levels = state_order)
 
 y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
-p5 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
+p4 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) +
   geom_line(size=1) +
   theme_bw() + 
@@ -1587,12 +1566,12 @@ p5 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,
   scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   xlab("") +
-  ylab(p5_ylab)
+  ylab(p4_ylab)
                         
-# ggsave(filename=paste(report_date,"p5",p5_title, ".pdf"), plot = p5, width = 10, height = 8 )
-ggsave(filename=paste(report_date,"p5",p5_title, ".png"), plot = p5, width = 10, height = 8 )
+# ggsave(filename=paste(report_date,"p4",p4_title, ".pdf"), plot = p4, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p4",p4_title, ".png"), plot = p4, width = 10, height = 8 )
 
-#### plot 6: new confirmed cases daily by US States sort by incremental ####
+#### plot 5: new confirmed cases daily by US States sort by incremental ####
 data_to_plot_incremental = data_us_states[data_us_states$state %in% filter_incremental , ]
 
 # reorder factor levels by country filter order
@@ -1629,7 +1608,7 @@ p6 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_incremental,
 # ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p6",p6_title, ".png"), plot = p6, width = 10, height = 8 )
 
-###### plot9: total death cases by US States sorted by cumulative ####
+###### plot 8: total death cases by US States sorted by cumulative ####
 data_to_plot_death = data_us_states[data_us_states$state %in% filter_death,]
 temp = data_to_plot_death[data_to_plot_death$Date == max(data_to_plot_death$Date),]
 temp = temp[order(temp$Deaths,decreasing = T),]
@@ -1638,7 +1617,7 @@ data_to_plot_death$state <- factor(data_to_plot_death$state, levels = state_orde
 
 y_max=(round(max(data_to_plot_death$Deaths)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
-p9 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = state,  shape = state)) + 
+p8 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
@@ -1653,10 +1632,10 @@ p9 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = sta
   scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   xlab("") +
-  ylab(p9_ylab)
+  ylab(p8_ylab)
 
-# ggsave(filename=paste(report_date,"p9",p9_title, ".pdf"), plot = p9, width = 10, height = 8 )
-ggsave(filename=paste(report_date,"p9",p9_title, ".png"), plot = p9, width = 10, height = 8 )
+# ggsave(filename=paste(report_date,"p8",p8_title, ".pdf"), plot = p8, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p8",p8_title, ".png"), plot = p8, width = 10, height = 8 )
 
 ##### plot 11: new death cases daily by US States sort by incremental ####
 data_to_plot_death_incremental = data_us_states[data_us_states$state %in% filter_death_incremental , ]

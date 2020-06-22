@@ -184,12 +184,12 @@ t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>%
 t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(latex_options = "striped", font_size = 12)
-t7 = read_csv('input/table7.csv') %>%  rename(' ' = ranking) %>% 
-  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 12)
-t8 = read_csv('input/table8.csv') %>%  rename(' ' = ranking) %>% 
-  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(latex_options = "striped", font_size = 12)
+#t7 = read_csv('input/table7.csv') %>%  rename(' ' = ranking) %>% 
+#  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+#  kable_styling(latex_options = "striped", font_size = 12)
+#t8 = read_csv('input/table8.csv') %>%  rename(' ' = ranking) %>% 
+#  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+# kable_styling(latex_options = "striped", font_size = 12)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
@@ -284,29 +284,7 @@ cat(c("\\begin{table}[H]
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-cat(c("\\begin{table}[H]
-      \\centering
-    \\begin{minipage}{.4\\linewidth}
-    \\caption{美国累计确诊前十位州}
-    \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
-        t5,
-    "\\end{minipage}%
-    \\begin{minipage}{.6\\linewidth}
-     \\caption{美国粗发病率前十位州}
-     \\vspace{-0.5\\baselineskip}
-      \\centering
-    \\captionsetup{justification=centering}",
-        t6,
-    "\\end{minipage} 
-    \\begin{tablenotes}
-        \\fontsize{15}{15}
-        \\selectfont
-        \\item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
-      \\end{tablenotes}
-\\end{table}"
-))
+
 ```
 
 \begin{figure}[H]
@@ -333,14 +311,14 @@ cat(c("\\begin{table}[H]
     \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t7,
+        t5,
     "\\end{minipage}%
-    \\begin{minipage}{.6\\linewidth}
+    \\begin{minipage}{.7\\linewidth}
      \\caption{美国累计死亡前十位州}
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
-        t8,
+        t6,
     "\\end{minipage} 
 \\end{table}"
 ))

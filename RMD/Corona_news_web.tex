@@ -375,44 +375,6 @@ NA
 
 \(\quad\)纽约州、新泽西州和马萨诸塞州为美国疫情最严重的三个州。纽约州检测率超过4300/10万人，而阳性率下降至35\%，提示疫情逐步得到控制。此外，特拉华州，科罗拉多州与华盛顿特区阳性率均为22\%左右，超过伊利诺伊州，而检测在2000/10万人左右，略低于新泽西州，显示这些州对于检测的需求仍然十分庞大。（表4）
 
-\begin{figure}[H] 
-\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
-\label{} %用于文内引用的标签
-\end{figure}
-
-\begin{table}[H]
-\vspace{-7mm}
-    \caption{美国累计确诊前十位州}
-      \vspace{-0.5\baselineskip}
-      \centering \begin{table}[H]
-\centering
-\begin{tabular}{rlrrrrrr}
-\toprule
-  & 国家/州名 & 累计确诊 & 粗发病率 & 累计检测 & 阳性率\% & 日新增检测 & 检测率*\\
-\midrule
-\rowcolor{gray!6}   & 美国 US & 1,011,600 & 306 & 5,794,950 & 17 & 202,230 & 1,751\\
-1 & 纽约州 NY & 295,106 & 1,517 & 844,994 & 35 & 18,899 & 4,344\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 113,856 & 1,282 & 234,359 & 49 & 6,584 & 2,639\\
-3 & 马萨诸塞州 MA & 58,302 & 839 & 254,500 & 23 & 9,613 & 3,662\\
-\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 48,102 & 380 & 242,189 & 20 & 14,561 & 1,911\\
-5 & 加利福尼亚州 CA & 46,033 & 117 & 577,608 & 8 & 24,199 & 1,462\\
-\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 45,137 & 353 & 209,088 & 22 & 5,666 & 1,633\\
-7 & 密歇根州 MI & 39,262 & 393 & 164,805 & 24 & 7,045 & 1,650\\
-\rowcolor{gray!6}  8 & 佛罗里达州 FL & 32,848 & 153 & 366,875 & 9 & 10,412 & 1,708\\
-9 & 路易斯安那州 LA & 27,286 & 587 & 151,108 & 18 & 4,119 & 3,250\\
-\rowcolor{gray!6}  10 & 康涅狄格州 CT & 26,312 & 738 & 92,745 & 28 & 12,934 & 2,601\\
-\bottomrule
-\end{tabular}
-\end{table} \begin{tablenotes}
-    \footnotesize
-    \item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万
-    \end{tablenotes}
-    \end{table}
-
-\newpage
-
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
@@ -432,7 +394,31 @@ NA
     \vspace{-7mm}
     \begin{minipage}{.4\linewidth}
     \caption{美国新增确诊前十位州}
-    \vspace{-0.5\baselineskip}
+    \vspace{0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
+\centering
+\begin{tabular}{rlrrrrrrr}
+\toprule
+  & 国家/州名 & 累计确诊 & 粗发病率 & 累计检测 & 累计阳性率\% & 日新增检测 & 新增中阳性率\% & 检测率*\\
+\midrule
+\rowcolor{gray!6}   & 美国 US & 1,662,302 & 502 & 14,603,530 & 11 & 441,248 & 4 & 4,412\\
+1 & 纽约州 NY & 362,764 & 1,865 & 1,739,449 & 21 & 39,623 & 3 & 8,942\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 155,092 & 1,746 & 623,797 & 25 & 19,990 & 5 & 7,023\\
+3 & 伊利诺伊州 IL & 112,017 & 884 & 769,564 & 15 & 21,643 & 8 & 6,073\\
+\rowcolor{gray!6}  4 & 加利福尼亚州 CA & 96,400 & 244 & 1,644,102 & 6 & 61,357 & 3 & 4,161\\
+5 & 马萨诸塞州 MA & 93,271 & 1,342 & 540,561 & 17 & 8,188 & 7 & 7,778\\
+\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 71,925 & 562 & 403,114 & 18 & 7,019 & 7 & 3,149\\
+7 & 得克萨斯州 TX & 56,409 & 195 & 805,654 & 7 & 42,109 & 1 & 2,779\\
+\rowcolor{gray!6}  8 & 密歇根州 MI & 54,881 & 550 & 472,860 & 12 & 21,628 & 1 & 4,735\\
+9 & 佛罗里达州 FL & 51,746 & 241 & 908,235 & 6 & 37,000 & 2 & 4,229\\
+\rowcolor{gray!6}  10 & 马里兰州 MD & 47,152 & 780 & 249,577 & 19 & 9,215 & 9 & 4,128\\
+\bottomrule
+\end{tabular}
+\end{table} \end{minipage}%
+    \begin{minipage}{.7\linewidth}
+     \caption{美国新增死亡前十位州}
+     \vspace{0.5\baselineskip}
       \centering
     \captionsetup{justification=centering} \begin{table}[H]
 \centering
@@ -451,30 +437,6 @@ NA
 \rowcolor{gray!6}  8 & 得克萨斯州 TX & 901 & 4\\
 9 & 弗吉尼亚州 VA & 801 & 3\\
 \rowcolor{gray!6}  10 & 佛罗里达州 FL & 710 & 3\\
-\bottomrule
-\end{tabular}
-\end{table} \end{minipage}%
-    \begin{minipage}{.6\linewidth}
-     \caption{美国累计死亡前十位州}
-     \vspace{-0.5\baselineskip}
-      \centering
-    \captionsetup{justification=centering} \begin{table}[H]
-\centering
-\begin{tabular}{rlrr}
-\toprule
-  & 国家/州名 & 累计死亡人数 & 病死率\%\\
-\midrule
-\rowcolor{gray!6}   & 美国 US & 58,343 & 5.8\\
-1 & 纽约州 NY & 22,912 & 7.8\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 6,442 & 5.7\\
-3 & 密歇根州 MI & 3,568 & 9.1\\
-\rowcolor{gray!6}  4 & 马萨诸塞州 MA & 3,153 & 5.4\\
-5 & 伊利诺伊州 IL & 2,125 & 4.4\\
-\rowcolor{gray!6}  6 & 康涅狄格州 CT & 2,087 & 7.9\\
-7 & 宾夕法尼亚州 PA & 2,046 & 4.5\\
-\rowcolor{gray!6}  8 & 加利福尼亚州 CA & 1,864 & 4.0\\
-9 & 路易斯安那州 LA & 1,801 & 6.6\\
-\rowcolor{gray!6}  10 & 佛罗里达州 FL & 1,171 & 3.6\\
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage} 
