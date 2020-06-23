@@ -1582,7 +1582,7 @@ data_to_plot_incremental$state <- factor(data_to_plot_incremental$state, levels 
 
 y_max=(round(max(data_to_plot_incremental$Confirmed_incremental)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
-p6 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_incremental, 
+p5 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_incremental, 
                                           group = state, 
                                           colour = state, 
                                           shape = state)) + 
@@ -1605,8 +1605,8 @@ p6 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_incremental,
   xlab("") +
   ylab(p6_ylab)
 
-# ggsave(filename=paste(report_date,"p6",p6_title, ".pdf"), plot = p6, width = 10, height = 8 )
-ggsave(filename=paste(report_date,"p6",p6_title, ".png"), plot = p6, width = 10, height = 8 )
+# ggsave(filename=paste(report_date,"p5",p5_title, ".pdf"), plot = p5, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p5",p5_title, ".png"), plot = p5, width = 10, height = 8 )
 
 ###### plot 8: total death cases by US States sorted by cumulative ####
 data_to_plot_death = data_us_states[data_us_states$state %in% filter_death,]
