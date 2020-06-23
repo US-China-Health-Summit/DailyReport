@@ -274,12 +274,7 @@ cat(c("\\begin{table}[H]
 
 `r insight$content[3]`
 
-\begin{figure}[H] 
-\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
-\centering
-\includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
-\label{} %用于文内引用的标签
-\end{figure}
+
 
 
 

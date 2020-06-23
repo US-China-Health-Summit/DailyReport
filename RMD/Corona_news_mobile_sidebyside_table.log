@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.25)  22 JUN 2020 21:49
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.25)  22 JUN 2020 22:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -794,9 +794,6 @@ LaTeX Warning: Label `' multiply defined.
 
 LaTeX Warning: Label `' multiply defined.
 
-
-LaTeX Warning: Label `' multiply defined.
-
 )
 \openout1 = `Corona_news_mobile_sidebyside_table.aux'.
 
@@ -1280,70 +1277,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 356--358
  []
 
 [5]
-File: ./input/covid4.png Graphic file (type bmp)
-<./input/covid4.png>
 File: ./input/covid5.png Graphic file (type bmp)
 <./input/covid5.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--387
+Underfull \hbox (badness 10000) in paragraph at lines 378--380
 [][]
  []
 
 File: ./input/covid6.png Graphic file (type bmp)
 <./input/covid6.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 391--393
+Underfull \hbox (badness 10000) in paragraph at lines 384--386
 [][]
  []
 
-[6]
-Overfull \hbox (380.2741pt too wide) in paragraph at lines 405--423
+
+Overfull \hbox (380.2741pt too wide) in paragraph at lines 398--416
  [][] 
  []
 
 
-Overfull \hbox (56.90028pt too wide) in paragraph at lines 398--450
+Overfull \hbox (56.90028pt too wide) in paragraph at lines 391--443
  []$[]$$[]$ 
  []
 
-[7] [8] [9]
+[6] [7] [8]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 15.05624pt on input line 496.
+(Font)              scaled to size 15.05624pt on input line 489.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.045pt on input line 496.
+(Font)              scaled to size 12.045pt on input line 489.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.03374pt on input line 496.
+(Font)              scaled to size 9.03374pt on input line 489.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 15.05762pt on input line 496.
+(Font)              scaled to size 15.05762pt on input line 489.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.0461pt on input line 496.
+(Font)              scaled to size 12.0461pt on input line 489.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.03456pt on input line 496.
+(Font)              scaled to size 9.03456pt on input line 489.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 15.05463pt on input line 496.
+(Font)              scaled to size 15.05463pt on input line 489.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.0437pt on input line 496.
+(Font)              scaled to size 12.0437pt on input line 489.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.03276pt on input line 496.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 519.
-[10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 519.
+(Font)              scaled to size 9.03276pt on input line 489.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 512.
+[9] [10]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 512.
 (./Corona_news_mobile_sidebyside_table.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 519.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 519.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 512.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 512.
 Package rerunfilecheck Info: File `Corona_news_mobile_sidebyside_table.out' has
  not changed.
-(rerunfilecheck)             Checksum: 188AB127A3D5807016E7A7C1AC9D4F08;182.
+(rerunfilecheck)             Checksum: 9E61C1E3FDC4D5EA379FD30681C955DB;182.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 519.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 512.
  ) 
 Here is how much of TeX's memory you used:
- 23229 strings out of 481274
- 450949 string characters out of 5921294
- 848444 words of memory out of 5000000
- 40325 multiletter control sequences out of 15000+600000
+ 23223 strings out of 481274
+ 450837 string characters out of 5921294
+ 849444 words of memory out of 5000000
+ 40320 multiletter control sequences out of 15000+600000
  544781 words of font info for 129 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  67i,13n,128p,397b,577s stack positions out of 5000i,500n,10000p,200000b,80000s
