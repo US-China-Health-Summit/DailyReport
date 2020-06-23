@@ -309,7 +309,7 @@ cat(c("\\begin{table}[H]
         t5,
     "\\end{minipage}%
     \\begin{minipage}{.7\\linewidth}
-     \\caption{美国累计死亡前十位州}
+     \\caption{美国新增死亡前十位州}
      \\vspace{-0.5\\baselineskip}
       \\centering
     \\captionsetup{justification=centering}",
