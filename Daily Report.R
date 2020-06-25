@@ -85,6 +85,12 @@ Province_name = "Hubei"
 ##### web data (TRUE if use additional data file from web data branch; otherwise set to FALSE)
 web_data = TRUE
 
+
+###Switch for the remedy of Table 3's delay of data update issue for india and parkistan. 
+#If other country have the same issue, please add to the list of country_delayed. 
+incremental_delay = TRUE
+country_delayed = c("India","Pakistan")
+
 ############################################################
 
 list.of.packages <- c("ggplot2", "RCurl", "tidyverse")
@@ -604,6 +610,8 @@ write_excel_csv(global_confirmed_top %>%
 									
 #### table 2 ####							
 crude_incidence_rate = data_global_latest[, c("Country/Region", "Crude_Incidence_Rate", "Confirmed")]
+#filter out country with less than 100K population
+crude_incidence_rate=crude_incidence_rate%>%filter(`Country/Region`%in%(input_population%>%filter(Population>=100000)%>%pull(Country)))
 # sort by Crude_Incidence_Rate
 crude_incidence_rate = crude_incidence_rate[order(crude_incidence_rate$Crude_Incidence_Rate, decreasing=T),]
 ranking = 1:nrow(crude_incidence_rate)
@@ -620,11 +628,22 @@ write_excel_csv(crude_incidence_rate_top %>%
                   mutate(Country_bi = case_when(Country_bi == "湖北 Hubei" ~ "(湖北 Hubei)", 
                                                 TRUE ~ as.character(Country_bi))) %>% 
                   translate_country_colname(4), paste(report_date, "table2.csv"))
-
-
-
 #### table 3 ####
 global_confirmed_incremantal = data_global_latest[,c("Country/Region", "Confirmed_incremental")]
+
+###Due to the recent late update of "India","Pakistan", the confirmed incremental for them are calculated based on the data from previouse day.
+#When the issue no longer present, pls delect the following code chunck. A switch is provided for quick on and off of this modification.
+if(incremental_delay == TRUE && global_confirmed_incremantal[
+  global_confirmed_incremantal$`Country/Region`%in%country_delayed,2
+  ] == 0){
+  global_confirmed_incremantal[
+    global_confirmed_incremantal$`Country/Region`%in%country_delayed,2
+    ] = data_all_countries%>%
+    filter(`Country/Region`%in%country_delayed 
+           & Date == max(data_all_countries$Date)-1)%>%
+    pull(Confirmed_incremental)
+}
+
 global_confirmed_incremantal = global_confirmed_incremantal[order(global_confirmed_incremantal$Confirmed_incremental, decreasing = T), ]
 ranking = 1:nrow(global_confirmed_incremantal)
 global_confirmed_incremantal = cbind(ranking, global_confirmed_incremantal)
@@ -637,8 +656,26 @@ write_excel_csv(global_confirmed_incremantal_top %>%
                   translate_country_colname(2), 
                 paste(report_date, "table3.csv"))
 
+
 #### table 4 ####
 data_global_latest_death = data_global_latest[,c("Country/Region", "Deaths", "Deaths_incremental", "Fatality_rate")]
+
+
+###Due to the recent late update of "India","Pakistan", the death incremental for them are calculated based on the data from previouse day.
+#When the issue no longer present, pls delect the following code chunck. A switch is provided for quick on and off of this modification.
+if(incremental_delay == TRUE && data_global_latest_death[
+  data_global_latest_death$`Country/Region`%in%country_delayed,3
+  ] == 0){
+  data_global_latest_death[
+    data_global_latest_death$`Country/Region`%in%country_delayed,3
+    ] = data_all_countries%>%
+    filter(`Country/Region`%in%country_delayed 
+           & Date == max(data_all_countries$Date)-1)%>%
+    pull(Deaths_incremental)
+}
+
+
+
 data_global_latest_death = data_global_latest_death[order(data_global_latest_death$Deaths, decreasing = T), ]
 ranking = 1:nrow(data_global_latest_death)
 data_global_latest_death = cbind(ranking, data_global_latest_death)
