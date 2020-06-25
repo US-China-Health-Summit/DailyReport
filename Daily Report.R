@@ -85,6 +85,12 @@ Province_name = "Hubei"
 ##### web data (TRUE if use additional data file from web data branch; otherwise set to FALSE)
 web_data = TRUE
 
+
+###Switch for the remedy of Table 3's delay of data update issue for india and parkistan. 
+#If other country have the same issue, please add to the list of country_delayed. 
+incremental_delay = TRUE
+country_delayed = c("India","Pakistan")
+
 ############################################################
 
 list.of.packages <- c("ggplot2", "RCurl", "tidyverse")
@@ -625,6 +631,20 @@ write_excel_csv(crude_incidence_rate_top %>%
 
 #### table 3 ####
 global_confirmed_incremantal = data_global_latest[,c("Country/Region", "Confirmed_incremental")]
+
+###Due to the recent late update of "India","Pakistan", the confirmed incremental for them are calculated based on the data from previouse day.
+#When the issue no longer present, pls delect the following code chunck. A switch is provided for quick on and off of this modification.
+if(incremental_delay == TRUE && global_confirmed_incremantal[
+  global_confirmed_incremantal$`Country/Region`%in%country_delayed,2
+  ] == 0){
+  global_confirmed_incremantal[
+    global_confirmed_incremantal$`Country/Region`%in%country_delayed,2
+    ] = data_all_countries%>%
+    filter(`Country/Region`%in%country_delayed 
+           & Date == max(data_all_countries$Date)-1)%>%
+    pull(Confirmed_incremental)
+}
+
 global_confirmed_incremantal = global_confirmed_incremantal[order(global_confirmed_incremantal$Confirmed_incremental, decreasing = T), ]
 ranking = 1:nrow(global_confirmed_incremantal)
 global_confirmed_incremantal = cbind(ranking, global_confirmed_incremantal)
