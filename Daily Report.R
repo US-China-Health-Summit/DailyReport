@@ -50,13 +50,14 @@ template_input = FALSE
 top_n = 5
 
 ##### FOR WEEKLY REPORT #####
-weekly_summary = FALSE
+weekly_summary = TRUE
 start_date_wr = NULL
 end_date_wr = NULL
 
-# weekly_summary = TRUE
-# start_date_wr = "2020-04-25"
-# end_date_wr = "2020-05-01"
+weekly_summary = TRUE
+start_date_wr = "2020-04-25"
+end_date_wr = "2020-06-01"
+moving_avg = TRUE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
 end_date_confirmed_threshold = 10000
@@ -724,19 +725,7 @@ if (weekly_summary){
   colnames(data_Deaths_weekly_incremental)[3] <- paste("Deaths_cases_on",end_date_wr)
   data_Deaths_weekly_incremental = data_Deaths_weekly_incremental[order(data_Deaths_weekly_incremental$`Deaths_diff_perc(%)`,decreasing = T),]
   write_excel_csv(data_Deaths_weekly_incremental, paste(report_date, "table_Global_Deaths_Weekly_Incremental_Rate.csv"))
-}
 
-# x label break for plots:
-x_min = min(data_all_countries$Date)
-x_max = max(data_all_countries$Date)
-if (as.numeric(x_max - x_min) < 15 ) {
-  break.vec <- seq( x_min, x_max, by = "day")
-} else {
-  if (as.numeric(x_max - x_min) %% 3 == 2) {
-    break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + x_min, x_max, by = "3 days"))
-  } else {
-    break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + 3 + x_min, x_max, by = "3 days"))
-  }
 }
 
 ##Following code limits the occueance of data into 7 pieces
@@ -1274,6 +1263,78 @@ if (weekly_summary){
     ylab(p20_ylab) 
   
   ggsave(filename = paste(report_date,"p20",p20_title, ".png"), plot = p20, width = 10, height = 8 )
+  
+  
+  if(moving_avg){
+    ###Following code produce table and plot that contains the moving avg of increase for globle cases-Hao Sun(hsun3163)
+    find_mv_avg=function(data_frame){
+      ##Function to find the moving average among the past n days
+      temp = data_frame
+      for (i in 1:nrow(data_frame)) {
+        for(j in 2:(ncol(data_frame)-6))
+          temp[i,j] = temp[i,j:(j+6)]%>%as.matrix()%>%mean()%>%round()
+        
+      }
+      data_frame = temp[,1:(ncol(data_frame)-6)]
+    }    
+    #Table: Globle wide table moving average incremental confirm
+    case_confirmed_incremental_wide_mvavg = find_mv_avg(case_confirmed_incremental_wide)
+    write_excel_csv(case_confirmed_incremental_wide_mvavg, paste(report_date,"table_US_case_deaths_incremental_mvavg.csv"))
+    #Table: Globle wide table moving average incremental death
+    case_deaths_incremental_wide_mvavg = find_mv_avg(case_deaths_incremental_wide)
+    write_excel_csv(case_deaths_incremental_wide_mvavg, paste(report_date,"table_US_case_deaths_incremental_mvavg.csv"))
+    
+    ###### plot 3. new confirmed cases moving average daily sort by countries incremental #####
+    # filter by country total and date
+    data_to_plot = case_confirmed_incremental_wide_mvavg%>%
+      as_tibble()%>%pivot_longer(cols = -colnames(.)[1] , names_to = "date", values_to = "mvg_incr")
+    country_order = data_to_plot%>%filter(date == max(as.Date(date)))%>%arrange(desc(mvg_incr))%>%mutate(rank = 1:nrow(.))%>%pull(1)
+    country_order = c(country_order[1:5],"China")%>%unique()
+    # reorder factor levels by country filter order
+
+    y <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
+    
+    y_max = (round(max(data_to_plot$mvg_incr)/1000) + 1)*1000
+    y_interval = adjust_y_interval(y_max)
+    p3 = 
+      data_to_plot%>%filter(`Country/Region`%in%country_order)%>%mutate(`Country/Region` = factor(`Country/Region`, levels = country_order))%>%
+      ggplot( aes(x = date%>%as.Date(), y = mvg_incr,
+                                                      group = `Country/Region`,
+                                                      colour = `Country/Region`,
+                                                      shape = `Country/Region`)) + 
+      # geom_point(size = 2) + 
+      geom_line(size = 1) +
+      theme_bw() + 
+      theme(panel.border = element_blank()) +
+      theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+      theme(axis.line = element_line(colour = "black")) + 
+      theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
+      theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
+      theme(legend.position = c(0.2, 0.8)) + 
+      theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
+      scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
+      scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+      scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+      ggtitle("累计确诊病例国家趋势图", subtitle = "中国及其他前五位国家") + 
+      xlab("") +
+      ylab(p3_ylab)
+    
+    # ggsave(filename = paste(report_date,"p3",p3_title, ".pdf"), plot = p3, width = 10, height = 8 )
+    ggsave(filename = paste(report_date,"p3",p3_title, ".png"), plot = p3, width = 10, height = 8 )
+    
+  }
+  
+  ## Table: Global Change and ratio of weekly increase-Hao Sun
+  
+  temp = data_us_states%>%select(state,Date,Confirmed)%>%mutate(Date = as.Date(Date))
+  temp1 = temp%>%filter(Date == (report_date))%>%mutate(
+    past_week_inc = temp%>%filter(Date == (report_date%>%as.Date()-1))%>%pull(Confirmed) - temp%>%filter(Date == (report_date%>%as.Date()-8))%>%pull(Confirmed),
+    past_2week_inc = temp%>%filter(Date == (report_date%>%as.Date()-8))%>%pull(Confirmed) - temp%>%filter(Date == (report_date%>%as.Date()-15))%>%pull(Confirmed),
+    past_3week_inc = temp%>%filter(Date == (report_date%>%as.Date()-15))%>%pull(Confirmed) - temp%>%filter(Date == (report_date%>%as.Date()-22))%>%pull(Confirmed),
+    past_4week_inc = temp%>%filter(Date == (report_date%>%as.Date()-22))%>%pull(Confirmed) - temp%>%filter(Date == (report_date%>%as.Date()-29))%>%pull(Confirmed),
+    past_week_inc_ratio = (past_week_inc/(past_2week_inc+0.000001))
+  )%>%select(-Confirmed)
+  write_excel_csv(temp1, paste(report_date,"table_global_confirmed_weekly_increase.csv"))
 }
 
 
@@ -1837,6 +1898,78 @@ if (weekly_summary){
   
   # ggsave(filename=paste(report_date,"p19",p19_title, ".pdf"), plot = p19, width = 10, height = 8 )
   ggsave(filename=paste(report_date,"p19",p19_title, ".png"), plot = p19, width = 10, height = 8 )
+  
+  if(moving_avg){
+    ###Following code produce table and plot that contains the moving avg of increase for globle cases-Hao Sun(hsun3163)
+    find_mv_avg=function(data_frame){
+      ##Function to find the moving average among the past n days
+      temp = data_frame
+      for (i in 1:nrow(data_frame)) {
+        for(j in 2:(ncol(data_frame)-6))
+          temp[i,j] = temp[i,j:(j+6)]%>%as.matrix()%>%mean()%>%round()
+        
+      }
+      data_frame = temp[,1:(ncol(data_frame)-6)]
+    }    
+    #Table: Globle wide table moving average incremental confirm
+    case_confirmed_incremental_wide_mvavg = find_mv_avg(case_confirmed_incremental_wide)
+    write_excel_csv(case_confirmed_incremental_wide_mvavg, paste(report_date,"table_US_case_deaths_incremental_mvavg.csv"))
+    #Table: Globle wide table moving average incremental death
+    case_deaths_incremental_wide_mvavg = find_mv_avg(case_deaths_incremental_wide)
+    write_excel_csv(case_deaths_incremental_wide_mvavg, paste(report_date,"table_US_case_deaths_incremental_mvavg.csv"))
+    
+    #### plot 5: new confirmed cases moving average daily by US States sort by incremental ####
+    # filter by country total and date
+    data_to_plot = case_confirmed_incremental_wide_mvavg%>%
+      as_tibble()%>%pivot_longer(cols = -colnames(.)[1] , names_to = "date", values_to = "mvg_incr")
+    state_order = data_to_plot%>%filter(date == max(as.Date(date)))%>%arrange(desc(mvg_incr))%>%mutate(rank = 1:nrow(.))%>%pull(1)
+    state_order = state_order[1:5]%>%unique()
+    # reorder factor levels by country filter order
+    
+    y <- factor(data_to_plot$Province_State, levels = state_order)
+    
+    y_max = (round(max(data_to_plot$mvg_incr)/1000) + 1)*1000
+    y_interval = adjust_y_interval(y_max)
+    p5 = 
+      data_to_plot%>%filter(`Province_State`%in%state_order)%>%mutate(`Province_State` = factor(`Province_State`, levels = state_order))%>%
+      ggplot( aes(x = date%>%as.Date(), y = mvg_incr, 
+                                              group = Province_State, 
+                                              colour = Province_State, 
+                                              shape = Province_State)) + 
+      # geom_point(size = 2) + 
+      geom_line(size = 1) +
+      theme_bw() + 
+      theme(panel.border = element_blank()) +
+      theme(panel.grid.major.x = element_blank(), 
+            panel.grid.minor = element_blank()) +
+      theme(axis.line = element_line(colour = "black")) + 
+      theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
+      theme(axis.text.y = element_text(size = 24), 
+            axis.title.y = element_text(size = 24)) + 
+      theme(legend.position = c(0.2, 0.8)) + 
+      theme(legend.title = element_text(size = 24,face = "bold.italic"), 
+            legend.text = element_text(size = 24,face = "italic")) +
+      scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
+      scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
+      scale_color_manual(values = color_list[match(state_order, color_list_state)]) +
+      xlab("") +
+      ylab(p5_ylab)
+    
+    # ggsave(filename=paste(report_date,"p5",p5_title, ".pdf"), plot = p5, width = 10, height = 8 )
+    ggsave(filename=paste(report_date,"p5",p5_title, ".png"), plot = p5, width = 10, height = 8 )
+  
+  }
+  
+## Table: Change and ratio of weekly increase-Hao Sun
+  temp = data_us_states%>%select(state,Date,Confirmed)%>%mutate(Date = as.Date(Date))
+  temp1 = temp%>%filter(Date == (report_date_us))%>%mutate(
+  past_week_inc = temp%>%filter(Date == (report_date_us%>%as.Date()-1))%>%pull(Confirmed) - temp%>%filter(Date == (report_date_us%>%as.Date()-8))%>%pull(Confirmed),
+  past_2week_inc = temp%>%filter(Date == (report_date_us%>%as.Date()-8))%>%pull(Confirmed) - temp%>%filter(Date == (report_date_us%>%as.Date()-15))%>%pull(Confirmed),
+  past_3week_inc = temp%>%filter(Date == (report_date_us%>%as.Date()-15))%>%pull(Confirmed) - temp%>%filter(Date == (report_date_us%>%as.Date()-22))%>%pull(Confirmed),
+  past_4week_inc = temp%>%filter(Date == (report_date_us%>%as.Date()-22))%>%pull(Confirmed) - temp%>%filter(Date == (report_date_us%>%as.Date()-29))%>%pull(Confirmed),
+  past_week_inc_ratio = (past_week_inc/(past_2week_inc+0.000001))
+  )%>%select(-Confirmed)
+  write_excel_csv(temp1, paste(report_date,"table_US_confirmed_weekly_increase.csv"))
   
 }
 
