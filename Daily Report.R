@@ -50,14 +50,14 @@ template_input = FALSE
 top_n = 5
 
 ##### FOR WEEKLY REPORT #####
-weekly_summary = TRUE
+weekly_summary = FALSE
 start_date_wr = NULL
 end_date_wr = NULL
 
-weekly_summary = TRUE
+weekly_summary = FALSE
 start_date_wr = "2020-04-25"
 end_date_wr = "2020-06-01"
-moving_avg = TRUE
+moving_avg = FALSE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
 end_date_confirmed_threshold = 10000
