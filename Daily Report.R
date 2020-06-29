@@ -1136,7 +1136,7 @@ p10_1 = ggplot(data_to_plot_death_incremental_notinc_china, aes(x=Date, y=Deaths
   ylab(p10_ylab)
 
 # ggsave(filename=paste(report_date,"p10_1",p10_title, ".pdf"), plot = p10, width = 10, height = 8 )
-ggsave(filename=paste(report_date,"p10_1",p10_title, ".png"), plot = p10, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p10_1",p10_title, ".png"), plot = p10_1, width = 10, height = 8 )
 
 
 ######################
