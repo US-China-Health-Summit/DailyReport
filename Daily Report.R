@@ -39,7 +39,7 @@
 
 # getwd()
 
-folder = "YOUR_PATH/csse_covid_19_time_series"
+folder = "./csse_covid_19_time_series"
 
 setwd(folder)
 
@@ -728,6 +728,19 @@ if (weekly_summary){
 
 }
 
+x_min = min(data_all_countries$Date)		
+x_max = max(data_all_countries$Date)		
+if (as.numeric(x_max - x_min) < 15 ) {		
+  break.vec <- seq( x_min, x_max, by = "day")		
+} else {		
+  if (as.numeric(x_max - x_min) %% 3 == 2) {		
+    break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + x_min, x_max, by = "3 days"))		
+  } else {		
+    break.vec <- c(x_min, seq( as.numeric(x_max - x_min) %% 3 + 3 + x_min, x_max, by = "3 days"))		
+  }		
+}
+
+
 ##Following code limits the occueance of data into 7 pieces
 break.vec = pretty(break.vec,n=9)
 break.vec = c(x_min,break.vec[break.vec>x_min+1 & break.vec<x_max],x_max)
@@ -1028,6 +1041,7 @@ ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".png"), plot = p6_1, width
 ##### plot 7-1. cumulative death cases sort by countries cumulative (including China) #####
 filter_total_with_china = c(china_label, filter_death)
 
+
 # filter by country and cumulative confirmed
 data_to_plot_death_total = data_all_countries[data_all_countries$Country %in% filter_total_with_china, ]
 # reorder factor levels by country filter order
@@ -1091,6 +1105,41 @@ p10 = ggplot(data_to_plot_death_incremental, aes(x=Date, y=Deaths_incremental, g
 
 # ggsave(filename=paste(report_date,"p10",p10_title, ".pdf"), plot = p10, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p10",p10_title, ".png"), plot = p10, width = 10, height = 8 )
+
+########## 2020-06-29 Added ###########
+##### plot 10-1-1 incremental cases for top N deaths NOT include China ####
+data_to_plot_death_incremental_notinc_china = data_all_countries%>%filter(`Country/Region`  %in% filter_death_incremental )
+
+# reorder factor levels by country filter order
+temp = data_to_plot_death_incremental_notinc_china[data_to_plot_death_incremental_notinc_china$Date == max(data_to_plot_death_incremental_notinc_china$Date),]
+temp = temp[order(temp$Deaths_incremental,decreasing = T),]
+country_order = temp$Country
+data_to_plot_death_incremental_notinc_china$Country <- factor(data_to_plot_death_incremental_notinc_china$Country, levels = country_order)
+
+y_max=(round(max(data_to_plot_death_incremental_notinc_china$Deaths_incremental)/1000)+1)*1000
+y_interval = adjust_y_interval(y_max)
+p10_1 = ggplot(data_to_plot_death_incremental_notinc_china, aes(x=Date, y=Deaths_incremental, group=Country, colour = Country, shape = Country)) + 
+  # geom_point(size=2) + 
+  geom_line(size = 1) +
+  theme_bw() + 
+  theme(panel.border = element_blank()) +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+  theme(axis.line = element_line(colour = "black")) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
+  theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
+  theme(legend.position = c(0.2, 0.8)) + 
+  theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
+  scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
+  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+  scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
+  xlab("") +
+  ylab(p10_ylab)
+
+# ggsave(filename=paste(report_date,"p10_1",p10_title, ".pdf"), plot = p10, width = 10, height = 8 )
+ggsave(filename=paste(report_date,"p10_1",p10_title, ".png"), plot = p10, width = 10, height = 8 )
+
+
+######################
 
 if (weekly_summary){
   
@@ -1396,6 +1445,7 @@ read_data_us = function(label){
 }
 
 data_confirmed = read_data_us('Confirmed')
+
 data_deaths = read_data_us('Deaths')
 
 case_confirmed = data_confirmed$data
@@ -1517,6 +1567,7 @@ data_us_latest_fatality = rbind(US_total[, colnames(data_us_latest_fatality)], d
 ranking = c("", 1:(nrow(data_us_latest_fatality)-1))
 data_us_latest_fatality = cbind(ranking, data_us_latest_fatality)
 data_us_latest_fatality_top = data_us_latest_fatality[1:11, ]
+
 write_excel_csv(data_us_latest_fatality, paste(report_date,"table6_fatality_US_all.csv"))
 write_excel_csv(data_us_latest_fatality_top, paste(report_date,"table6_en.csv"))
 write_excel_csv(data_us_latest_fatality_top %>% 
