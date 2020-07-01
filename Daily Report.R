@@ -561,23 +561,6 @@ data_all_continent = filter_by_date(data_all_continent, "Date", start_date, end_
 data_global_latest = data_all_countries[data_all_countries$Date == max(data_all_countries$Date), ]
 US_total = data_global_latest[data_global_latest$Country == "US", ]
 
-## 2020-06-30 update solve the delay issue ###
-
-data_all_countries_delay = data_all_countries
-
-if(incremental_delay == TRUE && data_all_countries_delay[
-  data_all_countries_delay$`Country/Region`%in%country_delayed,4
-  ] == 0){
-  data_all_countries_delay[
-    data_all_countries_delay$`Country/Region`%in%country_delayed,4
-    ] = data_all_countries%>%
-    filter(`Country/Region`%in%country_delayed 
-           & Date == max(data_all_countries$Date)-1)%>%
-    pull(Confirmed_incremental)
-}
-
-
-
 # write to table
 report_date = max(colnames(case_confirmed_wide)[-1])
 
@@ -945,7 +928,7 @@ ggsave(filename = paste(report_date,"p2",p2_title, ".png"), plot = p2, width = 1
 
 ##### plot 3. new confirmed cases daily sort by countries incremental #####
 # filter by country total and date
-data_to_plot_confirmed_increment = data_all_countries_delay[data_all_countries_delay$Country %in% filter_incremental, ]
+data_to_plot_confirmed_increment = data_all_countries[data_all_countries$Country %in% filter_incremental ,]
 # reorder factor levels by country filter order
 temp = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date == max(data_to_plot_confirmed_increment$Date),]
 temp = temp[order(temp$Confirmed_incremental,decreasing = T),]
@@ -1125,7 +1108,7 @@ ggsave(filename=paste(report_date,"p10",p10_title, ".png"), plot = p10, width = 
 
 ########## 2020-06-29 Added ###########
 ##### plot 10-1-1 incremental cases for top N deaths NOT include China ####
-data_to_plot_death_incremental_notinc_china = data_all_countries_delay%>%filter(`Country/Region`  %in% filter_death_incremental )
+data_to_plot_death_incremental_notinc_china = data_all_countries%>%filter(`Country/Region`  %in% filter_death_incremental )
 
 # reorder factor levels by country filter order
 temp = data_to_plot_death_incremental_notinc_china[data_to_plot_death_incremental_notinc_china$Date == max(data_to_plot_death_incremental_notinc_china$Date),]
