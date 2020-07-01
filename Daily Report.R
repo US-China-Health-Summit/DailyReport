@@ -565,16 +565,21 @@ US_total = data_global_latest[data_global_latest$Country == "US", ]
 
 data_all_countries_delay = data_all_countries
 
+
 if(incremental_delay == TRUE && data_all_countries_delay[
   data_all_countries_delay$`Country/Region`%in%country_delayed,4
   ] == 0){
-  data_all_countries_delay[
-    data_all_countries_delay$`Country/Region`%in%country_delayed,4
-    ] = data_all_countries%>%
-    filter(`Country/Region`%in%country_delayed 
-           & Date == max(data_all_countries$Date)-1)%>%
-    pull(Confirmed_incremental)
+  
+  delay_country = data_all_countries_delay[data_all_countries_delay$`Country/Region`%in%country_delayed,] 
+  
+    delay_country[delay_country$Date %in% max(delay_country$Date),4] = 
+      delay_country[delay_country$Date %in% (max(delay_country$Date)-1),4]
+  
+    data_all_countries_delay[data_all_countries_delay$`Country/Region`%in%country_delayed,] = delay_country
 }
+
+
+
 
 # write to table
 report_date = max(colnames(case_confirmed_wide)[-1])
@@ -775,8 +780,12 @@ if (template_input) {
   # filter by total confirmed
   temp_total = temp[order(temp$Confirmed, decreasing = T), ]
   filter_total = temp_total$Country[1:top_n]
-  temp_incremental = temp[order(temp$Confirmed_incremental, decreasing = T), ]
-  filter_incremental = temp_incremental$Country[1:top_n]
+  
+  #2020-06-30 change
+  if (remove_mainland_china) data_all_countries_delay_order = data_all_countries_delay[!data_all_countries_delay$Country %in% china_label, ]
+  data_all_countries_delay_order = data_all_countries_delay_order[data_all_countries_delay_order$Date == max(data_all_countries$Date),] 
+  temp_incremental = data_all_countries_delay_order[order(data_all_countries_delay_order$Confirmed_incremental, decreasing = T), ]
+  filter_incremental = temp_incremental$`Country/Region`[1:top_n]
   
   # filter by death
   temp_death = temp[order(temp$Deaths,decreasing = T),]
