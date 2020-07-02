@@ -168,6 +168,7 @@ insight = read_excel("./input/insight.xlsx") %>%
 \caption{世界疫情分布趋势图(来源：WHO)} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\includegraphics[]{./input/covid4.png}
 \label{} %用于文内引用的标签
 \end{figure}
 
