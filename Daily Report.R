@@ -55,8 +55,8 @@ start_date_wr = NULL
 end_date_wr = NULL
 
 weekly_summary = FALSE
-start_date_wr = "2020-04-25"
-end_date_wr = "2020-06-01"
+start_date_wr = "2020-06-21"
+end_date_wr = "2020-06-27"
 moving_avg = FALSE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
@@ -1183,7 +1183,7 @@ if (weekly_summary){
   p12 = ggplot(data_to_plot_confirmed_diff , aes(x = Date, y = Confirmed, group = Country, colour = Country,  shape = Country)) + 
     # geom_point(size = 2) + 
     geom_line(size = 1) +
-    geom_text(aes (label = Confirmed),vjust = -0.25)+ 
+    geom_text(aes (label = Confirmed),vjust = -0.25,size = 5)+ 
     theme_bw() + 
     theme(panel.border = element_blank()) +
     theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -1196,7 +1196,7 @@ if (weekly_summary){
     scale_x_date(breaks = "1 day",date_labels = "%m-%d") +
     scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
     xlab("") +
-    ylab(p12_ylab) 
+    ylab("Total Number of Cases") 
   
   # ggsave(filename = paste(report_date,"p12",p12_title, ".pdf"), plot = p12, width = 10, height = 8 )
   ggsave(filename = paste(report_date,"p12",p12_title, ".png"), plot = p12, width = 10, height = 8 )
@@ -1217,7 +1217,7 @@ if (weekly_summary){
   p14 = ggplot(data_to_plot_death_diff , aes(x = Date, y = Deaths, group = Country, colour = Country,  shape = Country)) + 
     # geom_point(size = 2) + 
     geom_line(size = 1) +
-    geom_text(aes (label = Deaths),vjust = -0.25)+ 
+    geom_text(aes (label = Deaths),vjust = -0.25,size = 5)+ 
     theme_bw() + 
     theme(panel.border = element_blank()) +
     theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -1230,7 +1230,7 @@ if (weekly_summary){
     scale_x_date(breaks = "1 day",date_labels = "%m-%d") +
     scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
     xlab("") +
-    ylab(p14_ylab) 
+    ylab("Total Number of Cases") 
   
   # ggsave(filename = paste(report_date,"p14",p14_title, ".pdf"), plot = p14, width = 10, height = 8 )
   ggsave(filename = paste(report_date,"p14",p14_title, ".png"), plot = p14, width = 10, height = 8 )
