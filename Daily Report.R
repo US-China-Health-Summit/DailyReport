@@ -1567,6 +1567,9 @@ data_us_latest_confirm = rbind(US_total[, colnames(data_us_latest_confirm)], dat
 ranking = c("", 1:(nrow(data_us_latest_confirm)-1))
 data_us_latest_confirm = cbind(ranking, data_us_latest_confirm)
 data_us_latest_confirm_top = data_us_latest_confirm[1:11, ]
+###2020-07-01 update
+write_excel_csv(data_us_latest_confirm, paste(report_date,"table5_confirmed_cases_and_incidence_rate_US_all.csv"))
+
 data_us_latest_confirm = data_us_latest_confirm%>%dplyr::select(state,"Confirmed")
 data_us_latest_incremental = data_us_latest[, c("state", "Confirmed_incremental")]
 data_us_latest_incremental = data_us_latest_incremental[order(data_us_latest_incremental$Confirmed_incremental, decreasing = T),]
