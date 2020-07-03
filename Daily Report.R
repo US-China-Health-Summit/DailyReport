@@ -566,9 +566,7 @@ US_total = data_global_latest[data_global_latest$Country == "US", ]
 data_all_countries_delay = data_all_countries
 
 
-if(incremental_delay == TRUE && data_all_countries_delay[
-  data_all_countries_delay$`Country/Region`%in%country_delayed,4
-  ] == 0){
+if(incremental_delay == TRUE){
   
   delay_country = data_all_countries_delay[data_all_countries_delay$`Country/Region`%in%country_delayed,] 
   
@@ -654,9 +652,7 @@ global_confirmed_incremantal = data_global_latest[,c("Country/Region", "Confirme
 
 ###Due to the recent late update of "India","Pakistan", the confirmed incremental for them are calculated based on the data from previouse day.
 #When the issue no longer present, pls delect the following code chunck. A switch is provided for quick on and off of this modification.
-if(incremental_delay == TRUE && global_confirmed_incremantal[
-  global_confirmed_incremantal$`Country/Region`%in%country_delayed,2
-  ] == 0){
+if(incremental_delay == TRUE){
   global_confirmed_incremantal[
     global_confirmed_incremantal$`Country/Region`%in%country_delayed,2
     ] = data_all_countries%>%
@@ -684,9 +680,7 @@ data_global_latest_death = data_global_latest[,c("Country/Region", "Deaths", "De
 
 ###Due to the recent late update of "India","Pakistan", the death incremental for them are calculated based on the data from previouse day.
 #When the issue no longer present, pls delect the following code chunck. A switch is provided for quick on and off of this modification.
-if(incremental_delay == TRUE && data_global_latest_death[
-  data_global_latest_death$`Country/Region`%in%country_delayed,3
-  ] == 0){
+if(incremental_delay == TRUE){
   data_global_latest_death[
     data_global_latest_death$`Country/Region`%in%country_delayed,3
     ] = data_all_countries%>%
