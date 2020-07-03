@@ -587,6 +587,14 @@ case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date
 case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T), ]
 case_deaths_wide = case_deaths_wide[order(case_deaths_wide[,report_date], decreasing = T), ]
 case_deaths_incremental_wide = case_deaths_incremental_wide[order(case_deaths_incremental_wide[,report_date], decreasing = T), ]
+
+###2020-07-02 update
+total = case_confirmed_wide %>% summarize_if(is.numeric, sum, na.rm=TRUE)
+
+Province_State = "Global"
+total_bind = cbind(Province_State, total)
+case_confirmed_wide = rbind(total_bind, case_confirmed_wide)
+
 write_excel_csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
 write_excel_csv(case_confirmed_incremental_wide, paste(report_date,"table_case_confirmed_incremental.csv"))
 write_excel_csv(case_deaths_wide, paste(report_date,"table_case_deaths.csv"))
