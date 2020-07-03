@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.2)  3 JUL 2020 15:17
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.2)  3 JUL 2020 15:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Corona_news_mobile_sidebyside_table.tex
-(./Corona_news_mobile_sidebyside_table.tex
+**Corona_news_mobile_table_0703.tex
+(./Corona_news_mobile_table_0703.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-06-18> (c:/Users/Leah/AppData/Roaming/TinyTeX/texmf-
 dist/tex/latex/base/article.cls
@@ -870,8 +870,8 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen292
 \c@nlinenum=\count347
 \TeXr@lab=\toks33
-) (./Corona_news_mobile_sidebyside_table.aux)
-\openout1 = `Corona_news_mobile_sidebyside_table.aux'.
+) (./Corona_news_mobile_table_0703.aux)
+\openout1 = `Corona_news_mobile_table_0703.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
 LaTeX Font Info:    ... okay on input line 116.
@@ -1180,10 +1180,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 116.
 LaTeX Info: Redefining \pageref on input line 116.
 LaTeX Info: Redefining \nameref on input line 116.
-(./Corona_news_mobile_sidebyside_table.out) (./Corona_news_mobile_sidebyside_ta
-ble.out)
+(./Corona_news_mobile_table_0703.out) (./Corona_news_mobile_table_0703.out)
 \@outlinefile=\write3
-\openout3 = `Corona_news_mobile_sidebyside_table.out'.
+\openout3 = `Corona_news_mobile_table_0703.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1282,7 +1281,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
 (Font)              scaled to size 10.02475pt on input line 219.
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
-(Font)              scaled to size 11.45686pt on input line 219.
+(Font)              scaled to size 24.8232pt on input line 219.
 File: ./input/covid1.png Graphic file (type bmp)
 <./input/covid1.png>
 File: ./input/covid4.png Graphic file (type bmp)
@@ -1312,8 +1311,6 @@ LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
 (Font)              scaled to size 19.02344pt on input line 233.
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
 (Font)              scaled to size 14.26758pt on input line 274.
-LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
-(Font)              scaled to size 24.8232pt on input line 339.
 File: ./input/covid2.png Graphic file (type bmp)
 <./input/covid2.png>
 File: ./input/covid3.png Graphic file (type bmp)
@@ -1377,21 +1374,21 @@ LaTeX Font Info:    Font shape `TU/SimSun(0)/m/n' will be
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 498.
 [2]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 498.
-(./Corona_news_mobile_sidebyside_table.aux)
+(./Corona_news_mobile_table_0703.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 498.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 498.
-Package rerunfilecheck Info: File `Corona_news_mobile_sidebyside_table.out' has
- not changed.
+Package rerunfilecheck Info: File `Corona_news_mobile_table_0703.out' has not c
+hanged.
 (rerunfilecheck)             Checksum: 1681E954D5F210137EC1FCAC963C14E8;182.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 498.
  ) 
 Here is how much of TeX's memory you used:
- 23242 strings out of 481244
- 449509 string characters out of 5922169
- 896849 words of memory out of 5000000
- 40361 multiletter control sequences out of 15000+600000
- 544900 words of font info for 139 fonts, out of 8000000 for 9000
+ 23239 strings out of 481244
+ 449356 string characters out of 5922169
+ 896831 words of memory out of 5000000
+ 40359 multiletter control sequences out of 15000+600000
+ 544892 words of font info for 138 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 64i,12n,130p,394b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,12n,130p,388b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Corona_news_mobile_sidebyside_table.pdf (2 pages).
+Output written on Corona_news_mobile_table_0703.pdf (2 pages).
