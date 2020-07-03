@@ -613,7 +613,13 @@ recovery_rate_data = recovery_rate_data[order(recovery_rate_data[,'Recovered'], 
 write_excel_csv(recovery_rate_data, paste(report_date,"table_recovery_rate.csv"))
 
 # continent data
+##2020-07-02 update
 data_continent_latest = data_all_continent[data_all_continent$Date == max(data_all_continent$Date),]
+total_con = data_continent_latest %>% summarize_if(is.numeric, sum, na.rm=TRUE)
+Continent = "Global"
+Date = max(data_all_continent$Date)
+total_con_bind = cbind(Continent,Date,total_con)
+data_continent_latest = rbind(total_con_bind, data_continent_latest)
 write_excel_csv(data_continent_latest, paste(report_date,"table_continent_latest.csv"))
 
 #### table 1 ####
