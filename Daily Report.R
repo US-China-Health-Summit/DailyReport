@@ -1360,15 +1360,15 @@ if (weekly_summary){
     }    
     #Table: Globle wide table moving average incremental confirm
     case_confirmed_incremental_wide_mvavg = find_mv_avg(case_confirmed_incremental_wide)
-    write_excel_csv(case_confirmed_incremental_wide_mvavg, paste(report_date,"table_US_case_deaths_incremental_mvavg.csv"))
+    write_excel_csv(case_confirmed_incremental_wide_mvavg, paste(report_date,"table_global_case_confirmed_incremental_mvavg.csv"))
     #Table: Globle wide table moving average incremental death
     case_deaths_incremental_wide_mvavg = find_mv_avg(case_deaths_incremental_wide)
-    write_excel_csv(case_deaths_incremental_wide_mvavg, paste(report_date,"table_US_case_deaths_incremental_mvavg.csv"))
+    write_excel_csv(case_deaths_incremental_wide_mvavg, paste(report_date,"table_global_case_deaths_incremental_mvavg.csv"))
     
     ###### plot 3. new confirmed cases moving average daily sort by countries incremental #####
     # filter by country total and date
     data_to_plot = case_confirmed_incremental_wide_mvavg%>%
-      as_tibble()%>%pivot_longer(cols = -colnames(.)[1] , names_to = "date", values_to = "mvg_incr")
+      as_tibble()%>%pivot_longer(cols = -`Country/Region` , names_to = "date", values_to = "mvg_incr")
     country_order = data_to_plot%>%filter(date == max(as.Date(date)))%>%arrange(desc(mvg_incr))%>%mutate(rank = 1:nrow(.))%>%pull(1)
     country_order = c(country_order[1:5],"China")%>%unique()
     # reorder factor levels by country filter order
