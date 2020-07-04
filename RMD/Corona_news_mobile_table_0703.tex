@@ -64,6 +64,7 @@
 \usepackage{sectsty}
 \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
 \definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
+\definecolor{grey}{RGB}{96, 96, 96}
 \usepackage{enumitem}% http://ctan.org/pkg/enumitem
 \usepackage[empty]{fullpage}% http://ctan.org/pkg/fullpage
 \usepackage{color}% http://ctan.org/pkg/color
@@ -116,7 +117,7 @@
 
 \begin{document}
 
-\captionsetup[figure]{name={图},labelsep=space} 
+\captionsetup[figure]{name={图},labelsep=space}
 \captionsetup[table]{name={表},labelsep=space} 
 \fontsize{22}{22}
 \selectfont
@@ -140,8 +141,9 @@
 {\textcolor{glaucous}{\textbf{第72期 \space 6月30日}}}
 \end{center}
 
-%
-  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][c]{\textbf{~\Huge 每日新闻}}}%
+\begin{center}
+\includegraphics[height=2cm]{./input/title1.png} 
+\end{center}
 
 \vspace{-5mm}
 
@@ -211,8 +213,9 @@ NA
 
 \vspace{5mm}
 
-%
-  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][c]{\textbf{~\Huge 疫情观察}}}%
+\begin{center}
+\includegraphics[height=2cm]{./input/title2.png} 
+\end{center}
 
 \begin{Large}
 \vspace{-7mm}
@@ -232,12 +235,15 @@ NA
 
 \vspace{-5mm}
 
-截至北京时间4月29日早7：00，全球累计确诊病例已经达到3,111,730例，累计死亡216,857例。25个国家累计确诊病例超过15,000例。总体来看，欧洲与北美仍是累计确诊病例数最多的地区。英国的累计确诊数突破十六万，超过德国进入世界前五位。爱尔兰的累计确诊病例接近两万（19,877），粗发病率达403/10万人，已经超过意大利与瑞士，疫情正在迅速恶化。俄罗斯的累计确诊病例数超过伊朗，跃升至世界第八位。
-中东地区除伊朗外，沙特阿拉伯累计确诊病例超过两万，以色列，巴基斯坦，卡塔尔与阿联酋的累计确诊均已超过一万例。东欧地区白俄罗斯病例增长迅速（累计确诊12,208例），较上周（4月22日）接近翻倍，粗发病率到达129/10万，超过湖北。中东及东欧各国变化表明，疫情在欧亚大陆自西向东多点扩散。（表1）
+\(\bullet\)全球累计确诊病例达到10,815,117例，累计死亡519,575例。共有31个国家累计确诊病例数超过5万例，其中10个为欧洲国家，10个为亚洲国家，9个为美洲国家，另有两个非洲国家。
+
+\(\quad\)\(\diamond\)北美洲确诊病例数持续增长，已超过320万例，排名第一。
+
+\(\quad\)\(\diamond\)南美洲地区疫情蔓延迅速，确诊病例数超过230万例，超过亚洲。
 
 \begin{figure}[H]
 \captionsetup{font={huge}}
-\caption{世界疫情分布趋势图(来源：WHO)} %最终文档中希望显示的图片标题
+\caption{\textcolor{grey}{世界疫情分布趋势图(来源：WHO)}} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \includegraphics[]{./input/covid4.png}
@@ -296,11 +302,15 @@ NA
       \end{tablenotes}
 \end{table}
 
-从日新增病例数来看，美国与俄罗斯仍就占据世界前二，值得注意的是，俄罗斯的日新增病例呈明显上升趋势，该国疫情发展不容乐观。巴西日新增突破4000例，首次进入世界前三；秘鲁日新增接近2500例，两国日新增较上周均接近翻倍（4月22日：巴西2678例，秘鲁1413例），显示疫情在南美洲呈爆发性增长趋势。
-白俄罗斯的单日新增919例，疫情在该国发展需要进一步关注。另一方面，西班牙与意大利的日新增病例持续下降，表明疫情逐步得到较好控制。(表2和图2）\(\\\)
+\(\bullet\)全球昨日新增确诊接近19万例(18,8417例)（图2和表3），新增死亡4,033例（图3和表4）。
 
-从死亡病例数来看，美国仍是累计死亡病例最多的国家，虽日新增死亡呈现波动下降趋势。巴西累计死亡病例突破5000例，超过中国，日新增死亡也呈逐日上升态势。此外，意大利、西班牙、法国、德国等欧洲国家日新增死亡病例数呈现下降趋势，提示疫情在欧洲逐步缓解。
-（表3和图3）
+\(\quad\)\(\diamond\)北美洲新增确诊接近5万例，新增死亡病例616例。其中美国疫情依旧严重，新增确诊超过5.3万例（表3和表5为霍普金斯大学官网截至北京时间7月3日早8：00所更新的数据）。
+
+\(\quad\)\(\diamond\)南美洲新增确诊超过5万例，新增死亡病例已超过1,500例，约70\%的新增确诊和约60\%新增死亡病例来自巴西，其余国家中秘鲁和哥伦比亚为主要疫情国家，当日新增确诊均超过3000例。
+
+\(\quad\)\(\diamond\)亚洲新增确诊超过4万例，新增死亡482例，其中印度新增确诊接近2万例，约占50\%，另外巴基斯坦和孟加拉国新增确诊均超过4,000。
+
+\(\quad\)\(\diamond\)非洲新增确诊超过1.3万例，新增死亡259例。南非疫情持续扩散，单日新增确诊病例接近9,000例。
 
 \begin{table}[H]
     \centering \begin{table}[H]
@@ -357,14 +367,14 @@ NA
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
-\caption{日新增确诊病例国家趋势图}
+\caption{\textcolor{grey}{日新增确诊病例国家趋势图}}
 \includegraphics[]{./input/covid2.png}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
-\caption{日新增死亡病例国家趋势图}
+\caption{\textcolor{grey}{日新增死亡病例国家趋势图}}
 \includegraphics[]{./input/covid3.png}
 \end{figure}
 
@@ -375,23 +385,22 @@ NA
 
 \vspace{-5mm}
 
-截至北京时间4月29日早7:00，
-美国累计确诊病例数超过101万例（1,011,600），共58,343
-死亡病例。从分布来看，疫情主要集中在东西海岸和五大湖地区，全美19个州累计病例数超过一万人。除中部地区以外，东海岸地区疫情也在迅速扩散。罗得岛州累计确诊接近8000例，而粗发病率为全美第四（748/10万人）。（图4）\(\\\)
+\(\bullet\)截至北京时间7月3日早8：00，
+美国累计确诊病例数为2,735,554例，累计128,684死亡病例（表3和表5为霍普金斯大学官网截至北京时间7月3日早8：00所更新的数据）。
 
-纽约州、新泽西州和马萨诸塞州为美国疫情最严重的三个州。纽约州检测率超过4300/10万人，而阳性率下降至35\%，提示疫情逐步得到控制。此外，特拉华州，科罗拉多州与华盛顿特区阳性率均为22\%左右，超过伊利诺伊州，而检测在2000/10万人左右，略低于新泽西州，显示这些州对于检测的需求仍然十分庞大。（表4）
+\(\quad\)\(\diamond\)共有39个州累计确诊病例超过1万例，16个州确诊病例超过5万例。
 
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
-\caption{美国日新增确诊前五位州趋势图}
+\caption{\textcolor{grey}{美国日新增确诊前五位州趋势图}}
 \includegraphics[]{./input/covid5.png}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
-\caption{美国日新增死亡前五位州趋势图}
+\caption{\textcolor{grey}{美国日新增死亡前五位州趋势图}}
 \includegraphics[]{./input/covid6.png}
 \end{figure}
 
@@ -449,14 +458,19 @@ NA
       \end{tablenotes}
 \end{table}
 
-从日新增确诊来看，纽约州单日新增连续多日下降，较昨日再次下降800例左右，提示疫情好转。伊利诺伊州日新增病例逐步上升，需要进一步关注。（表5和图5）\(\\\)
+\(\bullet\)美国昨日新增确诊47,751例（图4和表5），新增死亡572例（图5和表6）。单日新增排名前十位的州昨日新增确诊均超过1,000例，共39个州累计确诊超过10,000例。
 
-从死亡病例数来看，密歇根州病死率超过9\%，为全美最高。纽约州与马萨诸塞州日新增死亡呈明显波动下降趋势，提示医疗资源压力得到缓解。值得注意的是，罗得岛州病死率为3\%，略低于佛罗里达州，但其累计病例只有佛罗里达州的1/4（佛罗里达州：32,848例）,提示该州存在医疗资源紧张的风险。（表6和图6）
+\(\quad\)\(\diamond\)佛罗里达州单日新增确诊病例再创新高，接近1万（10,109）例。
+
+\(\quad\)\(\diamond\)得克萨斯州疫情依旧不容乐观，近半个月单日新增确诊均超过4,000例。
+
+\(\quad\)\(\diamond\)乔治亚州近来疫情进展迅速，昨日新增确诊病例为3,340例。
 
 \vspace{5mm}
 
-%
-  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][c]{\textbf{~\Huge 热点话题}}}%
+\begin{center}
+\includegraphics[height=2cm]{./input/title3.png} 
+\end{center}
 
 \vspace{-5mm}
 
@@ -469,8 +483,6 @@ NA
 
 下面我们来看在全球率先进入临床试验阶段的几款不同原理的新冠病毒疫苗：\(\\\)
 
-\(\\\)
-
 \centerline{mRNA-1273 $^1$}
 
 \(\\\)
@@ -482,7 +494,6 @@ mRNA-1273。由CEPI(Coalition for Epidemic Preparedness Innovations,
 
 \centerline{Ad5-nCoV $^2$}
 
-\(\\\)
 中国第一个获批进入临床试验的候选疫苗为重组腺病毒载体疫苗Ad5-nCoV。腺病毒疫苗的原理是把新冠病毒表面的蛋白整合到没有致病力的腺病毒的表面，以免疫刺激人体产生针对新冠病毒的抗体。Ad5-nCoV是由军事科学院军事医学研究院的陈薇院士团队与国内康希诺公司联合开发，
 3月16日获国家药品监督局批准展开I期临床试验，并于4月9日公布I期临床试验108名志愿者的初步安全数据，并宣布进入临床II期。
 
@@ -490,7 +501,6 @@ mRNA-1273。由CEPI(Coalition for Epidemic Preparedness Innovations,
 
 \centerline{INO-4800 $^3$}
 
-\(\\\)
 全球第三款进入临床试验阶段的新冠疫苗，也是第一个候选的DNA疫苗，是来自Inovio
 Pharmaceuticals公司的INO-4800。DNA疫苗原理与mRNA疫苗相同，目前已用于艾滋病毒、流感病毒、疟疾等多种疫苗的开发。Inovio在获得病毒基因序列后在三个小时内就完成了疫苗设计。1月30日，Inovio公司宣布与中国国内企业艾棣维欣达成合作协议，共同推进INO-4800在中国的研发工作。4月7日，美国食品药品监管局(FDA)接受该公司为新冠病毒候选DNA疫苗递交的新药临床试验(IND)申请灭活病毒疫苗。Inovio于4月29日宣布其在美国招收的40名志愿者已经完成第一轮疫苗注射。
 
@@ -498,7 +508,6 @@ Pharmaceuticals公司的INO-4800。DNA疫苗原理与mRNA疫苗相同，目前�
 
 \centerline{新冠病毒灭活疫苗 $^4$}
 
-\(\\\)
 全球第一个灭活病毒疫苗由国药集团下武汉生物制品研究所有限责任公司与中科院武汉病毒所研发。灭毒活疫苗的原理是杀死病毒以使其失去致病力，但保留病毒表面的蛋白质，使其注射入体内后依然可以刺激免疫反应。2月1日，该项目获得科技部国家重点研发计划``公共安全风险防控与应急技术装备''重点专项``2019-nCoV灭活疫苗''的紧急立项。在4月12日获得了国家药品监督管理局临床试验许可，已开展随机、双盲、安慰剂平行对照I/II期临床试验。
 
 \vspace{5mm}
