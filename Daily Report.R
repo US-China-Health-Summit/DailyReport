@@ -1859,6 +1859,8 @@ if (weekly_summary){
   state_incremental = case_confirmed_incremental_wide[case_confirmed_incremental_wide$Province_State %in% weekly_sum_state,]
   y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
   y_interval = adjust_y_interval(y_max)
+  day = c("2020-06-01","2020-03-05")
+  day = as.Date(day)
   
   for (i in 1:5) {
     data_to_plot_state_incr = state_incremental[i,] %>% 
@@ -1868,6 +1870,8 @@ if (weekly_summary){
     p22 = ggplot(data_to_plot_state_incr,aes(x = Date,y = Incremental, color = Province_State)) +
       # geom_point(size=2) + 
       geom_line(size=1) +
+      geom_vline(xintercept = day[1], color = "#66A61E") + 
+      geom_vline(xintercept = day[2], color =  "#8DA0CB") + 
       theme_bw() + 
       theme(panel.border = element_blank()) +
       theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -1880,6 +1884,7 @@ if (weekly_summary){
       scale_x_date(breaks = break.vec_us,date_labels = "%m-%d") +
       xlab("") +
       ylab("Total Number of Cases")
+      
     # ggsave(filename=paste(report_date,"p22-",i, ".pdf"), plot = p13, width = 10, height = 8 )
     ggsave(filename=paste(report_date,"p22-",i, ".png"), plot = p22, width = 10, height = 8 )
   
