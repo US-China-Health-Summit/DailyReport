@@ -44,6 +44,8 @@ header-includes:
     - \linespread{1.85}
     - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
+    - \setCJKmainfont[BoldFont=SimHei,ItalicFont=KaiTi]{微软雅黑}
+
 
 ---
 \captionsetup[figure]{name={图},labelsep=space} 
@@ -99,44 +101,51 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
   select(pub,title,content)
 ```
 
-
-**\textcolor{glaucous}{`r global_news$pub[1]`}**: **`r global_news$title[1]`**
-
+\begin{center}
+\textcolor{glaucous}{`r global_news$pub[1]`}\\`r global_news$title[1]`
+\end{center}
 `r global_news$content[1]`
 
-**\textcolor{glaucous}{`r global_news$pub[2]`}** : **`r global_news$title[2]`**
-
+\begin{center}
+\textcolor{glaucous}{`r global_news$pub[2]`}\\`r global_news$title[2]`
+\end{center}
 `r global_news$content[2]`
 
-**\textcolor{glaucous}{`r global_news$pub[3]`}** : **`r global_news$title[3]`**
-
+\begin{center}
+\textcolor{glaucous}{`r global_news$pub[3]`}\\`r global_news$title[3]`
+\end{center}
 `r global_news$content[3]`
 
-**\textcolor{glaucous}{`r global_news$pub[4]`}** : **`r global_news$title[4]`**
-
+\begin{center}
+\textcolor{glaucous}{`r global_news$pub[4]`}\\`r global_news$title[4]`
+\end{center}
 `r global_news$content[4]`
 
-**\textcolor{glaucous}{`r global_news$pub[4]`}** : **`r global_news$title[5]`**
-
+\begin{center}
+\textcolor{glaucous}{`r global_news$pub[5]`}\\`r global_news$title[5]`
+\end{center}
 `r global_news$content[5]`
 
-**\textcolor{glaucous}{`r global_news$pub[4]`}** : **`r global_news$title[6]`**
-
+\begin{center}
+\textcolor{glaucous}{`r global_news$pub[6]`}`r global_news$title[6]`
+\end{center}
 `r global_news$content[6]`
 
 
-\vspace{-5mm}
+\vspace{5mm}
 
 ## \textcolor{glaucous}{\Huge 国内}
 
 \vspace{-3mm}
 
-**\textcolor{glaucous}{`r china_news$pub[1]`}**: **`r china_news$title[1]`**
-
+\begin{center}
+\textcolor{glaucous}{`r china_news$pub[1]`}\\`r china_news$title[1]`
+\end{center}
 `r china_news$content[1]`
 
-**\textcolor{glaucous}{`r china_news$pub[2]`}**: **`r china_news$title[2]`**
-
+\begin{center}
+\textcolor{glaucous}{`r china_news$pub[2]`}\\`r china_news$title[2]`
+\end{center}
 `r china_news$content[2]`
 
 
@@ -146,7 +155,14 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 \resheading{\Huge 疫情观察}
 
 \begin{Large}
-{数据源：约翰霍普金斯大学，The COVID Tracking Project \\ 数据截止至：北京时间6月30日 上午8:00}
+\vspace{-7mm}
+{数据源：约翰霍普金斯大学，The COVID Tracking  Project}
+\end{Large}
+
+\vspace{-7mm}
+
+\begin{Large}
+{数据截止至：北京时间6月30日 上午8:00}
 \end{Large}
 
 \vspace{-7mm}
@@ -165,7 +181,7 @@ insight = read_excel("./input/insight.xlsx") %>%
 `r insight$content[1]`
 
 \begin{figure}[H]
-\captionsetup{font={Huge}}
+\captionsetup{font={huge}}
 \caption{世界疫情分布趋势图(来源：WHO)} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
@@ -255,14 +271,14 @@ cat(c("\\begin{table}[H]
 
 \begin{figure}[H]
 \centering
-\captionsetup{font={Huge}}
+\captionsetup{font={huge}}
 \caption{日新增确诊病例国家趋势图}
 \includegraphics[]{./input/covid2.png}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\captionsetup{font={Huge}}
+\captionsetup{font={huge}}
 \caption{日新增死亡病例国家趋势图}
 \includegraphics[]{./input/covid3.png}
 \end{figure}
@@ -285,14 +301,14 @@ cat(c("\\begin{table}[H]
 
 \begin{figure}[H]
 \centering
-\captionsetup{font={Huge}}
+\captionsetup{font={huge}}
 \caption{美国日新增确诊前五位州趋势图}
 \includegraphics[]{./input/covid5.png}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\captionsetup{font={Huge}}
+\captionsetup{font={huge}}
 \caption{美国日新增死亡前五位州趋势图}
 \includegraphics[]{./input/covid6.png}
 \end{figure}
@@ -340,6 +356,7 @@ reference = example$content[3]
 `r content1`
 
 <!-- Insert image for module 3 HERE --> 
+\vspace{5mm}
 
 \Large `r reference`
 
