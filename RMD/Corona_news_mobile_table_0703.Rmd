@@ -74,14 +74,14 @@ header-includes:
 {\textcolor{glaucous}{\textbf{第72期 \space 6月30日}}}
 \end{center}
 
-
+\vspace{2mm}
 \begin{center}
 \includegraphics[height=2cm]{./input/title1.png} 
 \end{center}
 
 \vspace{-5mm}
 
-## \textcolor{glaucous}{\Huge 国际}
+\begin{huge}{\textcolor{glaucous}{\textbf{国际}}}\end{huge}
 
 \vspace{-3mm}
 
@@ -137,7 +137,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 \vspace{5mm}
 
-## \textcolor{glaucous}{\Huge 国内}
+\begin{huge}{\textcolor{glaucous}{\textbf {国内}}}\end{huge}
 
 \vspace{-3mm}
 
@@ -153,7 +153,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 
 
-\vspace{5mm}
+\vspace{10mm}
 
 \begin{center}
 \includegraphics[height=2cm]{./input/title2.png} 
@@ -172,7 +172,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 \vspace{-7mm}
 
-# \textcolor{glaucous}{\Huge 一、世界疫情}
+\begin{huge}{\textcolor{glaucous}{\textbf {一、世界疫情}}}\end{huge}
 
 \vspace{-5mm}
 
@@ -187,13 +187,12 @@ insight = read_excel("./input/insight.xlsx") %>%
 
 \begin{figure}[H]
 \captionsetup{font={huge}}
-\caption{\textcolor{grey}{世界疫情分布趋势图(来源：WHO)}} %最终文档中希望显示的图片标题
+\caption{世界疫情分布趋势图(来源：WHO)} %最终文档中希望显示的图片标题
 \centering
 \includegraphics[]{./input/covid1.png} %插入图片，[]中设置图片大小，{}中是图片文件名
 \includegraphics[]{./input/covid4.png}
 \label{} %用于文内引用的标签
 \end{figure}
-
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 options(knitr.kable.NA = '')
@@ -256,6 +255,7 @@ cat(c("\\begin{table}[H]
 
 `r insight$content[2]`
 
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
     \\centering",
@@ -273,48 +273,41 @@ cat(c("\\begin{table}[H]
 \\end{table}"
 ))
 ```
-
+\vspace{-5mm}
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
-\caption{\textcolor{grey}{日新增确诊病例国家趋势图}}
+\caption{日新增确诊病例国家趋势图}
 \includegraphics[]{./input/covid2.png}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
-\caption{\textcolor{grey}{日新增死亡病例国家趋势图}}
+\caption{日新增死亡病例国家趋势图}
 \includegraphics[]{./input/covid3.png}
 \end{figure}
 
 \vspace{-7mm}
 
-# \textcolor{glaucous}{\Huge 二、美国疫情}
+\begin{huge}{\textcolor{glaucous}{\textbf {二、美国疫情}}}\end{huge}
 
 \vspace{-5mm}
 
 `r insight$content[3]`
 
 
-
-
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-
-```
-
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
-\caption{\textcolor{grey}{美国日新增确诊前五位州趋势图}}
+\caption{美国日新增确诊前五位州趋势图}
 \includegraphics[]{./input/covid5.png}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
-\caption{\textcolor{grey}{美国日新增死亡前五位州趋势图}}
+\caption{美国日新增死亡前五位州趋势图}
 \includegraphics[]{./input/covid6.png}
 \end{figure}
 
@@ -341,11 +334,12 @@ cat(c("\\begin{table}[H]
 `r insight$content[4]`
 
 
-\vspace{5mm}
+\vspace{15mm}
 
 \begin{center}
 \includegraphics[height=2cm]{./input/title3.png} 
 \end{center}
+\vspace{-7mm}
 
 ```{r, echo=FALSE}
 example = read_excel("./input/module3.xlsx")
