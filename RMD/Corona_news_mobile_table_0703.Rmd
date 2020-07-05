@@ -170,7 +170,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 {数据截止至：北京时间6月30日 上午8:00}
 \end{Large}
 
-\vspace{-7mm}
+
 
 \begin{huge}{\textcolor{glaucous}{\textbf {一、世界疫情}}}\end{huge}
 
