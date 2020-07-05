@@ -1,39 +1,46 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{article}
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -42,25 +49,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
@@ -211,8 +207,7 @@
 
 \vspace{-5mm}
 
-\(\quad\)截至北京时间4月29日早7：00，全球累计确诊病例已经达到3,111,730例，累计死亡216,857例。25个国家累计确诊病例超过15,000例。总体来看，欧洲与北美仍是累计确诊病例数最多的地区。英国的累计确诊数突破十六万，超过德国进入世界前五位。爱尔兰的累计确诊病例接近两万（19,877），粗发病率达403/10万人，已经超过意大利与瑞士，疫情正在迅速恶化。俄罗斯的累计确诊病例数超过伊朗，跃升至世界第八位。
-中东地区除伊朗外，沙特阿拉伯累计确诊病例超过两万，以色列，巴基斯坦，卡塔尔与阿联酋的累计确诊均已超过一万例。东欧地区白俄罗斯病例增长迅速（累计确诊12,208例），较上周（4月22日）接近翻倍，粗发病率到达129/10万，超过湖北。中东及东欧各国变化表明，疫情在欧亚大陆自西向东多点扩散。（表1）
+\(\quad\)截至北京时间6月11日早9：00，全球累计确诊病例已经达到7,356,337例，累计死亡416,040例。美国累计确诊病例即将突破二百万例，巴西确诊病例已经接近八十万例，俄罗斯确诊病例数也即将突破五十万例(表1)。已经有52个国家的粗发病率超过了中国湖北省。
 
 \begin{figure}[H]
 \caption{世界疫情分布图} %最终文档中希望显示的图片标题
@@ -234,18 +229,18 @@
 
 \begin{tabular}{rlrr}
 \toprule
-  & 国家(地区) & 累计确诊病例 & 粗发病率*\\
+  & 国家（地区） & 累计确诊病例 & 粗发病率*\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 1,132,512 & 342\\
-2 & 西班牙 Spain & 216,582 & 463\\
-\rowcolor{gray!6}  3 & 意大利 Italy & 209,328 & 346\\
-4 & 英国 UK & 183,500 & 270\\
-\rowcolor{gray!6}  5 & 法国 France & 169,053 & 259\\
-6 & 德国 Germany & 164,967 & 197\\
-\rowcolor{gray!6}  7 & 土耳其 Turkey & 124,375 & 147\\
-8 & 俄罗斯 Russia & 124,054 & 85\\
-\rowcolor{gray!6}  9 & 巴西 Brazil & 96,559 & 45\\
-10 & 伊朗 Iran & 96,448 & 115\\
+\rowcolor{gray!6}  1 & 美国 US & 1,999,392 & 604\\
+2 & 巴西 Brazil & 772,416 & 363\\
+\rowcolor{gray!6}  3 & 俄罗斯 Russia & 493,023 & 338\\
+4 & 英国 UK & 291,588 & 430\\
+\rowcolor{gray!6}  5 & 印度 India & 276,583 & 20\\
+6 & 西班牙 Spain & 242,280 & 518\\
+\rowcolor{gray!6}  7 & 意大利 Italy & 235,763 & 390\\
+8 & 秘鲁 Peru & 207,794 & 630\\
+\rowcolor{gray!6}  9 & 法国 France & 192,330 & 295\\
+10 & 德国 Germany & 186,522 & 223\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -261,23 +256,22 @@
 
 \begin{tabular}{rlrr}
 \toprule
-  & 国家(地区) & 粗发病率* & 累计确诊病例\\
+  & 国家（地区） & 粗发病率* & 累计确诊病例\\
 \midrule
-\rowcolor{gray!6}  1 & 圣马力诺 San Marino & 1,709 & 580\\
-2 & 梵蒂冈 Holy See & 1,373 & 11\\
-\rowcolor{gray!6}  3 & 安道尔 Andorra & 967 & 747\\
-4 & 卢森堡 Luxembourg & 609 & 3,812\\
-\rowcolor{gray!6}  5 & 冰岛 Iceland & 527 & 1,798\\
-6 & 卡塔尔 Qatar & 516 & 14,872\\
-\rowcolor{gray!6}  7 & 西班牙 Spain & 463 & 216,582\\
-8 & 爱尔兰 Ireland & 429 & 21,176\\
-\rowcolor{gray!6}  9 & 比利时 Belgium & 427 & 49,517\\
-10 & 意大利 Italy & 346 & 209,328\\
+\rowcolor{gray!6}  1 & 卡塔尔 Qatar & 2,554 & 73,595\\
+2 & 圣马力诺** San Marino & 2,036 & 691\\
+\rowcolor{gray!6}  3 & 梵蒂冈** Holy See & 1,498 & 12\\
+4 & 安道尔** Andorra & 1,103 & 852\\
+\rowcolor{gray!6}  5 & 巴林 Bahrain & 952 & 16,200\\
+6 & 科威特 Kuwait & 792 & 33,823\\
+\rowcolor{gray!6}  7 & 智利 Chile & 777 & 148,456\\
+8 & 新加坡 Singapore & 666 & 38,965\\
+\rowcolor{gray!6}  9 & 卢森堡 Luxembourg & 647 & 4,049\\
+10 & 秘鲁 Peru & 630 & 207,794\\
 \bottomrule
 \end{tabular}
 \endgroup{}
 \end{table} \end{minipage}
-    
     \begin{tablenotes}
         \fontsize{15}{15}
         \selectfont
@@ -285,11 +279,9 @@
       \end{tablenotes}
 \end{table}
 
-\(\quad\)从日新增病例数来看，美国与俄罗斯仍就占据世界前二，值得注意的是，俄罗斯的日新增病例呈明显上升趋势，该国疫情发展不容乐观。巴西日新增突破4000例，首次进入世界前三；秘鲁日新增接近2500例，两国日新增较上周均接近翻倍（4月22日：巴西2678例，秘鲁1413例），显示疫情在南美洲呈爆发性增长趋势。
-白俄罗斯的单日新增919例，疫情在该国发展需要进一步关注。另一方面，西班牙与意大利的日新增病例持续下降，表明疫情逐步得到较好控制。(表2和图2）
+\(\quad\)美洲、南亚和中东地区仍为疫情热点地区。南美洲疫情尤为严重，单日新增近46,000例，几乎是北美洲和欧洲新增病例数之和；单日新增死亡病例超过1,700例。巴西单日新增确诊和死亡病例数均继续高居世界首位，秘鲁和智利单日新增确诊和死亡病例数也均进入世界前六位，且均未出现下降趋势(表3、表4、图2、图3)。哥伦比亚单日新增确诊病例达到了1,359例，排名世界第十三；阿根廷单日新增病例数也已连续两日超过1,000例，创下新高。北美洲的墨西哥疫情进展迅速，单日新增病例已接近5,000例，病死率已经上升至11.9\%，显示医疗系统已接近崩溃。
 
-\(\quad\)从死亡病例数来看，美国仍是累计死亡病例最多的国家，虽日新增死亡呈现波动下降趋势。巴西累计死亡病例突破5000例，超过中国，日新增死亡也呈逐日上升态势。此外，意大利、西班牙、法国、德国等欧洲国家日新增死亡病例数呈现下降趋势，提示疫情在欧洲逐步缓解。
-（表3和图3）
+\(\quad\)中东和南亚地区的疫情同样不容乐观。沙特阿拉伯为现在中东地区病例数增加最快的国家，单日新增确诊病例数已连续五日超过3,000例，与五月末时相比几乎翻倍。伊拉克新增病例数上升迅速，单日新增确诊病例已从5月31日时的约300例迅速上升至超过1,000例。此外伊朗单日新增确诊病例仍稳定在2,000例以上，处于第二波疫情之中尚未出现好转迹象。非洲疫情主要集中于南非和埃及，其中南非单日新增病例数已连续一周超过2,000例。
 
 \begin{table}[H]
 
@@ -306,16 +298,16 @@
 \toprule
   & 国家 & 当日新增病例\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 23,403\\
-2 & 俄罗斯 Russia & 6,411\\
-\rowcolor{gray!6}  3 & 巴西 Brazil & 4,440\\
-4 & 英国 UK & 4,002\\
-\rowcolor{gray!6}  5 & 法国 France & 3,089\\
-6 & 西班牙 Spain & 2,706\\
-\rowcolor{gray!6}  7 & 秘鲁 Peru & 2,491\\
-8 & 土耳其 Turkey & 2,392\\
-\rowcolor{gray!6}  9 & 意大利 Italy & 2,091\\
-10 & 印度 India & 1,909\\
+\rowcolor{gray!6}  1 & 巴西 Brazil & 32,913\\
+2 & 美国 US & 26,162\\
+\rowcolor{gray!6}  3 & 俄罗斯 Russia & 8,393\\
+4 & 智利 Chile & 5,697\\
+\rowcolor{gray!6}  5 & 墨西哥 Mexico & 4,883\\
+6 & 秘鲁 Peru & 4,058\\
+\rowcolor{gray!6}  7 & 沙特 Saudi Arabia & 3,717\\
+8 & 孟加拉国 Bangladesh & 3,190\\
+\rowcolor{gray!6}  9 & 南非 South Africa & 2,430\\
+10 & 伊朗 Iran & 2,011\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -333,16 +325,16 @@
 \toprule
   & 国家 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
 \midrule
-\rowcolor{gray!6}  1 & 美国 US & 58,343 & 2,084 & 5.8\\
-2 & 意大利 Italy & 27,359 & 382 & 13.6\\
-\rowcolor{gray!6}  3 & 西班牙 Spain & 23,822 & 301 & 10.3\\
-4 & 法国 France & 23,694 & 367 & 14.0\\
-\rowcolor{gray!6}  5 & 英国 UK & 21,745 & 588 & 13.4\\
-6 & 比利时 Belgium & 7,331 & 124 & 15.5\\
-\rowcolor{gray!6}  7 & 德国 Germany & 6,280 & 154 & 3.9\\
-8 & 伊朗 Iran & 5,877 & 71 & 6.3\\
-\rowcolor{gray!6}  9 & 巴西 Brazil & 5,017 & 414 & 7.0\\
-10 & 中国 China & 4,637 & 0 & 5.5\\
+\rowcolor{gray!6}  1 & 美国 US & 112,878 & 889 & 5.6\\
+2 & 英国 UK & 41,213 & 245 & 14.1\\
+\rowcolor{gray!6}  3 & 巴西 Brazil & 39,680 & 1,274 & 5.1\\
+4 & 意大利 Italy & 34,114 & 71 & 14.5\\
+\rowcolor{gray!6}  5 & 法国 France & 29,322 & 23 & 15.2\\
+6 & 西班牙 Spain & 28,752 & 0 & 11.9\\
+\rowcolor{gray!6}  7 & 墨西哥 Mexico & 15,357 & 708 & 11.9\\
+8 & 比利时 Belgium & 9,629 & 10 & 16.2\\
+\rowcolor{gray!6}  9 & 德国 Germany & 8,752 & 16 & 4.7\\
+10 & 伊朗 Iran & 8,506 & 81 & 4.8\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -371,11 +363,8 @@
 
 \vspace{-5mm}
 
-\(\quad\)截至北京时间4月29日早7:00，
-美国累计确诊病例数超过101万例（1,011,600），共58,343
-死亡病例。从分布来看，疫情主要集中在东西海岸和五大湖地区，全美19个州累计病例数超过一万人。除中部地区以外，东海岸地区疫情也在迅速扩散。罗得岛州累计确诊接近8000例，而粗发病率为全美第四（748/10万人）。（图4）
-
-\(\quad\)纽约州、新泽西州和马萨诸塞州为美国疫情最严重的三个州。纽约州检测率超过4300/10万人，而阳性率下降至35\%，提示疫情逐步得到控制。此外，特拉华州，科罗拉多州与华盛顿特区阳性率均为22\%左右，超过伊利诺伊州，而检测在2000/10万人左右，略低于新泽西州，显示这些州对于检测的需求仍然十分庞大。（表4）
+\(\quad\)截至北京时间6月11日早9:00，
+美国累计确诊病例数即将突破二百万例(1,999,392例)，共112,878死亡病例。
 
 \begin{figure}[H] 
 \caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
@@ -385,36 +374,65 @@
 \end{figure}
 
 \begin{table}[H]
-\vspace{0mm}
+      \centering
+    \begin{minipage}{.4\linewidth}
     \caption{美国累计确诊前十位州}
-      \vspace{-0.5\baselineskip}
-      \centering \begin{table}[H]
-\centering\begingroup\fontsize{10}{12}\selectfont
+    \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
+\centering\begingroup\fontsize{12}{14}\selectfont
 
-\begin{tabular}{rlrrrrrrr}
+\begin{tabular}{rlrr}
 \toprule
-  & 国家/州名 & 累计确诊 & 粗发病率 & 累计检测 & 累计阳性率\% & 日新增检测 & 新增中阳性率\% & 检测率*\\
+  & 国家/州名 & 累计确诊 & 粗发病率\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 1,662,302 & 502 & 14,603,530 & 11 & 441,248 & 4 & 4,412\\
-1 & 纽约州 NY & 362,764 & 1,865 & 1,739,449 & 21 & 39,623 & 3 & 8,942\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 155,092 & 1,746 & 623,797 & 25 & 19,990 & 5 & 7,023\\
-3 & 伊利诺伊州 IL & 112,017 & 884 & 769,564 & 15 & 21,643 & 8 & 6,073\\
-\rowcolor{gray!6}  4 & 加利福尼亚州 CA & 96,400 & 244 & 1,644,102 & 6 & 61,357 & 3 & 4,161\\
-5 & 马萨诸塞州 MA & 93,271 & 1,342 & 540,561 & 17 & 8,188 & 7 & 7,778\\
-\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 71,925 & 562 & 403,114 & 18 & 7,019 & 7 & 3,149\\
-7 & 得克萨斯州 TX & 56,409 & 195 & 805,654 & 7 & 42,109 & 1 & 2,779\\
-\rowcolor{gray!6}  8 & 密歇根州 MI & 54,881 & 550 & 472,860 & 12 & 21,628 & 1 & 4,735\\
-9 & 佛罗里达州 FL & 51,746 & 241 & 908,235 & 6 & 37,000 & 2 & 4,229\\
-\rowcolor{gray!6}  10 & 马里兰州 MD & 47,152 & 780 & 249,577 & 19 & 9,215 & 9 & 4,128\\
+\rowcolor{gray!6}   & 美国 US & 1,999,392 & 604\\
+1 & 纽约州 NY & 380,156 & 1,954\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 165,346 & 1,862\\
+3 & 加利福尼亚州 CA & 139,151 & 352\\
+\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 129,837 & 1,025\\
+5 & 马萨诸塞州 MA & 104,156 & 1,499\\
+\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 81,316 & 635\\
+7 & 得克萨斯州 TX & 80,611 & 278\\
+\rowcolor{gray!6}  8 & 佛罗里达州 FL & 67,371 & 314\\
+9 & 密歇根州 MI & 65,182 & 653\\
+\rowcolor{gray!6}  10 & 马里兰州 MD & 59,465 & 984\\
 \bottomrule
 \end{tabular}
 \endgroup{}
-\end{table} \begin{tablenotes}
-    \fontsize{12}{12}
-      \selectfont
-    \item 注： 检测率定义：累计检测人数/10万人。计算方式：（累计检测人数/人口）*10万；**截至数据下载时间，纽约州尚未更新当日新增检测数量
-    \end{tablenotes}
-    \end{table}
+\end{table} \end{minipage}%
+    \begin{minipage}{.6\linewidth}
+     \caption{美国粗发病率前十位州}
+     \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
+\centering\begingroup\fontsize{12}{14}\selectfont
+
+\begin{tabular}{rlrr}
+\toprule
+  & 国家/州名 & 粗发病率 & 累计确诊\\
+\midrule
+\rowcolor{gray!6}   & 美国 US & 604 & 1,999,392\\
+1 & 纽约州 NY & 1,954 & 380,156\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 1,862 & 165,346\\
+3 & 马萨诸塞州 MA & 1,499 & 104,156\\
+\rowcolor{gray!6}  4 & 罗得岛 RI & 1,487 & 15,756\\
+5 & 哥伦比亚特区 DC & 1,351 & 9,537\\
+\rowcolor{gray!6}  6 & 康涅狄格州 CT & 1,244 & 44,347\\
+7 & 特拉华州 DE & 1,033 & 10,056\\
+\rowcolor{gray!6}  8 & 伊利诺伊州 IL & 1,025 & 129,837\\
+9 & 马里兰州 MD & 984 & 59,465\\
+\rowcolor{gray!6}  10 & 路易斯安那州 LA & 947 & 44,030\\
+\bottomrule
+\end{tabular}
+\endgroup{}
+\end{table} \end{minipage} 
+    \begin{tablenotes}
+        \fontsize{15}{15}
+        \selectfont
+        \item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万；**国家人口不足10万人，圣马力诺33,931人，梵蒂冈801人，安道尔77,265人。  %此处加入注释信息
+      \end{tablenotes}
+\end{table}
 
 \begin{figure}[H]
 \centering
@@ -440,21 +458,21 @@
     \captionsetup{justification=centering} \begin{table}[H]
 \centering\begingroup\fontsize{12}{14}\selectfont
 
-\begin{tabular}{rlrr}
+\begin{tabular}{rlr}
 \toprule
-  & 国家/州名 & 当日新增 & 构成比\%\\
+  & 国家/州名 & 当日新增\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 23,403 & 100\\
-1 & 纽约州 NY & 3,110 & 13\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 2,668 & 11\\
-3 & 伊利诺伊州 IL & 2,219 & 9\\
-\rowcolor{gray!6}  4 & 马萨诸塞州 MA & 1,840 & 8\\
-5 & 宾夕法尼亚州 PA & 1,579 & 7\\
-\rowcolor{gray!6}  6 & 加利福尼亚州 CA & 1,067 & 5\\
-7 & 密歇根州 MI & 1,052 & 4\\
-\rowcolor{gray!6}  8 & 得克萨斯州 TX & 901 & 4\\
-9 & 弗吉尼亚州 VA & 801 & 3\\
-\rowcolor{gray!6}  10 & 佛罗里达州 FL & 710 & 3\\
+\rowcolor{gray!6}   & 美国 US & 26,162\\
+1 & 加利福尼亚州 CA & 2,510\\
+\rowcolor{gray!6}  2 & 得克萨斯州 TX & 2,403\\
+3 & 亚利桑那州 AZ & 1,556\\
+\rowcolor{gray!6}  4 & 佛罗里达州 FL & 1,371\\
+5 & 北卡罗莱纳州 NC & 1,246\\
+\rowcolor{gray!6}  6 & 乔治亚州 GA & 735\\
+7 & 纽约州 NY & 674\\
+\rowcolor{gray!6}  8 & 伊利诺伊州 IL & 625\\
+9 & 阿拉巴马州 AL & 567\\
+\rowcolor{gray!6}  10 & 马里兰州 MD & 561\\
 \bottomrule
 \end{tabular}
 \endgroup{}
@@ -466,30 +484,28 @@
     \captionsetup{justification=centering} \begin{table}[H]
 \centering\begingroup\fontsize{12}{14}\selectfont
 
-\begin{tabular}{rlrr}
+\begin{tabular}{rlrrr}
 \toprule
-  & 国家/州名 & 累计死亡人数 & 病死率\%\\
+  & 国家/州名 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
 \midrule
-\rowcolor{gray!6}   & 美国 US & 58,343 & 5.8\\
-1 & 纽约州 NY & 22,912 & 7.8\\
-\rowcolor{gray!6}  2 & 新泽西州 NJ & 6,442 & 5.7\\
-3 & 密歇根州 MI & 3,568 & 9.1\\
-\rowcolor{gray!6}  4 & 马萨诸塞州 MA & 3,153 & 5.4\\
-5 & 伊利诺伊州 IL & 2,125 & 4.4\\
-\rowcolor{gray!6}  6 & 康涅狄格州 CT & 2,087 & 7.9\\
-7 & 宾夕法尼亚州 PA & 2,046 & 4.5\\
-\rowcolor{gray!6}  8 & 加利福尼亚州 CA & 1,864 & 4.0\\
-9 & 路易斯安那州 LA & 1,801 & 6.6\\
-\rowcolor{gray!6}  10 & 佛罗里达州 FL & 1,171 & 3.6\\
+\rowcolor{gray!6}   & 美国 US & 112,878 & 889 & 5.6\\
+1 & 纽约州 NY & 30,542 & 84 & 8.0\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 12,377 & 74 & 7.5\\
+3 & 马萨诸塞州 MA & 7,454 & 46 & 7.2\\
+\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 6,095 & 77 & 4.7\\
+5 & 宾夕法尼亚州 PA & 6,062 & 48 & 7.5\\
+\rowcolor{gray!6}  6 & 密歇根州 MI & 5,955 & 7 & 9.1\\
+7 & 加利福尼亚州 CA & 4,838 & 93 & 3.5\\
+\rowcolor{gray!6}  8 & 康涅狄格州 CT & 4,120 & 23 & 9.3\\
+9 & 路易斯安那州 LA & 2,968 & 11 & 6.7\\
+\rowcolor{gray!6}  10 & 马里兰州 MD & 2,844 & 33 & 4.8\\
 \bottomrule
 \end{tabular}
 \endgroup{}
 \end{table} \end{minipage} 
 \end{table}
 
-\(\quad\)从日新增确诊来看，纽约州单日新增连续多日下降，较昨日再次下降800例左右，提示疫情好转。伊利诺伊州日新增病例逐步上升，需要进一步关注。（表5和图5）
-
-\(\quad\)从死亡病例数来看，密歇根州病死率超过9\%，为全美最高。纽约州与马萨诸塞州日新增死亡呈明显波动下降趋势，提示医疗资源压力得到缓解。值得注意的是，罗得岛州病死率为3\%，略低于佛罗里达州，但其累计病例只有佛罗里达州的1/4（佛罗里达州：32,848例）,提示该州存在医疗资源紧张的风险。（表6和图6）
+\(\quad\)从日新增确诊来看，排名前五位的加利福尼亚州、得克萨斯州、亚利桑那州、佛罗里达州单日新增确诊病例数均在波动上升，显示随着居家隔离措施的放宽，疫情在这几个州持续恶化。除此以外，阿拉巴马州和南卡罗来纳州近来疫情恶化趋势也较为明显，需要持续关注。
 
 \vspace{5mm}
 
