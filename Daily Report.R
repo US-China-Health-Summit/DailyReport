@@ -50,14 +50,14 @@ template_input = FALSE
 top_n = 5
 
 ##### FOR WEEKLY REPORT #####
-weekly_summary = FALSE
+weekly_summary = TRUE
 start_date_wr = NULL
 end_date_wr = NULL
 
-weekly_summary = FALSE
+weekly_summary = TRUE
 start_date_wr = "2020-06-21"
 end_date_wr = "2020-06-27"
-moving_avg = FALSE
+moving_avg = TRUE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
 end_date_confirmed_threshold = 10000
@@ -1360,15 +1360,15 @@ if (weekly_summary){
     }    
     #Table: Globle wide table moving average incremental confirm
     case_confirmed_incremental_wide_mvavg = find_mv_avg(case_confirmed_incremental_wide)
-    write_excel_csv(case_confirmed_incremental_wide_mvavg, paste(report_date,"table_US_case_deaths_incremental_mvavg.csv"))
+    write_excel_csv(case_confirmed_incremental_wide_mvavg, paste(report_date,"table_global_case_confirmed_incremental_mvavg.csv"))
     #Table: Globle wide table moving average incremental death
     case_deaths_incremental_wide_mvavg = find_mv_avg(case_deaths_incremental_wide)
-    write_excel_csv(case_deaths_incremental_wide_mvavg, paste(report_date,"table_US_case_deaths_incremental_mvavg.csv"))
+    write_excel_csv(case_deaths_incremental_wide_mvavg, paste(report_date,"table_global_case_deaths_incremental_mvavg.csv"))
     
     ###### plot 3. new confirmed cases moving average daily sort by countries incremental #####
     # filter by country total and date
     data_to_plot = case_confirmed_incremental_wide_mvavg%>%
-      as_tibble()%>%pivot_longer(cols = -colnames(.)[1] , names_to = "date", values_to = "mvg_incr")
+      as_tibble()%>%pivot_longer(cols = -`Country/Region` , names_to = "date", values_to = "mvg_incr")
     country_order = data_to_plot%>%filter(date == max(as.Date(date)))%>%arrange(desc(mvg_incr))%>%mutate(rank = 1:nrow(.))%>%pull(1)
     country_order = c(country_order[1:5],"China")%>%unique()
     # reorder factor levels by country filter order
@@ -1490,7 +1490,6 @@ case_deaths_incremental_wide = data_deaths$data_incremental_wide
 
 data_us_states = Reduce(function(x, y) merge(x, y, all = TRUE), list(case_confirmed, case_deaths))
 colnames(data_us_states)[grep("Province_State", colnames(data_us_states))] = "state"
-
 
 ##################
 #### US Hospitalize and Test Results Detail View ####
@@ -1853,6 +1852,44 @@ p11 = ggplot(data_to_plot_death_incremental , aes(x=Date, y=Deaths_incremental, 
 ggsave(filename=paste(report_date,"p11",p11_title, ".png"), plot = p11, width = 10, height = 8 )  
 
 if (weekly_summary){
+ 
+   ###update 2020-07-04
+  ### plot 21
+  weekly_sum_state = c("New York", "California","Florida","Texas","Arizona")
+  state_incremental = case_confirmed_incremental_wide[case_confirmed_incremental_wide$Province_State %in% weekly_sum_state,]
+  y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
+  y_interval = adjust_y_interval(y_max)
+  day = c("2020-06-01","2020-03-05")
+  day = as.Date(day)
+  
+  for (i in 1:5) {
+    data_to_plot_state_incr = state_incremental[i,] %>% 
+      pivot_longer(names_to = "Date",values_to = "Incremental",cols = contains("-")) %>% mutate(Date = as.Date(Date)) %>% 
+      filter(Date >= start_date)
+    
+    p22 = ggplot(data_to_plot_state_incr,aes(x = Date,y = Incremental, color = Province_State)) +
+      # geom_point(size=2) + 
+      geom_line(size=1) +
+      geom_vline(xintercept = day[1], color = "#66A61E") + 
+      geom_vline(xintercept = day[2], color =  "#8DA0CB") + 
+      theme_bw() + 
+      theme(panel.border = element_blank()) +
+      theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+      theme(axis.line = element_line(colour = "black")) + 
+      theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
+      theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
+      theme(legend.position = c(0.2, 0.8)) + 
+      theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
+      scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
+      scale_x_date(breaks = break.vec_us,date_labels = "%m-%d") +
+      xlab("") +
+      ylab("Total Number of Cases")
+      
+    # ggsave(filename=paste(report_date,"p22-",i, ".pdf"), plot = p13, width = 10, height = 8 )
+    ggsave(filename=paste(report_date,"p22-",i, ".png"), plot = p22, width = 10, height = 8 )
+  
+  }
+  
   ##### plot 13: total confirmed cases by US States sort by Cumulative  ######
   data_to_plot = data_us_states[data_us_states$state %in% filter_total_confirmed_diff, ]
   data_to_plot = data_to_plot[data_to_plot$Date >= start_date_wr & data_to_plot$Date <=end_date_wr,]
@@ -1865,6 +1902,7 @@ if (weekly_summary){
   
   y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
   y_interval = adjust_y_interval(y_max)
+  
   p13 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
     # geom_point(size=2) + 
     geom_line(size=1) +
