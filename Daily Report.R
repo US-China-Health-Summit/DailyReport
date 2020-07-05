@@ -254,10 +254,12 @@ translate_country_colname = function(ut_data, x) {
   if (x == 1) {
     
     t_data = ut_data %>% 
-      select(ranking, Country_bi, Confirmed, Crude_Incidence_Rate) %>% 
+      select(ranking, Country_bi, Confirmed, Crude_Incidence_Rate, Deaths, Fatality_rate) %>% 
       rename("国家（地区）" = Country_bi, 
-             "累计确诊病例" = Confirmed, 
-             "粗发病率*" = Crude_Incidence_Rate)
+             "累计确诊" = Confirmed, 
+             "粗发病率*" = Crude_Incidence_Rate,
+             "累计死亡" = Deaths,
+             "病死率%" = Fatality_rate)
     return(t_data)
     
   } else if (x == 4) {
@@ -271,9 +273,10 @@ translate_country_colname = function(ut_data, x) {
   } else if (x == 2) {
 	
     t_data = ut_data %>% 
-      select(ranking, Country_bi, Confirmed_incremental) %>% 
+      select(ranking, Country_bi, Confirmed_incremental, Deaths_incremental) %>% 
       rename("国家" = Country_bi, 
-             "当日新增病例" = Confirmed_incremental)
+             "新增确诊" = Confirmed_incremental,
+             "新增死亡" = Deaths_incremental)
     
     return(t_data)
   } else if (x == 3) {
@@ -623,7 +626,7 @@ data_continent_latest = rbind(total_con_bind, data_continent_latest)
 write_excel_csv(data_continent_latest, paste(report_date,"table_continent_latest.csv"))
 
 #### table 1 ####
-global_confirmed = data_global_latest[, c("Country/Region", "Confirmed", "Crude_Incidence_Rate")]
+global_confirmed = data_global_latest[, c("Country/Region", "Confirmed", "Crude_Incidence_Rate", "Deaths", "Fatality_rate")]
 # sort by confimred
 global_confirmed = global_confirmed[order(global_confirmed$Confirmed, decreasing=T),]
 ranking = 1:nrow(global_confirmed)
@@ -641,28 +644,29 @@ write_excel_csv(global_confirmed_top %>%
                                                 TRUE ~ as.character(Country_bi))) %>% 
                   translate_country_colname(1), paste(report_date, "table1.csv"))
 									
-#### table 2 ####							
-crude_incidence_rate = data_global_latest[, c("Country/Region", "Crude_Incidence_Rate", "Confirmed")]
+#### old table 2 ####							
+#crude_incidence_rate = data_global_latest[, c("Country/Region", "Crude_Incidence_Rate", "Confirmed")]
 #filter out country with less than 100K population
-crude_incidence_rate=crude_incidence_rate%>%filter(`Country/Region`%in%(input_population%>%filter(Population>=100000)%>%pull(Country)))
+#crude_incidence_rate=crude_incidence_rate%>%filter(`Country/Region`%in%(input_population%>%filter(Population>=100000)%>%pull(Country)))
 # sort by Crude_Incidence_Rate
-crude_incidence_rate = crude_incidence_rate[order(crude_incidence_rate$Crude_Incidence_Rate, decreasing=T),]
-ranking = 1:nrow(crude_incidence_rate)
-crude_incidence_rate = cbind(ranking, crude_incidence_rate)
+#crude_incidence_rate = crude_incidence_rate[order(crude_incidence_rate$Crude_Incidence_Rate, decreasing=T),]
+#ranking = 1:nrow(crude_incidence_rate)
+#crude_incidence_rate = cbind(ranking, crude_incidence_rate)
 # add Hubei data to crude_incidence_rate
-Hubei_CIR = data_all_Hubei[data_all_Hubei$Date == max(data_all_Hubei$Date), c("Province/State", "Confirmed", "Crude_Incidence_Rate")] %>% rename("Country/Region"="Province/State")
-crude_incidence_rate = rbind(crude_incidence_rate[1:which(crude_incidence_rate$Country == "China"),],c("",unlist(Hubei_CIR)), crude_incidence_rate[(which(crude_incidence_rate$Country == "China")+1):nrow(crude_incidence_rate),])
-crude_incidence_rate_top = crude_incidence_rate[1:which(crude_incidence_rate$ranking == 10),]
-write_excel_csv(crude_incidence_rate, paste(report_date, "table2_crude_incidence_rate.csv"))
-write_excel_csv(crude_incidence_rate_top, paste(report_date, "table2_en.csv"))
-write_excel_csv(crude_incidence_rate_top %>% 
-									rename("Country" = "Country/Region") %>% 
-                  translate_country() %>% 
-                  mutate(Country_bi = case_when(Country_bi == "湖北 Hubei" ~ "(湖北 Hubei)", 
-                                                TRUE ~ as.character(Country_bi))) %>% 
-                  translate_country_colname(4), paste(report_date, "table2.csv"))
-#### table 3 ####
-global_confirmed_incremantal = data_global_latest[,c("Country/Region", "Confirmed_incremental")]
+# Hubei_CIR = data_all_Hubei[data_all_Hubei$Date == max(data_all_Hubei$Date), c("Province/State", "Confirmed", "Crude_Incidence_Rate")] %>% rename("Country/Region"="Province/State")
+# crude_incidence_rate = rbind(crude_incidence_rate[1:which(crude_incidence_rate$Country == "China"),],c("",unlist(Hubei_CIR)), crude_incidence_rate[(which(crude_incidence_rate$Country == "China")+1):nrow(crude_incidence_rate),])
+# crude_incidence_rate_top = crude_incidence_rate[1:which(crude_incidence_rate$ranking == 10),]
+# write_excel_csv(crude_incidence_rate, paste(report_date, "table2_crude_incidence_rate.csv"))
+# write_excel_csv(crude_incidence_rate_top, paste(report_date, "table2_en.csv"))
+# write_excel_csv(crude_incidence_rate_top %>% 
+# 									rename("Country" = "Country/Region") %>% 
+#                   translate_country() %>% 
+#                   mutate(Country_bi = case_when(Country_bi == "湖北 Hubei" ~ "(湖北 Hubei)", 
+#                                                 TRUE ~ as.character(Country_bi))) %>% 
+#                   translate_country_colname(4), paste(report_date, "table2.csv"))
+
+#### new table 2 (old table 3) ####
+global_confirmed_incremantal = data_global_latest[,c("Country/Region", "Confirmed_incremental", "Deaths_incremental")]
 
 ###Due to the recent late update of "India","Pakistan", the confirmed incremental for them are calculated based on the data from previouse day.
 #When the issue no longer present, pls delect the following code chunck. A switch is provided for quick on and off of this modification.
@@ -679,43 +683,43 @@ global_confirmed_incremantal = global_confirmed_incremantal[order(global_confirm
 ranking = 1:nrow(global_confirmed_incremantal)
 global_confirmed_incremantal = cbind(ranking, global_confirmed_incremantal)
 global_confirmed_incremantal_top = global_confirmed_incremantal[1:10, ]
-write_excel_csv(global_confirmed_incremantal, paste(report_date, "table3_case_confirmed_latest_date_all.csv"))
-write_excel_csv(global_confirmed_incremantal_top, paste(report_date, "table3_en.csv"))
+write_excel_csv(global_confirmed_incremantal, paste(report_date, "table2_case_confirmed_latest_date_all.csv"))
+write_excel_csv(global_confirmed_incremantal_top, paste(report_date, "table2_en.csv"))
 write_excel_csv(global_confirmed_incremantal_top %>% 
                   rename("Country" = "Country/Region") %>% 
                   translate_country() %>% 
                   translate_country_colname(2), 
-                paste(report_date, "table3.csv"))
+                paste(report_date, "table2.csv"))
 
 
-#### table 4 ####
-data_global_latest_death = data_global_latest[,c("Country/Region", "Deaths", "Deaths_incremental", "Fatality_rate")]
-
-
-###Due to the recent late update of "India","Pakistan", the death incremental for them are calculated based on the data from previouse day.
-#When the issue no longer present, pls delect the following code chunck. A switch is provided for quick on and off of this modification.
-if(incremental_delay == TRUE){
-  data_global_latest_death[
-    data_global_latest_death$`Country/Region`%in%country_delayed,3
-    ] = data_all_countries%>%
-    filter(`Country/Region`%in%country_delayed 
-           & Date == max(data_all_countries$Date)-1)%>%
-    pull(Deaths_incremental)
-}
-
-
-
-data_global_latest_death = data_global_latest_death[order(data_global_latest_death$Deaths, decreasing = T), ]
-ranking = 1:nrow(data_global_latest_death)
-data_global_latest_death = cbind(ranking, data_global_latest_death)
-data_global_latest_death_top = data_global_latest_death[1:10, ]
-write_excel_csv(data_global_latest_death, paste(report_date, "table4_case_death_latest_date_all.csv"))
-write_excel_csv(data_global_latest_death_top, paste(report_date, "table4_en.csv"))
-write_excel_csv(data_global_latest_death_top %>% 
-                  rename("Country" = "Country/Region") %>% 
-                  translate_country() %>% 
-                  translate_country_colname(3), 
-                paste(report_date, "table4.csv"))
+# #### old table 4 ####
+# data_global_latest_death = data_global_latest[,c("Country/Region", "Deaths", "Deaths_incremental", "Fatality_rate")]
+# 
+# 
+# ###Due to the recent late update of "India","Pakistan", the death incremental for them are calculated based on the data from previouse day.
+# #When the issue no longer present, pls delect the following code chunck. A switch is provided for quick on and off of this modification.
+# if(incremental_delay == TRUE){
+#   data_global_latest_death[
+#     data_global_latest_death$`Country/Region`%in%country_delayed,3
+#     ] = data_all_countries%>%
+#     filter(`Country/Region`%in%country_delayed 
+#            & Date == max(data_all_countries$Date)-1)%>%
+#     pull(Deaths_incremental)
+# }
+# 
+# 
+# 
+# data_global_latest_death = data_global_latest_death[order(data_global_latest_death$Deaths, decreasing = T), ]
+# ranking = 1:nrow(data_global_latest_death)
+# data_global_latest_death = cbind(ranking, data_global_latest_death)
+# data_global_latest_death_top = data_global_latest_death[1:10, ]
+# write_excel_csv(data_global_latest_death, paste(report_date, "table4_case_death_latest_date_all.csv"))
+# write_excel_csv(data_global_latest_death_top, paste(report_date, "table4_en.csv"))
+# write_excel_csv(data_global_latest_death_top %>% 
+#                   rename("Country" = "Country/Region") %>% 
+#                   translate_country() %>% 
+#                   translate_country_colname(3), 
+#                 paste(report_date, "table4.csv"))
 
 #### table 8& 9 for weekly report ####
 if (weekly_summary){
