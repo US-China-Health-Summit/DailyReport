@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.2)  5 JUL 2020 16:27
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.2)  5 JUL 2020 22:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1366,8 +1366,6 @@ LaTeX Font Info:    Font shape `TU/微软雅黑(0)/b/n' will be
 (Font)              scaled to size 18.86078pt on input line 255.
 LaTeX Font Info:    Font shape `TU/微软雅黑(0)/m/n' will be
 (Font)              scaled to size 15.96191pt on input line 256.
-LaTeX Font Info:    Font shape `TU/微软雅黑(0)/m/n' will be
-(Font)              scaled to size 11.97144pt on input line 297.
 File: ./input/covid2.png Graphic file (type bmp)
 <./input/covid2.png>
 File: ./input/covid3.png Graphic file (type bmp)
@@ -1379,83 +1377,83 @@ File: ./input/covid6.png Graphic file (type bmp)
 File: ./input/title3.png Graphic file (type bmp)
 <./input/title3.png>
 LaTeX Font Info:    Font shape `TU/微软雅黑(0)/b/n' will be
-(Font)              scaled to size 24.61095pt on input line 474.
+(Font)              scaled to size 24.61095pt on input line 446.
 [1
 
 ]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 15.05624pt on input line 504.
+(Font)              scaled to size 15.05624pt on input line 476.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.045pt on input line 504.
+(Font)              scaled to size 12.045pt on input line 476.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.03374pt on input line 504.
+(Font)              scaled to size 9.03374pt on input line 476.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 15.05762pt on input line 504.
+(Font)              scaled to size 15.05762pt on input line 476.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.0461pt on input line 504.
+(Font)              scaled to size 12.0461pt on input line 476.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.03456pt on input line 504.
+(Font)              scaled to size 9.03456pt on input line 476.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 15.05463pt on input line 504.
+(Font)              scaled to size 15.05463pt on input line 476.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.0437pt on input line 504.
+(Font)              scaled to size 12.0437pt on input line 476.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.03276pt on input line 504.
+(Font)              scaled to size 9.03276pt on input line 476.
 
-Underfull \hbox (badness 4752) in paragraph at lines 506--516
+Underfull \hbox (badness 4752) in paragraph at lines 478--488
 []\TU/lmr/m/n/15.05624 1 Safety and Immunogenicity Study of 2019-nCoV Vaccine
  []
 
 
-Underfull \hbox (badness 2150) in paragraph at lines 506--516
+Underfull \hbox (badness 2150) in paragraph at lines 478--488
 \TU/lmr/m/n/15.05624 19 in Healthy Volunteers. []$[][][][][] [] [] [] [][][][][
 ][][][][][][][][][] [] [][][] [] [][][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 2261) in paragraph at lines 506--516
+Underfull \hbox (badness 2261) in paragraph at lines 478--488
 [][][][][][][][][][][]$[] \TU/lmr/m/n/15.05624 4. \TU/微软雅黑(0)/m/n/15.05624 斥 资 
 \TU/lmr/m/n/15.05624 10 \TU/微软雅黑(0)/m/n/15.05624 亿 元 国 药 集 团 新 冠 疫 苗 研 发 领 跑 全 
 球\TU/lmr/m/n/15.05624 .
  []
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 522.
+(Font)              scaled to size 12.0pt on input line 494.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 522.
+(Font)              scaled to size 8.0pt on input line 494.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 522.
+(Font)              scaled to size 6.0pt on input line 494.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.0011pt on input line 522.
+(Font)              scaled to size 12.0011pt on input line 494.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.00073pt on input line 522.
+(Font)              scaled to size 8.00073pt on input line 494.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 522.
+(Font)              scaled to size 6.00055pt on input line 494.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.99872pt on input line 522.
+(Font)              scaled to size 11.99872pt on input line 494.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.99915pt on input line 522.
+(Font)              scaled to size 7.99915pt on input line 494.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 522.
+(Font)              scaled to size 5.99936pt on input line 494.
 LaTeX Font Info:    Font shape `TU/微软雅黑(0)/m/n' will be
-(Font)              scaled to size 9.57715pt on input line 525.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 533.
+(Font)              scaled to size 9.57715pt on input line 497.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 505.
 [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 533.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 505.
 (./Corona_news_mobile_table_0703.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 533.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 533.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 505.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 505.
 Package rerunfilecheck Info: File `Corona_news_mobile_table_0703.out' has not c
 hanged.
-(rerunfilecheck)             Checksum: 302A18C7BA0B93A7206961E2CF131288;37.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 533.
+(rerunfilecheck)             Checksum: 3CBB643D290F86ADDBC1BEDF9CED3101;37.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 505.
  ) 
 Here is how much of TeX's memory you used:
- 23272 strings out of 481244
- 449184 string characters out of 5922169
- 898116 words of memory out of 5000000
- 40381 multiletter control sequences out of 15000+600000
- 544940 words of font info for 144 fonts, out of 8000000 for 9000
+ 23194 strings out of 481244
+ 444682 string characters out of 5922169
+ 894116 words of memory out of 5000000
+ 40304 multiletter control sequences out of 15000+600000
+ 544932 words of font info for 143 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  64i,12n,130p,388b,524s stack positions out of 5000i,500n,10000p,200000b,80000s
 
