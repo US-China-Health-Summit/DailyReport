@@ -41,7 +41,6 @@ header-includes:
     - \usepackage[normalem]{ulem}
     - \usepackage{makecell}
     - \usepackage{xcolor}
-
     - \linespread{1.85}
     - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
@@ -259,19 +258,19 @@ cat(c("\\begin{table}[H]
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 cat(c("\\begin{table}[H]
     \\centering",
-      t3,
+      t2,
       "\\end{table}"))
       
-cat(c("\\begin{table}[H]
-    \\centering",
-      t4,
-      "\\begin{tablenotes}
-        \\fontsize{15}{15}
-        \\selectfont
-        \\item 
-      \\end{tablenotes}
-\\end{table}"
-))
+# cat(c("\\begin{table}[H]
+#     \\centering",
+#       t4,
+#       "\\begin{tablenotes}
+#         \\fontsize{15}{15}
+#         \\selectfont
+#         \\item 
+#       \\end{tablenotes}
+# \\end{table}"
+#))
 ```
 \vspace{-5mm}
 \begin{figure}[H]
@@ -313,21 +312,21 @@ cat(c("\\begin{table}[H]
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-# cat(c("\\begin{table}[H]
-#     \\centering",
-#       t5,
-#       "\\end{table}"))
-#       
-# cat(c("\\begin{table}[H]
-#     \\centering",
-#       t6,
-#       "\\begin{tablenotes}
-#         \\fontsize{15}{15}
-#         \\selectfont
-#         \\item 
-#       \\end{tablenotes}
-# \\end{table}"
-# ))
+cat(c("\\begin{table}[H]
+    \\centering",
+      t3,
+      "\\end{table}"))
+
+cat(c("\\begin{table}[H]
+    \\centering",
+      t4,
+      "\\begin{tablenotes}
+        \\fontsize{15}{15}
+        \\selectfont
+        \\item
+      \\end{tablenotes}
+\\end{table}"
+))
 ```
 
 
