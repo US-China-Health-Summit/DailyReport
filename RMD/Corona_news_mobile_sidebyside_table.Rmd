@@ -196,15 +196,15 @@ t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>%
   kable_styling(bootstrap_options="responsive", latex_options = c("striped","HOLD_position", "scale_down"), font_size = 20) %>% 
   add_header_above(header = c(" "=0, "表4 累计死亡病例前十位国家"=4), align = "c", bold = T, line = F)
 
-t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
-  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
-  kable_styling(bootstrap_options="responsive", latex_options = c("striped","HOLD_position", "scale_down"), font_size = 20) %>% 
-  add_header_above(header = c(" "=0, "表5 美国新增确诊前十位州"=8), align = "c", bold = T, line = F)
+# t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
+#   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
+#   kable_styling(bootstrap_options="responsive", latex_options = c("striped","HOLD_position", "scale_down"), font_size = 20) %>% 
+#   add_header_above(header = c(" "=0, "表5 美国新增确诊前十位州"=8), align = "c", bold = T, line = F)
 
-t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
+t5 = read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(bootstrap_options="responsive", latex_options = c("striped","HOLD_position"), font_size = 20) %>% 
-  add_header_above(header = c(" "=0, "表6 美国新增死亡前十位州"=3), align = "c", bold = T, line = F)
+  add_header_above(header = c(" "=0, "表5 美国新增死亡前十位州"=3), align = "c", bold = T, line = F)
 #t7 = read_csv('input/table7.csv') %>%  rename(' ' = ranking) %>% 
 #  kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
 #  kable_styling(latex_options = "striped", font_size = 12)
@@ -304,16 +304,16 @@ cat(c("\\begin{table}[H]
       t5,
       "\\end{table}"))
       
-cat(c("\\begin{table}[H]
-    \\centering",
-      t6,
-      "\\begin{tablenotes}
-        \\fontsize{15}{15}
-        \\selectfont
-        \\item 
-      \\end{tablenotes}
-\\end{table}"
-))
+# cat(c("\\begin{table}[H]
+#     \\centering",
+#       t6,
+#       "\\begin{tablenotes}
+#         \\fontsize{15}{15}
+#         \\selectfont
+#         \\item 
+#       \\end{tablenotes}
+# \\end{table}"
+# ))
 ```
 
 
