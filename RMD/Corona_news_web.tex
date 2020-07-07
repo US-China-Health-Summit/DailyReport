@@ -1,39 +1,46 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{article}
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -42,25 +49,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
@@ -216,8 +212,7 @@ NA
 
 \vspace{-5mm}
 
-\(\quad\)截至北京时间4月29日早7：00，全球累计确诊病例已经达到3,111,730例，累计死亡216,857例。25个国家累计确诊病例超过15,000例。总体来看，欧洲与北美仍是累计确诊病例数最多的地区。英国的累计确诊数突破十六万，超过德国进入世界前五位。爱尔兰的累计确诊病例接近两万（19,877），粗发病率达403/10万人，已经超过意大利与瑞士，疫情正在迅速恶化。俄罗斯的累计确诊病例数超过伊朗，跃升至世界第八位。
-中东地区除伊朗外，沙特阿拉伯累计确诊病例超过两万，以色列，巴基斯坦，卡塔尔与阿联酋的累计确诊均已超过一万例。东欧地区白俄罗斯病例增长迅速（累计确诊12,208例），较上周（4月22日）接近翻倍，粗发病率到达129/10万，超过湖北。中东及东欧各国变化表明，疫情在欧亚大陆自西向东多点扩散。（表1）
+\(\quad\)截至北京时间6月11日早9：00，全球累计确诊病例已经达到7,356,337例，累计死亡416,040例。美国累计确诊病例即将突破二百万例，巴西确诊病例已经接近八十万例，俄罗斯确诊病例数也即将突破五十万例(表1)。已经有52个国家的粗发病率超过了中国湖北省。
 
 \begin{figure}[H]
 \caption{世界疫情分布图} %最终文档中希望显示的图片标题
@@ -240,6 +235,18 @@ NA
 \toprule
   & 国家（地区） & 累计确诊病例 & 粗发病率*\\
 \midrule
+<<<<<<< HEAD
+\rowcolor{gray!6}  1 & 美国 US & 1,999,392 & 604\\
+2 & 巴西 Brazil & 772,416 & 363\\
+\rowcolor{gray!6}  3 & 俄罗斯 Russia & 493,023 & 338\\
+4 & 英国 UK & 291,588 & 430\\
+\rowcolor{gray!6}  5 & 印度 India & 276,583 & 20\\
+6 & 西班牙 Spain & 242,280 & 518\\
+\rowcolor{gray!6}  7 & 意大利 Italy & 235,763 & 390\\
+8 & 秘鲁 Peru & 207,794 & 630\\
+\rowcolor{gray!6}  9 & 法国 France & 192,330 & 295\\
+10 & 德国 Germany & 186,522 & 223\\
+=======
 \rowcolor{gray!6}  1 & 美国 US & 2,291,353 & 692\\
 2 & 巴西 Brazil & 1,083,341 & 510\\
 \rowcolor{gray!6}  3 & 俄罗斯 Russia & 591,465 & 405\\
@@ -250,6 +257,7 @@ NA
 8 & 西班牙 Spain & 246,504 & 527\\
 \rowcolor{gray!6}  9 & 意大利 Italy & 238,720 & 395\\
 10 & 伊朗 Iran & 207,525 & 247\\
+>>>>>>> f8d50b4dcdc8caa20d0fd93e9b74bf5b365ad693
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage}
@@ -265,6 +273,18 @@ NA
 \toprule
   & 国家（地区） & 粗发病率* & 累计确诊病例\\
 \midrule
+<<<<<<< HEAD
+\rowcolor{gray!6}  1 & 卡塔尔 Qatar & 2,554 & 73,595\\
+2 & 圣马力诺** San Marino & 2,036 & 691\\
+\rowcolor{gray!6}  3 & 梵蒂冈** Holy See & 1,498 & 12\\
+4 & 安道尔** Andorra & 1,103 & 852\\
+\rowcolor{gray!6}  5 & 巴林 Bahrain & 952 & 16,200\\
+6 & 科威特 Kuwait & 792 & 33,823\\
+\rowcolor{gray!6}  7 & 智利 Chile & 777 & 148,456\\
+8 & 新加坡 Singapore & 666 & 38,965\\
+\rowcolor{gray!6}  9 & 卢森堡 Luxembourg & 647 & 4,049\\
+10 & 秘鲁 Peru & 630 & 207,794\\
+=======
 \rowcolor{gray!6}  1 & 卡塔尔 Qatar & 3,068 & 88,403\\
 2 & 圣马力诺** San Marino & 2,054 & 697\\
 \rowcolor{gray!6}  3 & 梵蒂冈** Holy See & 1,498 & 12\\
@@ -275,6 +295,7 @@ NA
 8 & 秘鲁 Peru & 762 & 251,338\\
 \rowcolor{gray!6}  9 & 新加坡 Singapore & 723 & 42,313\\
 10 & 亚美尼亚 Armenia & 695 & 20,588\\
+>>>>>>> f8d50b4dcdc8caa20d0fd93e9b74bf5b365ad693
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage}
@@ -288,11 +309,9 @@ NA
 
 \newpage
 
-\(\quad\)从日新增病例数来看，美国与俄罗斯仍就占据世界前二，值得注意的是，俄罗斯的日新增病例呈明显上升趋势，该国疫情发展不容乐观。巴西日新增突破4000例，首次进入世界前三；秘鲁日新增接近2500例，两国日新增较上周均接近翻倍（4月22日：巴西2678例，秘鲁1413例），显示疫情在南美洲呈爆发性增长趋势。
-白俄罗斯的单日新增919例，疫情在该国发展需要进一步关注。另一方面，西班牙与意大利的日新增病例持续下降，表明疫情逐步得到较好控制。(表2和图2）
+\(\quad\)美洲、南亚和中东地区仍为疫情热点地区。南美洲疫情尤为严重，单日新增近46,000例，几乎是北美洲和欧洲新增病例数之和；单日新增死亡病例超过1,700例。巴西单日新增确诊和死亡病例数均继续高居世界首位，秘鲁和智利单日新增确诊和死亡病例数也均进入世界前六位，且均未出现下降趋势(表3、表4、图2、图3)。哥伦比亚单日新增确诊病例达到了1,359例，排名世界第十三；阿根廷单日新增病例数也已连续两日超过1,000例，创下新高。北美洲的墨西哥疫情进展迅速，单日新增病例已接近5,000例，病死率已经上升至11.9\%，显示医疗系统已接近崩溃。
 
-\(\quad\)从死亡病例数来看，美国仍是累计死亡病例最多的国家，虽日新增死亡呈现波动下降趋势。巴西累计死亡病例突破5000例，超过中国，日新增死亡也呈逐日上升态势。此外，意大利、西班牙、法国、德国等欧洲国家日新增死亡病例数呈现下降趋势，提示疫情在欧洲逐步缓解。
-（表3和图3）
+\(\quad\)中东和南亚地区的疫情同样不容乐观。沙特阿拉伯为现在中东地区病例数增加最快的国家，单日新增确诊病例数已连续五日超过3,000例，与五月末时相比几乎翻倍。伊拉克新增病例数上升迅速，单日新增确诊病例已从5月31日时的约300例迅速上升至超过1,000例。此外伊朗单日新增确诊病例仍稳定在2,000例以上，处于第二波疫情之中尚未出现好转迹象。非洲疫情主要集中于南非和埃及，其中南非单日新增病例数已连续一周超过2,000例。
 
 \begin{table}[H]
     \begin{minipage}{.4\linewidth}
@@ -307,6 +326,18 @@ NA
 \toprule
   & 国家 & 当日新增病例\\
 \midrule
+<<<<<<< HEAD
+\rowcolor{gray!6}  1 & 巴西 Brazil & 32,913\\
+2 & 美国 US & 26,162\\
+\rowcolor{gray!6}  3 & 俄罗斯 Russia & 8,393\\
+4 & 智利 Chile & 5,697\\
+\rowcolor{gray!6}  5 & 墨西哥 Mexico & 4,883\\
+6 & 秘鲁 Peru & 4,058\\
+\rowcolor{gray!6}  7 & 沙特 Saudi Arabia & 3,717\\
+8 & 孟加拉国 Bangladesh & 3,190\\
+\rowcolor{gray!6}  9 & 南非 South Africa & 2,430\\
+10 & 伊朗 Iran & 2,011\\
+=======
 \rowcolor{gray!6}  1 & 美国 US & 11,474\\
 2 & 俄罗斯 Russia & 7,586\\
 \rowcolor{gray!6}  3 & 智利 Chile & 4,608\\
@@ -317,6 +348,7 @@ NA
 8 & 伊拉克 Iraq & 1,808\\
 \rowcolor{gray!6}  9 & 阿曼 Oman & 1,605\\
 10 & 土耳其 Turkey & 1,212\\
+>>>>>>> f8d50b4dcdc8caa20d0fd93e9b74bf5b365ad693
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage}
@@ -332,6 +364,18 @@ NA
 \toprule
   & 国家 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
 \midrule
+<<<<<<< HEAD
+\rowcolor{gray!6}  1 & 美国 US & 112,878 & 889 & 5.6\\
+2 & 英国 UK & 41,213 & 245 & 14.1\\
+\rowcolor{gray!6}  3 & 巴西 Brazil & 39,680 & 1,274 & 5.1\\
+4 & 意大利 Italy & 34,114 & 71 & 14.5\\
+\rowcolor{gray!6}  5 & 法国 France & 29,322 & 23 & 15.2\\
+6 & 西班牙 Spain & 28,752 & 0 & 11.9\\
+\rowcolor{gray!6}  7 & 墨西哥 Mexico & 15,357 & 708 & 11.9\\
+8 & 比利时 Belgium & 9,629 & 10 & 16.2\\
+\rowcolor{gray!6}  9 & 德国 Germany & 8,752 & 16 & 4.7\\
+10 & 伊朗 Iran & 8,506 & 81 & 4.8\\
+=======
 \rowcolor{gray!6}  1 & 美国 US & 120,106 & 137 & 5.2\\
 2 & 巴西 Brazil & 50,591 & 0 & 4.7\\
 \rowcolor{gray!6}  3 & 英国 UK & 42,731 & 14 & 13.9\\
@@ -342,6 +386,7 @@ NA
 8 & 印度 India & 13,699 & 0 & 3.2\\
 \rowcolor{gray!6}  9 & 伊朗 Iran & 9,742 & 119 & 4.7\\
 10 & 比利时 Belgium & 9,696 & 0 & 16.0\\
+>>>>>>> f8d50b4dcdc8caa20d0fd93e9b74bf5b365ad693
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage} 
@@ -369,12 +414,78 @@ NA
 
 \vspace{-5mm}
 
-\(\quad\)截至北京时间4月29日早7:00，
-美国累计确诊病例数超过101万例（1,011,600），共58,343
-死亡病例。从分布来看，疫情主要集中在东西海岸和五大湖地区，全美19个州累计病例数超过一万人。除中部地区以外，东海岸地区疫情也在迅速扩散。罗得岛州累计确诊接近8000例，而粗发病率为全美第四（748/10万人）。（图4）
+\(\quad\)截至北京时间6月11日早9:00，
+美国累计确诊病例数即将突破二百万例(1,999,392例)，共112,878死亡病例。
 
-\(\quad\)纽约州、新泽西州和马萨诸塞州为美国疫情最严重的三个州。纽约州检测率超过4300/10万人，而阳性率下降至35\%，提示疫情逐步得到控制。此外，特拉华州，科罗拉多州与华盛顿特区阳性率均为22\%左右，超过伊利诺伊州，而检测在2000/10万人左右，略低于新泽西州，显示这些州对于检测的需求仍然十分庞大。（表4）
+<<<<<<< HEAD
+\begin{figure}[H] 
+\caption{美国本土疫情分布图} %最终文档中希望显示的图片标题
+\centering
+\includegraphics[]{./input/covid4.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+\label{} %用于文内引用的标签
+\end{figure}
 
+\begin{table}[H]
+      \centering
+    \begin{minipage}{.4\linewidth}
+    \caption{美国累计确诊前十位州}
+    \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
+\centering
+\begin{tabular}{rlrr}
+\toprule
+  & 国家/州名 & 累计确诊 & 粗发病率\\
+\midrule
+\rowcolor{gray!6}   & 美国 US & 1,999,392 & 604\\
+1 & 纽约州 NY & 380,156 & 1,954\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 165,346 & 1,862\\
+3 & 加利福尼亚州 CA & 139,151 & 352\\
+\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 129,837 & 1,025\\
+5 & 马萨诸塞州 MA & 104,156 & 1,499\\
+\rowcolor{gray!6}  6 & 宾夕法尼亚州 PA & 81,316 & 635\\
+7 & 得克萨斯州 TX & 80,611 & 278\\
+\rowcolor{gray!6}  8 & 佛罗里达州 FL & 67,371 & 314\\
+9 & 密歇根州 MI & 65,182 & 653\\
+\rowcolor{gray!6}  10 & 马里兰州 MD & 59,465 & 984\\
+\bottomrule
+\end{tabular}
+\end{table} \end{minipage}%
+    \begin{minipage}{.6\linewidth}
+     \caption{美国粗发病率前十位州}
+     \vspace{-0.5\baselineskip}
+      \centering
+    \captionsetup{justification=centering} \begin{table}[H]
+\centering
+\begin{tabular}{rlrr}
+\toprule
+  & 国家/州名 & 粗发病率 & 累计确诊\\
+\midrule
+\rowcolor{gray!6}   & 美国 US & 604 & 1,999,392\\
+1 & 纽约州 NY & 1,954 & 380,156\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 1,862 & 165,346\\
+3 & 马萨诸塞州 MA & 1,499 & 104,156\\
+\rowcolor{gray!6}  4 & 罗得岛 RI & 1,487 & 15,756\\
+5 & 哥伦比亚特区 DC & 1,351 & 9,537\\
+\rowcolor{gray!6}  6 & 康涅狄格州 CT & 1,244 & 44,347\\
+7 & 特拉华州 DE & 1,033 & 10,056\\
+\rowcolor{gray!6}  8 & 伊利诺伊州 IL & 1,025 & 129,837\\
+9 & 马里兰州 MD & 984 & 59,465\\
+\rowcolor{gray!6}  10 & 路易斯安那州 LA & 947 & 44,030\\
+\bottomrule
+\end{tabular}
+\end{table} \end{minipage} 
+    \begin{tablenotes}
+        \fontsize{15}{15}
+        \selectfont
+        \item 注：粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万  %此处加入注释信息
+      \end{tablenotes}
+\end{table}
+
+\newpage
+
+=======
+>>>>>>> f8d50b4dcdc8caa20d0fd93e9b74bf5b365ad693
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
@@ -399,6 +510,23 @@ NA
       \centering
     \captionsetup{justification=centering} \begin{table}[H]
 \centering
+<<<<<<< HEAD
+\begin{tabular}{rlr}
+\toprule
+  & 国家/州名 & 当日新增\\
+\midrule
+\rowcolor{gray!6}   & 美国 US & 26,162\\
+1 & 加利福尼亚州 CA & 2,510\\
+\rowcolor{gray!6}  2 & 得克萨斯州 TX & 2,403\\
+3 & 亚利桑那州 AZ & 1,556\\
+\rowcolor{gray!6}  4 & 佛罗里达州 FL & 1,371\\
+5 & 北卡罗莱纳州 NC & 1,246\\
+\rowcolor{gray!6}  6 & 乔治亚州 GA & 735\\
+7 & 纽约州 NY & 674\\
+\rowcolor{gray!6}  8 & 伊利诺伊州 IL & 625\\
+9 & 阿拉巴马州 AL & 567\\
+\rowcolor{gray!6}  10 & 马里兰州 MD & 561\\
+=======
 \begin{tabular}{rlrrrrrrr}
 \toprule
   & 国家/州名 & 累计确诊 & 粗发病率 & 累计检测 & 累计阳性率\% & 日新增检测 & 新增中阳性率\% & 检测率*\\
@@ -414,6 +542,7 @@ NA
 \rowcolor{gray!6}  8 & 密歇根州 MI & 54,881 & 550 & 472,860 & 12 & 21,628 & 1 & 4,735\\
 9 & 佛罗里达州 FL & 51,746 & 241 & 908,235 & 6 & 37,000 & 2 & 4,229\\
 \rowcolor{gray!6}  10 & 马里兰州 MD & 47,152 & 780 & 249,577 & 19 & 9,215 & 9 & 4,128\\
+>>>>>>> f8d50b4dcdc8caa20d0fd93e9b74bf5b365ad693
 \bottomrule
 \end{tabular}
 \end{table} \end{minipage}%
@@ -425,8 +554,23 @@ NA
       \centering
     \captionsetup{justification=centering} \begin{table}[H]
 \centering
-\begin{tabular}{rlrr}
+\begin{tabular}{rlrrr}
 \toprule
+<<<<<<< HEAD
+  & 国家/州名 & 累计死亡病例 & 较昨日新增 & 病死率\%\\
+\midrule
+\rowcolor{gray!6}   & 美国 US & 112,878 & 889 & 5.6\\
+1 & 纽约州 NY & 30,542 & 84 & 8.0\\
+\rowcolor{gray!6}  2 & 新泽西州 NJ & 12,377 & 74 & 7.5\\
+3 & 马萨诸塞州 MA & 7,454 & 46 & 7.2\\
+\rowcolor{gray!6}  4 & 伊利诺伊州 IL & 6,095 & 77 & 4.7\\
+5 & 宾夕法尼亚州 PA & 6,062 & 48 & 7.5\\
+\rowcolor{gray!6}  6 & 密歇根州 MI & 5,955 & 7 & 9.1\\
+7 & 加利福尼亚州 CA & 4,838 & 93 & 3.5\\
+\rowcolor{gray!6}  8 & 康涅狄格州 CT & 4,120 & 23 & 9.3\\
+9 & 路易斯安那州 LA & 2,968 & 11 & 6.7\\
+\rowcolor{gray!6}  10 & 马里兰州 MD & 2,844 & 33 & 4.8\\
+=======
   & 国家/州名 & 当日新增 & 累计确诊\\
 \midrule
 \rowcolor{gray!6}   & 美国 US & 11,474 & 2,291,353\\
@@ -466,15 +610,83 @@ NA
 \rowcolor{gray!6}  8 & 马里兰州 MD & 8 & 3,074 & 4.8\\
 9 & 明尼苏达州 MN & 4 & 1,416 & 4.3\\
 \rowcolor{gray!6}  10 & 加利福尼亚州 CA & 3 & 5,518 & 3.1\\
+>>>>>>> f8d50b4dcdc8caa20d0fd93e9b74bf5b365ad693
 \bottomrule
 \end{tabular}
 >>>>>>> 01b91925de72c27f4ce608606b984c2e1f08524d
 \end{table} \end{minipage} 
 \end{table}
 
-\(\quad\)从日新增确诊来看，纽约州单日新增连续多日下降，较昨日再次下降800例左右，提示疫情好转。伊利诺伊州日新增病例逐步上升，需要进一步关注。（表5和图5）
+\(\quad\)从日新增确诊来看，排名前五位的加利福尼亚州、得克萨斯州、亚利桑那州、佛罗里达州单日新增确诊病例数均在波动上升，显示随着居家隔离措施的放宽，疫情在这几个州持续恶化。除此以外，阿拉巴马州和南卡罗来纳州近来疫情恶化趋势也较为明显，需要持续关注。
 
-\(\quad\)从死亡病例数来看，密歇根州病死率超过9\%，为全美最高。纽约州与马萨诸塞州日新增死亡呈明显波动下降趋势，提示医疗资源压力得到缓解。值得注意的是，罗得岛州病死率为3\%，略低于佛罗里达州，但其累计病例只有佛罗里达州的1/4（佛罗里达州：32,848例）,提示该州存在医疗资源紧张的风险。（表6和图6）
+\vspace{5mm}
+
+%
+  \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][l]{\textbf{~\Huge 热点话题}}}%
+
+\hypertarget{section-4}{%
+\section{\texorpdfstring{\textcolor{glaucous}{\Huge 明星疫苗介绍}}{}}\label{section-4}}
+
+\(\quad\)
+每年4月最后一周（4月24---30日）是``世界免疫周''，其目的是促进接种疫苗以保护各年龄人群免患疾病。在新冠疫情在全球肆虐的背景下，疫苗被寄予了彻底终结疫情的厚望。3月，中国和美国几乎同时有疫苗研究宣布进入临床阶段，并且有一些中美合作共同推进的项目。现在全球正在进行的新冠疫苗研究超过100项。
+
+\(\quad\)
+下面我们来看在全球率先进入临床试验阶段的几款不同原理的新冠病毒疫苗：
+
+\(\quad\) mRNA-1273 \(^1\) \(\quad\)
+全球第一个获批进入临床试验的候选疫苗为美国Moderna公司的mRNA疫苗。mRNA疫苗是指直接给人体注射病毒的编码核酸，再由人体的细胞自己合成病毒蛋白并产生免疫应答。1月13日，美国国立卫生院(NIH)和Moderna就完成该新冠病毒疫苗序列的设计，起名为
+mRNA-1273。由CEPI(Coalition for Epidemic Preparedness Innovations,
+防疫创新联盟)出资后Moderna启动临床生产，2月7日第一批临床生产的疫苗完成。3月4日，美国食品药品监管局(FDA)批准了mRNA-1273进入临床试验，3月16日，第一位志愿者接受了第一剂疫苗的接种。目前尚在临床I期实验阶段，并于本周开始对45名志愿者注射第二针疫苗。
+
+\(\quad\) Ad5-nCoV \(^2\) \(\quad\)
+中国第一个获批进入临床试验的候选疫苗为重组腺病毒载体疫苗Ad5-nCoV。腺病毒疫苗的原理是把新冠病毒表面的蛋白整合到没有致病力的腺病毒的表面，以免疫刺激人体产生针对新冠病毒的抗体。Ad5-nCoV是由军事科学院军事医学研究院的陈薇院士团队与国内康希诺公司联合开发，
+3月16日获国家药品监督局批准展开I期临床试验，并于4月9日公布I期临床试验108名志愿者的初步安全数据，并宣布进入临床II期。
+
+\(\quad\) INO-4800 \(^3\) \(\quad\)
+全球第三款进入临床试验阶段的新冠疫苗，也是第一个候选的DNA疫苗，是来自Inovio
+Pharmaceuticals公司的INO-4800。DNA疫苗原理与mRNA疫苗相同，目前已用于艾滋病毒、流感病毒、疟疾等多种疫苗的开发。Inovio在获得病毒基因序列后在三个小时内就完成了疫苗设计。1月30日，Inovio公司宣布与中国国内企业艾棣维欣达成合作协议，共同推进INO-4800在中国的研发工作。4月7日，美国食品药品监管局(FDA)接受该公司为新冠病毒候选DNA疫苗递交的新药临床试验(IND)申请灭活病毒疫苗。Inovio于4月29日宣布其在美国招收的40名志愿者已经完成第一轮疫苗注射。
+
+\(\quad\) 新冠病毒灭活疫苗 \(^4\) \(\quad\)
+全球第一个灭活病毒疫苗由国药集团下武汉生物制品研究所有限责任公司与中科院武汉病毒所研发。灭毒活疫苗的原理是杀死病毒以使其失去致病力，但保留病毒表面的蛋白质，使其注射入体内后依然可以刺激免疫反应。2月1日，该项目获得科技部国家重点研发计划``公共安全风险防控与应急技术装备''重点专项``2019-nCoV灭活疫苗''的紧急立项。在4月12日获得了国家药品监督管理局临床试验许可，已开展随机、双盲、安慰剂平行对照I/II期临床试验。
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.48\linewidth}
+\caption{武汉六家医院每日停车场数量(2018.1-2020.4)}
+\includegraphics[]{./input/covid7.png}
+\label{}
+\end{minipage}
+\quad
+\begin{minipage}[b]{0.48\linewidth}
+\caption{百度“咳嗽”(蓝)“腹泻”(红)搜索量(2018.1-2020.5)}
+\includegraphics[]{./input/covid8.png}
+\label{}
+\end{minipage}
+\end{figure}
+
+\vspace{-3mm}
+
+\(\quad\)
+每年4月最后一周（4月24---30日）是``世界免疫周''，其目的是促进接种疫苗以保护各年龄人群免患疾病。在新冠疫情在全球肆虐的背景下，疫苗被寄予了彻底终结疫情的厚望。3月，中国和美国几乎同时有疫苗研究宣布进入临床阶段，并且有一些中美合作共同推进的项目。现在全球正在进行的新冠疫苗研究超过100项。
+
+\(\quad\)
+下面我们来看在全球率先进入临床试验阶段的几款不同原理的新冠病毒疫苗：
+
+\(\quad\) mRNA-1273 \(^1\) \(\quad\)
+全球第一个获批进入临床试验的候选疫苗为美国Moderna公司的mRNA疫苗。mRNA疫苗是指直接给人体注射病毒的编码核酸，再由人体的细胞自己合成病毒蛋白并产生免疫应答。1月13日，美国国立卫生院(NIH)和Moderna就完成该新冠病毒疫苗序列的设计，起名为
+mRNA-1273。由CEPI(Coalition for Epidemic Preparedness Innovations,
+防疫创新联盟)出资后Moderna启动临床生产，2月7日第一批临床生产的疫苗完成。3月4日，美国食品药品监管局(FDA)批准了mRNA-1273进入临床试验，3月16日，第一位志愿者接受了第一剂疫苗的接种。目前尚在临床I期实验阶段，并于本周开始对45名志愿者注射第二针疫苗。
+
+\(\quad\) Ad5-nCoV \(^2\) \(\quad\)
+中国第一个获批进入临床试验的候选疫苗为重组腺病毒载体疫苗Ad5-nCoV。腺病毒疫苗的原理是把新冠病毒表面的蛋白整合到没有致病力的腺病毒的表面，以免疫刺激人体产生针对新冠病毒的抗体。Ad5-nCoV是由军事科学院军事医学研究院的陈薇院士团队与国内康希诺公司联合开发，
+3月16日获国家药品监督局批准展开I期临床试验，并于4月9日公布I期临床试验108名志愿者的初步安全数据，并宣布进入临床II期。
+
+\(\quad\) INO-4800 \(^3\) \(\quad\)
+全球第三款进入临床试验阶段的新冠疫苗，也是第一个候选的DNA疫苗，是来自Inovio
+Pharmaceuticals公司的INO-4800。DNA疫苗原理与mRNA疫苗相同，目前已用于艾滋病毒、流感病毒、疟疾等多种疫苗的开发。Inovio在获得病毒基因序列后在三个小时内就完成了疫苗设计。1月30日，Inovio公司宣布与中国国内企业艾棣维欣达成合作协议，共同推进INO-4800在中国的研发工作。4月7日，美国食品药品监管局(FDA)接受该公司为新冠病毒候选DNA疫苗递交的新药临床试验(IND)申请灭活病毒疫苗。Inovio于4月29日宣布其在美国招收的40名志愿者已经完成第一轮疫苗注射。
+
+\(\quad\) 新冠病毒灭活疫苗 \(^4\) \(\quad\)
+全球第一个灭活病毒疫苗由国药集团下武汉生物制品研究所有限责任公司与中科院武汉病毒所研发。灭毒活疫苗的原理是杀死病毒以使其失去致病力，但保留病毒表面的蛋白质，使其注射入体内后依然可以刺激免疫反应。2月1日，该项目获得科技部国家重点研发计划``公共安全风险防控与应急技术装备''重点专项``2019-nCoV灭活疫苗''的紧急立项。在4月12日获得了国家药品监督管理局临床试验许可，已开展随机、双盲、安慰剂平行对照I/II期临床试验。
 
 \vspace{5mm}
 
