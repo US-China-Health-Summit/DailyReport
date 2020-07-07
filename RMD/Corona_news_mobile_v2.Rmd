@@ -211,17 +211,17 @@ t2 = read_csv('input/table2.csv') %>%   rename(' ' = ranking) %>%
    kable_styling(bootstrap_options="responsive", latex_options = c("striped","HOLD_position"), font_size = 20) %>% 
   add_header_above(header = c(" "=0, "表2 日新增病例前十位国家"=2), align = "c", bold = T, line = F)
 
-t4 = read_csv('input/table4.csv') %>% rename(' ' = ranking) %>% 
+t3 = read_csv('input/table3.csv') %>% rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(bootstrap_options="responsive", latex_options = c("striped","HOLD_position", "scale_down"), font_size = 20) %>% 
   add_header_above(header = c(" "=0, "表3 累计死亡病例前十位国家"=4), align = "c", bold = T, line = F)
 
-t5= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
+t4= read_csv('input/table5.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(bootstrap_options="responsive", latex_options = c("striped","HOLD_position", "scale_down"), font_size = 20) %>% 
   add_header_above(header = c(" "=0, "表4 美国新增确诊前十位州"=8), align = "c", bold = T, line = F)
 
-t6 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
+t5 = read_csv('input/table6.csv') %>%  rename(' ' = ranking) %>% 
   kable(format = "latex", booktabs = TRUE, linesep = "", digits = 3, format.args = list(big.mark = ',')) %>% 
   kable_styling(bootstrap_options="responsive", latex_options = c("striped","HOLD_position"), font_size = 20) %>% 
   add_header_above(header = c(" "=0, "表5 美国新增死亡前十位州"=3), align = "c", bold = T, line = F)
