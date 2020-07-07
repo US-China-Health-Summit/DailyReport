@@ -45,6 +45,7 @@ header-includes:
     - \linespread{1.85}
     - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
+    - \xeCJKsetup{CJKmath=true,CheckSingle=true}
     - \setCJKmainfont[BoldFont=SimHei,ItalicFont=KaiTi]{微软雅黑}
 
 
