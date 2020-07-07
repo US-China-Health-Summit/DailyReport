@@ -1,11 +1,11 @@
-﻿ranking,国家（地区）,粗发病率*,累计确诊病例
-1,卡塔尔 Qatar,2554,73595
-2,圣马力诺** San Marino,2036,691
-3,梵蒂冈** Holy See,1498,12
-4,安道尔** Andorra,1103,852
-5,巴林 Bahrain,952,16200
-6,科威特 Kuwait,792,33823
-7,智利 Chile,777,148456
-8,新加坡 Singapore,666,38965
-9,卢森堡 Luxembourg,647,4049
-10,秘鲁 Peru,630,207794
+﻿ranking,国家,新增确诊,新增死亡
+1,美国 US,45864,324
+2,印度 India,24248,0
+3,巴西 Brazil,20229,620
+4,南非 South Africa,8971,111
+5,巴基斯坦 Pakistan,6535,0
+6,俄罗斯 Russia,6494,126
+7,墨西哥 Mexico,4902,480
+8,沙特 Saudi Arabia,4207,52
+9,哥伦比亚 Colombia,3727,127
+10,孟加拉国 Bangladesh,3201,44
