@@ -18,7 +18,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{papersize={15.5cm,400cm},left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
+    - \geometry{papersize={15.5cm,50cm},left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage[font=Large]{caption}
@@ -173,7 +173,6 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 \begin{huge}{\textcolor{glaucous}{\textbf {一、世界疫情}}}\end{huge}
 
-\vspace{-5mm}
 
 
 ```{r include=FALSE}
@@ -272,7 +271,7 @@ cat(c("\\begin{table}[H]
 # \\end{table}"
 #))
 ```
-\vspace{-5mm}
+\vspace{5mm}
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
@@ -291,7 +290,6 @@ cat(c("\\begin{table}[H]
 
 \begin{huge}{\textcolor{glaucous}{\textbf {二、美国疫情}}}\end{huge}
 
-\vspace{-5mm}
 
 `r insight$content[3]`
 
