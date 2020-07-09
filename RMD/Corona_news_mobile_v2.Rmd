@@ -18,7 +18,7 @@ header-includes:
     - \usepackage{color}% http://ctan.org/pkg/color
     - \usepackage{hyperref}% http://ctan.org/pkg/hyperref
     - \usepackage{geometry}
-    - \geometry{papersize={15.5cm,400cm},left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
+    - \geometry{papersize={15.5cm,50cm},left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm}
     - \usepackage{blindtext}
     - \usepackage[center]{caption}
     - \usepackage[font=Large]{caption}
@@ -173,7 +173,6 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 \begin{huge}{\textcolor{glaucous}{\textbf {一、世界疫情}}}\end{huge}
 
-\vspace{-5mm}
 
 
 ```{r include=FALSE}
@@ -233,10 +232,22 @@ t4= read_csv('input/table4.csv') %>%  rename(' ' = ranking) %>%
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+<<<<<<< HEAD
 # cat(c("\\begin{table}[H]
 #     \\centering",
 #       t1,
 #       "\\end{table}"))
+=======
+cat(c("\\begin{table}[H]
+    \\centering",
+      t1,
+      "\\begin{tablenotes}
+        \\fontsize{12}{12}
+        \\selectfont
+        \\item 注：*粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万；
+      \\end{tablenotes}
+    \\end{table}"))
+>>>>>>> 51544e056ba5be97c9ae56fbd292c4bb1ecf36fa
       
 cat(c("\\begin{table}[H]
    \\centering",
@@ -272,7 +283,7 @@ cat(c("\\begin{table}[H]
 # \\end{table}"
 #))
 ```
-\vspace{-5mm}
+\vspace{5mm}
 \begin{figure}[H]
 \centering
 \captionsetup{font={huge}}
@@ -291,7 +302,6 @@ cat(c("\\begin{table}[H]
 
 \begin{huge}{\textcolor{glaucous}{\textbf {二、美国疫情}}}\end{huge}
 
-\vspace{-5mm}
 
 `r insight$content[3]`
 
