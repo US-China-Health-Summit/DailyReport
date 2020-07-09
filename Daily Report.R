@@ -104,6 +104,7 @@ library(ggplot2)
 library(tidyverse)
 library(scales)
 library(RCurl)
+library(tidyquant)
 
 ###############################################################
 ## RUN THROUGH EVERYTHING BELOW TO GENERATE PLOTS AND TABLES ##
@@ -959,6 +960,7 @@ p2 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed_incremental,
   ylab(p2_ylab)
 
 # ggsave(filename = paste(report_date,"p2",p2_title, ".pdf"), plot = p2, width = 10, height = 8)
+
 ggsave(filename = paste(report_date,"p2",p2_title, ".png"), plot = p2, width = 10, height = 8)
 
 
@@ -978,7 +980,8 @@ p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_increm
                                                   colour = Country,
                                                   shape = Country)) + 
   # geom_point(size = 2) + 
-  geom_line(size = 1) +
+  #geom_line(size = 1) +                        
+  geom_ma(ma_fun = SMA, n = 7, linetype = "solid") +
   theme_bw() + 
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -995,7 +998,7 @@ p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_increm
   ylab(p3_ylab)
 
 # ggsave(filename = paste(report_date,"p3",p3_title, ".pdf"), plot = p3, width = 10, height = 8 )
-ggsave(filename = paste(report_date,"p3",p3_title, ".png"), plot = p3, width = 10, height = 8 )
+ggsave(filename = paste(report_date,"p3",p3_title, ".png"), plot = p3, width = 10, height = 8)
 
 
 ##### plot 3-1. new confirmed cases daily sort by countries incremental (including China) #####
@@ -1740,7 +1743,8 @@ y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
 p4 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) +
-  geom_line(size=1) +
+  # geom_line(size=1) +
+  geom_ma(ma_fun = SMA, n = 7, linetype = "solid") +
   theme_bw() + 
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
