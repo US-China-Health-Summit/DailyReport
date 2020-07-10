@@ -855,10 +855,12 @@ p1 = data_all_continent %>%
       Continent == "North America" | Continent == "South America", 
       "Americas",
       Continent
-    )
+    ))
   ) %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental, fill = Continent)) + 
   geom_bar(position = "stack", stat = "identity") +
+  scale_color_manual(values = c("Americas" = "orange", "Europe" = "red", "Asia" = "green", 
+                                "Africa" = "purple", "Oceania" = "gray")) +
   theme_bw() +
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -869,7 +871,6 @@ p1 = data_all_continent %>%
   theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-  scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
   xlab("") +
   ylab("Number of Cases per day")
 
