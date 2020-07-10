@@ -232,12 +232,11 @@ t4= read_csv('input/table4.csv') %>%  rename(' ' = ranking) %>%
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-<<<<<<< HEAD
 # cat(c("\\begin{table}[H]
 #     \\centering",
 #       t1,
 #       "\\end{table}"))
-=======
+
 cat(c("\\begin{table}[H]
     \\centering",
       t1,
@@ -247,17 +246,16 @@ cat(c("\\begin{table}[H]
         \\item 注：*粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万；
       \\end{tablenotes}
     \\end{table}"))
->>>>>>> 51544e056ba5be97c9ae56fbd292c4bb1ecf36fa
-      
-cat(c("\\begin{table}[H]
-   \\centering",
-     t1,
-     "\\begin{tablenotes}
-       \\fontsize{15}{15}
-       \\selectfont
-       \\item 注：*粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的#频率。计算方式：（累计确诊病例/人口）×10万；国家人口不足 10 万人未列出 #%此处加入注释信息
-     \\end{tablenotes}
-\\end{table}"
+
+# cat(c("\\begin{table}[H]
+#    \\centering",
+#      t1,
+#      "\\begin{tablenotes}
+#        \\fontsize{15}{15}
+#        \\selectfont
+#        \\item 注：*粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的#频率。计算方式：（累计确诊病例/人口）×10万；国家人口不足 10 万人未列出 #%此处加入注释信息
+#      \\end{tablenotes}
+# \\end{table}"
 ))
 ```
 
