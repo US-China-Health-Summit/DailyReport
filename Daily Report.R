@@ -855,12 +855,11 @@ p1 = data_all_continent %>%
       Continent == "North America" | Continent == "South America", 
       "Americas",
       Continent
-    ))
-  ) %>% 
+    )) %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental, fill = Continent)) + 
-  geom_bar(position = "stack", stat = "identity") +
-  scale_color_manual(values = c("Americas" = "orange", "Europe" = "red", "Asia" = "green", 
-                                "Africa" = "purple", "Oceania" = "gray")) +
+  geom_bar(position = "stack", stat = 'identity') +
+  scale_color_manual(breaks = c("Americas", "Europe", "Asia", "Africa", "Oceania"),
+    values = c("orange", "red", "green", "purple", "gray")) +
   theme_bw() +
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
