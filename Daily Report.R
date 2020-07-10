@@ -102,6 +102,8 @@ if (packageVersion("tidyverse") != "1.3.0") {install.packages("tidyverse")}
 
 library(ggplot2)
 library(tidyverse)
+library(dplyr)
+library(dbplyr)
 library(scales)
 library(RCurl)
 library(tidyquant)
@@ -847,79 +849,104 @@ if (weekly_summary){
 }
 
 ##### plot 1. total confirmed cases sort by countries cumulative #####
-
-# filter by country and cumulative confirmed
-data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total, ]
-# reorder factor levels by country filter order
-temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date), ]
-temp = temp[order(temp$Confirmed, decreasing = T),]
-country_order = temp$Country
-data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
-
-y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1)*1000
-y_interval = adjust_y_interval(y_max)
-p1 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed, 
-                                        group = Country, 
-                                        colour = Country, 
-                                        shape = Country)) + 
-  # geom_point(size = 2) + 
-  geom_line(size = 1) +
-  theme_bw() + 
+p1 = data_all_continent %>% 
+  dplyr::mutate(
+    Continent = ifelse(
+      Continent == "North America" | Continent == "South America", 
+      "Americas",
+      Continent
+    )
+  ) %>% 
+  ggplot(aes(x = Date, y = Confirmed_incremental, fill = Continent)) + 
+  geom_bar(position = "stack", stat = "identity") +
+  theme_bw() +
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
-  theme(axis.line = element_line(colour = "black")) + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
-  theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-  theme(legend.position = c(0.2, 0.8)) + 
+  theme(axis.line = element_line(colour = "black")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) +
+  theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) +
+  theme(legend.position = c(0.2, 0.8)) +
   theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
   scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
   xlab("") +
-  ylab(p1_ylab) 
+  ylab("Number of Cases per day")
 
-# ggsave(filename = paste(report_date,"p1",p1_title, ".pdf"), plot = p1, width = 10, height = 8)
-ggsave(filename = paste(report_date,"p1",p1_title, ".png"), plot = p1, width = 10, height = 8 )
-
-
-##### plot 1-1. total confirmed cases sort by countries cumulative (including China) #####
-
-filter_total_with_china = c(china_label, filter_total)
-
-# filter by country and cumulative confirmed
-data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total_with_china, ]
-
-# reorder factor levels by country filter order
-temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date),]
-temp = temp[order(temp$Confirmed,decreasing = T),]
-country_order = temp$Country
-data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
-
-y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1) * 1000
-y_interval = adjust_y_interval(y_max)
-p1_1 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed, 
-                                          group = Country, 
-                                          colour = Country
-                                          # shape = Country
-                                          )) + 
-  # geom_point(size = 2) + 
-  geom_line(size = 1) +
-  theme_bw() + 
-  theme(panel.border = element_blank()) +
-  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
-  theme(axis.line = element_line(colour = "black")) + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
-  theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-  theme(legend.position = c(0.2, 0.8)) + 
-  theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
-  scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
-  scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-  scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
-  xlab("") +
-  ylab(p1_ylab)
-
-# ggsave(filename = paste(report_date, "p1-1", p1_1_title, ".pdf"), plot = p1_1, width = 10, height = 8)
-ggsave(filename = paste(report_date, "p1-1", p1_1_title, ".png"), plot = p1_1, width = 10, height = 8)
+ggsave(filename = paste(report_date,"p1",p1_title, ".png"), plot = p1, width = 10, height = 8)
+  
+# # filter by country and cumulative confirmed
+# data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total, ]
+# # reorder factor levels by country filter order
+# temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date), ]
+# temp = temp[order(temp$Confirmed, decreasing = T),]
+# country_order = temp$Country
+# data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
+# 
+# y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1)*1000
+# y_interval = adjust_y_interval(y_max)
+# p1 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed, 
+#                                         group = Country, 
+#                                         colour = Country, 
+#                                         shape = Country)) + 
+#   # geom_point(size = 2) + 
+#   geom_line(size = 1) +
+#   theme_bw() + 
+#   theme(panel.border = element_blank()) +
+#   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+#   theme(axis.line = element_line(colour = "black")) + 
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
+#   theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
+#   theme(legend.position = c(0.2, 0.8)) + 
+#   theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
+#   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
+#   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+#   scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+#   xlab("") +
+#   ylab(p1_ylab) 
+# 
+# # ggsave(filename = paste(report_date,"p1",p1_title, ".pdf"), plot = p1, width = 10, height = 8)
+# ggsave(filename = paste(report_date,"p1",p1_title, ".png"), plot = p1, width = 10, height = 8)
+# 
+# 
+# ##### plot 1-1. total confirmed cases sort by countries cumulative (including China) #####
+# 
+# filter_total_with_china = c(china_label, filter_total)
+# 
+# # filter by country and cumulative confirmed
+# data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total_with_china, ]
+# 
+# # reorder factor levels by country filter order
+# temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date),]
+# temp = temp[order(temp$Confirmed,decreasing = T),]
+# country_order = temp$Country
+# data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
+# 
+# y_max = (round(max(data_to_plot_confirmed$Confirmed)/1000) + 1) * 1000
+# y_interval = adjust_y_interval(y_max)
+# p1_1 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed, 
+#                                           group = Country, 
+#                                           colour = Country
+#                                           # shape = Country
+#                                           )) + 
+#   # geom_point(size = 2) + 
+#   geom_line(size = 1) +
+#   theme_bw() + 
+#   theme(panel.border = element_blank()) +
+#   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+#   theme(axis.line = element_line(colour = "black")) + 
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
+#   theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
+#   theme(legend.position = c(0.2, 0.8)) + 
+#   theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
+#   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
+#   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+#   scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+#   xlab("") +
+#   ylab(p1_ylab)
+# 
+# # ggsave(filename = paste(report_date, "p1-1", p1_1_title, ".pdf"), plot = p1_1, width = 10, height = 8)
+# ggsave(filename = paste(report_date, "p1-1", p1_1_title, ".png"), plot = p1_1, width = 10, height = 8)
 
 # plot 2. incremental cases for top N total confirmed
 
