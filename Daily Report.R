@@ -1007,8 +1007,8 @@ p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_increm
                                                   colour = Country,
                                                   shape = Country)) + 
   # geom_point(size = 2) + 
-  #geom_line(size = 1) +                        
-  geom_ma(ma_fun = SMA, n = 7, linetype = "solid") +
+  geom_line(size = 1) +                        
+  #geom_ma(ma_fun = SMA, n = 7, linetype = "solid") +
   theme_bw() + 
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -1770,8 +1770,8 @@ y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
 p4 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) +
-  # geom_line(size=1) +
-  geom_ma(ma_fun = SMA, n = 7, linetype = "solid") +
+  geom_line(size=1) +
+  # geom_ma(ma_fun = SMA, n = 7, linetype = "solid") +
   theme_bw() + 
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
