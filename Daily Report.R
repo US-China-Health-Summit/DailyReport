@@ -50,14 +50,14 @@ template_input = FALSE
 top_n = 5
 
 ##### FOR WEEKLY REPORT #####
-weekly_summary = TRUE
+weekly_summary = FALSE
 start_date_wr = NULL
 end_date_wr = NULL
 
-weekly_summary = TRUE
+weekly_summary = FALSE
 start_date_wr = "2020-06-21"
 end_date_wr = "2020-06-27"
-moving_avg = TRUE
+moving_avg = FALSE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
 end_date_confirmed_threshold = 10000
@@ -89,7 +89,7 @@ web_data = TRUE
 
 ###Switch for the remedy of Table 3's delay of data update issue for india and parkistan. 
 #If other country have the same issue, please add to the list of country_delayed. 
-incremental_delay = TRUE
+incremental_delay = FALSE
 country_delayed = c("India","Pakistan")
 
 ############################################################
@@ -564,7 +564,7 @@ data_all_Hubei = filter_by_date(data_all_Hubei, "Date", start_date, end_date)
 data_all_continent = continent_data$data_all
 data_all_continent = filter_by_date(data_all_continent, "Date", start_date, end_date)
 
-data_global_latest = data_all_countries[data_all_countries$Date == max(data_all_countries$Date), ]
+data_global_latest = data_all_countries[data_all_countries$Date == max(data_all_countries$Date)-1, ]
 US_total = data_global_latest[data_global_latest$Country == "US", ]
 
 ## 2020-06-30 update solve the delay issue ###
@@ -620,10 +620,10 @@ write_excel_csv(recovery_rate_data, paste(report_date,"table_recovery_rate.csv")
 
 # continent data
 ##2020-07-02 update
-data_continent_latest = data_all_continent[data_all_continent$Date == max(data_all_continent$Date),]
+data_continent_latest = data_all_continent[data_all_continent$Date == max(data_all_continent$Date)-1,]
 total_con = data_continent_latest %>% summarize_if(is.numeric, sum, na.rm=TRUE)
 Continent = "Global"
-Date = max(data_all_continent$Date)
+Date = max(data_all_continent$Date)-1
 total_con_bind = cbind(Continent,Date,total_con)
 data_continent_latest = rbind(total_con_bind, data_continent_latest)
 write_excel_csv(data_continent_latest, paste(report_date,"table_continent_latest.csv"))
@@ -778,7 +778,7 @@ if (as.numeric(x_max - x_min) < 15 ) {
 
 ##Following code limits the occueance of data into 7 pieces
 break.vec = pretty(break.vec,n=9)
-break.vec = c(x_min,break.vec[break.vec>x_min+1 & break.vec<x_max],x_max)
+break.vec = c(x_min,break.vec[break.vec>x_min+1 & break.vec<x_max],x_max-1)
 length(break.vec)
 
 # specify country_filter for weekly report and daily report
@@ -849,13 +849,16 @@ if (weekly_summary){
 }
 
 ##### plot 1. total confirmed cases sort by countries cumulative #####
-p1 = data_all_continent %>% 
+data_to_plot_p1 = data_all_continent %>% 
   dplyr::mutate(
     Continent = ifelse(
       Continent == "North America" | Continent == "South America", 
       "Americas",
       Continent
-    )) %>% 
+    )) 
+data_to_plot_p1 = data_to_plot_p1[data_to_plot_p1$Date != max(data_to_plot_p1$Date),]
+
+p1 = data_to_plot_p1 %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental, fill = Continent)) + 
   geom_bar(position = "stack", stat = 'identity') +
   scale_color_manual(breaks = c("Americas", "Europe", "Asia", "Africa", "Oceania"),
@@ -954,7 +957,7 @@ ggsave(filename = paste(report_date,"p1",p1_title, ".png"), plot = p1, width = 1
 data_to_plot_confirmed = data_all_countries[data_all_countries$Country %in% filter_total , ]
 
 # reorder factor levels by country filter order
-temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date),]
+temp = data_to_plot_confirmed[data_to_plot_confirmed$Date == max(data_to_plot_confirmed$Date)-1,]
 temp = temp[order(temp$Confirmed_incremental,decreasing = T),]
 country_order = temp$Country
 data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels = country_order)
@@ -963,7 +966,8 @@ y_max = (round(max(data_to_plot_confirmed$Confirmed_incremental)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
 
 ##### plot 2 #####
-
+data_to_plot_p2 = data_to_plot_confirmed
+data_to_plot_p2 = data_to_plot_p2[data_to_plot_p2$Date != max(data_to_plot_p2$Date),]
 
 p2 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed_incremental, 
                                                                 group = Country, 
@@ -995,13 +999,15 @@ ggsave(filename = paste(report_date,"p2",p2_title, ".png"), plot = p2, width = 1
 # filter by country total and date
 data_to_plot_confirmed_increment = data_all_countries_delay[data_all_countries_delay$Country %in% filter_incremental ,]
 # reorder factor levels by country filter order
-temp = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date == max(data_to_plot_confirmed_increment$Date),]
+temp = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date == max(data_to_plot_confirmed_increment$Date)-1,]
 temp = temp[order(temp$Confirmed_incremental,decreasing = T),]
 country_order = temp$Country
 data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
 
 y_max = (round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000) + 1)*1000
-y_interval = adjust_y_interval(y_max)
+y_interval = adjust_y_interval(y_max)4
+
+data_to_plot_confirmed_increment = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date != max(data_to_plot_confirmed_increment$Date),]
 p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_incremental,
                                                   group = Country,
                                                   colour = Country,
@@ -1033,13 +1039,16 @@ filter_incremental_inc_china = c(china_label, filter_incremental)
 # filter by country total and date
 data_to_plot_confirmed_increment = data_all_countries[data_all_countries$Country %in% filter_incremental_inc_china,]
 # reorder factor levels by country filter order
-temp = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date == max(data_to_plot_confirmed_increment$Date),]
+temp = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date == max(data_to_plot_confirmed_increment$Date)-1,]
 temp = temp[order(temp$Confirmed_incremental,decreasing = T),]
 country_order = temp$Country
 data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
 
 y_max=(round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
+
+data_to_plot_confirmed_increment = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date != max(data_to_plot_confirmed_increment$Date),]
+
 p3_1 = ggplot(data_to_plot_confirmed_increment, 
               aes(x = Date, y = Confirmed_incremental, group = Country, colour = Country, shape = Country)) + 
   # geom_point(size = 2) + 
@@ -1074,7 +1083,7 @@ names(data_to_plot_IR)[1] = "Region"
 data_to_plot_IR = rbind(Hubei_data_plot, data_to_plot_IR)
 
 # reorder factor levels by Crude_Incidence_Rate
-temp = data_to_plot_IR[data_to_plot_IR$Date == max(data_to_plot_IR$Date),]
+temp = data_to_plot_IR[data_to_plot_IR$Date == max(data_to_plot_IR$Date)-1,]
 temp = temp[order(temp$Crude_Incidence_Rate,decreasing = T),]
 region_order=temp$Region
 data_to_plot_IR$Region <- factor(data_to_plot_IR$Region, levels = region_order)
@@ -1082,6 +1091,7 @@ data_to_plot_IR$Region <- factor(data_to_plot_IR$Region, levels = region_order)
 y_max = (round(max(data_to_plot_IR$Crude_Incidence_Rate)/10) + 1)*10
 y_interval = adjust_y_interval(y_max)
 
+data_to_plot_IR = data_to_plot_IR[data_to_plot_IR$Date != max(data_to_plot_IR$Date),]
 p6_1 = ggplot(data_to_plot_IR, 
               aes(x=Date, y=Crude_Incidence_Rate, group=Region, colour = Region,  shape = Region)) + 
   # geom_point(size=2) + 
@@ -1111,13 +1121,15 @@ filter_total_with_china = c(china_label, filter_death)
 # filter by country and cumulative confirmed
 data_to_plot_death_total = data_all_countries[data_all_countries$Country %in% filter_total_with_china, ]
 # reorder factor levels by country filter order
-temp = data_to_plot_death_total[data_to_plot_death_total$Date == max(data_to_plot_death_total$Date),]
+temp = data_to_plot_death_total[data_to_plot_death_total$Date == max(data_to_plot_death_total$Date)-1,]
 temp = temp[order(temp$Deaths,decreasing = T),]
 country_order = temp$Country
 data_to_plot_death_total$Country <- factor(data_to_plot_death_total$Country, levels = country_order)
 
 y_max = (round(max(data_to_plot_death_total$Deaths)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
+
+data_to_plot_death_total = data_to_plot_death_total[data_to_plot_death_total$Date != max(data_to_plot_death_total$Date),]
 p7_1 = ggplot(data_to_plot_death_total, aes(x = Date, y = Deaths, group=Country, colour = Country,  shape = Country)) + 
   # geom_point(size = 2) + 
   geom_line(size = 1) +
@@ -1145,13 +1157,14 @@ filter_death_incremental_inc_china = c(china_label,filter_death_incremental)
 data_to_plot_death_incremental = data_all_countries%>%filter(`Country/Region` %in% filter_death_incremental_inc_china)
 
 # reorder factor levels by country filter order
-temp = data_to_plot_death_incremental[data_to_plot_death_incremental$Date == max(data_to_plot_death_incremental$Date),]
+temp = data_to_plot_death_incremental[data_to_plot_death_incremental$Date == max(data_to_plot_death_incremental$Date)-1,]
 temp = temp[order(temp$Deaths_incremental,decreasing = T),]
 country_order = temp$Country
 data_to_plot_death_incremental$Country <- factor(data_to_plot_death_incremental$Country, levels = country_order)
 
 y_max=(round(max(data_to_plot_death_incremental$Deaths_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
+data_to_plot_death_incremental = data_to_plot_death_incremental[data_to_plot_death_incremental$Date != max(data_to_plot_death_incremental$Date),]
 p10 = ggplot(data_to_plot_death_incremental, aes(x=Date, y=Deaths_incremental, group=Country, colour = Country, shape = Country)) + 
   # geom_point(size=2) + 
   geom_line(size = 1) +
@@ -1177,13 +1190,15 @@ ggsave(filename=paste(report_date,"p10",p10_title, ".png"), plot = p10, width = 
 data_to_plot_death_incremental_notinc_china = data_all_countries_delay%>%filter(`Country/Region`  %in% filter_death_incremental )
 
 # reorder factor levels by country filter order
-temp = data_to_plot_death_incremental_notinc_china[data_to_plot_death_incremental_notinc_china$Date == max(data_to_plot_death_incremental_notinc_china$Date),]
+temp = data_to_plot_death_incremental_notinc_china[data_to_plot_death_incremental_notinc_china$Date == max(data_to_plot_death_incremental_notinc_china$Date)-1,]
 temp = temp[order(temp$Deaths_incremental,decreasing = T),]
 country_order = temp$Country
 data_to_plot_death_incremental_notinc_china$Country <- factor(data_to_plot_death_incremental_notinc_china$Country, levels = country_order)
 
 y_max=(round(max(data_to_plot_death_incremental_notinc_china$Deaths_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
+
+data_to_plot_death_incremental_notinc_china = data_to_plot_death_incremental_notinc_china[data_to_plot_death_incremental_notinc_china$Date != max(data_to_plot_death_incremental_notinc_china$Date),]
 p10_1 = ggplot(data_to_plot_death_incremental_notinc_china, aes(x=Date, y=Deaths_incremental, group=Country, colour = Country, shape = Country)) + 
   # geom_point(size=2) + 
   geom_line(size = 1) +
@@ -1587,7 +1602,7 @@ write_excel_csv(us_positive_rate_wide, paste(report_date,"table_us_positive_rate
 write_excel_csv(us_pct_test_wide, paste(report_date,"table_us_pct_test.csv" ))
 
 # filter by latest date
-data_us_latest = data_us_states[data_us_states$Date == max(data_us_states$Date),]
+data_us_latest = data_us_states[data_us_states$Date == max(data_us_states$Date)-1,]
 data_us_latest_confirm = data_us_latest[, c("state", "Confirmed", "Crude_Incidence_Rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test","incre_positive_rate","positiveIncrease")]
 data_us_crude_incidence_rate = data_us_latest[, c("state", "Confirmed", "Crude_Incidence_Rate","positive_rate", "totalTestResults", "totalTestResultsIncrease", "pct_test","incre_positive_rate","positiveIncrease")]
 if (data_us_latest$Date[1] != max(data_us_states_detailed$date)) warning("US test data hasn't been updated yet. Try later.")
@@ -1687,7 +1702,7 @@ if (weekly_summary){
 
 # x label break for all plots:
 x_min_us = min(data_us_states$Date)
-x_max_us = max(data_us_states$Date)
+x_max_us = max(data_us_states$Date)-1
 if (as.numeric(x_max_us - x_min_us) < 15) {
   break.vec_us <- seq( x_min_us, x_max_us, by = "day")
 }else{
@@ -1709,7 +1724,7 @@ if (template_input) {
   filter_total <- filter_incremental <- filter_death <- filter_death_incremental <- state_list$States
 }else{
   temp = data_us_states
-  temp = temp[temp$Date == max(data_us_states$Date),] 
+  temp = temp[temp$Date == max(data_us_states$Date)-1,] 
   temp_total = temp[order(temp$Confirmed, decreasing = T), ]
   filter_total = temp_total$state[1:top_n]
   temp_incremental = temp[order(temp$Confirmed_incremental, decreasing = T), ]
@@ -1761,13 +1776,14 @@ data_us_states = filter_by_date(data_us_states, "Date", start_date_US, end_date_
 data_to_plot = data_us_states[data_us_states$state %in% filter_total, ]
 
 # reorder factor levels by country filter order
-temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
+temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date)-1,]
 temp = temp[order(temp$Confirmed,decreasing = T),]
 state_order = temp$state
 data_to_plot$state <- factor(data_to_plot$state, levels = state_order)
 
 y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
+data_to_plot = data_to_plot[data_to_plot$Date != max(data_to_plot$Date),]
 p4 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) +
   geom_line(size=1) +
@@ -1793,13 +1809,14 @@ ggsave(filename=paste(report_date,"p4",p4_title, ".png"), plot = p4, width = 10,
 data_to_plot_incremental = data_us_states[data_us_states$state %in% filter_incremental , ]
 
 # reorder factor levels by country filter order
-temp = data_to_plot_incremental[data_to_plot_incremental$Date == max(data_to_plot_incremental$Date),]
+temp = data_to_plot_incremental[data_to_plot_incremental$Date == max(data_to_plot_incremental$Date)-1,]
 temp = temp[order(temp$Confirmed_incremental,decreasing = T),]
 state_order = temp$state
 data_to_plot_incremental$state <- factor(data_to_plot_incremental$state, levels = state_order)
 
 y_max=(round(max(data_to_plot_incremental$Confirmed_incremental)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
+data_to_plot_incremental = data_to_plot_incremental[data_to_plot_incremental$Date != max(data_to_plot_incremental$Date),]
 p5 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_incremental, 
                                           group = state, 
                                           colour = state, 
@@ -1828,13 +1845,14 @@ ggsave(filename=paste(report_date,"p5",p5_title, ".png"), plot = p5, width = 10,
 
 ###### plot 8: total death cases by US States sorted by cumulative ####
 data_to_plot_death = data_us_states[data_us_states$state %in% filter_death,]
-temp = data_to_plot_death[data_to_plot_death$Date == max(data_to_plot_death$Date),]
+temp = data_to_plot_death[data_to_plot_death$Date == max(data_to_plot_death$Date)-1,]
 temp = temp[order(temp$Deaths,decreasing = T),]
 state_order = temp$state
 data_to_plot_death$state <- factor(data_to_plot_death$state, levels = state_order)
 
 y_max=(round(max(data_to_plot_death$Deaths)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
+data_to_plot_death = data_to_plot_death[data_to_plot_death$Date != max(data_to_plot_death$Date),]
 p8 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) + 
   geom_line(size=1) +
@@ -1859,13 +1877,14 @@ ggsave(filename=paste(report_date,"p8",p8_title, ".png"), plot = p8, width = 10,
 data_to_plot_death_incremental = data_us_states[data_us_states$state %in% filter_death_incremental , ]
 
 # reorder factor levels by country filter order
-temp = data_to_plot_death_incremental[data_to_plot_death_incremental$Date == max(data_to_plot_death_incremental$Date),]
+temp = data_to_plot_death_incremental[data_to_plot_death_incremental$Date == max(data_to_plot_death_incremental$Date)-1,]
 temp = temp[order(temp$Deaths_incremental,decreasing = T),]
 state_order = temp$state
 data_to_plot_death_incremental$state <- factor(data_to_plot_death_incremental$state, levels = state_order)
 
 y_max=(round(max(data_to_plot_death_incremental$Deaths_incremental)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
+data_to_plot_death_incremental = data_to_plot_death_incremental[data_to_plot_death_incremental$Date != max(data_to_plot_death_incremental$Date),]
 p11 = ggplot(data_to_plot_death_incremental , aes(x=Date, y=Deaths_incremental, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) + 
   geom_line(size=1) +

@@ -1,46 +1,39 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[
-]{article}
+\documentclass[]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
-% Use upquote if available, for straight quotes in verbatim environments
+% use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
 \hypersetup{
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
 \usepackage[margin=1in]{geometry}
-\usepackage{graphicx}
+\usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -49,15 +42,28 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
 \usepackage{ctex}
+\setmainfont{STHeitiSC-Medium}
+\setCJKmainfont{STHeitiSC-Medium}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
 \pagestyle{plain}
@@ -241,19 +247,13 @@ NA
 \end{figure}
 
 \begin{table}[H]
-   \centering \begin{table}[H]
+    \centering \begin{table}[H]
 \centering\begingroup\fontsize{20}{22}\selectfont
 
-<<<<<<< HEAD
-\begin{tabular}{lcclcc}
-\toprule
-\multicolumn{0}{c}{\textbf{ }} & \multicolumn{3}{c}{\textbf{表1 累计确诊前十位国家}} \\
-=======
 \resizebox{\linewidth}{!}{
 \begin{tabular}{rlrrrr}
 \toprule
 \multicolumn{0}{c}{\textbf{ }} & \multicolumn{5}{c}{\textbf{表1 累计确诊前十位国家}} \\
->>>>>>> 4a25ed77dcc6617e9c899fe1aa0ff9489b487941
   & 国家（地区） & 累计确诊 & 粗发病率* & 累计死亡 & 病死率\%\\
 \midrule
 \rowcolor{gray!6}  1 & 美国 US & 2,934,499 & 887 & 130,271 & 4.4\\
@@ -270,39 +270,27 @@ NA
 \end{tabular}}
 \endgroup{}
 \end{table} \begin{tablenotes}
-       \fontsize{15}{15}
-       \selectfont
-       \item 注：*粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的#频率。计算方式：（累计确诊病例/人口）×10万；国家人口不足 10 万人未列出 #%此处加入注释信息
-     \end{tablenotes}
-\end{table}
+        \fontsize{12}{12}
+        \selectfont
+        \item 注：*粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的频率。计算方式：（累计确诊病例/人口）×10万；
+      \end{tablenotes}
+    \end{table}
 
 \(\bullet\)全球昨日新增确诊接近14万例(139,672例)，新增死亡3,152例（表2）。
 
 \(\quad\)\(\diamond\)北美洲新增确诊接近5.5万例，新增死亡890例。其中虽然美国今日新增病例数较前几日有所下降，但依旧占北美洲日新增确诊数的95\%。
 
-<<<<<<< HEAD
 \(\quad\)\(\diamond\)南美洲新增确诊超过2.5万例，新增死亡超过1,100例，超过80\%的新增确诊和超过一半的新增死亡病例来自巴西。截止今日，巴西已超过10日为全球日新增死亡病例最高的国家。其余国家中哥伦比亚、秘鲁和智利为主要疫情严重的国家，当日新增确诊均超过3,000例。自上周末以来开始，墨西哥日新增死亡病例位居世界第二。
 
 \(\quad\)\(\diamond\)亚洲新增确诊约2.2万例，新增死亡591例。疫情严重国家沙特、孟加拉国和伊朗新增确诊均超过2,500例。
 
 \(\quad\)\(\diamond\)非洲新增确诊接近1.4万例，新增死亡249例。南非疫情持续扩散，近几日单日新增确诊病例均以9,000左右例波动。
-=======
-\(\quad\)\(\diamond\)南美洲新增确诊超过2.5万例，新增死亡超过1,100例，超过80\%的新增确诊和超过一半的新增死亡病例来自巴西。截止今日，巴西已超过10日为全球日新增死亡病例最高的国家。此外，地区日新增病例数排名前列的国家哥伦比亚、秘鲁和智利以日新增确诊超过3,000例波动。值得注意的是墨西哥自上周末以来日新增死亡病例开始一直位居世界第二。
-
-\(\quad\)\(\diamond\)亚洲新增确诊约2.2万例，新增死亡591例。疫情严重国家沙特、孟加拉国和伊朗新增确诊均超过2,500例。
-
-\(\quad\)\(\diamond\)非洲新增确诊接近1.4万例，新增死亡249例。南非疫情持续扩散，近几日单日新增确诊病例均以9,000例上下波动。
->>>>>>> 4a25ed77dcc6617e9c899fe1aa0ff9489b487941
 
 \begin{table}[H]
     \centering \begin{table}[H]
 \centering\begingroup\fontsize{20}{22}\selectfont
 
-<<<<<<< HEAD
-\begin{tabular}{lccl}
-=======
 \begin{tabular}{rlrr}
->>>>>>> 4a25ed77dcc6617e9c899fe1aa0ff9489b487941
 \toprule
 \multicolumn{0}{c}{\textbf{ }} & \multicolumn{2}{c}{\textbf{表2 日新增病例前十位国家}} \\
   & 国家 & 新增确诊 & 新增死亡\\
@@ -364,15 +352,9 @@ NA
 \centering\begingroup\fontsize{20}{22}\selectfont
 
 \resizebox{\linewidth}{!}{
-<<<<<<< HEAD
-\begin{tabular}{lccl}
-\toprule
-\multicolumn{0}{c}{\textbf{ }} & \multicolumn{4}{c}{\textbf{表3 美国新增确诊前十位州}} \\
-=======
 \begin{tabular}{rlrr}
 \toprule
 \multicolumn{0}{c}{\textbf{ }} & \multicolumn{3}{c}{\textbf{表3 美国新增确诊前十位州}} \\
->>>>>>> 4a25ed77dcc6617e9c899fe1aa0ff9489b487941
   & 国家/州名 & 当日新增 & 累计确诊\\
 \midrule
 \rowcolor{gray!6}   & 美国 US & 45,864 & 2,934,499\\
@@ -394,15 +376,9 @@ NA
 \centering\begingroup\fontsize{20}{22}\selectfont
 
 \resizebox{\linewidth}{!}{
-<<<<<<< HEAD
-\begin{tabular}{lcclc}
-\toprule
-\multicolumn{0}{c}{\textbf{ }} & \multicolumn{8}{c}{\textbf{表4 美国新增死亡前十位州}} \\
-=======
 \begin{tabular}{rlrrr}
 \toprule
 \multicolumn{0}{c}{\textbf{ }} & \multicolumn{4}{c}{\textbf{表4 美国新增死亡前十位州}} \\
->>>>>>> 4a25ed77dcc6617e9c899fe1aa0ff9489b487941
   & 国家/州名 & 当日新增 & 累计死亡 & 病死率\%\\
 \midrule
 \rowcolor{gray!6}   & 美国 US & 324 & 130,271 & 4.4\\
@@ -452,11 +428,7 @@ NA
 
 \(\quad\)中国对购买了医保的新冠患者实行免费救治，即检测与救治的费用由国家报销。根据国务院于6月7日发布的《抗击新冠肺炎疫情的中国行动》，截至5月31日，中央共向各级单位安排了1624亿元人民币的疫情防控资金，且患者可以``先救治，后结算''。新冠肺炎患者的医疗费，首先由基本医保、大病保险、医疗救助等按照规定支付，剩余个人负担的部分财政亦会给予患者补助。如果患者是在异地就医，医保支付的费用由患者就医地的医保部门先行垫付。\(^1\)
 
-<<<<<<< HEAD
 \(\quad\)截至5月31日，全国确诊住院患者结算人数5.8万人次，总医疗费用13.5亿元，确诊患者人均医疗费用约2.3万元。其中，重症患者人均治疗费用超过15万元，一些危重症患者治疗费用几十万元甚至上百万元，全部由国家承担。\(^1\)。
-=======
-\(\quad\)截至5月31日，全国确诊住院患者结算人数5.8万人次，总医疗费用13.5亿元，确诊患者人均医疗费用约2.3万元。其中，重症患者人均治疗费用超过15万元，一些危重症患者治疗费用几十万元甚至上百万元，全部由国家承担。\(^1\)
->>>>>>> 4a25ed77dcc6617e9c899fe1aa0ff9489b487941
 
 \(\quad\)在某宝280g的老干妈风味豆豉定价是19.8元，按照平均2.3万元的治疗费用，治疗一次新冠大约能买2323瓶老干妈。
 
