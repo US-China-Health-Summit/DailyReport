@@ -5,9 +5,6 @@ output:
     keep_tex: true
 header-includes:
     - \usepackage{ctex}
-    - \setmainfont{STHeitiSC-Medium}
-    - \setCJKmainfont{STHeitiSC-Medium}
-    
     - \usepackage{xcolor}
     - \usepackage{fancyhdr}
     - \pagestyle{plain}
@@ -47,7 +44,7 @@ header-includes:
     - \linespread{1.85}
     - \setlength{\parskip}{1em}
     - \setlength{\footskip}{20pt}
-
+    #- \setCJKmainfont[BoldFont=SimHei,ItalicFont=KaiTi]{微软雅黑}
 
 
 ---
@@ -259,7 +256,7 @@ cat(c("\\begin{table}[H]
 #        \\item 注：*粗发病率定义：在一定时间内，特定范围人群中某病新发生的病例出现的#频率。计算方式：（累计确诊病例/人口）×10万；国家人口不足 10 万人未列出 #%此处加入注释信息
 #      \\end{tablenotes}
 # \\end{table}"
-# ))
+))
 ```
 
 
@@ -388,6 +385,7 @@ reference = example$content[3]
 \multicolumn{2}{l}{可视化组:张祺珉\, 刘逸洋\, 周梓淇\, 孙昊\, 唐星鸿\, 齐维为\,张立达}
 
 \end{tabular}
+
 
 
 
