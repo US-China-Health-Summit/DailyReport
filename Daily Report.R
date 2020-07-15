@@ -588,11 +588,13 @@ if(incremental_delay == TRUE){
 # write to table
 report_date = max(colnames(case_confirmed_wide)[-1])
 
+order_date = as.Date(report_date)-1
+order_date = as.character(order_date)
 # time series table
-case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,report_date], decreasing = T), ]
-case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,report_date], decreasing = T), ]
-case_deaths_wide = case_deaths_wide[order(case_deaths_wide[,report_date], decreasing = T), ]
-case_deaths_incremental_wide = case_deaths_incremental_wide[order(case_deaths_incremental_wide[,report_date], decreasing = T), ]
+case_confirmed_wide = case_confirmed_wide[order(case_confirmed_wide[,order_date], decreasing = T), ]
+case_confirmed_incremental_wide = case_confirmed_incremental_wide[order(case_confirmed_incremental_wide[,order_date], decreasing = T), ]
+case_deaths_wide = case_deaths_wide[order(case_deaths_wide[,order_date], decreasing = T), ]
+case_deaths_incremental_wide = case_deaths_incremental_wide[order(case_deaths_incremental_wide[,order_date], decreasing = T), ]
 
 ###2020-07-02 update
 total = case_confirmed_wide %>% summarize_if(is.numeric, sum, na.rm=TRUE)
@@ -608,8 +610,8 @@ write_excel_csv(case_deaths_incremental_wide, paste(report_date,"table_case_deat
 
 # case_recovered_wide sort by recovesry rate 
 # case_recovered_wide = merge(case_recovered_wide, data_global_latest[, c("Country/Region", "Recovery_Rate")])
-case_recovered_wide = case_recovered_wide[order(case_recovered_wide[,report_date], decreasing = T), ]
-case_recovered_incremental_wide = case_recovered_incremental_wide[order(case_recovered_incremental_wide[,report_date], decreasing = T), ]
+case_recovered_wide = case_recovered_wide[order(case_recovered_wide[,order_date], decreasing = T), ]
+case_recovered_incremental_wide = case_recovered_incremental_wide[order(case_recovered_incremental_wide[,order_date], decreasing = T), ]
 write_excel_csv(case_recovered_wide, paste(report_date,"table_case_recovered.csv"))
 write_excel_csv(case_recovered_incremental_wide, paste(report_date,"table_case_recovered_incremental.csv"))
 
