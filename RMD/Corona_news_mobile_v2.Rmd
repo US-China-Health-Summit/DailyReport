@@ -5,6 +5,8 @@ output:
     keep_tex: true
 header-includes:
     - \usepackage{ctex}
+    - \setmainfont{STHeitiSC-Medium}
+    - \setCJKmainfont{STHeitiSC-Medium}
     - \usepackage{xcolor}
     - \usepackage{fancyhdr}
     - \pagestyle{plain}
