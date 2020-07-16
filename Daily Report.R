@@ -800,7 +800,7 @@ if (template_input) {
   
   #2020-06-30 change
   if (remove_mainland_china) data_all_countries_delay_order = data_all_countries_delay[!data_all_countries_delay$Country %in% china_label, ]
-  data_all_countries_delay_order = data_all_countries_delay_order[data_all_countries_delay_order$Date == max(data_all_countries$Date),] 
+  data_all_countries_delay_order = data_all_countries_delay_order[data_all_countries_delay_order$Date == max(data_all_countries$Date)-1,] 
   temp_incremental = data_all_countries_delay_order[order(data_all_countries_delay_order$Confirmed_incremental, decreasing = T), ]
   filter_incremental = temp_incremental$`Country/Region`[1:top_n]
   
