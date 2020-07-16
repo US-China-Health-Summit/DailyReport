@@ -860,6 +860,8 @@ data_to_plot_p1 = data_all_continent %>%
     )) 
 data_to_plot_p1 = data_to_plot_p1[data_to_plot_p1$Date != max(data_to_plot_p1$Date),]
 
+y_max = 250000
+y_interval = adjust_y_interval(y_max)
 p1 = data_to_plot_p1 %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental, fill = Continent)) + 
   geom_bar(position = "stack", stat = 'identity') +
@@ -1074,6 +1076,7 @@ ggsave(filename=paste(report_date,"p3_1",p3_1_title, ".png"), plot = p3_1, width
 
 ##### plot 6-1 crude incidence rate VS Hubei #####
 # filter by country and cumulative confirmed
+filter_total_with_china = c(china_label, filter_death)
 
 Hubei_data_plot = Hubei_data$data_all
 Hubei_data_plot = filter_by_date(Hubei_data_plot, "Date", start_date, end_date)
@@ -1117,7 +1120,6 @@ p6_1 = ggplot(data_to_plot_IR,
 ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".png"), plot = p6_1, width = 10, height = 8 )
 
 ##### plot 7-1. cumulative death cases sort by countries cumulative (including China) #####
-filter_total_with_china = c(china_label, filter_death)
 
 
 # filter by country and cumulative confirmed
