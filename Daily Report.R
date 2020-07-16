@@ -599,8 +599,8 @@ case_deaths_incremental_wide = case_deaths_incremental_wide[order(case_deaths_in
 ###2020-07-02 update
 total = case_confirmed_wide %>% summarize_if(is.numeric, sum, na.rm=TRUE)
 
-Province_State = "Global"
-total_bind = cbind(Province_State, total)
+`Country/Region` = "Global"
+total_bind = cbind(`Country/Region`, total)
 case_confirmed_wide = rbind(total_bind, case_confirmed_wide)
 
 write_excel_csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
@@ -1009,7 +1009,7 @@ country_order = temp$Country
 data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
 
 y_max = (round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000) + 1)*1000
-y_interval = adjust_y_interval(y_max)4
+y_interval = adjust_y_interval(y_max)
 
 data_to_plot_confirmed_increment = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date != max(data_to_plot_confirmed_increment$Date),]
 p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_incremental,
