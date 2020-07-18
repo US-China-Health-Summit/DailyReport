@@ -599,8 +599,8 @@ case_deaths_incremental_wide = case_deaths_incremental_wide[order(case_deaths_in
 ###2020-07-02 update
 total = case_confirmed_wide %>% summarize_if(is.numeric, sum, na.rm=TRUE)
 
-Province_State = "Global"
-total_bind = cbind(Province_State, total)
+`Country/Region` = "Global"
+total_bind = cbind(`Country/Region`, total)
 case_confirmed_wide = rbind(total_bind, case_confirmed_wide)
 
 write_excel_csv(case_confirmed_wide, paste(report_date, "table_case_confirmed.csv"))
@@ -860,6 +860,8 @@ data_to_plot_p1 = data_all_continent %>%
     )) 
 data_to_plot_p1 = data_to_plot_p1[data_to_plot_p1$Date != max(data_to_plot_p1$Date),]
 
+y_max = 250000
+y_interval = adjust_y_interval(y_max)
 p1 = data_to_plot_p1 %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental, fill = Continent)) + 
   geom_bar(position = "stack", stat = 'identity') +
@@ -1007,7 +1009,7 @@ country_order = temp$Country
 data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
 
 y_max = (round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000) + 1)*1000
-y_interval = adjust_y_interval(y_max)4
+y_interval = adjust_y_interval(y_max)
 
 data_to_plot_confirmed_increment = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date != max(data_to_plot_confirmed_increment$Date),]
 p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_incremental,
@@ -1074,6 +1076,7 @@ ggsave(filename=paste(report_date,"p3_1",p3_1_title, ".png"), plot = p3_1, width
 
 ##### plot 6-1 crude incidence rate VS Hubei #####
 # filter by country and cumulative confirmed
+filter_total_with_china = c(china_label, filter_death)
 
 Hubei_data_plot = Hubei_data$data_all
 Hubei_data_plot = filter_by_date(Hubei_data_plot, "Date", start_date, end_date)
@@ -1117,7 +1120,6 @@ p6_1 = ggplot(data_to_plot_IR,
 ggsave(filename=paste(report_date,"p7-1",p7_1_title, ".png"), plot = p6_1, width = 10, height = 8 )
 
 ##### plot 7-1. cumulative death cases sort by countries cumulative (including China) #####
-filter_total_with_china = c(china_label, filter_death)
 
 
 # filter by country and cumulative confirmed
