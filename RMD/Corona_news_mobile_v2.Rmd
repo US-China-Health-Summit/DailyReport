@@ -106,6 +106,12 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 ```
 
 \begin{center}
+`r global_news$author[1]`
+\end{center}
+
+
+
+\begin{center}
 \textcolor{glaucous}{`r global_news$pub[1]`}\\`r global_news$title[1]`
 \end{center}
 `r global_news$content[1]`
@@ -182,6 +188,11 @@ insight = read_excel("./input/insight.xlsx") %>%
   janitor::clean_names() %>% 
   select(content)
 ```
+
+\begin{center}
+`r insight$author[1]`
+\end{center}
+
 
 `r insight$content[1]`
 
@@ -362,6 +373,11 @@ reference = example$content[3]
 # \textcolor{glaucous}{\Huge `r title`}
 
 \vspace{-3mm}
+
+\begin{center}
+`r example$author[1]`
+\end{center}
+
 
 `r content1`
 
