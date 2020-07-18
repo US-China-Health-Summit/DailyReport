@@ -105,6 +105,13 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
   select(pub,title,content)
 ```
 
+
+\begin{center}
+`r global_news$author[1]` : `r global_news$author[2]`
+\end{center}
+
+
+
 \begin{center}
 \textcolor{glaucous}{`r global_news$pub[1]`}\\`r global_news$title[1]`
 \end{center}
@@ -345,6 +352,12 @@ reference = example$content[3]
 
 \vspace{-3mm}
 
+
+\begin{center}
+`r example$author[1]`: `r example$author[2]`
+\end{center}
+
+
 `r content1`
 
 <!-- Insert image for module 3 HERE --> 
@@ -362,13 +375,14 @@ reference = example$content[3]
 \begin{tabular}{ll}
 
 
-主编：马晶  &  副主编:仁晖，史珂玮 \\
-责任编辑: 罗天佑  \\
-新闻组: 吴舒兰 \\
-热点话题：吴舒兰 & 微信排版: 韩佩瑾\, 王艺晓\, 李萱 \\
-\multicolumn{2}{l}{可视化组: 周梓淇\, 张祺珉\, 刘逸洋\, 孙昊\, 唐星鸿\, 张立达}
+主编：马晶  &  副主编:仁晖，史珂玮, 霍舒同 \\
+责任编辑: 霍舒同  \\
+新闻组: 闫怡璇 &  数据分析:韩佩瑾 \\
+热点话题：朱诗韵 & 微信排版:韩佩瑾, 李萱 , 王艺晓\\
+\multicolumn{2}{l}{可视化组:张祺珉\, 刘逸洋\, 周梓淇\, 孙昊\, 唐星鸿\, 齐维为\,张立达}
 
 \end{tabular}
+
 
 
 
