@@ -72,19 +72,13 @@ header-includes:
 
 \begin{center}
 \fontsize{22}{22}
-{\textcolor{glaucous}{\textbf{第72期 \space 6月30日}}}
+{\textcolor{glaucous}{\textbf{第87期 \space 7月22日}}}
 \end{center}
 
 \vspace{2mm}
 \begin{center}
 \includegraphics[height=2cm]{./input/title1.png} 
 \end{center}
-
-\vspace{-5mm}
-
-\begin{huge}{\textcolor{glaucous}{\textbf{国际}}}\end{huge}
-
-\vspace{-3mm}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -98,7 +92,7 @@ report_date = Sys.Date()
 
 global_news = read_excel("./input/news.xlsx",sheet = 1) %>%
   janitor::clean_names() %>% 
-  select(pub,title,content)
+  select(pub,title,content,author)
 
 china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
   janitor::clean_names() %>% 
@@ -106,9 +100,14 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 ```
 
 \begin{center}
-`r global_news$author[1]` : `r global_news$author[2]`
+`r global_news$author[1]` : `r global_news$author[2]`、`r global_news$author[3]`、`r global_news$author[4]`
 \end{center}
 
+\vspace{-5mm}
+
+\begin{huge}{\textcolor{glaucous}{\textbf{国际}}}\end{huge}
+
+\vspace{-3mm}
 
 
 \begin{center}
@@ -137,7 +136,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 `r global_news$content[5]`
 
 \begin{center}
-\textcolor{glaucous}{`r global_news$pub[6]`}`r global_news$title[6]`
+\textcolor{glaucous}{`r global_news$pub[6]`}\\`r global_news$title[6]`
 \end{center}
 `r global_news$content[6]`
 
@@ -158,6 +157,11 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 \end{center}
 `r china_news$content[2]`
 
+\begin{center}
+\textcolor{glaucous}{`r china_news$pub[3]`}\\`r china_news$title[3]`
+\end{center}
+`r china_news$content[3]`
+
 
 
 \vspace{10mm}
@@ -174,24 +178,22 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 \vspace{-7mm}
 
 \begin{Large}
-{数据截止至：北京时间6月30日 上午8:00}
+{数据截止至：北京时间7月21日 中午12:00}
 \end{Large}
-
-
-
-\begin{huge}{\textcolor{glaucous}{\textbf {一、世界疫情}}}\end{huge}
-
 
 
 ```{r include=FALSE}
 insight = read_excel("./input/insight.xlsx") %>%
   janitor::clean_names() %>% 
-  select(content)
+  select(content,author)
 ```
 
 \begin{center}
 `r insight$author[1]` : `r insight$author[2]`
 \end{center}
+
+
+\begin{huge}{\textcolor{glaucous}{\textbf {一、世界疫情}}}\end{huge}
 
 
 `r insight$content[1]`
@@ -368,9 +370,11 @@ content1 = example$content[2]
 reference = example$content[3]
 ```
 
-\vspace{-5mm}
+\vspace{5mm}
 
-# \textcolor{glaucous}{\Huge `r title`}
+\begin{center}
+\textcolor{glaucous}{\Huge `r title`}
+\end{center}
 
 \vspace{-3mm}
 
@@ -396,10 +400,10 @@ reference = example$content[3]
 \begin{tabular}{ll}
 
 
-主编：马晶  &  副主编:仁晖，史珂玮, 霍舒同 \\
-责任编辑: 霍舒同  \\
-新闻组: 闫怡璇 &  数据分析:韩佩瑾 \\
-热点话题：朱诗韵 & 微信排版:韩佩瑾, 李萱 , 王艺晓\\
+主编：马晶  &  副主编：仁晖，史珂玮，霍舒同 \\
+责任编辑: 曹洁  \\
+新闻组: 胡睿绮，吴舒兰，闫怡璇 &  数据分析:宋琰 \\
+热点话题：霍舒同 & 微信排版:韩佩瑾, 李萱, 王艺晓\\
 \multicolumn{2}{l}{可视化组:张祺珉\, 刘逸洋\, 周梓淇\, 孙昊\, 唐星鸿\, 齐维为\,张立达}
 
 \end{tabular}

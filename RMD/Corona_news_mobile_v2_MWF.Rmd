@@ -80,12 +80,6 @@ header-includes:
 \includegraphics[height=2cm]{./input/title1.png} 
 \end{center}
 
-\vspace{-5mm}
-
-\begin{huge}{\textcolor{glaucous}{\textbf{国际}}}\end{huge}
-
-\vspace{-3mm}
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -98,7 +92,7 @@ report_date = Sys.Date()
 
 global_news = read_excel("./input/news.xlsx",sheet = 1) %>%
   janitor::clean_names() %>% 
-  select(pub,title,content)
+  select(pub,title,content,author)
 
 china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
   janitor::clean_names() %>% 
@@ -109,6 +103,12 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 \begin{center}
 `r global_news$author[1]` : `r global_news$author[2]`
 \end{center}
+
+\vspace{-5mm}
+
+\begin{huge}{\textcolor{glaucous}{\textbf{国际}}}\end{huge}
+
+\vspace{-3mm}
 
 
 
