@@ -71,9 +71,10 @@ end_date_us_deaths_threshold = 100
 # start_date/end_date control the start and end date for global plots 
 # start_date_US/end_date_US control the start and end date for US plots 
 
-start_date = "2020-03-01" 
+start_date = "2020-02-22" 
+report_start_date = "2020-03-01"
 end_date = NULL
-start_date_US = "2020-03-01" 
+start_date_US = "2020-02-22" 
 end_date_US = NULL
 
 #####  sort without China: TRUE, FALSE ; default is TRUE (sort without China)
@@ -94,7 +95,7 @@ country_delayed = c("India","Pakistan")
 
 ############################################################
 
-list.of.packages <- c("ggplot2", "RCurl", "tidyverse")
+list.of.packages <- c("ggplot2", "RCurl", "tidyverse", "RcppRoll")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if (length(new.packages)) {install.packages(new.packages)}
 if (packageVersion("tidyverse") != "1.3.0") {install.packages("tidyverse")}
@@ -107,6 +108,7 @@ library(dbplyr)
 library(scales)
 library(RCurl)
 library(tidyquant)
+library(RcppRoll)
 
 ###############################################################
 ## RUN THROUGH EVERYTHING BELOW TO GENERATE PLOTS AND TABLES ##
@@ -863,6 +865,7 @@ data_to_plot_p1 = data_to_plot_p1[data_to_plot_p1$Date != max(data_to_plot_p1$Da
 y_max = 250000
 y_interval = adjust_y_interval(y_max)
 p1 = data_to_plot_p1 %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental, fill = Continent)) + 
   geom_bar(position = "stack", stat = 'identity') +
   scale_color_manual(breaks = c("Americas", "Europe", "Asia", "Africa", "Oceania"),
@@ -973,10 +976,12 @@ y_interval = adjust_y_interval(y_max)
 data_to_plot_p2 = data_to_plot_confirmed
 data_to_plot_p2 = data_to_plot_p2[data_to_plot_p2$Date != max(data_to_plot_p2$Date),]
 
-p2 = ggplot(data_to_plot_confirmed, aes(x = Date, y = Confirmed_incremental, 
-                                                                group = Country, 
-                                                                colour = Country, 
-                                                                shape = Country)) + 
+p2 = data_to_plot_confirmed %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x = Date, y = Confirmed_incremental, 
+             group = Country, 
+             colour = Country, 
+             shape = Country)) + 
   # geom_point(size = 2) + 
   geom_line(size = 1) +
   theme_bw() + 
@@ -1012,10 +1017,18 @@ y_max = (round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000)
 y_interval = adjust_y_interval(y_max)
 
 data_to_plot_confirmed_increment = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date != max(data_to_plot_confirmed_increment$Date),]
-p3 = ggplot(data_to_plot_confirmed_increment, aes(x = Date, y = Confirmed_incremental,
-                                                  group = Country,
-                                                  colour = Country,
-                                                  shape = Country)) + 
+data_to_plot_confirmed_increment = 
+  data_to_plot_confirmed_increment %>% 
+  group_by(Country) %>% 
+  mutate(Confirmed_increment_7d_MA = roll_mean(Confirmed_incremental, 7, align = "right", fill = 0)) 
+  
+  
+p3 = data_to_plot_confirmed_increment %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x = Date, y = Confirmed_increment_7d_MA, 
+             group = Country,
+             colour = Country,
+             shape = Country)) + 
   # geom_point(size = 2) + 
   geom_line(size = 1) +                        
   #geom_ma(ma_fun = SMA, n = 7, linetype = "solid") +
@@ -1053,8 +1066,9 @@ y_interval = adjust_y_interval(y_max)
 
 data_to_plot_confirmed_increment = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date != max(data_to_plot_confirmed_increment$Date),]
 
-p3_1 = ggplot(data_to_plot_confirmed_increment, 
-              aes(x = Date, y = Confirmed_incremental, group = Country, colour = Country, shape = Country)) + 
+p3_1 = data_to_plot_confirmed_increment %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x = Date, y = Confirmed_incremental, group = Country, colour = Country, shape = Country)) + 
   # geom_point(size = 2) + 
   geom_line(size = 1) +
   theme_bw() + 
@@ -1097,8 +1111,9 @@ y_max = (round(max(data_to_plot_IR$Crude_Incidence_Rate)/10) + 1)*10
 y_interval = adjust_y_interval(y_max)
 
 data_to_plot_IR = data_to_plot_IR[data_to_plot_IR$Date != max(data_to_plot_IR$Date),]
-p6_1 = ggplot(data_to_plot_IR, 
-              aes(x=Date, y=Crude_Incidence_Rate, group=Region, colour = Region,  shape = Region)) + 
+p6_1 = data_to_plot_IR %>% 
+  filter(Data >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x=Date, y=Crude_Incidence_Rate, group=Region, colour = Region,  shape = Region)) + 
   # geom_point(size=2) + 
   geom_line(size=1) +
   scale_shape_manual(values=1:nlevels(data_to_plot_IR$Region)) +
@@ -1169,7 +1184,10 @@ data_to_plot_death_incremental$Country <- factor(data_to_plot_death_incremental$
 y_max=(round(max(data_to_plot_death_incremental$Deaths_incremental)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 data_to_plot_death_incremental = data_to_plot_death_incremental[data_to_plot_death_incremental$Date != max(data_to_plot_death_incremental$Date),]
-p10 = ggplot(data_to_plot_death_incremental, aes(x=Date, y=Deaths_incremental, group=Country, colour = Country, shape = Country)) + 
+p10 = data_to_plot_death_incremental %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x=Date, y=Deaths_incremental, 
+             group=Country, colour = Country, shape = Country)) + 
   # geom_point(size=2) + 
   geom_line(size = 1) +
   theme_bw() + 
@@ -1203,7 +1221,15 @@ y_max=(round(max(data_to_plot_death_incremental_notinc_china$Deaths_incremental)
 y_interval = adjust_y_interval(y_max)
 
 data_to_plot_death_incremental_notinc_china = data_to_plot_death_incremental_notinc_china[data_to_plot_death_incremental_notinc_china$Date != max(data_to_plot_death_incremental_notinc_china$Date),]
-p10_1 = ggplot(data_to_plot_death_incremental_notinc_china, aes(x=Date, y=Deaths_incremental, group=Country, colour = Country, shape = Country)) + 
+data_to_plot_death_incremental_notinc_china = 
+  data_to_plot_death_incremental_notinc_china %>% 
+  group_by(Country) %>% 
+  mutate(Death_incremental_7d_MA = roll_mean(Deaths_incremental, 7, align = "right", fill = 0))
+  
+
+p10_1 = data_to_plot_death_incremental_notinc_china %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x=Date, y=Death_incremental_7d_MA, group=Country, colour = Country, shape = Country)) + 
   # geom_point(size=2) + 
   geom_line(size = 1) +
   theme_bw() + 
@@ -1788,7 +1814,9 @@ data_to_plot$state <- factor(data_to_plot$state, levels = state_order)
 y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
 data_to_plot = data_to_plot[data_to_plot$Date != max(data_to_plot$Date),]
-p4 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
+p4 = data_to_plot %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) +
   geom_line(size=1) +
   # geom_ma(ma_fun = SMA, n = 7, linetype = "solid") +
@@ -1821,10 +1849,17 @@ data_to_plot_incremental$state <- factor(data_to_plot_incremental$state, levels 
 y_max=(round(max(data_to_plot_incremental$Confirmed_incremental)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
 data_to_plot_incremental = data_to_plot_incremental[data_to_plot_incremental$Date != max(data_to_plot_incremental$Date),]
-p5 = ggplot(data_to_plot_incremental, aes(x = Date, y = Confirmed_incremental, 
-                                          group = state, 
-                                          colour = state, 
-                                          shape = state)) + 
+data_to_plot_incremental = 
+  data_to_plot_incremental %>% 
+  group_by(state) %>% 
+  mutate(Confirmed_incremental_7d_MA = roll_mean(Confirmed_incremental, 7, align = "right", fill = 0))
+
+p5 = data_to_plot_incremental %>% 
+  filter(Data >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x = Date, y = Confirmed_incremental_7d_MA, 
+             group = state, 
+             colour = state, 
+             shape = state)) + 
   # geom_point(size = 2) + 
   geom_line(size = 1) +
   theme_bw() + 
@@ -1857,7 +1892,9 @@ data_to_plot_death$state <- factor(data_to_plot_death$state, levels = state_orde
 y_max=(round(max(data_to_plot_death$Deaths)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
 data_to_plot_death = data_to_plot_death[data_to_plot_death$Date != max(data_to_plot_death$Date),]
-p8 = ggplot(data_to_plot_death , aes(x=Date, y=Deaths, group=state, colour = state,  shape = state)) + 
+p8 = data_to_plot_death %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x=Date, y=Deaths, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
@@ -1886,10 +1923,18 @@ temp = temp[order(temp$Deaths_incremental,decreasing = T),]
 state_order = temp$state
 data_to_plot_death_incremental$state <- factor(data_to_plot_death_incremental$state, levels = state_order)
 
-y_max=(round(max(data_to_plot_death_incremental$Deaths_incremental)/100)+1)*100
+y_max=(round(max(data_to_plot_death_incremental$Deaths_incremental, na.rm = T)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
 data_to_plot_death_incremental = data_to_plot_death_incremental[data_to_plot_death_incremental$Date != max(data_to_plot_death_incremental$Date),]
-p11 = ggplot(data_to_plot_death_incremental , aes(x=Date, y=Deaths_incremental, group=state, colour = state,  shape = state)) + 
+data_to_plot_death_incremental = 
+  data_to_plot_death_incremental %>% 
+  group_by(state) %>% 
+  mutate(Death_incremental_7d_MA = roll_mean(Deaths_incremental, 7, align = "right", fill = 0))
+  
+
+p11 = data_to_plot_death_incremental %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
+  ggplot(aes(x=Date, y=Death_incremental_7d_MA, group=state, colour = state,  shape = state)) + 
   # geom_point(size=2) + 
   geom_line(size=1) +
   theme_bw() + 
