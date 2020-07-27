@@ -315,7 +315,6 @@ cat(c("\\begin{table}[H]
   \captionsetup{font={huge}}
   \caption{日新增死亡病例国家趋势图}
   \includegraphics[]{./input/covid3.png}
-  %\footnotetext{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
 \end{minipage}
