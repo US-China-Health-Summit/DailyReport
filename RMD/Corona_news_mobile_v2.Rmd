@@ -60,6 +60,8 @@ header-includes:
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][c]{\textbf{~#1}}}%
 }
 
+\newcommand\fnote[1]{\captionsetup{font=Large}\caption*{#1}}
+
 \begin{center}
 \includegraphics[height=2cm]{./input/logo2.png} 
 \end{center}
@@ -100,7 +102,7 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 ```
 
 \begin{center}
-`r global_news$author[1]` : `r global_news$author[2]`、`r global_news$author[3]`、`r global_news$author[4]`
+`r global_news$author[1]` : `r global_news$author[2]`
 \end{center}
 
 \vspace{-5mm}
@@ -297,41 +299,52 @@ cat(c("\\begin{table}[H]
 #))
 ```
 \vspace{5mm}
-\begin{figure}[H]
-\centering
-\captionsetup{font={huge}}
-\caption{日新增确诊病例国家趋势图}
-\includegraphics[]{./input/covid2.png}
-\end{figure}
+\begin{minipage}{\textwidth}
+  \begin{figure}[H]
+  \centering
+  \captionsetup{font={huge}}
+  \caption{日新增确诊病例国家趋势图}
+  \includegraphics[]{./input/covid2.png}
+  \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
+  \end{figure}
+\end{minipage}
 
-\begin{figure}[H]
-\centering
-\captionsetup{font={huge}}
-\caption{日新增死亡病例国家趋势图}
-\includegraphics[]{./input/covid3.png}
-\end{figure}
+\begin{minipage}{\textwidth}
+  \begin{figure}[H]
+  \centering
+  \captionsetup{font={huge}}
+  \caption{日新增死亡病例国家趋势图}
+  \includegraphics[]{./input/covid3.png}
+  %\footnotetext{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
+  \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
+  \end{figure}
+\end{minipage}
 
-\vspace{-7mm}
 
 \begin{huge}{\textcolor{glaucous}{\textbf {二、美国疫情}}}\end{huge}
 
 
 `r insight$content[3]`
 
+\begin{minipage}{\textwidth}
+  \begin{figure}[H]
+  \centering
+  \captionsetup{font={huge}}
+  \caption{美国日新增确诊前五位州趋势图}
+  \includegraphics[]{./input/covid5.png}
+  \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
+  \end{figure}
+\end{minipage}
 
-\begin{figure}[H]
-\centering
-\captionsetup{font={huge}}
-\caption{美国日新增确诊前五位州趋势图}
-\includegraphics[]{./input/covid5.png}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\captionsetup{font={huge}}
-\caption{美国日新增死亡前五位州趋势图}
-\includegraphics[]{./input/covid6.png}
-\end{figure}
+\begin{minipage}{\textwidth}
+  \begin{figure}[H]
+  \centering
+  \captionsetup{font={huge}}
+  \caption{美国日新增死亡前五位州趋势图}
+  \includegraphics[]{./input/covid6.png}
+  \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
+  \end{figure}
+\end{minipage}
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
