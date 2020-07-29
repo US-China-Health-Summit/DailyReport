@@ -1112,7 +1112,7 @@ y_interval = adjust_y_interval(y_max)
 
 data_to_plot_IR = data_to_plot_IR[data_to_plot_IR$Date != max(data_to_plot_IR$Date),]
 p6_1 = data_to_plot_IR %>% 
-  filter(Data >= as.Date(report_start_date)) %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
   ggplot(aes(x=Date, y=Crude_Incidence_Rate, group=Region, colour = Region,  shape = Region)) + 
   # geom_point(size=2) + 
   geom_line(size=1) +
