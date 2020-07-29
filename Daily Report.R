@@ -1855,7 +1855,7 @@ data_to_plot_incremental =
   mutate(Confirmed_incremental_7d_MA = roll_mean(Confirmed_incremental, 7, align = "right", fill = 0))
 
 p5 = data_to_plot_incremental %>% 
-  filter(Data >= as.Date(report_start_date)) %>% 
+  filter(Date >= as.Date(report_start_date)) %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental_7d_MA, 
              group = state, 
              colour = state, 
