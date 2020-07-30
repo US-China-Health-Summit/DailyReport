@@ -60,7 +60,7 @@ header-includes:
   \noindent\fcolorbox{lavenderblush}{lavenderblush}{\makebox[\dimexpr\textwidth-2\fboxsep-2\fboxrule][c]{\textbf{~#1}}}%
 }
 
-\newcommand\fnote[1]{\captionsetup{font=Large}\caption*{#1}}
+\newcommand\fnote[1]{\captionsetup{font=large}\caption*{#1}}
 
 \begin{center}
 \includegraphics[height=2cm]{./input/logo2.png} 
@@ -281,7 +281,7 @@ cat(c("\\begin{table}[H]
   \begin{figure}[H]
   \centering
   \captionsetup{font={huge}}
-  \caption{日新增确诊病例国家趋势图}
+  \caption{近七日新增确诊病例前五位国家趋势图}
   \includegraphics[]{./input/covid2.png}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
@@ -291,7 +291,7 @@ cat(c("\\begin{table}[H]
   \begin{figure}[H]
   \centering
   \captionsetup{font={huge}}
-  \caption{日新增死亡病例国家趋势图}
+  \caption{近七日新增死亡病例前五位国家趋势图}
   \includegraphics[]{./input/covid3.png}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
@@ -307,7 +307,7 @@ cat(c("\\begin{table}[H]
   \begin{figure}[H]
   \centering
   \captionsetup{font={huge}}
-  \caption{美国日新增确诊前五位州趋势图}
+  \caption{美国近七日新增确诊前五位州趋势图}
   \includegraphics[]{./input/covid5.png}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
@@ -317,7 +317,7 @@ cat(c("\\begin{table}[H]
   \begin{figure}[H]
   \centering
   \captionsetup{font={huge}}
-  \caption{美国日新增死亡前五位州趋势图}
+  \caption{美国近七日新增死亡前五位州趋势图}
   \includegraphics[]{./input/covid6.png}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
@@ -360,9 +360,12 @@ content1 = example$content[2]
 reference = example$content[3]
 ```
 
-\vspace{-5mm}
+\vspace{5mm}
 
-# \textcolor{glaucous}{\Huge `r title`}
+
+\begin{center}
+\textcolor{glaucous}{\Huge `r title`}
+\end{center}
 
 \vspace{-3mm}
 
