@@ -1217,15 +1217,16 @@ temp = temp[order(temp$Deaths_incremental,decreasing = T),]
 country_order = temp$Country
 data_to_plot_death_incremental_notinc_china$Country <- factor(data_to_plot_death_incremental_notinc_china$Country, levels = country_order)
 
-y_max=(round(max(data_to_plot_death_incremental_notinc_china$Deaths_incremental)/1000)+1)*1000
-y_interval = adjust_y_interval(y_max)
 
 data_to_plot_death_incremental_notinc_china = data_to_plot_death_incremental_notinc_china[data_to_plot_death_incremental_notinc_china$Date != max(data_to_plot_death_incremental_notinc_china$Date),]
 data_to_plot_death_incremental_notinc_china = 
   data_to_plot_death_incremental_notinc_china %>% 
   group_by(Country) %>% 
   mutate(Death_incremental_7d_MA = roll_mean(Deaths_incremental, 7, align = "right", fill = 0))
-  
+
+y_max=(round(max(data_to_plot_death_incremental_notinc_china$Death_incremental_7d_MA)/1000)+1)*1000
+y_interval = adjust_y_interval(y_max)
+
 
 p10_1 = data_to_plot_death_incremental_notinc_china %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
@@ -1923,14 +1924,15 @@ temp = temp[order(temp$Deaths_incremental,decreasing = T),]
 state_order = temp$state
 data_to_plot_death_incremental$state <- factor(data_to_plot_death_incremental$state, levels = state_order)
 
-y_max=(round(max(data_to_plot_death_incremental$Deaths_incremental, na.rm = T)/100)+1)*100
-y_interval = adjust_y_interval(y_max)
 data_to_plot_death_incremental = data_to_plot_death_incremental[data_to_plot_death_incremental$Date != max(data_to_plot_death_incremental$Date),]
 data_to_plot_death_incremental = 
   data_to_plot_death_incremental %>% 
   group_by(state) %>% 
   mutate(Death_incremental_7d_MA = roll_mean(Deaths_incremental, 7, align = "right", fill = 0))
-  
+
+y_max=(round(max(data_to_plot_death_incremental$Death_incremental_7d_MA, na.rm = T)/100)+1)*100
+y_interval = adjust_y_interval(y_max)
+
 
 p11 = data_to_plot_death_incremental %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
