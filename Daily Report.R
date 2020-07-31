@@ -794,7 +794,7 @@ if (template_input) {
 } else {
   temp = data_all_countries
   if (remove_mainland_china) temp = temp[!temp$Country %in% china_label, ]
-  temp = temp[temp$Date == max(data_all_countries$Date),] 
+  temp = temp[temp$Date == max(data_all_countries$Date)-1,] 
   
   # filter by total confirmed
   temp_total = temp[order(temp$Confirmed, decreasing = T), ]
@@ -1239,7 +1239,7 @@ p10_1 = data_to_plot_death_incremental_notinc_china %>%
   theme(axis.line = element_line(colour = "black")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
   theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-  theme(legend.position = c(0.2, 0.8)) + 
+  theme(legend.position = c(0.7,0.8)) + 
   theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
   scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
