@@ -55,8 +55,8 @@ start_date_wr = NULL
 end_date_wr = NULL
 
 weekly_summary = TRUE
-start_date_wr = "2020-06-19"
-end_date_wr = "2020-06-27"
+start_date_wr = "2020-07-26"
+end_date_wr = "2020-08-01"
 moving_avg = TRUE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
@@ -181,7 +181,7 @@ web_data_url <<- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-
 color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#A65628", "#F781BF","#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D", "#666666")
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
-
+continent_population = read.csv('continent_population.csv', stringsAsFactors = F)
 # four functions for translate plots and tables; pls run it
 
 translate_country = function(ut_data) {
@@ -501,6 +501,11 @@ create_final_data = function(type = NULL, Province_name = NULL, web_data){
   data_all = Reduce(function(x, y) merge(x, y, all = TRUE), list(case_confirmed, case_deaths, case_recovered))
   data_all$Active = data_all$Confirmed - data_all$Deaths - data_all$Recovered
   # Crude_Incidence_Rate
+  if (type == "Continent"){
+    data_all$Population = continent_population$Population[match(data_all$Continent,continent_population$ï..Continent)]
+    data_all$Crude_Incidence_Rate = round(as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000, 0)
+    data_all$Active_Crude_Incidence_Rate = round(as.numeric(data_all$Active)/as.numeric(data_all$Population) * 100000, 0)
+  }
   if (type == "Country") {
     data_all$Population = input_population$Population[match(data_all$Country, input_population$Country)]
     data_all$Crude_Incidence_Rate = round(as.numeric(data_all$Confirmed)/as.numeric(data_all$Population) * 100000, 0)
@@ -594,14 +599,114 @@ case_recovered_incremental_wide = case_recovered_incremental_wide[order(case_rec
 recovery_rate_data = data_global_latest[, c("Country/Region", "Confirmed", "Recovered", "Recovery_Rate")]
 recovery_rate_data = recovery_rate_data[order(recovery_rate_data[,'Recovered'], decreasing = T), ]
 
-# continent data
-##2020-07-02 update
-data_continent_latest = data_all_continent[data_all_continent$Date == max(data_all_continent$Date)-1,]
-total_con = data_continent_latest %>% summarize_if(is.numeric, sum, na.rm=TRUE)
+# # continent data
+# ##2020-07-02 update
+# data_continent_latest = data_all_continent[data_all_continent$Date == max(data_all_continent$Date)-1,]
+# total_con = data_continent_latest %>% summarize_if(is.numeric, sum, na.rm=TRUE)
+# Continent = "Global"
+# Date = max(data_all_continent$Date)-1
+# total_con_bind = cbind(Continent,Date,total_con)
+# data_continent_latest = rbind(total_con_bind, data_continent_latest)
+
+##### Table 1 Weekly Table on Continent #####
+##### This Table presents 6 indicators ######
+# Cumulative Confirmed and its Weekly Increm-
+# ental; Crude Death Rate (CDR);Cumulative D-
+# eath and its weekly incremental;Mortality 
+# Rate 
+############  BY Xinghong Tang  #############
+#############################################
+
+continent_week_latest = data_all_continent %>% 
+  filter(Date == end_date_wr) %>% 
+  select("Continent", "Confirmed","Crude_Incidence_Rate","Deaths","Fatality_rate") 
+
+continent_week_ago = data_all_continent %>% 
+  filter(Date == start_date_wr) %>% 
+  select("Continent", "Confirmed","Deaths")
+
+# after checking continent is aligned in two tables
+continent_week_latest$Confirmed_Incremental = continent_week_latest$Confirmed - continent_week_ago$Confirmed
+continent_week_latest$Deaths_Incremental = continent_week_latest$Deaths - continent_week_ago$Deaths
+continent_week_latest = continent_week_latest[c(1,2,3,6,4,7,5)]
+
+total_con = continent_week_latest %>% summarize_if(is.numeric, sum, na.rm=TRUE)
+global_population = sum(continent_population$Population)
+total_con$Crude_Incidence_Rate = round(as.numeric(total_con$Confirmed)/as.numeric(global_population) * 100000, 0)
+total_con$Fatality_rate = round(as.numeric(total_con$Deaths)/as.numeric(total_con$Confirmed)* 100,1)
 Continent = "Global"
-Date = max(data_all_continent$Date)-1
-total_con_bind = cbind(Continent,Date,total_con)
-data_continent_latest = rbind(total_con_bind, data_continent_latest)
+total_con_bind = cbind(Continent,total_con)
+continent_week_final = rbind(total_con_bind, continent_week_latest)
+
+write.csv(continent_week_final, file = "continent weekly table.csv")
+
+
+
+##########################################################################
+##### Table 2 Weekly Confirmed Incremental Table on Top 10 Countries #####
+#####               This Table presents 3 indicators                 #####
+# Cumulative Confirmed and its Weekly Incremental; Crude Death Rate (CDR)#
+#####                       BY Xinghong Tang                         #####
+##########################################################################
+
+
+global_confirmed_week_latest = data_all_countries %>% 
+  filter(Date == end_date_wr) %>% 
+  select("Country/Region", "Confirmed","Crude_Incidence_Rate")
+
+global_confirmed_week_ago = data_all_countries %>% 
+  filter(Date == start_date_wr) %>% 
+  select("Country/Region", "Confirmed")
+
+# after checking country/region is aligned in two tables
+global_confirmed_week_latest$Confirmed_Incremental = global_confirmed_week_latest$Confirmed - global_confirmed_week_ago$Confirmed
+global_confirmed_week_latest = global_confirmed_week_latest[c(1,2,4,3)]
+
+# filter Top n countries based on criteria
+## chagne parameter topn as user wants
+topn = 10
+countries_confirmed_top = global_confirmed_week_latest %>% 
+  arrange(desc(Confirmed_Incremental)) %>% 
+  top_n(topn, Confirmed_Incremental)
+
+write.csv(countries_confirmed_top, file = "countries confirmed top 10.csv")
+
+##########################################################################
+##########################################################################
+
+##########################################################################
+#####   Table 3 Weekly Death Incremental Table on Top 10 Countries   #####
+#####               This Table presents 3 indicators                 #####
+#      Cumulative Deaths and its Weekly Incremental; Fatality Rate       #
+#####                       BY Xinghong Tang                         #####
+##########################################################################
+global_deaths_week_latest = data_all_countries %>% 
+  filter(Date == end_date_wr) %>% 
+  select("Country/Region", "Deaths","Fatality_rate")
+
+global_deaths_week_ago = data_all_countries %>% 
+  filter(Date == start_date_wr) %>% 
+  select("Country/Region", "Deaths")
+
+# after checking country/region is aligned in two tables
+global_deaths_week_latest$Deaths_Incremental = global_deaths_week_latest$Deaths - global_deaths_week_ago$Deaths
+global_deaths_week_latest = global_deaths_week_latest[c(1,2,4,3)]
+
+# filter Top n countries based on criteria
+## chagne parameter topn as user wants
+topn = 10
+countries_deaths_top = global_deaths_week_latest %>% 
+  arrange(desc(Deaths_Incremental)) %>% 
+  top_n(topn, Deaths_Incremental)
+
+write.csv(countries_deaths_top, file = "countries deaths top 10.csv")
+
+
+##########################################################################
+##########################################################################
+
+
+
 
 #### table 1 ####
 global_confirmed = data_global_latest[, c("Country/Region", "Confirmed", "Crude_Incidence_Rate", "Deaths", "Fatality_rate")]
@@ -1040,6 +1145,76 @@ US_total = cbind(US_total, data_us_latest_total)
 US_total$positive_rate = round(US_total$Confirmed/US_total$totalTestResults, 2) * 100
 US_total$pct_test = round(US_total$totalTestResults/US_total$Population * 100000, 0)
 US_total = US_total%>%as_tibble()%>%mutate(incre_positive_rate = (positiveIncrease/totalTestResultsIncrease)%>%round(2)*100)%>%as.data.frame()
+
+
+##########################################################################
+##### Table 4 Weekly Confirmed Incremental Table on Top 10 US States #####
+#####               This Table presents 3 indicators                 #####
+# Cumulative Confirmed and its Weekly Incremental; Crude Death Rate (CDR)#
+#####                       BY Xinghong Tang                         #####
+##########################################################################
+
+
+us_confirmed_week_latest = data_us_states %>% 
+  filter(Date == end_date_wr) %>% 
+  select("state", "Confirmed","Crude_Incidence_Rate")
+
+us_confirmed_week_ago = data_us_states %>% 
+  filter(Date == start_date_wr) %>% 
+  select("state", "Confirmed")
+
+# after checking country/region is aligned in two tables
+us_confirmed_week_latest$Confirmed_Incremental = us_confirmed_week_latest$Confirmed - us_confirmed_week_ago$Confirmed
+us_confirmed_week_latest = us_confirmed_week_latest[c(1,2,4,3)]
+
+# filter Top n countries based on criteria
+## chagne parameter topn as user wants
+topn = 10
+us_confirmed_top = us_confirmed_week_latest %>% 
+  arrange(desc(Confirmed_Incremental)) %>% 
+  top_n(topn, Confirmed_Incremental)
+
+write.csv(us_confirmed_top, file = "us confirmed top 10.csv")
+
+##########################################################################
+##########################################################################
+
+##########################################################################
+#####   Table 5 Weekly Death Incremental Table on Top 10 US States   #####
+#####               This Table presents 3 indicators                 #####
+#      Cumulative Deaths and its Weekly Incremental; Fatality Rate       #
+#####                       BY Xinghong Tang                         #####
+##########################################################################
+us_Deaths_week_latest = data_us_states %>% 
+  filter(Date == end_date_wr) %>% 
+  select("state", "Deaths","Fatality_rate")
+
+us_Deaths_week_ago = data_us_states %>% 
+  filter(Date == start_date_wr) %>% 
+  select("state", "Deaths")
+
+# after checking country/region is aligned in two tables
+us_Deaths_week_latest$Deaths_Incremental = us_Deaths_week_latest$Deaths - us_Deaths_week_ago$Deaths
+us_Deaths_week_latest = us_Deaths_week_latest[c(1,2,4,3)]
+
+# filter Top n countries based on criteria
+## chagne parameter topn as user wants
+topn = 10
+us_Deaths_top = us_Deaths_week_latest %>% 
+  arrange(desc(Deaths_Incremental)) %>% 
+  top_n(topn, Deaths_Incremental)
+
+write.csv(us_Deaths_top, file = "us deaths top 10.csv")
+
+##########################################################################
+##########################################################################
+
+
+
+
+
+
+
 
 ##### table 7& 9 ####
 if (weekly_summary){
