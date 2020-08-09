@@ -792,7 +792,7 @@ p2 = data_to_plot_confirmed %>%
   theme(text = element_text(family='Hei')) +
   #ggtitle("日新增确诊病例国家趋势图", subtitle = "") + 
   xlab("") +
-  ylab("总数")
+  ylab("新增确诊病例数")
 
 # ggsave(filename = paste(report_date,"p2",p2_title, ".pdf"), plot = p2, width = 10, height = 8)
 
@@ -843,7 +843,7 @@ p3 = data_to_plot_confirmed_increment %>%
   theme(text = element_text(family='Hei')) +
   #ggtitle("累计确诊病例国家趋势图", subtitle = "") + 
   xlab("") +
-  ylab("总数")
+  ylab("新增确诊病例数")
 
 # ggsave(filename = paste(report_date,"p3",p3_title, ".pdf"), plot = p3, width = 10, height = 8 )
 ggsave(filename = paste(report_date,"p3",p3_title, ".png"), plot = p3, width = 10, height = 8)
@@ -889,7 +889,7 @@ p10_1 = data_to_plot_death_incremental_notinc_china %>%
   scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
   theme(text = element_text(family='Hei')) +
   xlab("") +
-  ylab("总数")
+  ylab("新增死亡病例数")
 
 # ggsave(filename=paste(report_date,"p10_1",p10_title, ".pdf"), plot = p10, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p10_1",p10_title, ".png"), plot = p10_1, width = 10, height = 8 )
@@ -1160,7 +1160,7 @@ p4 = data_to_plot %>%
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   theme(text = element_text(family='Hei')) + 
   xlab("") +
-  ylab("总数")
+  ylab("确诊病例总数")
 
 # ggsave(filename=paste(report_date,"p4",p4_title, ".pdf"), plot = p4, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p4",p4_title, ".png"), plot = p4, width = 10, height = 8 )
@@ -1208,7 +1208,7 @@ p5 = data_to_plot_incremental %>%
   scale_color_manual(values = color_list[match(state_order, color_list_state)]) +
   theme(text = element_text(family='Hei')) + 
   xlab("") +
-  ylab("总数")
+  ylab("新增确诊病例数")
 
 # ggsave(filename=paste(report_date,"p5",p5_title, ".pdf"), plot = p5, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p5",p5_title, ".png"), plot = p5, width = 10, height = 8 )
@@ -1243,7 +1243,7 @@ p8 = data_to_plot_death %>%
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   theme(text = element_text(family='Hei')) + 
   xlab("") +
-  ylab("总数")
+  ylab("死亡病例总数")
 
 # ggsave(filename=paste(report_date,"p8",p8_title, ".pdf"), plot = p8, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p8",p8_title, ".png"), plot = p8, width = 10, height = 8 )
@@ -1287,7 +1287,7 @@ p11 = data_to_plot_death_incremental %>%
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
   theme(text = element_text(family='Hei')) + 
   xlab("") +
-  ylab("总数")
+  ylab("新增死亡病例数")
 
 # ggsave(filename=paste(report_date,"p11",p11_title, ".pdf"), plot = p11, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p11",p11_title, ".png"), plot = p11, width = 10, height = 8 )  
