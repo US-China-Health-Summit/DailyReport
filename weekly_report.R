@@ -39,9 +39,9 @@
 
 # getwd()
 
-folder = "./csse_covid_19_time_series"
+#folder = "./csse_covid_19_time_series"
 
-setwd(folder)
+#setwd(folder)
 
 ##### Filter countries #####
 ## Set template_input to TRUE if filter country using template file provided; 
@@ -55,8 +55,8 @@ start_date_wr = NULL
 end_date_wr = NULL
 
 weekly_summary = TRUE
-start_date_wr = "2020-07-26"
-end_date_wr = "2020-08-01"
+start_date_wr = "2020-08-08"
+end_date_wr = "2020-08-14"
 moving_avg = TRUE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
@@ -619,7 +619,10 @@ recovery_rate_data = recovery_rate_data[order(recovery_rate_data[,'Recovered'], 
 
 continent_week_latest = data_all_continent %>% 
   filter(Date == end_date_wr) %>% 
-  select("Continent", "Confirmed","Crude_Incidence_Rate","Deaths","Fatality_rate") 
+  select("Continent", "Confirmed","Crude_Incidence_Rate","Deaths","Fatality_rate") %>% 
+  left_join(continent_population, by = "Continent") %>% 
+  mutate(Crude_Incidence_Rate = Confirmed / (Population / 100000)) %>% 
+  select(-Population)
 
 continent_week_ago = data_all_continent %>% 
   filter(Date == start_date_wr) %>% 
@@ -881,7 +884,7 @@ if (weekly_summary){
     theme(axis.line = element_line(colour = "black")) + 
     theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
     theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-    theme(legend.position = c(0.2, 0.8)) + 
+    theme(legend.position = c(0.8, 0.8)) + 
     theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = "1 day",date_labels = "%m-%d") +
