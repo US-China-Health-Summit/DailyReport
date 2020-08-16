@@ -281,7 +281,7 @@ cat(c("\\begin{table}[H]
   \begin{figure}[H]
   \centering
   \captionsetup{font={huge}}
-  \caption{近七日新增确诊病例前五位国家趋势图}
+  \caption{日新增确诊病例前五位国家趋势图}
   \includegraphics[]{./input/covid2.png}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
@@ -291,7 +291,7 @@ cat(c("\\begin{table}[H]
   \begin{figure}[H]
   \centering
   \captionsetup{font={huge}}
-  \caption{近七日新增死亡病例前五位国家趋势图}
+  \caption{日新增死亡病例前五位国家趋势图}
   \includegraphics[]{./input/covid3.png}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
@@ -307,7 +307,7 @@ cat(c("\\begin{table}[H]
   \begin{figure}[H]
   \centering
   \captionsetup{font={huge}}
-  \caption{美国近七日新增确诊前五位州趋势图}
+  \caption{美国日新增确诊前五位州趋势图}
   \includegraphics[]{./input/covid5.png}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
@@ -317,7 +317,7 @@ cat(c("\\begin{table}[H]
   \begin{figure}[H]
   \centering
   \captionsetup{font={huge}}
-  \caption{美国近七日新增死亡前五位州趋势图}
+  \caption{美国日新增死亡前五位州趋势图}
   \includegraphics[]{./input/covid6.png}
   \fnote{注：图中显示为7日移动平均值，计算方式（当天+前6天）/7。}
   \end{figure}
