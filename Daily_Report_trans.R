@@ -764,6 +764,15 @@ data_to_plot_confirmed$Country <- factor(data_to_plot_confirmed$Country, levels 
 y_max = (round(max(data_to_plot_confirmed$Confirmed_incremental)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
 
+color_order_translate = 
+  filter_total %>% 
+  as_tibble() %>% 
+  rename(Country = value) %>% 
+  translate_country() %>% 
+  select(Country_cn) %>% 
+  pull %>% 
+  as.character()
+
 ##### plot 2 #####
 data_to_plot_p2 = data_to_plot_confirmed
 data_to_plot_p2 = data_to_plot_p2[data_to_plot_p2$Date != max(data_to_plot_p2$Date),]
@@ -771,6 +780,7 @@ data_to_plot_p2 = data_to_plot_p2[data_to_plot_p2$Date != max(data_to_plot_p2$Da
 p2 = data_to_plot_confirmed %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
   translate_country() %>% 
+  mutate(Country_cn = fct_relevel(Country_cn, color_order_translate)) %>% 
   rename("国家" = Country_cn) %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental, 
              group = 国家, 
@@ -811,16 +821,25 @@ data_to_plot_confirmed_increment$Country <- factor(data_to_plot_confirmed_increm
 y_max = (round(max(data_to_plot_confirmed_increment$Confirmed_incremental)/1000) + 1)*1000
 y_interval = adjust_y_interval(y_max)
 
+color_order_translate = 
+  filter_incremental %>% 
+  as_tibble() %>% 
+  rename(Country = value) %>% 
+  translate_country() %>% 
+  select(Country_cn) %>% 
+  pull %>% 
+  as.character()
+
 data_to_plot_confirmed_increment = data_to_plot_confirmed_increment[data_to_plot_confirmed_increment$Date != max(data_to_plot_confirmed_increment$Date),]
 data_to_plot_confirmed_increment = 
   data_to_plot_confirmed_increment %>% 
   group_by(Country) %>% 
   mutate(Confirmed_increment_7d_MA = roll_mean(Confirmed_incremental, 7, align = "right", fill = 0)) 
 
-
 p3 = data_to_plot_confirmed_increment %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
   translate_country() %>% 
+  mutate(Country_cn = fct_relevel(Country_cn, color_order_translate)) %>% 
   rename("国家" = Country_cn) %>% 
   ggplot(aes(x = Date, y = Confirmed_increment_7d_MA, 
              group = 国家 ,
@@ -868,10 +887,19 @@ data_to_plot_death_incremental_notinc_china =
 y_max=(round(max(data_to_plot_death_incremental_notinc_china$Death_incremental_7d_MA)/1000)+1)*1000
 y_interval = adjust_y_interval(y_max)
 
+color_order_translate = 
+  filter_death_incremental %>% 
+  as_tibble() %>% 
+  rename(Country = value) %>% 
+  translate_country() %>% 
+  select(Country_cn) %>% 
+  pull %>% 
+  as.character()
 
 p10_1 = data_to_plot_death_incremental_notinc_china %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
   translate_country() %>% 
+  mutate(Country_cn = fct_relevel(Country_cn, color_order_translate)) %>% 
   rename("国家" = Country_cn) %>% 
   ggplot(aes(x=Date, y=Death_incremental_7d_MA, group = 国家, colour = 国家, shape = 国家)) + 
   # geom_point(size=2) + 
@@ -1138,10 +1166,21 @@ data_to_plot$state <- factor(data_to_plot$state, levels = state_order)
 
 y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
+
+color_order_translate = 
+  filter_total %>% 
+  as_tibble() %>% 
+  rename(state = value) %>% 
+  translate_state() %>% 
+  select(state_cn) %>% 
+  pull %>% 
+  as.character()
+
 data_to_plot = data_to_plot[data_to_plot$Date != max(data_to_plot$Date),]
 p4 = data_to_plot %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
   translate_state() %>% 
+  mutate(state_cn = fct_relevel(state_cn, color_order_translate)) %>% 
   rename("州" = state_cn) %>% 
   ggplot(aes(x=Date, y=Confirmed, group=州, colour = 州,  shape = 州)) + 
   # geom_point(size=2) +
@@ -1162,6 +1201,7 @@ p4 = data_to_plot %>%
   xlab("") +
   ylab("确诊病例总数")
 
+p4_title = "Cumulative Confirmed Cases (Top 5 States of Cumulative Confirmed Cases in U.S.) "
 # ggsave(filename=paste(report_date,"p4",p4_title, ".pdf"), plot = p4, width = 10, height = 8 )
 ggsave(filename=paste(report_date,"p4",p4_title, ".png"), plot = p4, width = 10, height = 8 )
 
@@ -1176,6 +1216,16 @@ data_to_plot_incremental$state <- factor(data_to_plot_incremental$state, levels 
 
 y_max=(round(max(data_to_plot_incremental$Confirmed_incremental)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
+
+color_order_translate = 
+  filter_incremental %>% 
+  as_tibble() %>% 
+  rename(state = value) %>% 
+  translate_state() %>% 
+  select(state_cn) %>% 
+  pull %>% 
+  as.character()
+
 data_to_plot_incremental = data_to_plot_incremental[data_to_plot_incremental$Date != max(data_to_plot_incremental$Date),]
 data_to_plot_incremental = 
   data_to_plot_incremental %>% 
@@ -1185,6 +1235,8 @@ data_to_plot_incremental =
 p5 = data_to_plot_incremental %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
   translate_state() %>% 
+  mutate(state_cn = factor(state_cn)) %>% 
+  mutate(state_cn = fct_relevel(state_cn, color_order_translate)) %>% 
   rename("州" = state_cn) %>%
   ggplot(aes(x = Date, y = Confirmed_incremental_7d_MA, 
              group = 州, 
@@ -1222,10 +1274,21 @@ data_to_plot_death$state <- factor(data_to_plot_death$state, levels = state_orde
 
 y_max=(round(max(data_to_plot_death$Deaths)/500)+1)*500
 y_interval = adjust_y_interval(y_max)
+
+color_order_translate = 
+  filter_death %>% 
+  as_tibble() %>% 
+  rename(state = value) %>% 
+  translate_state() %>% 
+  select(state_cn) %>% 
+  pull %>% 
+  as.character()
+
 data_to_plot_death = data_to_plot_death[data_to_plot_death$Date != max(data_to_plot_death$Date),]
 p8 = data_to_plot_death %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
   translate_state() %>% 
+  mutate(state_cn = fct_relevel(state_cn, color_order_translate)) %>% 
   rename("州" = state_cn) %>%
   ggplot(aes(x=Date, y=Deaths, group = 州, colour = 州,  shape = 州)) + 
   # geom_point(size=2) + 
@@ -1266,10 +1329,20 @@ data_to_plot_death_incremental =
 y_max=(round(max(data_to_plot_death_incremental$Death_incremental_7d_MA, na.rm = T)/100)+1)*100
 y_interval = adjust_y_interval(y_max)
 
+color_order_translate = 
+  filter_death_incremental %>% 
+  as_tibble() %>% 
+  rename(state = value) %>% 
+  translate_state() %>% 
+  select(state_cn) %>% 
+  pull %>% 
+  as.character()
 
 p11 = data_to_plot_death_incremental %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
   translate_state() %>% 
+  mutate(state_cn = factor(state_cn)) %>% 
+  mutate(state_cn = fct_relevel(state_cn, color_order_translate)) %>% 
   rename("州" = state_cn) %>%
   ggplot(aes(x=Date, y=Death_incremental_7d_MA, group = 州, colour = 州,  shape = 州)) + 
   # geom_point(size=2) + 
