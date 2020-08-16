@@ -55,8 +55,8 @@ start_date_wr = NULL
 end_date_wr = NULL
 
 weekly_summary = TRUE
-start_date_wr = "2020-08-08"
-end_date_wr = "2020-08-14"
+start_date_wr = "2020-08-08"  # Last Saturday
+end_date_wr = "2020-08-14"  # This Friday
 moving_avg = TRUE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
@@ -625,7 +625,7 @@ continent_week_latest = data_all_continent %>%
   select(-Population)
 
 continent_week_ago = data_all_continent %>% 
-  filter(Date == start_date_wr) %>% 
+  filter(Date == as.Date(start_date_wr )- 1) %>% 
   select("Continent", "Confirmed","Deaths")
 
 # after checking continent is aligned in two tables
@@ -658,7 +658,7 @@ global_confirmed_week_latest = data_all_countries %>%
   select("Country/Region", "Confirmed","Crude_Incidence_Rate")
 
 global_confirmed_week_ago = data_all_countries %>% 
-  filter(Date == start_date_wr) %>% 
+  filter(Date == as.Date(start_date_wr )- 1) %>% 
   select("Country/Region", "Confirmed")
 
 # after checking country/region is aligned in two tables
@@ -688,7 +688,7 @@ global_deaths_week_latest = data_all_countries %>%
   select("Country/Region", "Deaths","Fatality_rate")
 
 global_deaths_week_ago = data_all_countries %>% 
-  filter(Date == start_date_wr) %>% 
+  filter(Date == as.Date(start_date_wr )- 1) %>% 
   select("Country/Region", "Deaths")
 
 # after checking country/region is aligned in two tables
@@ -865,7 +865,7 @@ if (weekly_summary){
   
   # filter by country and cumulative confirmed
   data_to_plot_confirmed_diff = data_all_countries[data_all_countries$Country %in% filter_total_confirmed_diff, ]
-  data_to_plot_confirmed_diff = data_to_plot_confirmed_diff[data_to_plot_confirmed_diff $ Date >=start_date_wr & data_to_plot_confirmed_diff$Date <=end_date_wr,]
+  data_to_plot_confirmed_diff = data_to_plot_confirmed_diff[data_to_plot_confirmed_diff $ Date >= as.Date(start_date_wr)-1 & data_to_plot_confirmed_diff$Date <=end_date_wr,]
   # reorder factor levels by country filter order
   temp = data_to_plot_confirmed_diff[data_to_plot_confirmed_diff$Date == max(data_to_plot_confirmed_diff$Date), ]
   temp = temp[order(temp$Confirmed, decreasing = T),]
@@ -884,7 +884,7 @@ if (weekly_summary){
     theme(axis.line = element_line(colour = "black")) + 
     theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
     theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-    theme(legend.position = c(0.8, 0.8)) + 
+    theme(legend.position = c(0.8, 0.77)) + 
     theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = "1 day",date_labels = "%m-%d") +
@@ -899,7 +899,7 @@ if (weekly_summary){
   
   # filter by country and cumulative death
   data_to_plot_death_diff = data_all_countries[data_all_countries$Country %in% filter_death_diff, ]
-  data_to_plot_death_diff = data_to_plot_death_diff[data_to_plot_death_diff $ Date >=start_date_wr & data_to_plot_death_diff$Date <=end_date_wr,]
+  data_to_plot_death_diff = data_to_plot_death_diff[data_to_plot_death_diff $ Date >= as.Date(start_date_wr)-1 & data_to_plot_death_diff$Date <=end_date_wr,]
   # reorder factor levels by country filter order
   temp = data_to_plot_death_diff[data_to_plot_death_diff$Date == max(data_to_plot_death_diff$Date), ]
   temp = temp[order(temp$Deaths, decreasing = T),]
@@ -918,13 +918,13 @@ if (weekly_summary){
     theme(axis.line = element_line(colour = "black")) + 
     theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
     theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-    theme(legend.position = c(0.2, 0.8)) + 
+    theme(legend.position = c(0.2, 0.75)) + 
     theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = "1 day",date_labels = "%m-%d") +
     scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
     xlab("") +
-    ylab("Total Number of Cases") 
+    ylab("Total Number of Deaths") 
   
   # ggsave(filename = paste(report_date,"p14",p14_title, ".pdf"), plot = p14, width = 10, height = 8 )
   ggsave(filename = paste(report_date,"p14",p14_title, ".png"), plot = p14, width = 10, height = 8 )
@@ -1163,7 +1163,7 @@ us_confirmed_week_latest = data_us_states %>%
   select("state", "Confirmed","Crude_Incidence_Rate")
 
 us_confirmed_week_ago = data_us_states %>% 
-  filter(Date == start_date_wr) %>% 
+  filter(Date == as.Date(start_date_wr)-1) %>% 
   select("state", "Confirmed")
 
 # after checking country/region is aligned in two tables
@@ -1193,7 +1193,7 @@ us_Deaths_week_latest = data_us_states %>%
   select("state", "Deaths","Fatality_rate")
 
 us_Deaths_week_ago = data_us_states %>% 
-  filter(Date == start_date_wr) %>% 
+  filter(Date == as.Date(start_date_wr)-1) %>% 
   select("state", "Deaths")
 
 # after checking country/region is aligned in two tables
@@ -1338,7 +1338,7 @@ if (weekly_summary){
   
   ##### plot 13: total confirmed cases by US States sort by Cumulative  ######
   data_to_plot = data_us_states[data_us_states$state %in% filter_total_confirmed_diff, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= start_date_wr & data_to_plot$Date <=end_date_wr,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= as.Date(start_date_wr)-1 & data_to_plot$Date <=end_date_wr,]
   
   # reorder factor levels by country filter order
   temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
@@ -1359,7 +1359,7 @@ if (weekly_summary){
     theme(axis.line = element_line(colour = "black")) + 
     theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
     theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-    theme(legend.position = c(0.2, 0.8)) + 
+    theme(legend.position = c(0.2, 0.4)) + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = '1 day',date_labels = "%m-%d") +
@@ -1372,7 +1372,7 @@ if (weekly_summary){
   
   ###### plot 15: total deaths cases by US States sort by Cumulative  ######
   data_to_plot = data_us_states[data_us_states$state %in% filter_death_diff, ]
-  data_to_plot = data_to_plot[data_to_plot$Date >= start_date_wr & data_to_plot$Date <=end_date_wr,]
+  data_to_plot = data_to_plot[data_to_plot$Date >= as.Date(start_date_wr)-1 & data_to_plot$Date <=end_date_wr,]
   
   # reorder factor levels by country filter order
   temp = data_to_plot[data_to_plot$Date == max(data_to_plot$Date),]
@@ -1392,13 +1392,13 @@ if (weekly_summary){
     theme(axis.line = element_line(colour = "black")) + 
     theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 24)) + 
     theme(axis.text.y = element_text(size = 24), axis.title.y = element_text(size = 24)) + 
-    theme(legend.position = c(0.2, 0.8)) + 
+    theme(legend.position = c(0.2, 0.3)) + 
     theme(legend.title = element_text(size=24,face="bold.italic"), legend.text = element_text(size = 24,face="italic")) +
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = '1 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
     xlab("") +
-    ylab("Total Number of Cases")
+    ylab("Total Number of Deaths")
   
   # ggsave(filename=paste(report_date,"p15",p15_title, ".pdf"), plot = p15, width = 10, height = 8 )
   ggsave(filename=paste(report_date,"p15",p15_title, ".png"), plot = p15, width = 10, height = 8 )
