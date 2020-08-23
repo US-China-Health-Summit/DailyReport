@@ -180,8 +180,27 @@ color_list = c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F",
 
 input_population = read.csv("input_country_population.csv" , stringsAsFactors = F)
 
-# four functions for translate plots and tables; pls run it
+# five functions for translate plots and tables; pls run it
 
+###2020-08-23 update continent translation
+
+translate_continent = function(ut_data) {
+  # ut_data: untranslated data frame, which is used for plots/tables
+  # support data input of 
+  # plot: 1
+  continent_cn = read_csv("./translation/continent_translate.csv") %>% 
+    rename(Continent = continent)
+    
+  t_data = left_join(ut_data, continent_cn, by = "Continent") %>% 
+    select(continent_cn, Continent, everything()) %>% 
+    unite("continent_bi", continent_cn, Continent, sep = " ", remove = F)
+   
+  return(t_data)
+}
+
+
+
+#####
 translate_country = function(ut_data) {
   
   # wwqi4realGitHub Apr 4
@@ -718,6 +737,7 @@ if (template_input) {
 color_list_country = unique(c(filter_total, filter_incremental,filter_death, filter_death_incremental, "China", "Hubei"))
 
 ##### plot 1. total confirmed cases sort by countries cumulative #####
+
 data_to_plot_p1 = data_all_continent %>% 
   dplyr::mutate(
     Continent = ifelse(
@@ -731,9 +751,11 @@ y_max = 250000
 y_interval = adjust_y_interval(y_max)
 p1 = data_to_plot_p1 %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
-  ggplot(aes(x = Date, y = Confirmed_incremental, fill = Continent)) + 
+  translate_continent() %>% 
+  rename("洲" = continent_cn) %>% 
+  ggplot(aes(x = Date, y = Confirmed_incremental, fill = 洲 )) + 
   geom_bar(position = "stack", stat = 'identity') +
-  scale_color_manual(breaks = c("Americas", "Europe", "Asia", "Africa", "Oceania"),
+  scale_color_manual(breaks = c("美洲", "欧洲", "亚洲", "非洲", "大洋洲"),
                      values = c("orange", "red", "green", "purple", "gray")) +
   theme_bw() +
   theme(panel.border = element_blank()) +
@@ -745,8 +767,9 @@ p1 = data_to_plot_p1 %>%
   theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
+    theme(text = element_text(family='Hei')) +
   xlab("") +
-  ylab("Number of Cases per day")
+  ylab("病例总数")
 
 ggsave(filename = paste(report_date,"p1",p1_title, ".png"), plot = p1, width = 10, height = 8)
 
