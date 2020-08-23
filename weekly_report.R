@@ -39,9 +39,9 @@
 
 # getwd()
 
-#folder = "./csse_covid_19_time_series"
+folder = "./csse_covid_19_time_series"
 
-#setwd(folder)
+setwd(folder)
 
 ##### Filter countries #####
 ## Set template_input to TRUE if filter country using template file provided; 
@@ -55,8 +55,8 @@ start_date_wr = NULL
 end_date_wr = NULL
 
 weekly_summary = TRUE
-start_date_wr = "2020-08-08"  # Last Saturday
-end_date_wr = "2020-08-14"  # This Friday
+start_date_wr = "2020-08-15"  # Last Saturday
+end_date_wr = "2020-08-21"  # This Friday
 moving_avg = TRUE
 # The thresholds are used for weekly report to filter countries based on confirmed or deaths numbers of the most recent day
 ## Values can be changed as needed.
