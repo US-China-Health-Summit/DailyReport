@@ -158,6 +158,46 @@ china_news = read_excel("./input/news.xlsx", sheet = 2) %>%
 
 
 
+
+
+
+\vspace{15mm}
+
+\begin{center}
+\includegraphics[height=2cm]{./input/title3.png} 
+\end{center}
+\vspace{-7mm}
+
+```{r, echo=FALSE}
+example = read_excel("./input/module3.xlsx")
+title = example$content[1]
+content1 = example$content[2]
+reference = example$content[3]
+```
+
+\vspace{5mm}
+
+
+\begin{center}
+\textcolor{glaucous}{\Huge `r title`}
+\end{center}
+
+\vspace{-3mm}
+
+
+\begin{center}
+`r example$author[1]`: `r example$author[2]`
+\end{center}
+
+
+`r content1`
+
+<!-- Insert image for module 3 HERE --> 
+\vspace{5mm}
+
+\Large `r reference`
+
+\newpage
 \vspace{10mm}
 
 \begin{center}
@@ -342,45 +382,6 @@ cat(c("\\begin{table}[H]
 \\end{table}"
 ))
 ```
-
-
-
-
-\vspace{15mm}
-
-\begin{center}
-\includegraphics[height=2cm]{./input/title3.png} 
-\end{center}
-\vspace{-7mm}
-
-```{r, echo=FALSE}
-example = read_excel("./input/module3.xlsx")
-title = example$content[1]
-content1 = example$content[2]
-reference = example$content[3]
-```
-
-\vspace{5mm}
-
-
-\begin{center}
-\textcolor{glaucous}{\Huge `r title`}
-\end{center}
-
-\vspace{-3mm}
-
-
-\begin{center}
-`r example$author[1]`: `r example$author[2]`
-\end{center}
-
-
-`r content1`
-
-<!-- Insert image for module 3 HERE --> 
-\vspace{5mm}
-
-\Large `r reference`
 
 
 \vspace{5mm}
