@@ -184,6 +184,23 @@ input_population = read.csv("input_country_population.csv" , stringsAsFactors = 
 continent_population = read.csv('continent_population.csv', stringsAsFactors = F)
 # four functions for translate plots and tables; pls run it
 
+
+###2020-08-24 update continent translation
+
+translate_continent = function(ut_data) {
+  # ut_data: untranslated data frame, which is used for plots/tables
+  # support data input of 
+  # plot: 1
+  continent_cn = read_csv("./translation/continent_translate.csv") %>% 
+    rename(Continent = continent)
+  
+  t_data = left_join(ut_data, continent_cn, by = "Continent") %>% 
+    select(continent_cn, Continent, everything()) %>% 
+    unite("continent_bi", continent_cn, Continent, sep = " ", remove = F)
+  
+  return(t_data)
+}
+
 translate_country = function(ut_data) {
   
   # wwqi4realGitHub Apr 4
@@ -874,7 +891,21 @@ if (weekly_summary){
   
   y_max = (round(max(data_to_plot_confirmed_diff$Confirmed)/1000) + 1)*1000
   y_interval = adjust_y_interval(y_max)
-  p12 = ggplot(data_to_plot_confirmed_diff , aes(x = Date, y = Confirmed, group = Country, colour = Country,  shape = Country)) + 
+  
+  color_order_translate = 
+    filter_total_confirmed_diff %>% 
+    as_tibble() %>% 
+    rename(Country = value) %>% 
+    translate_country() %>% 
+    select(Country_cn) %>% 
+    pull %>% 
+    as.character()
+  
+  p12 = data_to_plot_confirmed_diff %>% 
+    translate_country() %>% 
+    mutate(Country_cn = fct_relevel(Country_cn, color_order_translate)) %>% 
+    rename("国家" = Country_cn) %>% 
+    ggplot(aes(x = Date, y = Confirmed, group = 国家, colour = 国家,  shape = 国家)) + 
     # geom_point(size = 2) + 
     geom_line(size = 1) +
     geom_text(aes (label = Confirmed),vjust = -0.25,size = 5)+ 
@@ -889,8 +920,9 @@ if (weekly_summary){
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = "1 day",date_labels = "%m-%d") +
     scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+    theme(text = element_text(family='Hei')) +
     xlab("") +
-    ylab("Total Number of Cases") 
+    ylab("病例总数") 
   
   # ggsave(filename = paste(report_date,"p12",p12_title, ".pdf"), plot = p12, width = 10, height = 8 )
   ggsave(filename = paste(report_date,"p12",p12_title, ".png"), plot = p12, width = 10, height = 8 )
@@ -908,7 +940,22 @@ if (weekly_summary){
   
   y_max = (round(max(data_to_plot_death_diff$Deaths)/1000) + 1)*1000
   y_interval = adjust_y_interval(y_max)
-  p14 = ggplot(data_to_plot_death_diff , aes(x = Date, y = Deaths, group = Country, colour = Country,  shape = Country)) + 
+  
+  color_order_translate = 
+    filter_death_diff %>% 
+    as_tibble() %>% 
+    rename(Country = value) %>% 
+    translate_country() %>% 
+    select(Country_cn) %>% 
+    pull %>% 
+    as.character()
+  
+  
+  p14 = data_to_plot_death_diff %>% 
+    translate_country() %>% 
+    mutate(Country_cn = fct_relevel(Country_cn, color_order_translate)) %>% 
+    rename("国家" = Country_cn) %>% 
+    ggplot( aes(x = Date, y = Deaths, group = 国家, colour = 国家,  shape = 国家)) + 
     # geom_point(size = 2) + 
     geom_line(size = 1) +
     geom_text(aes (label = Deaths),vjust = -0.25,size = 5)+ 
@@ -923,8 +970,9 @@ if (weekly_summary){
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = "1 day",date_labels = "%m-%d") +
     scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
+    theme(text = element_text(family='Hei')) +
     xlab("") +
-    ylab("Total Number of Deaths") 
+    ylab("死亡病例数") 
   
   # ggsave(filename = paste(report_date,"p14",p14_title, ".pdf"), plot = p14, width = 10, height = 8 )
   ggsave(filename = paste(report_date,"p14",p14_title, ".png"), plot = p14, width = 10, height = 8 )
@@ -948,7 +996,6 @@ if (weekly_summary){
     #Table: Globle wide table moving average incremental death
     case_deaths_incremental_wide_mvavg = find_mv_avg(case_deaths_incremental_wide)
     write_excel_csv(case_deaths_incremental_wide_mvavg, paste(report_date,"table_global_case_deaths_incremental_mvavg.csv"))
-    
     ###### plot 3. new confirmed cases moving average daily sort by countries incremental #####
     # filter by country total and date
     data_to_plot = case_confirmed_incremental_wide_mvavg%>%
@@ -957,16 +1004,30 @@ if (weekly_summary){
     country_order = c(country_order[1:5],"China")%>%unique()
     # reorder factor levels by country filter order
     
-    y <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
+    #y <- factor(data_to_plot_confirmed_increment$Country, levels = country_order)
     
     y_max = (round(max(data_to_plot$mvg_incr)/1000) + 1)*1000
     y_interval = adjust_y_interval(y_max)
-    p3 = 
-      data_to_plot%>%filter(`Country/Region`%in%country_order)%>%mutate(`Country/Region` = factor(`Country/Region`, levels = country_order))%>%
+    
+    color_order_translate = 
+      country_order %>% 
+      as_tibble() %>% 
+      rename(Country = value) %>% 
+      translate_country() %>% 
+      select(Country_cn) %>% 
+      pull %>% 
+      as.character()
+    
+    p3 = data_to_plot %>% 
+      filter(`Country/Region`%in%country_order) %>% 
+      rename(Country = `Country/Region`) %>% 
+      translate_country() %>% 
+      mutate(Country_cn = fct_relevel(Country_cn, color_order_translate))%>%
+      rename("国家" = Country_cn) %>% 
       ggplot( aes(x = date%>%as.Date(), y = mvg_incr,
-                  group = `Country/Region`,
-                  colour = `Country/Region`,
-                  shape = `Country/Region`)) + 
+                  group = 国家,
+                  colour = 国家,
+                  shape = 国家)) + 
       # geom_point(size = 2) + 
       geom_line(size = 1) +
       theme_bw() + 
@@ -981,8 +1042,9 @@ if (weekly_summary){
       scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
       scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
       ggtitle("累计确诊病例国家趋势图", subtitle = "中国及其他前五位国家") + 
+      theme(text = element_text(family='Hei')) +
       xlab("") +
-      ylab(p3_ylab)
+      ylab("确诊病例总数")
     
     # ggsave(filename = paste(report_date,"p3",p3_title, ".pdf"), plot = p3, width = 10, height = 8 )
     ggsave(filename = paste(report_date,"p3",p3_title, ".png"), plot = p3, width = 10, height = 8 )
@@ -1001,6 +1063,7 @@ if (weekly_summary){
   )%>%select(-Confirmed)
   write_excel_csv(temp1, paste(report_date,"table_global_confirmed_weekly_increase.csv"))
 }
+
 
 
 ######################
@@ -1349,7 +1412,23 @@ if (weekly_summary){
   y_max=(round(max(data_to_plot$Confirmed)/500)+1)*500
   y_interval = adjust_y_interval(y_max)
   
-  p13 = ggplot(data_to_plot , aes(x=Date, y=Confirmed, group=state, colour = state,  shape = state)) + 
+  color_order_translate = 
+    filter_total_confirmed_diff %>% 
+    as_tibble() %>% 
+    rename(state = value) %>% 
+    translate_state() %>% 
+    select(state_cn) %>% 
+    pull %>% 
+    as.character()
+  
+  
+  
+  p13 =data_to_plot %>% 
+    translate_state() %>% 
+    mutate(state_cn = factor(state_cn)) %>% 
+    mutate(state_cn = fct_relevel(state_cn, color_order_translate)) %>% 
+    rename("州" = state_cn) %>%
+    ggplot(aes(x=Date, y=Confirmed, group=州, colour = 州,  shape = 州)) + 
     # geom_point(size=2) + 
     geom_line(size=1) +
     geom_text(aes(label = Confirmed),vjust = -0.25)+
@@ -1364,8 +1443,9 @@ if (weekly_summary){
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = '1 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
+    theme(text = element_text(family='Hei')) + 
     xlab("") +
-    ylab("Total Number of Cases")
+    ylab("累计病例总数")
   
   # ggsave(filename=paste(report_date,"p13",p13_title, ".pdf"), plot = p13, width = 10, height = 8 )
   ggsave(filename=paste(report_date,"p13",p13_title, ".png"), plot = p13, width = 10, height = 8 )
@@ -1382,7 +1462,23 @@ if (weekly_summary){
   
   y_max=(round(max(data_to_plot$Deaths)/500)+1)*500
   y_interval = adjust_y_interval(y_max)
-  p15 = ggplot(data_to_plot , aes(x=Date, y=Deaths, group=state, colour = state,  shape = state)) + 
+  
+  
+  color_order_translate = 
+    filter_death_diff %>% 
+    as_tibble() %>% 
+    rename(state = value) %>% 
+    translate_state() %>% 
+    select(state_cn) %>% 
+    pull %>% 
+    as.character()
+  
+  p15 = data_to_plot %>% 
+    translate_state() %>% 
+    mutate(state_cn = factor(state_cn)) %>% 
+    mutate(state_cn = fct_relevel(state_cn, color_order_translate)) %>% 
+    rename("州" = state_cn) %>%
+    ggplot(aes(x=Date, y=Deaths, group=州, colour = 州,  shape = 州)) + 
     # geom_point(size=2) + 
     geom_line(size=1) +
     geom_text(aes(label = Deaths),vjust = -0.25)+
@@ -1397,8 +1493,9 @@ if (weekly_summary){
     scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
     scale_x_date(breaks = '1 day',date_labels = "%m-%d") +
     scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
+    theme(text = element_text(family='Hei')) +
     xlab("") +
-    ylab("Total Number of Deaths")
+    ylab("累计死亡病例总数")
   
   # ggsave(filename=paste(report_date,"p15",p15_title, ".pdf"), plot = p15, width = 10, height = 8 )
   ggsave(filename=paste(report_date,"p15",p15_title, ".png"), plot = p15, width = 10, height = 8 )
