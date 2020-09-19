@@ -752,11 +752,12 @@ y_interval = adjust_y_interval(y_max)
 p1 = data_to_plot_p1 %>% 
   filter(Date >= as.Date(report_start_date)) %>% 
   translate_continent() %>% 
+  mutate(continent_cn = factor(continent_cn,levels = c("美洲","欧洲","亚洲","非洲","大洋洲") )) %>% 
   rename("洲" = continent_cn) %>% 
   ggplot(aes(x = Date, y = Confirmed_incremental, fill = 洲 )) + 
   geom_bar(position = "stack", stat = 'identity') +
-  scale_color_manual(breaks = c("美洲", "欧洲", "亚洲", "非洲", "大洋洲"),
-                     values = c("orange", "red", "green", "purple", "gray")) +
+  scale_fill_manual(breaks = c("美洲", "欧洲", "亚洲", "非洲", "大洋洲"),
+                     values = c("#FFBB30", "#C8D55B", "#5101AE", "#0b71D5", "#C12492")) +
   theme_bw() +
   theme(panel.border = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
@@ -767,7 +768,7 @@ p1 = data_to_plot_p1 %>%
   theme(legend.title = element_text(size = 24,face = "bold.italic"), legend.text = element_text(size = 24,face = "italic")) +
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
-    theme(text = element_text(family='Hei')) +
+    theme(text = element_text(family='STXihei')) +
   xlab("") +
   ylab("病例总数")
 
@@ -822,7 +823,7 @@ p2 = data_to_plot_confirmed %>%
   scale_y_continuous(breaks = seq(0,y_max, y_interval), label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
   scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
-  theme(text = element_text(family='Hei')) +
+  theme(text = element_text(family='STXihei')) +
   #ggtitle("日新增确诊病例国家趋势图", subtitle = "") + 
   xlab("") +
   ylab("新增确诊病例数")
@@ -882,7 +883,7 @@ p3 = data_to_plot_confirmed_increment %>%
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
   scale_color_manual(values = color_list[match(country_order, color_list_country)]) +
-  theme(text = element_text(family='Hei')) +
+  theme(text = element_text(family='STXihei')) +
   #ggtitle("累计确诊病例国家趋势图", subtitle = "") + 
   xlab("") +
   ylab("新增确诊病例数")
@@ -938,7 +939,7 @@ p10_1 = data_to_plot_death_incremental_notinc_china %>%
   scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
   scale_x_date(breaks = break.vec, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(country_order, color_list_country)]) +
-  theme(text = element_text(family='Hei')) +
+  theme(text = element_text(family='STXihei')) +
   xlab("") +
   ylab("新增死亡病例数")
 
@@ -1220,7 +1221,7 @@ p4 = data_to_plot %>%
   scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
   scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
-  theme(text = element_text(family='Hei')) + 
+  theme(text = element_text(family='STXihei')) + 
   xlab("") +
   ylab("确诊病例总数")
 
@@ -1281,7 +1282,7 @@ p5 = data_to_plot_incremental %>%
   scale_y_continuous(breaks = seq(0,y_max, y_interval),label = comma) +
   scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
   scale_color_manual(values = color_list[match(state_order, color_list_state)]) +
-  theme(text = element_text(family='Hei')) + 
+  theme(text = element_text(family='STXihei')) + 
   xlab("") +
   ylab("新增确诊病例数")
 
@@ -1327,7 +1328,7 @@ p8 = data_to_plot_death %>%
   scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
   scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
-  theme(text = element_text(family='Hei')) + 
+  theme(text = element_text(family='STXihei')) + 
   xlab("") +
   ylab("死亡病例总数")
 
@@ -1381,7 +1382,7 @@ p11 = data_to_plot_death_incremental %>%
   scale_y_continuous(breaks=seq(0,y_max, y_interval),label=comma) +
   scale_x_date(breaks = break.vec_us, date_labels = "%m-%d") +
   scale_color_manual(values=color_list[match(state_order, color_list_state)]) +
-  theme(text = element_text(family='Hei')) + 
+  theme(text = element_text(family='STXihei')) + 
   xlab("") +
   ylab("新增死亡病例数")
 
